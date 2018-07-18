@@ -5,7 +5,15 @@ import Helmet from 'react-helmet'
 import Header from './header'
 import './layout.css'
 
-const Layout: SFC = ({ children, data }) => (
+interface IndexPageData {
+  site: {
+    siteMetadata: {
+      title: string
+    }
+  }
+}
+
+const Layout: SFC = ({ children }) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -16,12 +24,13 @@ const Layout: SFC = ({ children, data }) => (
         }
       }
     `}
-    render={data => (
+  >
+    {(data: IndexPageData) => (
       <>
         <Helmet
           title={data.site.siteMetadata.title}
           meta={[
-            { name: 'description', content: 'Sample' },
+            { name: 'description', content: 'This is my blog' },
             { name: 'keywords', content: 'sample, something' },
           ]}
         />
@@ -38,7 +47,7 @@ const Layout: SFC = ({ children, data }) => (
         </div>
       </>
     )}
-  />
+  </StaticQuery>
 )
 
 export default Layout

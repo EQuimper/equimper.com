@@ -1,7 +1,11 @@
-import React from 'react'
 import { Link } from 'gatsby'
+import React, { SFC } from 'react'
 
-const Header = ({ siteTitle }) => (
+interface IProps {
+  siteTitle: string
+}
+
+const Header: SFC<IProps> = ({ siteTitle }) => (
   <div
     style={{
       background: 'rebeccapurple',
