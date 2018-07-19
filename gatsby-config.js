@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'EQuimper',
+    title: '<EQuimper />;',
   },
   plugins: [
     'gatsby-plugin-react-helmet',

@@ -40,6 +40,7 @@ export const theme: ITheme = {
     'dark-gray': '#333',
     'mid-gray': '#555',
     gray: ' #777',
+    'gray-lighter': '#f3f7f9',
     silver: '#999',
     'light-silver': '#aaa',
     'moon-gray': '#ccc',

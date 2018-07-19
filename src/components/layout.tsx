@@ -1,12 +1,12 @@
-import { ThemeProvider } from 'emotion-theming'
+import { injectGlobal } from 'emotion'
 import { graphql, StaticQuery } from 'gatsby'
 import React, { SFC } from 'react'
 import Helmet from 'react-helmet'
 
-import Box from '../commons/Box'
+import styled from '../utils/styled'
 import { theme } from '../utils/theme'
+import Footer from './footer'
 import Header from './header'
-import './layout.css'
 
 interface IndexPageData {
   site: {
@@ -15,6 +15,27 @@ interface IndexPageData {
     }
   }
 }
+
+// tslint:disable-next-line:no-unused-expression
+injectGlobal`
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+`
+
+const Body = styled('div')`
+  ${tw('bg-grey-lighter font-sans antialiased min-h-screen relative')};
+`
+
+const Root = styled('div')`
+  ${tw('container mx-auto py-10 px-6')};
+`
 
 const Layout: SFC = ({ children }) => (
   <StaticQuery
@@ -29,19 +50,18 @@ const Layout: SFC = ({ children }) => (
     `}
   >
     {(data: IndexPageData) => (
-      <ThemeProvider theme={theme}>
-        <>
-          <Helmet
-            title={data.site.siteMetadata.title}
-            meta={[
-              { name: 'description', content: 'This is my blog' },
-              { name: 'keywords', content: 'sample, something' },
-            ]}
-          />
-          <Header siteTitle={data.site.siteMetadata.title} />
-          <Box width={1 / 2}>{children}</Box>
-        </>
-      </ThemeProvider>
+      <Body>
+        <Helmet
+          title={data.site.siteMetadata.title}
+          meta={[
+            { name: 'description', content: 'This is my blog' },
+            { name: 'keywords', content: 'sample, something' },
+          ]}
+        />
+        <Header siteTitle={data.site.siteMetadata.title} />
+        <Root>{children}</Root>
+        <Footer siteTitle={data.site.siteMetadata.title} />
+      </Body>
     )}
   </StaticQuery>
 )

@@ -29,6 +29,7 @@ export interface ITheme {
     'dark-gray': string
     'mid-gray': string
     gray: string
+    'gray-lighter': string
     silver: string
     'light-silver': string
     'moon-gray': string
