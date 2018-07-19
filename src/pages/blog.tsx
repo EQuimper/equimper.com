@@ -5,7 +5,7 @@ import Layout from '../components/layout'
 import styled from '../utils/styled'
 
 const Root = styled('div')`
-  ${tw('sm:w-full md:w-3/4 lg:w-1/2 mx-auto')};
+  ${tw('sm:w-full lg:w-1/2 mx-auto')};
 `
 
 const PageTitleWrapper = styled('div')`
@@ -29,19 +29,23 @@ const TagWrapper = styled('li')`
 `
 
 const Tag = styled(GatsbyLink)`
-  ${tw('no-underline lowercase text-sm bg-grey-lighter rounded p-2 hover:shadow text-black')};
+  ${tw(
+    'no-underline lowercase text-sm bg-grey-lighter rounded p-2 hover:shadow text-black'
+  )};
 `
 
 const DescriptionWrapper = styled('div')`
-  ${tw('mb-8')}
+  ${tw('mb-8')};
 `
 
 const PostTitle = styled(GatsbyLink)`
-  ${tw('grey-darkest no-underline font-bold tracking-wide text-2xl hover:underline')}
+  ${tw(
+    'text-grey-darkest no-underline font-bold tracking-wide text-2xl hover:underline'
+  )};
 `
 
 const Description = styled('p')`
-  ${tw('text-md leading-normal text-grey-darker')}
+  ${tw('text-md leading-normal text-grey-darker')};
 `
 
 const BlogPage = () => (
@@ -51,7 +55,7 @@ const BlogPage = () => (
         <PageTitle>Latest Blog Posts</PageTitle>
       </PageTitleWrapper>
       <Post>
-        <PostTitle>How do I manage state with React?</PostTitle>
+        <PostTitle to="#">How do I manage state with React?</PostTitle>
 
         <DescriptionWrapper>
           <Description>
@@ -62,25 +66,25 @@ const BlogPage = () => (
         </DescriptionWrapper>
         <TagList>
           <TagWrapper>
-            <Tag>#redux</Tag>
+            <Tag to="#">#redux</Tag>
           </TagWrapper>
           <TagWrapper>
-            <Tag>#react</Tag>
+            <Tag to="#">#react</Tag>
           </TagWrapper>
           <TagWrapper>
-            <Tag>#javascript</Tag>
+            <Tag to="#">#javascript</Tag>
           </TagWrapper>
           <TagWrapper>
-            <Tag>#mobx</Tag>
+            <Tag to="#">#mobx</Tag>
           </TagWrapper>
           <TagWrapper>
-            <Tag>#tips</Tag>
+            <Tag to="#">#tips</Tag>
           </TagWrapper>
         </TagList>
       </Post>
 
       <Post>
-        <PostTitle>My Goals for 2018</PostTitle>
+        <PostTitle to="#">My Goals for 2018</PostTitle>
         <DescriptionWrapper>
           <Description>
             What is my goals for 2018? Where my youtube channel go?.
@@ -88,7 +92,7 @@ const BlogPage = () => (
         </DescriptionWrapper>
         <TagList>
           <TagWrapper>
-            <Tag>#life</Tag>
+            <Tag to="#">#life</Tag>
           </TagWrapper>
         </TagList>
       </Post>

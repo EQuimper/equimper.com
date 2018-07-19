@@ -12,7 +12,9 @@ const Root = styled('footer')`
 `
 
 const FooterWrapper = styled('div')`
-  ${tw('w-3/4 px-4 py-2 flex items-center justify-between text-sm')};
+  ${tw(
+    'w-full md:w-3/4 lg:w-1/2 px-6 px-4 py-2 flex items-center justify-between text-sm'
+  )};
 `
 
 const AllContentWrapper = styled('div')`
@@ -24,15 +26,21 @@ const AllContent = styled('p')`
 `
 
 const SiteTitle = styled(GatsbyLink)`
-  ${tw('no-underline tracking-wide font-bold text-grey-darkest hover:text-red')};
+  ${tw(
+    'no-underline tracking-wide font-bold text-grey-darkest hover:text-grey'
+  )};
+`
+
+const LinkItem = styled('li')`
+  ${tw('ml-4')};
 `
 
 const Link = styled(GatsbyLink)`
-  ${tw('no-underline text-grey hover:text-red')};
+  ${tw('no-underline text-grey hover:text-grey-darkest')};
 `
 
 const LinkList = styled('ul')`
-  ${tw('list-reset')};
+  ${tw('list-reset flex items-center')};
 `
 
 const Footer: SFC<IProps> = ({ siteTitle }) => (
@@ -40,12 +48,17 @@ const Footer: SFC<IProps> = ({ siteTitle }) => (
     <FooterWrapper>
       <AllContentWrapper>
         <AllContent>All content &copy;</AllContent>
-        <SiteTitle to="https://github.com/EQuimper">{siteTitle}</SiteTitle>
+        <SiteTitle to="https://www.github.com/EQuimper" target="_blank">
+          {siteTitle}
+        </SiteTitle>
       </AllContentWrapper>
       <LinkList>
-        <li>
+        <LinkItem>
           <Link to="/blob">Blog</Link>
-        </li>
+        </LinkItem>
+        <LinkItem>
+          <Link to="/contact">Contact Me</Link>
+        </LinkItem>
       </LinkList>
     </FooterWrapper>
   </Root>

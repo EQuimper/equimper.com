@@ -182,7 +182,7 @@ module.exports = {
 
   fonts: {
     sans: [
-      'Helvetica Neue',
+      'Lato',
       'system-ui',
       'BlinkMacSystemFont',
       '-apple-system',
@@ -194,6 +194,7 @@ module.exports = {
       'Fira Sans',
       'Droid Sans',
       'sans-serif',
+      'Helvetica Neue',
     ],
     serif: [
       'Constantia',

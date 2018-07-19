@@ -15,7 +15,8 @@
     "react-dom": "^16.4.1",
     "react-emotion": "^9.2.6",
     "react-helmet": "^5.2.0",
-    "styled-system": "^3.0.2"
+    "styled-system": "^3.0.2",
+    "typeface-lato": "^0.0.54"
   },
   "keywords": [
     "gatsby"

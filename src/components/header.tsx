@@ -8,8 +8,12 @@ interface IProps {
   siteTitle: string
 }
 
+const Nav = styled('nav')`
+  ${tw('bg-white w-full shadow')};
+`
+
 const NavWrapper = styled('div')`
-  ${tw('px-4 py-2 flex items-center justify-between bg-white shadow')};
+  ${tw('px-4 py-2 w-full flex items-center justify-between')};
 `
 
 const LinkList = styled('ul')`
@@ -17,38 +21,42 @@ const LinkList = styled('ul')`
 `
 
 const LinkItem = styled('li')`
-  ${tw('')};
+  ${tw('ml-4')};
 `
 
 const BrandWrapper = styled('div')`
-  ${tw('border-b border-red')};
+  ${tw('')};
 `
 
 const Link = styled(GatsbyLink)`
-  ${tw('no-underline ml-4 text-grey-darkest hover:text-red')};
+  ${tw('no-underline text-grey-darkest hover:text-grey')};
 `
 const BrandLink = styled(GatsbyLink)`
-  ${tw('no-underline tracking-wide font-bold text-md text-grey-darkest hover:text-red')};
+  ${tw(
+    'no-underline tracking-wide font-bold text-md md:text-lg text-grey-darkest hover:text-grey'
+  )};
 `
 
 const Heading = Text.withComponent('h1')
 
 const Header: SFC<IProps> = ({ siteTitle }) => (
-  <nav>
-    <NavWrapper>
-      <BrandWrapper>
-        <BrandLink to="/">{siteTitle}</BrandLink>
-      </BrandWrapper>
-      <LinkList>
-        <LinkItem>
-          <Link to="/blog">Blog</Link>
-        </LinkItem>
-        <LinkItem>
-          <Link to="/contact">Contact Me</Link>
-        </LinkItem>
-      </LinkList>
-    </NavWrapper>
-  </nav>
+  <header>
+    <Nav>
+      <NavWrapper>
+        <BrandWrapper>
+          <BrandLink to="/">{siteTitle}</BrandLink>
+        </BrandWrapper>
+        <LinkList>
+          <LinkItem>
+            <Link to="/blog">Blog</Link>
+          </LinkItem>
+          <LinkItem>
+            <Link to="/contact">Contact Me</Link>
+          </LinkItem>
+        </LinkList>
+      </NavWrapper>
+    </Nav>
+  </header>
 )
 
 export default Header

@@ -3,6 +3,7 @@ import { graphql, StaticQuery } from 'gatsby'
 import React, { SFC } from 'react'
 import Helmet from 'react-helmet'
 
+
 import styled from '../utils/styled'
 import { theme } from '../utils/theme'
 import Footer from './footer'
@@ -26,6 +27,7 @@ injectGlobal`
     margin: 0;
     padding: 0;
     height: 100%;
+    font-family: Lato;
   }
 `
 
