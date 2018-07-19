@@ -11,6 +11,8 @@
     "gatsby-plugin-emotion": "^1.1.17",
     "gatsby-plugin-react-helmet": "next",
     "gatsby-plugin-typescript": "^2.0.0-beta.6",
+    "gatsby-source-filesystem": "^1.5.39",
+    "gatsby-transformer-remark": "^1.7.44",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-emotion": "^9.2.6",
