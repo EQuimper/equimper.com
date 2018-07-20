@@ -112,8 +112,8 @@ const Layout: SFC = ({ children }) => (
         }
       }
     `}
-  >
-    {(data: IndexPageData) => (
+    // tslint:disable-next-line:jsx-no-lambda
+    render={(data: IndexPageData) => (
       <Body>
         <Helmet
           title={data.site.siteMetadata.title}
@@ -122,12 +122,13 @@ const Layout: SFC = ({ children }) => (
             { name: 'keywords', content: 'sample, something' },
           ]}
         />
+        <html lang="en" />
         <Header siteTitle={data.site.siteMetadata.title} />
         <Root>{children}</Root>
         <Footer siteTitle={data.site.siteMetadata.title} />
       </Body>
     )}
-  </StaticQuery>
+  />
 )
 
 export default Layout
