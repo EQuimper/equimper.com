@@ -51,7 +51,12 @@ a little folder with a plus sign. If you click there you can now create a collec
 
 Give a little name for your collection. For me, I'm using `Postman-Tuto`. With that collection, we make our life much easier to test route already create.
 
-Add the route and the `GET` method in the main area. For me, I add `http://localhost:3000/api/v1/posts/588ce463f4741431c918a04b` cause I have already created a fake post.
+Add the route and the `GET` method in the main area. For me, I add
+
+```
+http://localhost:3000/api/v1/posts/588ce463f4741431c918a04b
+```
+ cause I have already created a fake post.
 
 ![](https://image.ibb.co/cGdB5k/8IjnuIJ.png)
 

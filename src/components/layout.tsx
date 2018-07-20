@@ -89,12 +89,12 @@ injectGlobal`
   }
 
   .gatsby-highlight pre[class*="language-"] {
-    background-color: transparent;
+    background-color: #f3f7f9;
   }
 `
 
 const Body = styled('div')`
-  ${tw('bg-grey-lighter font-sans antialiased min-h-screen relative')};
+  ${tw('bg-grey-lighter font-sans antialiased min-h-screen relative pb-20')};
 `
 
 const Root = styled('div')`

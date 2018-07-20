@@ -8,12 +8,12 @@ interface IProps {
 }
 
 const Root = styled('footer')`
-  ${tw('bg-white mx-auto flex justify-center absolute pin-b pin-x')};
+  ${tw('bg-white mx-auto flex justify-center absolute pin-b pin-x px-6 pt-2 sm:py-2')};
 `
 
 const FooterWrapper = styled('div')`
   ${tw(
-    'w-full md:w-3/4 lg:w-1/2 px-6 px-4 py-2 flex items-center justify-between text-sm'
+    'flex-col-reverse w-full xl:w-1/2 flex items-center justify-between sm:flex-row'
   )};
 `
 
@@ -22,25 +22,25 @@ const AllContentWrapper = styled('div')`
 `
 
 const AllContent = styled('p')`
-  ${tw('mr-4 text-grey-darker')};
+  ${tw('text-xs mr-4 text-grey-darker sm:text-base')};
 `
 
 const SiteTitle = styled(GatsbyLink)`
   ${tw(
-    'no-underline tracking-wide font-bold text-grey-darkest hover:text-grey'
+    'text-sm no-underline tracking-wide font-bold text-grey-darkest hover:text-grey sm:text-base'
   )};
 `
 
 const LinkItem = styled('li')`
-  ${tw('ml-4')};
+  ${tw('mb-4 ml-4 sm:mb-0')};
 `
 
 const Link = styled(GatsbyLink)`
-  ${tw('no-underline text-grey-darker hover:text-grey-darkest')};
+  ${tw('text-sm no-underline text-grey-darker hover:text-grey-darkest sm:text-base')};
 `
 
 const LinkList = styled('ul')`
-  ${tw('list-reset flex items-center')};
+  ${tw('flex-col list-reset flex items-center sm:flex-row')};
 `
 
 const Footer: SFC<IProps> = ({ siteTitle }) => (
@@ -54,7 +54,7 @@ const Footer: SFC<IProps> = ({ siteTitle }) => (
       </AllContentWrapper>
       <LinkList>
         <LinkItem>
-          <Link to="/blob">Blog</Link>
+          <Link to="/blog">Blog</Link>
         </LinkItem>
         <LinkItem>
           <Link to="/contact">Contact Me</Link>
