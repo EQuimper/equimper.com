@@ -22,7 +22,7 @@ const AllContentWrapper = styled('div')`
 `
 
 const AllContent = styled('p')`
-  ${tw('mr-4 text-grey')};
+  ${tw('mr-4 text-grey-dark')};
 `
 
 const SiteTitle = styled(GatsbyLink)`
@@ -36,7 +36,7 @@ const LinkItem = styled('li')`
 `
 
 const Link = styled(GatsbyLink)`
-  ${tw('no-underline text-grey hover:text-grey-darkest')};
+  ${tw('no-underline text-grey-dark hover:text-grey-darkest')};
 `
 
 const LinkList = styled('ul')`
