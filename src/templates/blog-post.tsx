@@ -12,7 +12,18 @@ const Article = styled('article')`
   ${tw('bg-white p-8 rounded shadow')};
 `
 
-const BlogPost = ({ data }) => {
+interface IProps {
+  data: {
+    markdownRemark: {
+      html: string
+      frontmatter: {
+        title: string
+      }
+    }
+  }
+}
+
+const BlogPost = ({ data }: IProps) => {
   const post = data.markdownRemark
 
   return (
@@ -20,7 +31,10 @@ const BlogPost = ({ data }) => {
       <Root>
         <Article>
           <h1>{post.frontmatter.title}</h1>
-          <div className="md-content" dangerouslySetInnerHTML={{ __html: post.html }} />
+          <div
+            className="md-content"
+            dangerouslySetInnerHTML={{ __html: post.html }}
+          />
         </Article>
       </Root>
     </Layout>
