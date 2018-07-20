@@ -8,7 +8,7 @@ weight: 10
 tags: ["text editor", "javascript", "web"]
 ---
 
-{{< youtube baJyGTJr9so >}}
+`youtube:baJyGTJr9so`
 
 VSC: Visual Studio Code
 

@@ -45,19 +45,31 @@ routes.route('/posts/:id').get(PostController.fetchPostById);
 export default routes;
 ```
 
-Now time to open Postman. In your left, you gonna see ![](https://image.ibb.co/fV0DJ5/sB0MxDA.png) a little folder with a plus sign. If you click there you can now create a collection. ![](https://image.ibb.co/e6yYJ5/fH7iOrk.png) Give a little name for your collection. For me, I'm using `Postman-Tuto`. With that collection, we make our life much easier to test route already create.
+Now time to open Postman. In your left, you gonna see ![](https://image.ibb.co/fV0DJ5/sB0MxDA.png)
+
+a little folder with a plus sign. If you click there you can now create a collection. ![](https://image.ibb.co/e6yYJ5/fH7iOrk.png)
+
+Give a little name for your collection. For me, I'm using `Postman-Tuto`. With that collection, we make our life much easier to test route already create.
 
 Add the route and the `GET` method in the main area. For me, I add `http://localhost:3000/api/v1/posts/588ce463f4741431c918a04b` cause I have already created a fake post.
 
 ![](https://image.ibb.co/cGdB5k/8IjnuIJ.png)
 
-Now when I click send I receive this. ![](https://image.ibb.co/cjOB5k/bTBgJYa.png) Perfect the route is working and the controller + model do their job.
+Now when I click send I receive this.
+
+![](https://image.ibb.co/cjOB5k/bTBgJYa.png)
+
+Perfect the route is working and the controller + model do their job.
 
 ## Write your first Postman test
 
-If you click on Test right below the URL container you gonna see this ![](https://image.ibb.co/d7dNBQ/yl3ocAW.png). Now time to write some test. First thing in the right you can see a select menu with test already create by Postman. We can select one already `Status code: Code is 200`. ![](https://image.ibb.co/gVMaWQ/ykMf8Mb.png)
+If you click on Test right below the URL container you gonna see this ![](https://image.ibb.co/d7dNBQ/yl3ocAW.png). Now time to write some test. First thing in the right you can see a select menu with test already create by Postman. We can select one already `Status code: Code is 200`.
 
-If you click send now we can see the test pass `1/1`. ![](https://image.ibb.co/ngbLy5/Yft8e5Y.png)
+![](https://image.ibb.co/gVMaWQ/ykMf8Mb.png)
+
+If you click send now we can see the test pass `1/1`.
+
+![](https://image.ibb.co/ngbLy5/Yft8e5Y.png)
 
 Now add the `Response body: JSON value check` again in your right snippets.
 
@@ -68,7 +80,9 @@ tests["Post should have title of Title 1"] = jsonData.post.title === "Title 1";
 
 Add this line and now click send.
 
-This is the result. ![](https://image.ibb.co/m7eJkk/q90y932.png)
+This is the result.
+
+![](https://image.ibb.co/m7eJkk/q90y932.png)
 
 ## Add more test
 
@@ -90,14 +104,22 @@ tests["Should have no error"] = jsonData.error === false;
 
 ## Time to save and add new one
 
-Now in the top left, you can see a big Save button. Click on the arrow and `save as`. Give a name to this route. ![](https://image.ibb.co/eUNokk/rZfw6fP.png) + you need to add it to your collection.
+Now in the top left, you can see a big Save button. Click on the arrow and `save as`. Give a name to this route.
+
+![](https://image.ibb.co/eUNokk/rZfw6fP.png)
+
+you need to add it to your collection.
 
 
 ## The runner
 
-In the top left you can see the button Runner if you click it Postman open a new window. Select your collection in the dropdown. ![](https://image.ibb.co/h5EerQ/wZRSxWz.png)
+In the top left you can see the button Runner if you click it Postman open a new window. Select your collection in the dropdown.
 
-If you click Start Run you can get this. ![](https://image.ibb.co/dY2Ay5/p2luDGi.png)
+![](https://image.ibb.co/h5EerQ/wZRSxWz.png)
+
+If you click Start Run you can get this.
+
+![](https://image.ibb.co/dY2Ay5/p2luDGi.png)
 
 As you can see I add some new test for show how awesome this tool can be. You can also import your test run and give that to another dev in your team.
 

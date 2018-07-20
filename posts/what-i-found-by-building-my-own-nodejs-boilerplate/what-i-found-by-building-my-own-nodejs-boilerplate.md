@@ -15,8 +15,6 @@ tags: [
 ]
 ---
 
-# What I found by building my own NodeJS boilerplate.
-
 # Mongoose Tips
 
 I’ve played with Mongoose a lot in the past week. I’ve built a [NodeJS API boilerplate](https://github.com/EQuimper/nodejs-api-boilerplate) for help me kickstart some REST API project. I setup the regular auth using PassportJS with the local and JWT strategies. By doing this I found some useful tricks with Mongoose. Some tips I never really see somewhere ‘maybe I didn’t search lot 😃’ and I want to share you what I found.
@@ -102,9 +100,25 @@ UserSchema.methods = {
 };
 ```
 
-So here we have a lot of stuff to check 😃. Methods in mongoose are finally what they said. They are methods available on your user object. An example here we have `authenticateUser(password)` who is use for authenticate the user find with email if the password is the right one. Same go for the `_hashPassword(password)` who just simply hash the password before saving the user in the DB. `createToken()` like the name say create the JWT token and can be user right inside the response `res.status(200).json({ user, token: user.createToken() })`.
+So here we have a lot of stuff to check 😃. Methods in mongoose are finally what they said. They are methods available on your user object. An example here we have `js±authenticateUser(password)` who is use for authenticate the user find with email if the password is the right one. Same go for the `js±_hashPassword(password)` who just simply hash the password before saving the user in the DB. `js±createToken()` like the name say create the JWT token and can be user right inside the response
 
-But the one I want you to see it's the `toJSON()`. This on is use when finally you on your user. So if you check back `res.status(200).json({ user, token: user.createToken() })` you can see I send the user. Because we have the `toJSON()` on make it working just like this. We don't send timestamps, email, password etc. We just send `_id` and `username` nothing more. But ok why do the `toAuthJSON()`? Because now I can reformat the response to be `res.status(200).send(user.toAuthJSON())` so I just send an Object with `_id` and `token`. Hope this part make sense 😃.
+```js
+res.status(200).json({ user, token: user.createToken() })
+```
+
+But the one I want you to see it's the `js±toJSON()`. This on is use when finally you on your user. So if you check back
+
+```js
+res.status(200).json({ user, token: user.createToken() })
+```
+
+you can see I send the user. Because we have the `js±toJSON()` on make it working just like this. We don't send timestamps, email, password etc. We just send `js±_id` and `js±username` nothing more. But ok why do the `js±toAuthJSON()`? Because now I can reformat the response to be
+
+```js
+res.status(200).send(user.toAuthJSON())
+```
+
+so I just send an Object with `_id` and `token`. Hope this part make sense 😃.
 
 The reason why have to methods for JSON below 😃.
 
@@ -141,13 +155,31 @@ PostSchema.statics = {
 };
 ```
 
-Here I have 2 statics methods to my post. This method finally is just for abstract some of your code. For me, that make my life a bit easier and make the controller cleaner. The `createPost(args, authorId)` it's for just clean up a bit the code. I can use it by doing `Post.createPost({ title: 'Hello' }, '123')`. I just remove some code and make it a bit easier when it came to maybe change DB. I can keep the same controller but just change my `Post` services.
+Here I have 2 statics methods to my post. This method finally is just for abstract some of your code. For me, that make my life a bit easier and make the controller cleaner. The `js±createPost(args, authorId)` it's for just clean up a bit the code. I can use it by doing
 
-After this one we have `list({ skip = 0, limit = 10 })`. This one it's just for make kind of pagination easier. You can see I use the ES6 feature [Default Parameters](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Default_parameters) who let me add default parameters if these values are `undefined`. Again I can use it like that `Post.list({ skip: 5, limit: 20 });`. This is again for me just sugars and makes my code easier to follow.
+```js
+Post.createPost({ title: 'Hello' }, '123')
+```
+
+I just remove some code and make it a bit easier when it came to maybe change DB. I can keep the same controller but just change my `js±Post` services.
+
+After this one we have
+
+```js
+list({ skip = 0, limit = 10 })
+```
+
+This one it's just for make kind of pagination easier. You can see I use the ES6 feature [Default Parameters](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Default_parameters) who let me add default parameters if these values are `js±undefined`. Again I can use it like that
+
+```js
+Post.list({ skip: 5, limit: 20 });
+```
+
+This is again for me just sugars and makes my code easier to follow.
 
 ## Again toJSON() 😃
 
-In the last example in the list we have `.populate('author');`. Because of the `toJSON()` by default the user gonna have only `_id` and `username` no need to add select value etc :). That's why I have `toAuthJSON()` who is called on login and `toJSON()` for this kind of thing.
+In the last example in the list we have `js±.populate('author');`. Because of the `js±toJSON()` by default the user gonna have only `js±_id` and `js±username` no need to add select value etc :). That's why I have `js±toAuthJSON()` who is called on login and `js±toJSON()` for this kind of thing.
 
 ## Packages
 
@@ -193,11 +225,11 @@ routes.patch(
 
 ### [Helmet](https://github.com/helmetjs/helmet)
 
-Helmet's a library who help you secure your Express app. Easy to install just need to add it as a middleware `app.use(helmet())`. This is for getting the standard. You can check on their GitHub to see another way.
+Helmet's a library who help you secure your Express app. Easy to install just need to add it as a middleware `js±app.use(helmet())`. This is for getting the standard. You can check on their GitHub to see another way.
 
 ### [Cors](https://github.com/expressjs/cors)
 
-Cors's a middleware who enable for you the Cross-Origin request. Can be added for getting everything working just by doing `app.use(cors())` but it's a good thing to whitelist your front-end only etc. Take again a look at the docs before use it.
+Cors's a middleware who enable for you the Cross-Origin request. Can be added for getting everything working just by doing `js±app.use(cors())` but it's a good thing to whitelist your front-end only etc. Take again a look at the docs before use it.
 
 ### [Http-Status](https://github.com/adaltas/node-http-status)
 

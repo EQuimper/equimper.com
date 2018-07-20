@@ -3,6 +3,8 @@ import { graphql, StaticQuery } from 'gatsby'
 import React, { SFC } from 'react'
 import Helmet from 'react-helmet'
 
+// tslint:disable-next-line:no-submodule-imports
+import 'prismjs/themes/prism-solarizedlight.css'
 
 import styled from '../utils/styled'
 import { theme } from '../utils/theme'
@@ -23,6 +25,10 @@ injectGlobal`
     box-sizing: border-box;
   }
 
+  :root {
+    --primary: #f73859;
+  }
+
   body {
     margin: 0;
     padding: 0;
@@ -38,23 +44,49 @@ injectGlobal`
     color: #3d4852;
   }
 
-  .md-content > p > a {
+  .md-content > p > a, .md-content > ol > li > a, .md-content > ul > li > a {
     color: #b8c2cc;
     text-decoration: none;
-    /* border-bottom: 2px solid #f73859; */
-    box-shadow: inset 0 -0.2em 0 #f73859;
-    transition: box-shadow .2s ease-in-out,-webkit-box-shadow .2s ease-in-out;
+    box-shadow: inset 0 -0.2em 0 var(--primary);
+    transition: box-shadow .3s ease-in-out,-webkit-box-shadow .3s ease-in-out;
   }
 
   .md-content > p > a:hover {
-    box-shadow: inset 0 -1.2em 0 #f73859;
+    box-shadow: inset 0 -1.2em 0 var(--primary);
     color: #fff;
   }
 
-  .md-content > h1, h2, h3, h4, h5 {
+  .md-content > p > img {
+    width: 80%;
+    margin: 30px 0;
+  }
+
+  .md-content > ul {
+    list-style-type: circle;
+  }
+
+  .md-content > ul > li, .md-content > ul > li > a {
+    line-height: 1.5;
+  }
+
+  .md-content > h1, h2, h3, h4, h5, .md-content > h3 > a {
     margin: 30px 0;
     color: #3d4852;
     letter-spacing: 0.05em;
+  }
+
+  .gatsby-resp-iframe-wrapper {
+    margin: 50px 0;
+  }
+
+  .md-content > p > code.language-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+  }
+
+  .gatsby-highlight pre[class*="language-"] {
+    background-color: transparent;
   }
 `
 
