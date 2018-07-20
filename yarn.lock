@@ -4728,11 +4728,11 @@ gatsby-link@^2.0.0-beta.4:
     react-lifecycles-compat "^3.0.2"
     ric "^1.3.0"
 
-gatsby-plugin-emotion@^1.1.17:
-  version "1.1.17"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-emotion/-/gatsby-plugin-emotion-1.1.17.tgz#27b31f03ea47007aa84efa3b19b5653bf863af4b"
+gatsby-plugin-emotion@^2.0.0-beta.2:
+  version "2.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-emotion/-/gatsby-plugin-emotion-2.0.0-beta.2.tgz#a2df2e1f8af514e5674c0fc75bc17387e23f49d7"
   dependencies:
-    babel-runtime "^6.26.0"
+    "@babel/runtime" "7.0.0-beta.51"
 
 gatsby-plugin-manifest@^1.0.27:
   version "1.0.27"
@@ -4749,12 +4749,13 @@ gatsby-plugin-netlify-cache@^0.1.0:
     babel-runtime "^6.26.0"
     fs-extra "^6.0.1"
 
-gatsby-plugin-netlify@^1.0.21:
-  version "1.0.21"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify/-/gatsby-plugin-netlify-1.0.21.tgz#a4cd6631e2c73d73177f1ce8532f125601c8c426"
+gatsby-plugin-netlify@^2.0.0-beta.3:
+  version "2.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify/-/gatsby-plugin-netlify-2.0.0-beta.3.tgz#5d98ff1db16521fa6ae3779fd1580041300dffa1"
   dependencies:
-    babel-runtime "^6.26.0"
+    "@babel/runtime" "7.0.0-beta.51"
     fs-extra "^4.0.2"
+    kebab-hash "^0.1.2"
     lodash "^4.17.4"
     webpack-assets-manifest "^1.0.0"
 
@@ -4897,15 +4898,6 @@ gatsby-transformer-remark@^1.7.44:
     unist-util-remove-position "^1.1.1"
     unist-util-select "^1.5.0"
     unist-util-visit "^1.1.1"
-
-gatsby-transformer-sharp@^1.6.27:
-  version "1.6.27"
-  resolved "https://registry.yarnpkg.com/gatsby-transformer-sharp/-/gatsby-transformer-sharp-1.6.27.tgz#89167e4d9fcd3cf772bc029380af9cdcd88e23a1"
-  dependencies:
-    babel-runtime "^6.26.0"
-    bluebird "^3.5.0"
-    fs-extra "^4.0.2"
-    probe-image-size "^4.0.0"
 
 gatsby@next:
   version "2.0.0-beta.46"

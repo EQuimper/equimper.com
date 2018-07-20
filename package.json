@@ -1,16 +1,16 @@
 {
-  "name": "gatsby-starter-default",
-  "description": "Gatsby default starter",
-  "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "name": "equimper.me",
+  "description": "EQuimper blog",
+  "version": "0.0.1",
+  "author": "Emanuel Quimper",
   "dependencies": {
     "emotion": "^9.2.6",
     "emotion-server": "^9.2.6",
     "emotion-theming": "^9.2.6",
     "gatsby": "next",
-    "gatsby-plugin-emotion": "^1.1.17",
+    "gatsby-plugin-emotion": "^2.0.0-beta.2",
     "gatsby-plugin-manifest": "^1.0.27",
-    "gatsby-plugin-netlify": "^1.0.21",
+    "gatsby-plugin-netlify": "^2.0.0-beta.3",
     "gatsby-plugin-netlify-cache": "^0.1.0",
     "gatsby-plugin-offline": "^1.0.18",
     "gatsby-plugin-react-helmet": "next",
@@ -22,7 +22,6 @@
     "gatsby-remark-responsive-iframe": "^1.4.20",
     "gatsby-source-filesystem": "^1.5.39",
     "gatsby-transformer-remark": "^1.7.44",
-    "gatsby-transformer-sharp": "^1.6.27",
     "prismjs": "^1.15.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
@@ -59,6 +58,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/equimper/equimper.me"
   }
 }
