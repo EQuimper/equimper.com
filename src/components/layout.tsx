@@ -26,7 +26,9 @@ injectGlobal`
   }
 
   :root {
-    --primary: #f73859;
+    --primary: #2779bd;
+    --grey-dark: #8795a1;
+    --grey-darkest: #3d4852;
   }
 
   body {
@@ -41,11 +43,12 @@ injectGlobal`
   }
 
   .md-content > p > strong {
-    color: #3d4852;
+    color: var(--grey-darkest);
   }
 
   .md-content > p > a, .md-content > ol > li > a, .md-content > ul > li > a {
-    color: #b8c2cc;
+    color: var(--grey-dark);
+    font-style: oblique;
     text-decoration: none;
     box-shadow: inset 0 -0.2em 0 var(--primary);
     transition: box-shadow .3s ease-in-out,-webkit-box-shadow .3s ease-in-out;
@@ -71,7 +74,7 @@ injectGlobal`
 
   .md-content > h1, h2, h3, h4, h5, .md-content > h3 > a {
     margin: 30px 0;
-    color: #3d4852;
+    color: var(--grey-darkest);
     letter-spacing: 0.05em;
   }
 
