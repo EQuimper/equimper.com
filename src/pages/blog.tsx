@@ -5,7 +5,7 @@ import Layout from '../components/layout'
 import styled from '../utils/styled'
 
 const Root = styled('div')`
-  ${tw('sm:w-full lg:w-1/2 mx-auto pb-10')};
+  ${tw('sm:w-full md:w-3/4 lg:w-1/2 mx-auto pb-10')};
 `
 
 const PageTitleWrapper = styled('div')`
@@ -53,6 +53,9 @@ interface IProps {
     allMarkdownRemark: {
       edges: Array<{
         node: {
+          fields: {
+            slug: string
+          }
           frontmatter: {
             title: string
             description: string
@@ -67,7 +70,6 @@ interface IProps {
 
 const BlogPage = ({ data }: IProps) => (
   <Layout>
-    {console.log('data', data)}
     <Root>
       <PageTitleWrapper>
         <PageTitle>Latest Blog Posts</PageTitle>
@@ -75,7 +77,9 @@ const BlogPage = ({ data }: IProps) => (
 
       {data.allMarkdownRemark.edges.map(({ node }) => (
         <Post key={node.id}>
-          <PostTitle to="#">{node.frontmatter.title}</PostTitle>
+          <PostTitle to={`/blog/${node.fields.slug}`}>
+            {node.frontmatter.title}
+          </PostTitle>
           <DescriptionWrapper>
             <Description>{node.frontmatter.description}</Description>
           </DescriptionWrapper>
@@ -94,12 +98,18 @@ const BlogPage = ({ data }: IProps) => (
 
 export default BlogPage
 
-export const pageQuery = graphql`
+export const query = graphql`
   query BlogQuery {
-    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }, limit: 10) {
+    allMarkdownRemark(
+      sort: { order: DESC, fields: [frontmatter___date] }
+      limit: 10
+    ) {
       edges {
         node {
           id
+          fields {
+            slug
+          }
           frontmatter {
             title
             description
@@ -110,46 +120,3 @@ export const pageQuery = graphql`
     }
   }
 `
-
-// <Post>
-// <PostTitle to="#">How do I manage state with React?</PostTitle>
-
-// <DescriptionWrapper>
-//   <Description>
-//     How do I manage state in my react application? When to use Redux,
-//     MobX, Context API vs Component level state? What to do to handle
-//     forms state? How can I make my app state easier to maintain?
-//   </Description>
-// </DescriptionWrapper>
-// <TagList>
-//   <TagWrapper>
-//     <Tag to="#">#redux</Tag>
-//   </TagWrapper>
-//   <TagWrapper>
-//     <Tag to="#">#react</Tag>
-//   </TagWrapper>
-//   <TagWrapper>
-//     <Tag to="#">#javascript</Tag>
-//   </TagWrapper>
-//   <TagWrapper>
-//     <Tag to="#">#mobx</Tag>
-//   </TagWrapper>
-//   <TagWrapper>
-//     <Tag to="#">#tips</Tag>
-//   </TagWrapper>
-// </TagList>
-// </Post>
-
-// <Post>
-// <PostTitle to="#">My Goals for 2018</PostTitle>
-// <DescriptionWrapper>
-//   <Description>
-//     What is my goals for 2018? Where my youtube channel go?.
-//   </Description>
-// </DescriptionWrapper>
-// <TagList>
-//   <TagWrapper>
-//     <Tag to="#">#life</Tag>
-//   </TagWrapper>
-// </TagList>
-// </Post>

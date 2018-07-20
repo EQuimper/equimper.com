@@ -29,6 +29,33 @@ injectGlobal`
     height: 100%;
     font-family: Lato;
   }
+
+  .md-content > p {
+    line-height: 1.5;
+  }
+
+  .md-content > p > strong {
+    color: #3d4852;
+  }
+
+  .md-content > p > a {
+    color: #b8c2cc;
+    text-decoration: none;
+    /* border-bottom: 2px solid #f73859; */
+    box-shadow: inset 0 -0.2em 0 #f73859;
+    transition: box-shadow .2s ease-in-out,-webkit-box-shadow .2s ease-in-out;
+  }
+
+  .md-content > p > a:hover {
+    box-shadow: inset 0 -1.2em 0 #f73859;
+    color: #fff;
+  }
+
+  .md-content > h1, h2, h3, h4, h5 {
+    margin: 30px 0;
+    color: #3d4852;
+    letter-spacing: 0.05em;
+  }
 `
 
 const Body = styled('div')`
