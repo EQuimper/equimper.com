@@ -27,7 +27,6 @@
     "react-dom": "^16.4.1",
     "react-emotion": "^9.2.6",
     "react-helmet": "^5.2.0",
-    "styled-system": "^3.0.2",
     "typeface-lato": "^0.0.54"
   },
   "keywords": [
@@ -45,7 +44,6 @@
     "@types/react": "^16.4.6",
     "@types/react-dom": "^16.0.6",
     "@types/react-helmet": "^5.0.6",
-    "@types/styled-system": "^2.3.2",
     "babel-plugin-tailwind": "^0.1.10",
     "postcss": "^7.0.0",
     "postcss-cli": "^5.0.1",
