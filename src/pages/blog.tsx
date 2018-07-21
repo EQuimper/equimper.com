@@ -1,6 +1,7 @@
 import { graphql, Link as GatsbyLink } from 'gatsby'
 import React from 'react'
 
+import BlogCard from '../components/blog-card'
 import Layout from '../components/layout'
 import styled from '../utils/styled'
 
@@ -14,38 +15,6 @@ const PageTitleWrapper = styled('div')`
 
 const PageTitle = styled('h1')`
   ${tw('text-grey text-sm uppercase tracking-wide')};
-`
-
-const Post = styled('div')`
-  ${tw('bg-white rounded p-6 pb-0 mb-4 hover:shadow')};
-`
-
-const TagList = styled('ul')`
-  ${tw('list-reset flex flex-wrap items-center')};
-`
-
-const TagWrapper = styled('li')`
-  ${tw('mr-4 mb-8')};
-`
-
-const Tag = styled(GatsbyLink)`
-  ${tw(
-    'no-underline lowercase text-sm bg-grey-lighter rounded p-2 hover:shadow text-black'
-  )};
-`
-
-const DescriptionWrapper = styled('div')`
-  ${tw('mb-8')};
-`
-
-const PostTitle = styled(GatsbyLink)`
-  ${tw(
-    'text-grey-darkest no-underline font-bold tracking-wide text-2xl hover:underline'
-  )};
-`
-
-const Description = styled('p')`
-  ${tw('text-md leading-normal text-grey-darker')};
 `
 
 interface IProps {
@@ -76,21 +45,7 @@ const BlogPage = ({ data }: IProps) => (
       </PageTitleWrapper>
 
       {data.allMarkdownRemark.edges.map(({ node }) => (
-        <Post key={node.id}>
-          <PostTitle to={`/blog/${node.fields.slug}`}>
-            {node.frontmatter.title}
-          </PostTitle>
-          <DescriptionWrapper>
-            <Description>{node.frontmatter.description}</Description>
-          </DescriptionWrapper>
-          <TagList>
-            {node.frontmatter.tags.map(tag => (
-              <TagWrapper key={tag}>
-                <Tag to={`tags/${tag}`}>#{tag}</Tag>
-              </TagWrapper>
-            ))}
-          </TagList>
-        </Post>
+        <BlogCard key={node.id} data={node} />
       ))}
     </Root>
   </Layout>
