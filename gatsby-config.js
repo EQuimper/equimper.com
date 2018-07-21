@@ -7,11 +7,19 @@ module.exports = {
     'gatsby-plugin-emotion',
     'gatsby-plugin-typescript',
     'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/src`,
         name: 'src',
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'img',
+        path: `${__dirname}/img`,
       },
     },
     {
@@ -50,17 +58,17 @@ module.exports = {
         ],
       },
     },
-    {
-      resolve: 'gatsby-plugin-manifest',
-      options: {
-        name: 'EQuimper | Programming blog',
-        short_name: 'EQuimper',
-        start_url: '/',
-        background_color: '#2779bd',
-        theme_color: '#2779bd',
-        display: 'minimal-ui',
-      },
-    },
+    // {
+    //   resolve: 'gatsby-plugin-manifest',
+    //   options: {
+    //     name: 'EQuimper | Programming blog',
+    //     short_name: 'EQuimper',
+    //     start_url: '/',
+    //     background_color: '#2779bd',
+    //     theme_color: '#2779bd',
+    //     display: 'minimal-ui',
+    //   },
+    // },
     'gatsby-plugin-offline',
     'gatsby-plugin-netlify-cache',
     'gatsby-plugin-netlify', // need to be last
