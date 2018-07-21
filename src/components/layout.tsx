@@ -98,7 +98,7 @@ const Body = styled('div')`
 `
 
 const Root = styled('div')`
-  ${tw('container mx-auto py-10 px-6')};
+  ${tw('container mx-auto py-10 px-4')};
 `
 
 const Layout: SFC = ({ children }) => (

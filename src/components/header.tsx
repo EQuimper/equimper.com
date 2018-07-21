@@ -1,7 +1,6 @@
 import { Link as GatsbyLink } from 'gatsby'
 import React, { SFC } from 'react'
 
-import Text from '../commons/Text'
 import styled from '../utils/styled'
 
 interface IProps {
@@ -36,8 +35,6 @@ const BrandLink = styled(GatsbyLink)`
     'no-underline tracking-wide font-bold text-md md:text-lg text-grey-darkest hover:text-grey'
   )};
 `
-
-const Heading = Text.withComponent('h1')
 
 const Header: SFC<IProps> = ({ siteTitle }) => (
   <header>
