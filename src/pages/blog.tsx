@@ -3,18 +3,11 @@ import React from 'react'
 
 import BlogCard from '../components/blog-card'
 import Layout from '../components/layout'
+import RowTitle from '../components/row-title'
 import styled from '../utils/styled'
 
 const Root = styled('div')`
   ${tw('sm:w-full md:w-3/4 lg:w-1/2 mx-auto pb-10')};
-`
-
-const PageTitleWrapper = styled('div')`
-  ${tw('mb-8')};
-`
-
-const PageTitle = styled('h1')`
-  ${tw('text-grey text-sm uppercase tracking-wide')};
 `
 
 interface IProps {
@@ -40,9 +33,7 @@ interface IProps {
 const BlogPage = ({ data }: IProps) => (
   <Layout>
     <Root>
-      <PageTitleWrapper>
-        <PageTitle>Latest Blog Posts</PageTitle>
-      </PageTitleWrapper>
+      <RowTitle title="Latest Blog Posts" />
 
       {data.allMarkdownRemark.edges.map(({ node }) => (
         <BlogCard key={node.id} data={node} />
