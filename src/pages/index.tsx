@@ -30,6 +30,16 @@ const Avatar = styled(Img)`
   ${tw('rounded-full')};
 `
 
+const DetailWrapper = styled('div')``
+
+const Title = styled('h1')`
+  ${tw('text-grey-darkest font-bold text-2xl')};
+`
+
+const UserDescription = styled('p')`
+  ${tw('text-sm text-grey-dark')};
+`
+
 interface IProps {
   data: {
     allMarkdownRemark: {
@@ -79,10 +89,12 @@ const IndexPage = ({ data }: IProps) => (
     <Root>
       <IntroductionWrapper>
         <Avatar alt="avatar" resolutions={data.avatarImg.resolutions} />
-        <div>
-          <h1>EQuimper's Blog</h1>
-          <p>Programmer | Mentor | Blogger | Youtuber</p>
-        </div>
+        <DetailWrapper>
+          <Title>EQuimper's Blog</Title>
+          <UserDescription>
+            Programmer | Mentor | Blogger | Youtuber
+          </UserDescription>
+        </DetailWrapper>
       </IntroductionWrapper>
 
       <RowTitle title="Latest Blog Post" />

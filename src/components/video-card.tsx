@@ -8,7 +8,7 @@ const Container = styled('div')`
 `
 
 const Wrapper = styled('div')`
-  ${tw('flex flex-1 flex-col items-center bg-white rounded shadow mb-8')};
+  ${tw('flex flex-1 flex-col items-center bg-white rounded shadow')};
 `
 
 const VideoTitle = styled('h2')`
