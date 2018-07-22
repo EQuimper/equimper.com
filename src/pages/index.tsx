@@ -19,7 +19,8 @@ const RowWrapper = styled('div')`
 const VideosWrapper = styled('div')`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-gap: 2em;
+  align-items: center;
+  grid-gap: 1em;
 `
 
 const IntroductionWrapper = styled('div')`
@@ -73,13 +74,14 @@ interface IProps {
           localThumbnail: {
             childImageSharp: {
               resolutions: any
+              fluid: any
             }
           }
         }
       }>
     }
     avatarImg: {
-      resolutions: any
+      fixed: any
     }
   }
 }
@@ -88,7 +90,7 @@ const IndexPage = ({ data }: IProps) => (
   <Layout>
     <Root>
       <IntroductionWrapper>
-        <Avatar alt="avatar" resolutions={data.avatarImg.resolutions} />
+        <Avatar alt="avatar" fixed={data.avatarImg.fixed} />
         <DetailWrapper>
           <Title>EQuimper's Blog</Title>
           <UserDescription>
@@ -141,7 +143,7 @@ export const query = graphql`
       }
     }
 
-    allYoutubeVideo(limit: 3) {
+    allYoutubeVideo(limit: 4) {
       edges {
         node {
           id
@@ -156,8 +158,8 @@ export const query = graphql`
           publishedAt(formatString: "YYYY-MM-DD")
           localThumbnail {
             childImageSharp {
-              resolutions(width: 300) {
-                ...GatsbyImageSharpResolutions
+              fluid(maxWidth: 700) {
+                ...GatsbyImageSharpFluid
               }
             }
           }
@@ -166,8 +168,8 @@ export const query = graphql`
     }
 
     avatarImg: imageSharp(original: { src: { regex: "/avatar/" } }) {
-      resolutions(width: 200) {
-        ...GatsbyImageSharpResolutions
+      fixed(width: 150) {
+        ...GatsbyImageSharpFixed
       }
     }
   }

@@ -7,20 +7,24 @@ const Container = styled('div')`
   ${tw('w-full w-full flex')};
 `
 
-const Wrapper = styled('div')`
-  ${tw('flex flex-1 flex-col items-center bg-white rounded shadow')};
+const Wrapper = styled('a')`
+  ${tw(
+    'no-underline flex flex-1 flex-col items-center bg-white rounded pb-4 shadow overflow-hidden'
+  )};
 `
 
 const VideoTitle = styled('h2')`
-  ${tw('text-base text-grey-darkest font-bold')};
+  ${tw('text-base text-grey-darkest font-bold pb')};
 `
 
 const ImgWrapper = styled('div')`
-  ${tw('flex-1')};
+  ${tw('h-1/3')};
+
+  min-width: 700px;
 `
 
 const DetailWrapper = styled('div')`
-  ${tw('w-2/3 pl-4')};
+  ${tw('h-2/3 px-4')};
 `
 
 const VideoDate = styled('p')`
@@ -42,6 +46,7 @@ interface IProps {
     localThumbnail: {
       childImageSharp: {
         resolutions: any
+        fluid: any
       }
     }
   }
@@ -49,11 +54,15 @@ interface IProps {
 
 const VideoCard = ({ data }: IProps) => (
   <Container>
-    <Wrapper>
+    <Wrapper
+      target="_blank"
+      href={`https://www.youtube.com/watch?v=${data.id}`}
+    >
+      {console.log(data.localThumbnail.childImageSharp)}
       <ImgWrapper>
         <Img
           alt="thumbnail"
-          resolutions={data.localThumbnail.childImageSharp.resolutions}
+          fluid={data.localThumbnail.childImageSharp.fluid}
         />
       </ImgWrapper>
       <DetailWrapper>

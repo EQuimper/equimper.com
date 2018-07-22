@@ -4,7 +4,7 @@ import React from 'react'
 import styled from '../utils/styled'
 
 const Post = styled('div')`
-  ${tw('bg-white rounded p-6 pb-0 mb-4 hover:shadow')};
+  ${tw('bg-white rounded p-6 pb-0 mb-4 shadow')};
 `
 
 const TagList = styled('ul')`
