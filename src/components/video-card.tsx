@@ -4,7 +4,7 @@ import React from 'react'
 import styled from '../utils/styled'
 
 const Container = styled('div')`
-  ${tw('w-full w-full flex')};
+  ${tw('w-full h-full flex')};
 `
 
 const Wrapper = styled('a')`
@@ -20,11 +20,13 @@ const VideoTitle = styled('h2')`
 const ImgWrapper = styled('div')`
   ${tw('h-1/3')};
 
-  min-width: 700px;
+  /* min-width: 400px; */
+  /* max-width: 800px; */
+  width: 100%;
 `
 
 const DetailWrapper = styled('div')`
-  ${tw('h-2/3 px-4')};
+  ${tw('w-full h-2/3 px-4 text-left')};
 `
 
 const VideoDate = styled('p')`

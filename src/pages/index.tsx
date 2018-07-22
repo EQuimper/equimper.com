@@ -9,11 +9,11 @@ import VideoCard from '../components/video-card'
 import styled from '../utils/styled'
 
 const Root = styled('div')`
-  ${tw('container mx-auto pb-10 w-full lg:w-3/4 xl:w-1/2')};
+  ${tw('container mx-auto pb-10 w-full xl:w-3/4')};
 `
 
 const RowWrapper = styled('div')`
-  ${tw('mb-10')};
+  ${tw('mb-10 w-full')};
 `
 
 const VideosWrapper = styled('div')`
@@ -31,7 +31,8 @@ const Avatar = styled(Img)`
   ${tw('rounded-full')};
 `
 
-const DetailWrapper = styled('div')``
+const DetailWrapper = styled('div')`
+`
 
 const Title = styled('h1')`
   ${tw('text-grey-darkest font-bold text-2xl')};
@@ -143,7 +144,7 @@ export const query = graphql`
       }
     }
 
-    allYoutubeVideo(limit: 4) {
+    allYoutubeVideo(limit: 3) {
       edges {
         node {
           id
@@ -158,7 +159,7 @@ export const query = graphql`
           publishedAt(formatString: "YYYY-MM-DD")
           localThumbnail {
             childImageSharp {
-              fluid(maxWidth: 700) {
+              fluid(maxWidth: 600) {
                 ...GatsbyImageSharpFluid
               }
             }
