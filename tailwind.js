@@ -84,7 +84,7 @@ let colors = {
   'green-dark': '#1f9d55',
   green: '#38c172',
   'green-light': '#51d88a',
-  'green-lighter': '#a2f5bf',
+  'green-lighter': '#cefc86',
   'green-lightest': '#e3fcec',
 
   'teal-darkest': '#0d3331',
@@ -100,7 +100,7 @@ let colors = {
   'blue-dark': '#2779bd',
   blue: '#3490dc',
   'blue-light': '#6cb2eb',
-  'blue-lighter': '#bcdefa',
+  'blue-lighter': '#00fff0',
   'blue-lightest': '#eff8ff',
 
   'indigo-darkest': '#191e38',
@@ -865,7 +865,7 @@ module.exports = {
     textAlign: ['responsive'],
     textColors: ['responsive', 'hover', 'focus'],
     textSizes: ['responsive'],
-    textStyle: ['responsive', 'hover', 'focus'],
+    textStyle: ['responsive', 'hover', 'focus', 'group-hover'],
     tracking: ['responsive'],
     userSelect: ['responsive'],
     verticalAlign: ['responsive'],

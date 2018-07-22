@@ -14,15 +14,11 @@ const Wrapper = styled('a')`
 `
 
 const VideoTitle = styled('h2')`
-  ${tw('text-base text-grey-darkest font-bold pb')};
+  ${tw('text-base tracking-wide text-grey-darkest font-bold pb group-hover:text-red')};
 `
 
 const ImgWrapper = styled('div')`
-  ${tw('h-1/3')};
-
-  /* min-width: 400px; */
-  /* max-width: 800px; */
-  width: 100%;
+  ${tw('h-1/3 w-full')};
 `
 
 const DetailWrapper = styled('div')`
@@ -60,7 +56,6 @@ const VideoCard = ({ data }: IProps) => (
       target="_blank"
       href={`https://www.youtube.com/watch?v=${data.id}`}
     >
-      {console.log(data.localThumbnail.childImageSharp)}
       <ImgWrapper>
         <Img
           alt="thumbnail"

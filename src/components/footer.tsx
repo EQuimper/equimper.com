@@ -8,7 +8,9 @@ interface IProps {
 }
 
 const Root = styled('footer')`
-  ${tw('bg-white mx-auto flex justify-center absolute pin-b pin-x px-6 pt-2 sm:py-2')};
+  ${tw(
+    'bg-white mx-auto flex justify-center absolute pin-b pin-x px-6 pt-2 sm:py-2'
+  )};
 `
 
 const FooterWrapper = styled('div')`
@@ -22,21 +24,31 @@ const AllContentWrapper = styled('div')`
 `
 
 const AllContent = styled('p')`
-  ${tw('text-xs mr-4 text-grey-darker sm:text-base')};
+  ${tw('text-xs mr-4 text-grey-darker')};
 `
 
 const SiteTitle = styled(GatsbyLink)`
   ${tw(
-    'text-sm no-underline tracking-wide font-bold text-grey-darkest hover:text-grey sm:text-base'
+    'text-sm no-underline tracking-wide leading-normal font-bold text-grey-darkest hover:text-grey sm:text-base'
   )};
+
+  font-family: Cormorant Garamond;
 `
 
 const LinkItem = styled('li')`
   ${tw('mb-4 ml-4 sm:mb-0')};
 `
 
+const activeClassName = 'nav-item-active'
+
 const Link = styled(GatsbyLink)`
-  ${tw('text-sm no-underline text-grey-darker hover:text-grey-darkest sm:text-base')};
+  ${tw(
+    'text-sm no-underline text-grey-darker hover:text-grey-darkest sm:text-base'
+  )};
+
+  &.${activeClassName} {
+    ${tw('text-grey')};
+  }
 `
 
 const LinkList = styled('ul')`
@@ -54,10 +66,14 @@ const Footer: SFC<IProps> = ({ siteTitle }) => (
       </AllContentWrapper>
       <LinkList>
         <LinkItem>
-          <Link to="/blog">Blog</Link>
+          <Link exact activeClassName={activeClassName} to="/blog">
+            Blog
+          </Link>
         </LinkItem>
         <LinkItem>
-          <Link to="/contact">Contact Me</Link>
+          <Link exact activeClassName={activeClassName} to="/contact">
+            Contact Me
+          </Link>
         </LinkItem>
       </LinkList>
     </FooterWrapper>

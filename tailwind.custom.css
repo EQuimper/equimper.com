@@ -771,7 +771,7 @@ table {
 }
 
 .bg-green-lighter {
-  background-color: #a2f5bf;
+  background-color: #cefc86;
 }
 
 .bg-green-lightest {
@@ -827,7 +827,7 @@ table {
 }
 
 .bg-blue-lighter {
-  background-color: #bcdefa;
+  background-color: #00fff0;
 }
 
 .bg-blue-lightest {
@@ -1035,7 +1035,7 @@ table {
 }
 
 .hover\:bg-green-lighter:hover {
-  background-color: #a2f5bf;
+  background-color: #cefc86;
 }
 
 .hover\:bg-green-lightest:hover {
@@ -1091,7 +1091,7 @@ table {
 }
 
 .hover\:bg-blue-lighter:hover {
-  background-color: #bcdefa;
+  background-color: #00fff0;
 }
 
 .hover\:bg-blue-lightest:hover {
@@ -1299,7 +1299,7 @@ table {
 }
 
 .focus\:bg-green-lighter:focus {
-  background-color: #a2f5bf;
+  background-color: #cefc86;
 }
 
 .focus\:bg-green-lightest:focus {
@@ -1355,7 +1355,7 @@ table {
 }
 
 .focus\:bg-blue-lighter:focus {
-  background-color: #bcdefa;
+  background-color: #00fff0;
 }
 
 .focus\:bg-blue-lightest:focus {
@@ -1635,7 +1635,7 @@ table {
 }
 
 .border-green-lighter {
-  border-color: #a2f5bf;
+  border-color: #cefc86;
 }
 
 .border-green-lightest {
@@ -1691,7 +1691,7 @@ table {
 }
 
 .border-blue-lighter {
-  border-color: #bcdefa;
+  border-color: #00fff0;
 }
 
 .border-blue-lightest {
@@ -1899,7 +1899,7 @@ table {
 }
 
 .hover\:border-green-lighter:hover {
-  border-color: #a2f5bf;
+  border-color: #cefc86;
 }
 
 .hover\:border-green-lightest:hover {
@@ -1955,7 +1955,7 @@ table {
 }
 
 .hover\:border-blue-lighter:hover {
-  border-color: #bcdefa;
+  border-color: #00fff0;
 }
 
 .hover\:border-blue-lightest:hover {
@@ -2163,7 +2163,7 @@ table {
 }
 
 .focus\:border-green-lighter:focus {
-  border-color: #a2f5bf;
+  border-color: #cefc86;
 }
 
 .focus\:border-green-lightest:focus {
@@ -2219,7 +2219,7 @@ table {
 }
 
 .focus\:border-blue-lighter:focus {
-  border-color: #bcdefa;
+  border-color: #00fff0;
 }
 
 .focus\:border-blue-lightest:focus {
@@ -4901,7 +4901,7 @@ table {
 }
 
 .text-green-lighter {
-  color: #a2f5bf;
+  color: #cefc86;
 }
 
 .text-green-lightest {
@@ -4957,7 +4957,7 @@ table {
 }
 
 .text-blue-lighter {
-  color: #bcdefa;
+  color: #00fff0;
 }
 
 .text-blue-lightest {
@@ -5165,7 +5165,7 @@ table {
 }
 
 .hover\:text-green-lighter:hover {
-  color: #a2f5bf;
+  color: #cefc86;
 }
 
 .hover\:text-green-lightest:hover {
@@ -5221,7 +5221,7 @@ table {
 }
 
 .hover\:text-blue-lighter:hover {
-  color: #bcdefa;
+  color: #00fff0;
 }
 
 .hover\:text-blue-lightest:hover {
@@ -5429,7 +5429,7 @@ table {
 }
 
 .focus\:text-green-lighter:focus {
-  color: #a2f5bf;
+  color: #cefc86;
 }
 
 .focus\:text-green-lightest:focus {
@@ -5485,7 +5485,7 @@ table {
 }
 
 .focus\:text-blue-lighter:focus {
-  color: #bcdefa;
+  color: #00fff0;
 }
 
 .focus\:text-blue-lightest:focus {
@@ -5626,6 +5626,52 @@ table {
 }
 
 .subpixel-antialiased {
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+
+.group:hover .group-hover\:italic {
+  font-style: italic;
+}
+
+.group:hover .group-hover\:roman {
+  font-style: normal;
+}
+
+.group:hover .group-hover\:uppercase {
+  text-transform: uppercase;
+}
+
+.group:hover .group-hover\:lowercase {
+  text-transform: lowercase;
+}
+
+.group:hover .group-hover\:capitalize {
+  text-transform: capitalize;
+}
+
+.group:hover .group-hover\:normal-case {
+  text-transform: none;
+}
+
+.group:hover .group-hover\:underline {
+  text-decoration: underline;
+}
+
+.group:hover .group-hover\:line-through {
+  text-decoration: line-through;
+}
+
+.group:hover .group-hover\:no-underline {
+  text-decoration: none;
+}
+
+.group:hover .group-hover\:antialiased {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.group:hover .group-hover\:subpixel-antialiased {
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
 }
@@ -6147,7 +6193,7 @@ table {
   }
 
   .sm\:bg-green-lighter {
-    background-color: #a2f5bf;
+    background-color: #cefc86;
   }
 
   .sm\:bg-green-lightest {
@@ -6203,7 +6249,7 @@ table {
   }
 
   .sm\:bg-blue-lighter {
-    background-color: #bcdefa;
+    background-color: #00fff0;
   }
 
   .sm\:bg-blue-lightest {
@@ -6411,7 +6457,7 @@ table {
   }
 
   .sm\:hover\:bg-green-lighter:hover {
-    background-color: #a2f5bf;
+    background-color: #cefc86;
   }
 
   .sm\:hover\:bg-green-lightest:hover {
@@ -6467,7 +6513,7 @@ table {
   }
 
   .sm\:hover\:bg-blue-lighter:hover {
-    background-color: #bcdefa;
+    background-color: #00fff0;
   }
 
   .sm\:hover\:bg-blue-lightest:hover {
@@ -6675,7 +6721,7 @@ table {
   }
 
   .sm\:focus\:bg-green-lighter:focus {
-    background-color: #a2f5bf;
+    background-color: #cefc86;
   }
 
   .sm\:focus\:bg-green-lightest:focus {
@@ -6731,7 +6777,7 @@ table {
   }
 
   .sm\:focus\:bg-blue-lighter:focus {
-    background-color: #bcdefa;
+    background-color: #00fff0;
   }
 
   .sm\:focus\:bg-blue-lightest:focus {
@@ -7003,7 +7049,7 @@ table {
   }
 
   .sm\:border-green-lighter {
-    border-color: #a2f5bf;
+    border-color: #cefc86;
   }
 
   .sm\:border-green-lightest {
@@ -7059,7 +7105,7 @@ table {
   }
 
   .sm\:border-blue-lighter {
-    border-color: #bcdefa;
+    border-color: #00fff0;
   }
 
   .sm\:border-blue-lightest {
@@ -7267,7 +7313,7 @@ table {
   }
 
   .sm\:hover\:border-green-lighter:hover {
-    border-color: #a2f5bf;
+    border-color: #cefc86;
   }
 
   .sm\:hover\:border-green-lightest:hover {
@@ -7323,7 +7369,7 @@ table {
   }
 
   .sm\:hover\:border-blue-lighter:hover {
-    border-color: #bcdefa;
+    border-color: #00fff0;
   }
 
   .sm\:hover\:border-blue-lightest:hover {
@@ -7531,7 +7577,7 @@ table {
   }
 
   .sm\:focus\:border-green-lighter:focus {
-    border-color: #a2f5bf;
+    border-color: #cefc86;
   }
 
   .sm\:focus\:border-green-lightest:focus {
@@ -7587,7 +7633,7 @@ table {
   }
 
   .sm\:focus\:border-blue-lighter:focus {
-    border-color: #bcdefa;
+    border-color: #00fff0;
   }
 
   .sm\:focus\:border-blue-lightest:focus {
@@ -10253,7 +10299,7 @@ table {
   }
 
   .sm\:text-green-lighter {
-    color: #a2f5bf;
+    color: #cefc86;
   }
 
   .sm\:text-green-lightest {
@@ -10309,7 +10355,7 @@ table {
   }
 
   .sm\:text-blue-lighter {
-    color: #bcdefa;
+    color: #00fff0;
   }
 
   .sm\:text-blue-lightest {
@@ -10517,7 +10563,7 @@ table {
   }
 
   .sm\:hover\:text-green-lighter:hover {
-    color: #a2f5bf;
+    color: #cefc86;
   }
 
   .sm\:hover\:text-green-lightest:hover {
@@ -10573,7 +10619,7 @@ table {
   }
 
   .sm\:hover\:text-blue-lighter:hover {
-    color: #bcdefa;
+    color: #00fff0;
   }
 
   .sm\:hover\:text-blue-lightest:hover {
@@ -10781,7 +10827,7 @@ table {
   }
 
   .sm\:focus\:text-green-lighter:focus {
-    color: #a2f5bf;
+    color: #cefc86;
   }
 
   .sm\:focus\:text-green-lightest:focus {
@@ -10837,7 +10883,7 @@ table {
   }
 
   .sm\:focus\:text-blue-lighter:focus {
-    color: #bcdefa;
+    color: #00fff0;
   }
 
   .sm\:focus\:text-blue-lightest:focus {
@@ -10978,6 +11024,52 @@ table {
   }
 
   .sm\:subpixel-antialiased {
+    -webkit-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto;
+  }
+
+  .group:hover .sm\:group-hover\:italic {
+    font-style: italic;
+  }
+
+  .group:hover .sm\:group-hover\:roman {
+    font-style: normal;
+  }
+
+  .group:hover .sm\:group-hover\:uppercase {
+    text-transform: uppercase;
+  }
+
+  .group:hover .sm\:group-hover\:lowercase {
+    text-transform: lowercase;
+  }
+
+  .group:hover .sm\:group-hover\:capitalize {
+    text-transform: capitalize;
+  }
+
+  .group:hover .sm\:group-hover\:normal-case {
+    text-transform: none;
+  }
+
+  .group:hover .sm\:group-hover\:underline {
+    text-decoration: underline;
+  }
+
+  .group:hover .sm\:group-hover\:line-through {
+    text-decoration: line-through;
+  }
+
+  .group:hover .sm\:group-hover\:no-underline {
+    text-decoration: none;
+  }
+
+  .group:hover .sm\:group-hover\:antialiased {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .group:hover .sm\:group-hover\:subpixel-antialiased {
     -webkit-font-smoothing: auto;
     -moz-osx-font-smoothing: auto;
   }
@@ -11472,7 +11564,7 @@ table {
   }
 
   .md\:bg-green-lighter {
-    background-color: #a2f5bf;
+    background-color: #cefc86;
   }
 
   .md\:bg-green-lightest {
@@ -11528,7 +11620,7 @@ table {
   }
 
   .md\:bg-blue-lighter {
-    background-color: #bcdefa;
+    background-color: #00fff0;
   }
 
   .md\:bg-blue-lightest {
@@ -11736,7 +11828,7 @@ table {
   }
 
   .md\:hover\:bg-green-lighter:hover {
-    background-color: #a2f5bf;
+    background-color: #cefc86;
   }
 
   .md\:hover\:bg-green-lightest:hover {
@@ -11792,7 +11884,7 @@ table {
   }
 
   .md\:hover\:bg-blue-lighter:hover {
-    background-color: #bcdefa;
+    background-color: #00fff0;
   }
 
   .md\:hover\:bg-blue-lightest:hover {
@@ -12000,7 +12092,7 @@ table {
   }
 
   .md\:focus\:bg-green-lighter:focus {
-    background-color: #a2f5bf;
+    background-color: #cefc86;
   }
 
   .md\:focus\:bg-green-lightest:focus {
@@ -12056,7 +12148,7 @@ table {
   }
 
   .md\:focus\:bg-blue-lighter:focus {
-    background-color: #bcdefa;
+    background-color: #00fff0;
   }
 
   .md\:focus\:bg-blue-lightest:focus {
@@ -12328,7 +12420,7 @@ table {
   }
 
   .md\:border-green-lighter {
-    border-color: #a2f5bf;
+    border-color: #cefc86;
   }
 
   .md\:border-green-lightest {
@@ -12384,7 +12476,7 @@ table {
   }
 
   .md\:border-blue-lighter {
-    border-color: #bcdefa;
+    border-color: #00fff0;
   }
 
   .md\:border-blue-lightest {
@@ -12592,7 +12684,7 @@ table {
   }
 
   .md\:hover\:border-green-lighter:hover {
-    border-color: #a2f5bf;
+    border-color: #cefc86;
   }
 
   .md\:hover\:border-green-lightest:hover {
@@ -12648,7 +12740,7 @@ table {
   }
 
   .md\:hover\:border-blue-lighter:hover {
-    border-color: #bcdefa;
+    border-color: #00fff0;
   }
 
   .md\:hover\:border-blue-lightest:hover {
@@ -12856,7 +12948,7 @@ table {
   }
 
   .md\:focus\:border-green-lighter:focus {
-    border-color: #a2f5bf;
+    border-color: #cefc86;
   }
 
   .md\:focus\:border-green-lightest:focus {
@@ -12912,7 +13004,7 @@ table {
   }
 
   .md\:focus\:border-blue-lighter:focus {
-    border-color: #bcdefa;
+    border-color: #00fff0;
   }
 
   .md\:focus\:border-blue-lightest:focus {
@@ -15578,7 +15670,7 @@ table {
   }
 
   .md\:text-green-lighter {
-    color: #a2f5bf;
+    color: #cefc86;
   }
 
   .md\:text-green-lightest {
@@ -15634,7 +15726,7 @@ table {
   }
 
   .md\:text-blue-lighter {
-    color: #bcdefa;
+    color: #00fff0;
   }
 
   .md\:text-blue-lightest {
@@ -15842,7 +15934,7 @@ table {
   }
 
   .md\:hover\:text-green-lighter:hover {
-    color: #a2f5bf;
+    color: #cefc86;
   }
 
   .md\:hover\:text-green-lightest:hover {
@@ -15898,7 +15990,7 @@ table {
   }
 
   .md\:hover\:text-blue-lighter:hover {
-    color: #bcdefa;
+    color: #00fff0;
   }
 
   .md\:hover\:text-blue-lightest:hover {
@@ -16106,7 +16198,7 @@ table {
   }
 
   .md\:focus\:text-green-lighter:focus {
-    color: #a2f5bf;
+    color: #cefc86;
   }
 
   .md\:focus\:text-green-lightest:focus {
@@ -16162,7 +16254,7 @@ table {
   }
 
   .md\:focus\:text-blue-lighter:focus {
-    color: #bcdefa;
+    color: #00fff0;
   }
 
   .md\:focus\:text-blue-lightest:focus {
@@ -16303,6 +16395,52 @@ table {
   }
 
   .md\:subpixel-antialiased {
+    -webkit-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto;
+  }
+
+  .group:hover .md\:group-hover\:italic {
+    font-style: italic;
+  }
+
+  .group:hover .md\:group-hover\:roman {
+    font-style: normal;
+  }
+
+  .group:hover .md\:group-hover\:uppercase {
+    text-transform: uppercase;
+  }
+
+  .group:hover .md\:group-hover\:lowercase {
+    text-transform: lowercase;
+  }
+
+  .group:hover .md\:group-hover\:capitalize {
+    text-transform: capitalize;
+  }
+
+  .group:hover .md\:group-hover\:normal-case {
+    text-transform: none;
+  }
+
+  .group:hover .md\:group-hover\:underline {
+    text-decoration: underline;
+  }
+
+  .group:hover .md\:group-hover\:line-through {
+    text-decoration: line-through;
+  }
+
+  .group:hover .md\:group-hover\:no-underline {
+    text-decoration: none;
+  }
+
+  .group:hover .md\:group-hover\:antialiased {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .group:hover .md\:group-hover\:subpixel-antialiased {
     -webkit-font-smoothing: auto;
     -moz-osx-font-smoothing: auto;
   }
@@ -16797,7 +16935,7 @@ table {
   }
 
   .lg\:bg-green-lighter {
-    background-color: #a2f5bf;
+    background-color: #cefc86;
   }
 
   .lg\:bg-green-lightest {
@@ -16853,7 +16991,7 @@ table {
   }
 
   .lg\:bg-blue-lighter {
-    background-color: #bcdefa;
+    background-color: #00fff0;
   }
 
   .lg\:bg-blue-lightest {
@@ -17061,7 +17199,7 @@ table {
   }
 
   .lg\:hover\:bg-green-lighter:hover {
-    background-color: #a2f5bf;
+    background-color: #cefc86;
   }
 
   .lg\:hover\:bg-green-lightest:hover {
@@ -17117,7 +17255,7 @@ table {
   }
 
   .lg\:hover\:bg-blue-lighter:hover {
-    background-color: #bcdefa;
+    background-color: #00fff0;
   }
 
   .lg\:hover\:bg-blue-lightest:hover {
@@ -17325,7 +17463,7 @@ table {
   }
 
   .lg\:focus\:bg-green-lighter:focus {
-    background-color: #a2f5bf;
+    background-color: #cefc86;
   }
 
   .lg\:focus\:bg-green-lightest:focus {
@@ -17381,7 +17519,7 @@ table {
   }
 
   .lg\:focus\:bg-blue-lighter:focus {
-    background-color: #bcdefa;
+    background-color: #00fff0;
   }
 
   .lg\:focus\:bg-blue-lightest:focus {
@@ -17653,7 +17791,7 @@ table {
   }
 
   .lg\:border-green-lighter {
-    border-color: #a2f5bf;
+    border-color: #cefc86;
   }
 
   .lg\:border-green-lightest {
@@ -17709,7 +17847,7 @@ table {
   }
 
   .lg\:border-blue-lighter {
-    border-color: #bcdefa;
+    border-color: #00fff0;
   }
 
   .lg\:border-blue-lightest {
@@ -17917,7 +18055,7 @@ table {
   }
 
   .lg\:hover\:border-green-lighter:hover {
-    border-color: #a2f5bf;
+    border-color: #cefc86;
   }
 
   .lg\:hover\:border-green-lightest:hover {
@@ -17973,7 +18111,7 @@ table {
   }
 
   .lg\:hover\:border-blue-lighter:hover {
-    border-color: #bcdefa;
+    border-color: #00fff0;
   }
 
   .lg\:hover\:border-blue-lightest:hover {
@@ -18181,7 +18319,7 @@ table {
   }
 
   .lg\:focus\:border-green-lighter:focus {
-    border-color: #a2f5bf;
+    border-color: #cefc86;
   }
 
   .lg\:focus\:border-green-lightest:focus {
@@ -18237,7 +18375,7 @@ table {
   }
 
   .lg\:focus\:border-blue-lighter:focus {
-    border-color: #bcdefa;
+    border-color: #00fff0;
   }
 
   .lg\:focus\:border-blue-lightest:focus {
@@ -20903,7 +21041,7 @@ table {
   }
 
   .lg\:text-green-lighter {
-    color: #a2f5bf;
+    color: #cefc86;
   }
 
   .lg\:text-green-lightest {
@@ -20959,7 +21097,7 @@ table {
   }
 
   .lg\:text-blue-lighter {
-    color: #bcdefa;
+    color: #00fff0;
   }
 
   .lg\:text-blue-lightest {
@@ -21167,7 +21305,7 @@ table {
   }
 
   .lg\:hover\:text-green-lighter:hover {
-    color: #a2f5bf;
+    color: #cefc86;
   }
 
   .lg\:hover\:text-green-lightest:hover {
@@ -21223,7 +21361,7 @@ table {
   }
 
   .lg\:hover\:text-blue-lighter:hover {
-    color: #bcdefa;
+    color: #00fff0;
   }
 
   .lg\:hover\:text-blue-lightest:hover {
@@ -21431,7 +21569,7 @@ table {
   }
 
   .lg\:focus\:text-green-lighter:focus {
-    color: #a2f5bf;
+    color: #cefc86;
   }
 
   .lg\:focus\:text-green-lightest:focus {
@@ -21487,7 +21625,7 @@ table {
   }
 
   .lg\:focus\:text-blue-lighter:focus {
-    color: #bcdefa;
+    color: #00fff0;
   }
 
   .lg\:focus\:text-blue-lightest:focus {
@@ -21628,6 +21766,52 @@ table {
   }
 
   .lg\:subpixel-antialiased {
+    -webkit-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto;
+  }
+
+  .group:hover .lg\:group-hover\:italic {
+    font-style: italic;
+  }
+
+  .group:hover .lg\:group-hover\:roman {
+    font-style: normal;
+  }
+
+  .group:hover .lg\:group-hover\:uppercase {
+    text-transform: uppercase;
+  }
+
+  .group:hover .lg\:group-hover\:lowercase {
+    text-transform: lowercase;
+  }
+
+  .group:hover .lg\:group-hover\:capitalize {
+    text-transform: capitalize;
+  }
+
+  .group:hover .lg\:group-hover\:normal-case {
+    text-transform: none;
+  }
+
+  .group:hover .lg\:group-hover\:underline {
+    text-decoration: underline;
+  }
+
+  .group:hover .lg\:group-hover\:line-through {
+    text-decoration: line-through;
+  }
+
+  .group:hover .lg\:group-hover\:no-underline {
+    text-decoration: none;
+  }
+
+  .group:hover .lg\:group-hover\:antialiased {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .group:hover .lg\:group-hover\:subpixel-antialiased {
     -webkit-font-smoothing: auto;
     -moz-osx-font-smoothing: auto;
   }
@@ -22122,7 +22306,7 @@ table {
   }
 
   .xl\:bg-green-lighter {
-    background-color: #a2f5bf;
+    background-color: #cefc86;
   }
 
   .xl\:bg-green-lightest {
@@ -22178,7 +22362,7 @@ table {
   }
 
   .xl\:bg-blue-lighter {
-    background-color: #bcdefa;
+    background-color: #00fff0;
   }
 
   .xl\:bg-blue-lightest {
@@ -22386,7 +22570,7 @@ table {
   }
 
   .xl\:hover\:bg-green-lighter:hover {
-    background-color: #a2f5bf;
+    background-color: #cefc86;
   }
 
   .xl\:hover\:bg-green-lightest:hover {
@@ -22442,7 +22626,7 @@ table {
   }
 
   .xl\:hover\:bg-blue-lighter:hover {
-    background-color: #bcdefa;
+    background-color: #00fff0;
   }
 
   .xl\:hover\:bg-blue-lightest:hover {
@@ -22650,7 +22834,7 @@ table {
   }
 
   .xl\:focus\:bg-green-lighter:focus {
-    background-color: #a2f5bf;
+    background-color: #cefc86;
   }
 
   .xl\:focus\:bg-green-lightest:focus {
@@ -22706,7 +22890,7 @@ table {
   }
 
   .xl\:focus\:bg-blue-lighter:focus {
-    background-color: #bcdefa;
+    background-color: #00fff0;
   }
 
   .xl\:focus\:bg-blue-lightest:focus {
@@ -22978,7 +23162,7 @@ table {
   }
 
   .xl\:border-green-lighter {
-    border-color: #a2f5bf;
+    border-color: #cefc86;
   }
 
   .xl\:border-green-lightest {
@@ -23034,7 +23218,7 @@ table {
   }
 
   .xl\:border-blue-lighter {
-    border-color: #bcdefa;
+    border-color: #00fff0;
   }
 
   .xl\:border-blue-lightest {
@@ -23242,7 +23426,7 @@ table {
   }
 
   .xl\:hover\:border-green-lighter:hover {
-    border-color: #a2f5bf;
+    border-color: #cefc86;
   }
 
   .xl\:hover\:border-green-lightest:hover {
@@ -23298,7 +23482,7 @@ table {
   }
 
   .xl\:hover\:border-blue-lighter:hover {
-    border-color: #bcdefa;
+    border-color: #00fff0;
   }
 
   .xl\:hover\:border-blue-lightest:hover {
@@ -23506,7 +23690,7 @@ table {
   }
 
   .xl\:focus\:border-green-lighter:focus {
-    border-color: #a2f5bf;
+    border-color: #cefc86;
   }
 
   .xl\:focus\:border-green-lightest:focus {
@@ -23562,7 +23746,7 @@ table {
   }
 
   .xl\:focus\:border-blue-lighter:focus {
-    border-color: #bcdefa;
+    border-color: #00fff0;
   }
 
   .xl\:focus\:border-blue-lightest:focus {
@@ -26228,7 +26412,7 @@ table {
   }
 
   .xl\:text-green-lighter {
-    color: #a2f5bf;
+    color: #cefc86;
   }
 
   .xl\:text-green-lightest {
@@ -26284,7 +26468,7 @@ table {
   }
 
   .xl\:text-blue-lighter {
-    color: #bcdefa;
+    color: #00fff0;
   }
 
   .xl\:text-blue-lightest {
@@ -26492,7 +26676,7 @@ table {
   }
 
   .xl\:hover\:text-green-lighter:hover {
-    color: #a2f5bf;
+    color: #cefc86;
   }
 
   .xl\:hover\:text-green-lightest:hover {
@@ -26548,7 +26732,7 @@ table {
   }
 
   .xl\:hover\:text-blue-lighter:hover {
-    color: #bcdefa;
+    color: #00fff0;
   }
 
   .xl\:hover\:text-blue-lightest:hover {
@@ -26756,7 +26940,7 @@ table {
   }
 
   .xl\:focus\:text-green-lighter:focus {
-    color: #a2f5bf;
+    color: #cefc86;
   }
 
   .xl\:focus\:text-green-lightest:focus {
@@ -26812,7 +26996,7 @@ table {
   }
 
   .xl\:focus\:text-blue-lighter:focus {
-    color: #bcdefa;
+    color: #00fff0;
   }
 
   .xl\:focus\:text-blue-lightest:focus {
@@ -26953,6 +27137,52 @@ table {
   }
 
   .xl\:subpixel-antialiased {
+    -webkit-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto;
+  }
+
+  .group:hover .xl\:group-hover\:italic {
+    font-style: italic;
+  }
+
+  .group:hover .xl\:group-hover\:roman {
+    font-style: normal;
+  }
+
+  .group:hover .xl\:group-hover\:uppercase {
+    text-transform: uppercase;
+  }
+
+  .group:hover .xl\:group-hover\:lowercase {
+    text-transform: lowercase;
+  }
+
+  .group:hover .xl\:group-hover\:capitalize {
+    text-transform: capitalize;
+  }
+
+  .group:hover .xl\:group-hover\:normal-case {
+    text-transform: none;
+  }
+
+  .group:hover .xl\:group-hover\:underline {
+    text-decoration: underline;
+  }
+
+  .group:hover .xl\:group-hover\:line-through {
+    text-decoration: line-through;
+  }
+
+  .group:hover .xl\:group-hover\:no-underline {
+    text-decoration: none;
+  }
+
+  .group:hover .xl\:group-hover\:antialiased {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .group:hover .xl\:group-hover\:subpixel-antialiased {
     -webkit-font-smoothing: auto;
     -moz-osx-font-smoothing: auto;
   }

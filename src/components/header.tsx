@@ -27,13 +27,21 @@ const BrandWrapper = styled('div')`
   ${tw('')};
 `
 
+const activeClassName = 'nav-item-active'
+
 const Link = styled(GatsbyLink)`
   ${tw('no-underline text-grey-darkest hover:text-grey')};
+
+  &.${activeClassName} {
+    ${tw('text-grey')};
+  }
 `
 const BrandLink = styled(GatsbyLink)`
   ${tw(
-    'no-underline tracking-wide font-bold text-md md:text-lg text-grey-darkest hover:text-grey'
+    'no-underline tracking-wide leading-normal font-bold text-md md:text-xl text-grey-darkest hover:text-grey'
   )};
+
+  font-family: Cormorant Garamond;
 `
 
 const Header: SFC<IProps> = ({ siteTitle }) => (
@@ -45,10 +53,14 @@ const Header: SFC<IProps> = ({ siteTitle }) => (
         </BrandWrapper>
         <LinkList>
           <LinkItem>
-            <Link to="/blog">Blog</Link>
+            <Link activeClassName={activeClassName} exact to="/blog">
+              Blog
+            </Link>
           </LinkItem>
           <LinkItem>
-            <Link to="/contact">Contact Me</Link>
+            <Link activeClassName={activeClassName} exact to="/contact">
+              Contact Me
+            </Link>
           </LinkItem>
         </LinkList>
       </NavWrapper>

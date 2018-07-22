@@ -5,6 +5,8 @@ import Helmet from 'react-helmet'
 
 // tslint:disable-next-line:no-submodule-imports
 import 'prismjs/themes/prism-solarizedlight.css'
+import 'typeface-cormorant-garamond'
+import 'typeface-lato'
 
 import styled from '../utils/styled'
 import { theme } from '../utils/theme'
@@ -26,7 +28,8 @@ injectGlobal`
   }
 
   :root {
-    --primary: #2779bd;
+    --primary: #cefc86;
+    --secondary: #00fff0;
     --grey-dark: #8795a1;
     --grey-darkest: #3d4852;
   }
@@ -47,16 +50,15 @@ injectGlobal`
   }
 
   .md-content > p > a, .md-content > ol > li > a, .md-content > ul > li > a {
-    color: var(--grey-dark);
     font-style: oblique;
+    color: var(--grey-darkest);
     text-decoration: none;
-    box-shadow: inset 0 -0.2em 0 var(--primary);
-    transition: box-shadow .3s ease-in-out,-webkit-box-shadow .3s ease-in-out;
+    box-shadow: inset 0 -0.5em 0 var(--primary);
+    transition: box-shadow .2s ease-in-out,-webkit-box-shadow .2s ease-in-out;
   }
 
-  .md-content > p > a:hover {
-    box-shadow: inset 0 -1.2em 0 var(--primary);
-    color: #fff;
+  .md-content > p > a:hover, .md-content > ol > li > a:hover, .md-content > ul > li > a:hover {
+    box-shadow: inset 0 -1.2em 0 var(--secondary);
   }
 
   .md-content > p > img {
