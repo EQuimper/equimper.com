@@ -5,7 +5,7 @@ linktitle: My goals for 2017
 title: My goals for 2017
 description: What is my goals for 2017? What I want to do in my career?.
 weight: 10
-tags: ["random", "mylife"]
+tags: ["random", "my life"]
 ---
 
 ## Intro

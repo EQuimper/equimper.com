@@ -3,6 +3,11 @@ import Img from 'gatsby-image'
 import React from 'react'
 
 import BlogCard from '../components/blog-card'
+import Facebook from '../components/icons/facebook'
+import Github from '../components/icons/github'
+import Linkedin from '../components/icons/linkedin'
+import Twitter from '../components/icons/twitter'
+import Youtube from '../components/icons/youtube'
 import Layout from '../components/layout'
 import RowTitle from '../components/row-title'
 import VideoCard from '../components/video-card'
@@ -31,8 +36,7 @@ const Avatar = styled(Img)`
   ${tw('rounded-full')};
 `
 
-const DetailWrapper = styled('div')`
-`
+const DetailWrapper = styled('div')``
 
 const Title = styled('h1')`
   ${tw('text-grey-darkest font-bold text-2xl')};
@@ -40,6 +44,28 @@ const Title = styled('h1')`
 
 const UserDescription = styled('p')`
   ${tw('text-sm text-grey-dark')};
+`
+
+const IconWrapper = styled('a')``
+
+const GithubIcon = styled(Github)`
+  ${tw('text-grey-dark h-6 w-6')};
+`
+
+const LinkedinIcon = styled(Linkedin)`
+  ${tw('text-grey-dark h-6 w-6')};
+`
+
+const TwitterIcon = styled(Twitter)`
+  ${tw('text-grey-dark h-6 w-6')};
+`
+
+const FacebookIcon = styled(Facebook)`
+  ${tw('text-grey-dark h-6 w-6')};
+`
+
+const YoutubeIcon = styled(Youtube)`
+  ${tw('text-grey-dark h-6 w-6')};
 `
 
 interface IProps {
@@ -95,8 +121,35 @@ const IndexPage = ({ data }: IProps) => (
         <DetailWrapper>
           <Title>EQuimper's Blog</Title>
           <UserDescription>
-            Programmer | Mentor | Blogger | Youtuber
+            Programmer - Mentor - Blogger - Youtuber
           </UserDescription>
+          <IconWrapper href="https://github.com/EQuimper" target="_blank">
+            <GithubIcon />
+          </IconWrapper>
+          <IconWrapper
+            href="https://www.linkedin.com/in/emanuelquimper"
+            target="_blank"
+          >
+            <LinkedinIcon />
+          </IconWrapper>
+          <IconWrapper
+            href="https://twitter.com/QuimperEmanuel"
+            target="_blank"
+          >
+            <TwitterIcon />
+          </IconWrapper>
+          <IconWrapper
+            href="https://www.facebook.com/EQuimperCoding"
+            target="_blank"
+          >
+            <FacebookIcon />
+          </IconWrapper>
+          <IconWrapper
+            href="https://www.youtube.com/channel/UC7R7bcH9-KEBDiGNP1mZnmw"
+            target="_blank"
+          >
+            <YoutubeIcon />
+          </IconWrapper>
         </DetailWrapper>
       </IntroductionWrapper>
 
