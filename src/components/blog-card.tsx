@@ -1,6 +1,8 @@
 import { Link as GatsbyLink } from 'gatsby'
+import kebabCase from 'lodash.kebabcase'
 import React from 'react'
 
+import { IBlogPost } from '../interfaces/BlogPost'
 import styled from '../utils/styled'
 
 const Post = styled('div')`
@@ -36,17 +38,7 @@ const Description = styled('p')`
 `
 
 interface IProps {
-  data: {
-    fields: {
-      slug: string
-    }
-    frontmatter: {
-      title: string
-      description: string
-      tags: string[]
-    }
-    id: string
-  }
+  data: IBlogPost
 }
 
 const BlogCard = ({ data }: IProps) => (
@@ -60,7 +52,7 @@ const BlogCard = ({ data }: IProps) => (
     <TagList>
       {data.frontmatter.tags.map(tag => (
         <TagWrapper key={tag}>
-          <Tag to={`tags/${tag}`}>#{tag}</Tag>
+          <Tag to={`/tags/${kebabCase(tag)}`}>#{tag}</Tag>
         </TagWrapper>
       ))}
     </TagList>

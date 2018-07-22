@@ -4,6 +4,7 @@ import React from 'react'
 import BlogCard from '../components/blog-card'
 import Layout from '../components/layout'
 import RowTitle from '../components/row-title'
+import { IBlogPost } from '../interfaces/BlogPost'
 import styled from '../utils/styled'
 
 const Root = styled('div')`
@@ -14,17 +15,7 @@ interface IProps {
   data: {
     allMarkdownRemark: {
       edges: Array<{
-        node: {
-          fields: {
-            slug: string
-          }
-          frontmatter: {
-            title: string
-            description: string
-            tags: string[]
-          }
-          id: string
-        }
+        node: IBlogPost
       }>
     }
   }

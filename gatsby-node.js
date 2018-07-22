@@ -6,6 +6,8 @@ const {
 const path = require('path')
 const axios = require('axios')
 const get = require('lodash.get')
+const uniq = require('lodash.uniq')
+const kebabCase = require('lodash.kebabcase')
 const crypto = require('crypto')
 
 const digest = str =>
@@ -37,6 +39,9 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
+  const blogPostTemplate = path.resolve('./src/templates/blog-post.tsx')
+  const tagTemplate = path.resolve('./src/templates/tags.tsx')
+
   return new Promise((resolve, reject) => {
     graphql(`
       {
@@ -46,20 +51,46 @@ exports.createPages = ({ graphql, actions }) => {
               fields {
                 slug
               }
+              frontmatter {
+                tags
+              }
             }
           }
         }
       }
     `).then(result => {
-      result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+      const posts = result.data.allMarkdownRemark.edges
+      // Blog Post
+      posts.forEach(({ node }) => {
         createPage({
           path: `blog/${node.fields.slug}`,
-          component: path.resolve(`./src/templates/blog-post.tsx`),
+          component: blogPostTemplate,
           context: {
             slug: node.fields.slug,
           },
         })
       })
+
+      // Tags
+      let tags = []
+      posts.forEach(edge => {
+        if (get(edge, 'node.frontmatter.tags')) {
+          tags = tags.concat(edge.node.frontmatter.tags)
+        }
+      })
+
+      tags = uniq(tags)
+
+      tags.forEach(tag => {
+        createPage({
+          path: `tags/${kebabCase(tag)}`,
+          component: tagTemplate,
+          context: {
+            tag,
+          },
+        })
+      })
+
       resolve()
     })
   })
@@ -104,7 +135,8 @@ const downloadThumbnails = async ({ items, store, cache, createNode }) =>
             createNode,
           })
         } catch (error) {
-          // noop
+          console.error(error)
+          process.exit(1)
         }
       }
 
@@ -163,7 +195,7 @@ exports.sourceNodes = async ({ actions, store, cache }) => {
         pageSize = MAX_VIDEOS - videos.length
         let nextPageToken = videoResp.data.nextPageToken
         videoResp = await youtubeApi.get(
-          `playlistItems?part=snippet%2CcontentDetails%2Cstatus&maxResults=${pageSize}&pageToken=${nextPageToken}&playlistId=${uploadsId}&key=${apiKey}`
+          `playlistItems?part=snippet%2CcontentDetails%2Cstatus&maxResults=${pageSize}&pageToken=${nextPageToken}&playlistId=${uploadsId}&key=${API_KEY}`
         )
         videos.push(...videoResp.data.items)
       }
