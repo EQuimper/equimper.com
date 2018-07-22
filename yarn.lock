@@ -4835,6 +4835,12 @@ gatsby-link@^2.0.0-beta.5:
     react-lifecycles-compat "^3.0.2"
     ric "^1.3.0"
 
+gatsby-plugin-catch-links@^2.0.2-beta.4:
+  version "2.0.2-beta.4"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-catch-links/-/gatsby-plugin-catch-links-2.0.2-beta.4.tgz#18718bd1977e9ca07fab920cefd60f8e5b838ed7"
+  dependencies:
+    "@babel/runtime" "7.0.0-beta.52"
+
 gatsby-plugin-emotion@^2.0.0-beta.2:
   version "2.0.0-beta.3"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-emotion/-/gatsby-plugin-emotion-2.0.0-beta.3.tgz#bd261ea4dde61102a1b449609d44dd097ddd5219"
@@ -4945,6 +4951,19 @@ gatsby-react-router-scroll@^2.0.0-beta.3:
     scroll-behavior "^0.9.9"
     warning "^3.0.0"
 
+gatsby-remark-copy-linked-files@^2.0.0-beta.3:
+  version "2.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-copy-linked-files/-/gatsby-remark-copy-linked-files-2.0.0-beta.3.tgz#fe21e5f0ded178d559c99ddfaac61ec081d2fa89"
+  dependencies:
+    "@babel/runtime" "7.0.0-beta.52"
+    cheerio "^1.0.0-rc.2"
+    fs-extra "^4.0.1"
+    is-relative-url "^2.0.0"
+    lodash "^4.17.4"
+    path-is-inside "^1.0.2"
+    probe-image-size "^4.0.0"
+    unist-util-visit "^1.3.0"
+
 gatsby-remark-embed-video@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/gatsby-remark-embed-video/-/gatsby-remark-embed-video-1.4.0.tgz#c88966b012d967664174c71db6dac03d2dd3e9c6"
@@ -4982,6 +5001,15 @@ gatsby-remark-responsive-iframe@^1.4.20:
     cheerio "^1.0.0-rc.2"
     lodash "^4.17.4"
     unist-util-visit "^1.1.1"
+
+gatsby-remark-smartypants@^2.0.0-beta.3:
+  version "2.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-smartypants/-/gatsby-remark-smartypants-2.0.0-beta.3.tgz#636a48e6aa03b5a3c5b52b032424930a1febd1d0"
+  dependencies:
+    "@babel/runtime" "7.0.0-beta.52"
+    retext "^5.0.0"
+    retext-smartypants "^3.0.0"
+    unist-util-visit "^1.3.0"
 
 gatsby-source-filesystem@^1.5.39:
   version "1.5.39"
@@ -9648,6 +9676,34 @@ retext-english@^3.0.0:
   dependencies:
     parse-english "^4.0.0"
     unherit "^1.0.4"
+
+retext-latin@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/retext-latin/-/retext-latin-2.0.0.tgz#b11bd6cae9113fa6293022a4527cd707221ac4b6"
+  dependencies:
+    parse-latin "^4.0.0"
+    unherit "^1.0.4"
+
+retext-smartypants@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/retext-smartypants/-/retext-smartypants-3.0.1.tgz#53d718fde7178a9bc09f120159b0d76cc537fb6c"
+  dependencies:
+    nlcst-to-string "^2.0.0"
+    unist-util-visit "^1.0.0"
+
+retext-stringify@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/retext-stringify/-/retext-stringify-2.0.0.tgz#00238facc5491f5bcdc589703a4658db2e54415b"
+  dependencies:
+    nlcst-to-string "^2.0.0"
+
+retext@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/retext/-/retext-5.0.0.tgz#5d9018c4a677d6103c142362d76f50eb1d398bf6"
+  dependencies:
+    retext-latin "^2.0.0"
+    retext-stringify "^2.0.0"
+    unified "^6.0.0"
 
 rgb-regex@^1.0.1:
   version "1.0.1"

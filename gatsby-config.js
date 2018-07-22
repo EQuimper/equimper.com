@@ -1,11 +1,12 @@
 module.exports = {
   siteMetadata: {
-    title: '<EQuimper />;',
+    title: '<EQuimper />',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-emotion',
     'gatsby-plugin-typescript',
+    'gatsby-plugin-catch-links',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     {
@@ -47,6 +48,8 @@ module.exports = {
             },
           },
           'gatsby-remark-responsive-iframe',
+          'gatsby-remark-smartypants',
+          'gatsby-remark-copy-linked-files',
           {
             resolve: 'gatsby-remark-prismjs',
             options: {
