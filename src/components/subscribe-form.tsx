@@ -1,5 +1,4 @@
 import axios from 'axios'
-import Img from 'gatsby-image'
 import React, { ChangeEvent, FormEvent, PureComponent } from 'react'
 
 import { isValidEmail } from '../utils/isValidEmail'
@@ -30,7 +29,7 @@ const Form = styled('form')`
 `
 
 const InputWrapper = styled('div')`
-  ${tw('mr-4')};
+  ${tw('mr-4 pb-2 relative')};
 `
 
 const Title = styled('h2')`
@@ -61,6 +60,14 @@ const Button = styled('button')`
   }
 `
 
+const ErrorWrapper = styled('div')`
+  ${tw('pb-4 -mt-4 sm:mt-9 sm:absolute sm:pb-0')} bottom: -25px;
+`
+
+const ErrorMessage = styled('p')`
+  ${tw('text-red text-xs italic')};
+`
+
 const MAILCHIMP_SIGNUP_URL =
   'https://f3gb25pq7i.execute-api.us-east-1.amazonaws.com/dev/api/mailchimp/subscribe'
 
@@ -78,6 +85,8 @@ type State = Readonly<{
   alreadySub: boolean
   showThankYou: boolean
   haveError: boolean
+  emailVisited: boolean
+  emailErrorMsg: string | null
 }>
 
 class SubscribeForm extends PureComponent<IProps, State> {
@@ -89,6 +98,8 @@ class SubscribeForm extends PureComponent<IProps, State> {
     alreadySub: false,
     showThankYou: false,
     haveError: false,
+    emailVisited: false,
+    emailErrorMsg: null,
   }
 
   componentDidMount() {
@@ -100,10 +111,19 @@ class SubscribeForm extends PureComponent<IProps, State> {
       if (isValidEmail(this.state.email)) {
         this.setState({
           isValid: true,
+          emailErrorMsg: null,
         })
       } else {
         this.setState({
           isValid: false,
+        })
+      }
+    }
+
+    if (this.state.emailVisited) {
+      if (!isValidEmail(this.state.email)) {
+        this.setState({
+          emailErrorMsg: 'Email is not valid',
         })
       }
     }
@@ -153,6 +173,10 @@ class SubscribeForm extends PureComponent<IProps, State> {
     } catch (error) {
       this.setState({ isSubmitting: false, haveError: true })
     }
+  }
+
+  handleEmailBlur = () => {
+    this.setState({ emailVisited: true })
   }
 
   render() {
@@ -212,12 +236,19 @@ class SubscribeForm extends PureComponent<IProps, State> {
           <Form onSubmit={this.handleSubmit}>
             <InputWrapper>
               <Input
+                onBlur={this.handleEmailBlur}
                 name="email"
                 value={this.state.email}
                 type="email"
                 placeholder="Email"
                 onChange={this.handleChange}
               />
+              {this.state.emailVisited &&
+                this.state.emailErrorMsg && (
+                  <ErrorWrapper>
+                    <ErrorMessage>{this.state.emailErrorMsg}</ErrorMessage>
+                  </ErrorWrapper>
+                )}
             </InputWrapper>
             <InputWrapper>
               <Input
