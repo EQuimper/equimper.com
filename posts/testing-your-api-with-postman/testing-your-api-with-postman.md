@@ -8,8 +8,6 @@ weight: 10
 tags: ["tutorial", "article", "javascript"]
 ---
 
-## Testing your API with Postman
-
 I'm sure you already know the famous tool call [Postman](https://www.getpostman.com). This is a super useful tool for test your API and looks at the response you get from your server. But I see a lot of people just using it as a manual tester. This is not wrong but you can get much better productivity with if you use some of Postman features.
 
 ## Create your first Simple Test
@@ -72,7 +70,11 @@ If you click on Test right below the URL container you gonna see this
 
 ![](https://image.ibb.co/d7dNBQ/yl3ocAW.png).
 
-Now time to write some test. First thing in the right you can see a select menu with test already create by Postman. We can select one already `Status code: Code is 200`.
+Now time to write some test. First thing in the right you can see a select menu with test already create by Postman. We can select one already
+
+```
+Status code: Code is 200
+```
 
 ![](https://image.ibb.co/gVMaWQ/ykMf8Mb.png)
 
@@ -80,7 +82,13 @@ If you click send now we can see the test pass `1/1`.
 
 ![](https://image.ibb.co/ngbLy5/Yft8e5Y.png)
 
-Now add the `Response body: JSON value check` again in your right snippets.
+Now add the
+
+```
+Response body: JSON value check
+```
+
+again in your right snippets.
 
 ```js
 var jsonData = JSON.parse(responseBody);

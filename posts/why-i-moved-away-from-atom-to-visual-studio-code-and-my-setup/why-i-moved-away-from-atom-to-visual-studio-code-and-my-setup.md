@@ -52,7 +52,17 @@ Plus, this works with dependencies from your `packages.json`.
 
 ### [Project Manager](https://marketplace.visualstudio.com/items?itemName=alefragnani.project-manager)
 
-This extension helps my life so much. When you have a lot of projects and don't want to waste time finding each one on your computer, you can just save them right inside the window. Just press `shift + cmd + p` and `Project Manager: Save Project`. Afterwards, you can just come back to your text editor and search right in the project manager by typing `shift + cmd + p` and `Project Manager: List Projects to Open`.
+This extension helps my life so much. When you have a lot of projects and don't want to waste time finding each one on your computer, you can just save them right inside the window. Just press `shift + cmd + p` and
+
+```
+Project Manager: Save Project
+```
+
+Afterwards, you can just come back to your text editor and search right in the project manager by typing `shift + cmd + p` and
+
+```
+Project Manager: List Projects to Open
+```
 
 ### [Auto Rename Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag)
 
