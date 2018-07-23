@@ -2,6 +2,7 @@ import { graphql } from 'gatsby'
 import React from 'react'
 
 import Layout from '../components/layout'
+import SubscribeForm from '../components/subscribe-form'
 import styled from '../utils/styled'
 
 const Root = styled('div')`
@@ -9,7 +10,7 @@ const Root = styled('div')`
 `
 
 const Article = styled('article')`
-  ${tw('bg-white p-8 rounded shadow')};
+  ${tw('bg-white p-8 rounded shadow mb-6')};
 `
 
 interface IProps {
@@ -19,6 +20,9 @@ interface IProps {
       frontmatter: {
         title: string
       }
+    }
+    avatarImg: {
+      fixed: any
     }
   }
 }
@@ -36,6 +40,8 @@ const BlogPost = ({ data }: IProps) => {
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
         </Article>
+
+        <SubscribeForm avatar={data.avatarImg.fixed} />
       </Root>
     </Layout>
   )
@@ -49,6 +55,12 @@ export const query = graphql`
       html
       frontmatter {
         title
+      }
+    }
+
+    avatarImg: imageSharp(original: { src: { regex: "/avatar/" } }) {
+      fixed(width: 100) {
+        ...GatsbyImageSharpFixed
       }
     }
   }
