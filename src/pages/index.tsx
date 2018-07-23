@@ -1,13 +1,9 @@
-import { graphql, Link } from 'gatsby'
-import Img from 'gatsby-image'
+import { graphql } from 'gatsby'
+
 import React from 'react'
 
+import AuthorIntro from '../components/author-intro'
 import BlogCard from '../components/blog-card'
-import Facebook from '../components/icons/facebook'
-import Github from '../components/icons/github'
-import Linkedin from '../components/icons/linkedin'
-import Twitter from '../components/icons/twitter'
-import Youtube from '../components/icons/youtube'
 import Layout from '../components/layout'
 import RowTitle from '../components/row-title'
 import VideoCard from '../components/video-card'
@@ -26,58 +22,6 @@ const VideosWrapper = styled('div')`
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   align-items: center;
   grid-gap: 1em;
-`
-
-const IntroductionWrapper = styled('div')`
-  ${tw('text-center mb-10 bg-white p-4 rounded shadow')};
-`
-
-const Avatar = styled(Img)`
-  ${tw('rounded-full')};
-`
-
-const DetailWrapper = styled('div')``
-
-const Title = styled('h1')`
-  ${tw('text-grey-darkest font-bold text-4xl leading-normal tracking-wide')};
-
-  font-family: Cormorant Garamond;
-`
-
-const UserDescriptionWrapper = styled('div')`
-  ${tw('mb-4')};
-`
-
-const UserDescription = styled('p')`
-  ${tw('text-sm text-grey-dark text-base')};
-`
-
-const IconWrapper = styled('a')`
-  ${tw('')};
-`
-
-const GithubIcon = styled(Github)`
-  ${tw('text-grey-dark h-8 w-8 hover:text-blue-lighter')};
-`
-
-const LinkedinIcon = styled(Linkedin)`
-  ${tw('text-grey-dark h-8 w-8 hover:text-blue-lighter')};
-`
-
-const TwitterIcon = styled(Twitter)`
-  ${tw('text-grey-dark h-8 w-8 hover:text-blue-lighter')};
-`
-
-const FacebookIcon = styled(Facebook)`
-  ${tw('text-grey-dark h-8 w-8 hover:text-blue-lighter')};
-`
-
-const YoutubeIcon = styled(Youtube)`
-  ${tw('text-grey-dark h-8 w-8 hover:text-blue-lighter')};
-`
-
-const IconsWrapper = styled('div')`
-  ${tw('')}
 `
 
 interface IProps {
@@ -128,46 +72,7 @@ interface IProps {
 const IndexPage = ({ data }: IProps) => (
   <Layout>
     <Root>
-      <IntroductionWrapper>
-        <Avatar alt="avatar" fixed={data.avatarImg.fixed} />
-        <DetailWrapper>
-          <Title>EQuimper's Blog</Title>
-          <UserDescriptionWrapper>
-            <UserDescription>
-              Programmer - Mentor - Blogger - Youtuber
-            </UserDescription>
-          </UserDescriptionWrapper>
-          <IconsWrapper>
-            <IconWrapper href="https://github.com/EQuimper" target="_blank">
-              <GithubIcon />
-            </IconWrapper>
-            <IconWrapper
-              href="https://www.linkedin.com/in/emanuelquimper"
-              target="_blank"
-            >
-              <LinkedinIcon />
-            </IconWrapper>
-            <IconWrapper
-              href="https://twitter.com/QuimperEmanuel"
-              target="_blank"
-            >
-              <TwitterIcon />
-            </IconWrapper>
-            <IconWrapper
-              href="https://www.facebook.com/EQuimperCoding"
-              target="_blank"
-            >
-              <FacebookIcon />
-            </IconWrapper>
-            <IconWrapper
-              href="https://www.youtube.com/channel/UC7R7bcH9-KEBDiGNP1mZnmw"
-              target="_blank"
-            >
-              <YoutubeIcon />
-            </IconWrapper>
-          </IconsWrapper>
-        </DetailWrapper>
-      </IntroductionWrapper>
+      <AuthorIntro data={data} />
 
       <RowTitle title="Latest Blog Post" />
 

@@ -14,7 +14,7 @@ const Wrapper = styled('a')`
 `
 
 const VideoTitle = styled('h2')`
-  ${tw('text-base tracking-wide text-grey-darkest font-bold pb group-hover:text-red')};
+  ${tw('text-base tracking-wide text-grey-darkest font-bold pb group-hover:underline')};
 `
 
 const ImgWrapper = styled('div')`
