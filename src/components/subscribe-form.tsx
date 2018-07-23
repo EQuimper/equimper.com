@@ -1,8 +1,11 @@
+import axios from 'axios'
 import Img from 'gatsby-image'
-import React, { ChangeEvent, PureComponent } from 'react'
+import React, { ChangeEvent, FormEvent, PureComponent } from 'react'
 
 import { isValidEmail } from '../utils/isValidEmail'
+import { getItemFromStorage, storeItem } from '../utils/localStorage'
 import styled from '../utils/styled'
+import Spinner from './spinner'
 
 const Root = styled('div')`
   ${tw('w-full')};
@@ -10,6 +13,10 @@ const Root = styled('div')`
 
 const Container = styled('div')`
   ${tw('bg-white rounded shadow p-4')};
+`
+
+const LoadingWrapper = styled('div')`
+  ${tw('flex items-center justify-center py-10')};
 `
 
 const Input = styled('input')`
@@ -54,13 +61,10 @@ const Button = styled('button')`
   }
 `
 
-const Avatar = styled(Img)`
-  ${tw('rounded-full')};
-`
+const MAILCHIMP_SIGNUP_URL =
+  'https://f3gb25pq7i.execute-api.us-east-1.amazonaws.com/dev/api/mailchimp/subscribe'
 
-const Wrapper = styled('div')`
-  ${tw('')};
-`
+const SUB_KEY = '@equimper-sub'
 
 interface IProps {
   avatar: any
@@ -70,6 +74,10 @@ type State = Readonly<{
   email: string
   firstName: string
   isValid: boolean
+  isSubmitting: boolean
+  alreadySub: boolean
+  showThankYou: boolean
+  haveError: boolean
 }>
 
 class SubscribeForm extends PureComponent<IProps, State> {
@@ -77,6 +85,14 @@ class SubscribeForm extends PureComponent<IProps, State> {
     email: '',
     firstName: '',
     isValid: false,
+    isSubmitting: false,
+    alreadySub: false,
+    showThankYou: false,
+    haveError: false,
+  }
+
+  componentDidMount() {
+    this.checkIfSub()
   }
 
   componentDidUpdate(prevProps: IProps, prevState: State) {
@@ -93,6 +109,14 @@ class SubscribeForm extends PureComponent<IProps, State> {
     }
   }
 
+  checkIfSub = () => {
+    const data = getItemFromStorage(SUB_KEY)
+
+    if (data && data.isSubscribed) {
+      this.setState({ alreadySub: true })
+    }
+  }
+
   handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     // @ts-ignore
     this.setState({
@@ -100,7 +124,82 @@ class SubscribeForm extends PureComponent<IProps, State> {
     })
   }
 
+  handleSubmit = async (e: FormEvent) => {
+    e.preventDefault()
+
+    this.setState({
+      isSubmitting: true,
+    })
+
+    try {
+      const res = await axios.post(
+        MAILCHIMP_SIGNUP_URL,
+        {
+          email: this.state.email,
+          firstName: this.state.firstName,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+
+      if (res.data.success) {
+        this.setState({ isSubmitting: false, showThankYou: true })
+
+        storeItem(SUB_KEY, { isSubscribed: true })
+      }
+    } catch (error) {
+      this.setState({ isSubmitting: false, haveError: true })
+    }
+  }
+
   render() {
+    if (this.state.alreadySub) {
+      return null
+    }
+
+    if (this.state.isSubmitting) {
+      return (
+        <Root>
+          <Container>
+            <LoadingWrapper>
+              <Spinner />
+            </LoadingWrapper>
+          </Container>
+        </Root>
+      )
+    }
+
+    if (this.state.haveError) {
+      return (
+        <Root>
+          <Container>
+            <LoadingWrapper>
+              <h3>Something went wrong plz try again</h3>
+            </LoadingWrapper>
+          </Container>
+        </Root>
+      )
+    }
+
+    if (this.state.showThankYou) {
+      return (
+        <Root>
+          <Container>
+            <TitleWrapper>
+              <Title>Thank You</Title>
+            </TitleWrapper>
+            <DetailWrapper>
+              <Detail>
+                You will receive email notification when new article get post
+              </Detail>
+            </DetailWrapper>
+          </Container>
+        </Root>
+      )
+    }
     return (
       <Root>
         <Container>
@@ -110,14 +209,13 @@ class SubscribeForm extends PureComponent<IProps, State> {
           <DetailWrapper>
             <Detail>Receive notification when new article get posted</Detail>
           </DetailWrapper>
-          <Form>
+          <Form onSubmit={this.handleSubmit}>
             <InputWrapper>
               <Input
                 name="email"
                 value={this.state.email}
                 type="email"
                 placeholder="Email"
-                id="email"
                 onChange={this.handleChange}
               />
             </InputWrapper>
@@ -128,11 +226,13 @@ class SubscribeForm extends PureComponent<IProps, State> {
                 value={this.state.firstName}
                 type="text"
                 placeholder="First Name"
-                id="firstName"
               />
             </InputWrapper>
             <ButtonWrapper>
-              <Button disabled={!this.state.isValid} type="submit">
+              <Button
+                disabled={!this.state.isValid || this.state.isSubmitting}
+                type="submit"
+              >
                 Subscribe
               </Button>
             </ButtonWrapper>
