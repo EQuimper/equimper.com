@@ -74,7 +74,11 @@ const IndexPage = ({ data }: IProps) => (
     <Root>
       <AuthorIntro data={data} />
 
-      <RowTitle title="Latest Blog Post" />
+      <RowTitle
+        title="Latest Blog Post"
+        secondTitle="View All"
+        secondTitleLink="/blog"
+      />
 
       <RowWrapper>
         {data.allMarkdownRemark.edges.map(({ node }) => (
@@ -82,7 +86,12 @@ const IndexPage = ({ data }: IProps) => (
         ))}
       </RowWrapper>
 
-      <RowTitle title="Latest Videos" />
+      <RowTitle
+        title="Latest Videos"
+        secondTitle="View All"
+        externalLink
+        secondTitleLink="https://www.youtube.com/channel/UC7R7bcH9-KEBDiGNP1mZnmw"
+      />
 
       <RowWrapper>
         <VideosWrapper>
