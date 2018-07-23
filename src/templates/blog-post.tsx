@@ -10,7 +10,7 @@ const Root = styled('div')`
 `
 
 const Article = styled('article')`
-  ${tw('bg-white p-8 rounded shadow mb-6')};
+  ${tw('bg-white p-4 rounded shadow mb-6')};
 `
 
 interface IProps {

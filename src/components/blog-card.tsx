@@ -6,7 +6,7 @@ import { IBlogPost } from '../interfaces/BlogPost'
 import styled from '../utils/styled'
 
 const Post = styled('div')`
-  ${tw('bg-white rounded p-6 pb-0 mb-4 shadow')};
+  ${tw('bg-white rounded p-4 pb-0 mb-4 shadow')};
 `
 
 const TagList = styled('ul')`

@@ -31,11 +31,11 @@ const Title = styled('h2')`
 `
 
 const TitleWrapper = styled('div')`
-  ${tw('mb-4')};
+  ${tw('text-center mb-4 sm:text-left')};
 `
 
 const DetailWrapper = styled('div')`
-  ${tw('mb-6')};
+  ${tw('text-center mb-6 sm:text-left')};
 `
 
 const Detail = styled('p')`
