@@ -1,0 +1,17 @@
+{
+  "name": "serverless",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Emanuel Quimper <EQuimper> <quimperemanuel@gmail.com> (https://equimper.me)",
+  "license": "MIT",
+  "scripts": {
+    "deploy": "serverless deploy --aws-profile blog"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "dotenv": "^6.0.0"
+  },
+  "devDependencies": {
+    "serverless-offline": "^3.25.6"
+  }
+}
