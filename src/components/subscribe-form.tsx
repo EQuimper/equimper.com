@@ -1,6 +1,5 @@
 import axios from 'axios'
 import React, { ChangeEvent, FormEvent, PureComponent } from 'react'
-import { Portal } from 'react-portal'
 
 import { isValidEmail } from '../utils/isValidEmail'
 import { getItemFromStorage, storeItem } from '../utils/localStorage'

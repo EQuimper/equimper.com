@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { Portal } from 'react-portal'
-import { animated, Spring, Transition } from 'react-spring'
+import { animated, Spring } from 'react-spring'
 // @ts-ignore
 // tslint:disable-next-line:no-submodule-imports
 import { Easing, TimingAnimation } from 'react-spring/dist/addons'

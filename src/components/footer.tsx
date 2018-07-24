@@ -66,6 +66,11 @@ const Footer: SFC<IProps> = ({ siteTitle }) => (
       </AllContentWrapper>
       <LinkList>
         <LinkItem>
+          <Link exact activeClassName={activeClassName} to="/about">
+            About
+          </Link>
+        </LinkItem>
+        <LinkItem>
           <Link exact activeClassName={activeClassName} to="/blog">
             Blog
           </Link>

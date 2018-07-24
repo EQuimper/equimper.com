@@ -2,6 +2,7 @@ import { Link as GatsbyLink } from 'gatsby'
 import React, { SFC } from 'react'
 
 import styled from '../utils/styled'
+import NavBurger from './nav-burger'
 
 interface IProps {
   siteTitle: string
@@ -16,7 +17,7 @@ const NavWrapper = styled('div')`
 `
 
 const LinkList = styled('ul')`
-  ${tw('flex flex-wrap list-reset items-center')};
+  ${tw('hidden sm:flex flex-wrap list-reset items-center')};
 `
 
 const LinkItem = styled('li')`
@@ -51,7 +52,13 @@ const Header: SFC<IProps> = ({ siteTitle }) => (
         <BrandWrapper>
           <BrandLink to="/">{siteTitle}</BrandLink>
         </BrandWrapper>
+        <NavBurger />
         <LinkList>
+          <LinkItem>
+            <Link activeClassName={activeClassName} exact to="/about">
+              About
+            </Link>
+          </LinkItem>
           <LinkItem>
             <Link activeClassName={activeClassName} exact to="/blog">
               Blog

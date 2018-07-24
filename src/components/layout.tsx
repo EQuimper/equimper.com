@@ -170,7 +170,7 @@ const Body = styled('div')`
 `
 
 const Root = styled('div')`
-  ${tw('container mx-auto py-10 px-4')};
+  ${tw('container mx-auto pt-10 pb-20 sm:py-10 px-4')};
 `
 
 const Layout: SFC = ({ children }) => (

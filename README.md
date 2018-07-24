@@ -1,2 +1,2 @@
-# EQuimper Blog
+# EQuimper's Blog
 
