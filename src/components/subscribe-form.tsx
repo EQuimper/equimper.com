@@ -70,7 +70,7 @@ const ErrorMessage = styled('p')`
 `
 
 const CloseButton = styled('button')`
-  ${tw('appearance-none border-0 cursor-pointer')};
+  ${tw('appearance-none border-0 cursor-pointer bg-transparent')};
 `
 
 const CloseIcon = styled(Close)`
