@@ -39,11 +39,11 @@ const LinkList = styled('ul')`
 `
 
 const LinkItem = styled('li')`
-  ${tw('text-center mb-2')};
+  ${tw('text-center mb-4')};
 `
 
 const Link = styled(GatsbyLink)`
-  ${tw('no-underline text-grey-darker font-bold text-xl')};
+  ${tw('no-underline text-grey-darker font-bold text-xl p-4')};
 `
 
 const CloseButton = styled('button')`
