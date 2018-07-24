@@ -1,11 +1,12 @@
 import axios from 'axios'
 import React, { ChangeEvent, FormEvent, PureComponent } from 'react'
+import { PortalWithState } from 'react-portal'
 
 import { isValidEmail } from '../utils/isValidEmail'
 import { getItemFromStorage, storeItem } from '../utils/localStorage'
 import styled from '../utils/styled'
-import Close from './icons/close'
 import Spinner from './spinner'
+import SubscribeFormCloseButton from './subscribe-form-close-button'
 
 const Root = styled('div')`
   ${tw('w-full mb-6')};
@@ -67,14 +68,6 @@ const ErrorWrapper = styled('div')`
 
 const ErrorMessage = styled('p')`
   ${tw('text-red text-xs italic')};
-`
-
-const CloseButton = styled('button')`
-  ${tw('appearance-none border-0 cursor-pointer bg-transparent')};
-`
-
-const CloseIcon = styled(Close)`
-  ${tw('text-grey-dark h-4 w-4')};
 `
 
 const TopWrapper = styled('div')`
@@ -213,20 +206,6 @@ class SubscribeForm extends PureComponent<IProps, State> {
     this.setState({ emailVisited: true })
   }
 
-  onDontShowClick = () => {
-    if (window.confirm('Are you sure you don\'t want to receive any notification when new article get posted ?')) {
-      this.setState({ notShowSub: true }, () => {
-        const event = new CustomEvent('itemInserted', {
-          detail: {
-            notShowSub: true,
-          },
-        })
-        window.dispatchEvent(event)
-        storeItem(NOT_SHOW_SUB, true)
-      })
-    }
-  }
-
   render() {
     if (this.state.alreadySub || this.state.notShowSub) {
       return null
@@ -279,9 +258,9 @@ class SubscribeForm extends PureComponent<IProps, State> {
             <TitleWrapper>
               <Title>Subscribe to the Newsletter</Title>
             </TitleWrapper>
-            <CloseButton onClick={this.onDontShowClick}>
-              <CloseIcon />
-            </CloseButton>
+            <PortalWithState closeOnOutsideClick closeOnEsc>
+              {(p: IReactPortalProps) => <SubscribeFormCloseButton {...p} />}
+            </PortalWithState>
           </TopWrapper>
           <DetailWrapper>
             <Detail>Receive notification when new article get posted</Detail>
