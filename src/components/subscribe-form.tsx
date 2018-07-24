@@ -25,7 +25,7 @@ const Input = styled('input')`
 `
 
 const Form = styled('form')`
-  ${tw('flex items-center mb-2 flex-col sm:flex-row')};
+  ${tw('flex items-center mb-2 flex-col sm:flex-row sm:items-baseline')};
 `
 
 const InputWrapper = styled('div')`
