@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { ChangeEvent, FormEvent, PureComponent } from 'react'
-import { PortalWithState } from 'react-portal'
+import { Portal } from 'react-portal'
 
 import { isValidEmail } from '../utils/isValidEmail'
 import { getItemFromStorage, storeItem } from '../utils/localStorage'
@@ -258,9 +258,7 @@ class SubscribeForm extends PureComponent<IProps, State> {
             <TitleWrapper>
               <Title>Subscribe to the Newsletter</Title>
             </TitleWrapper>
-            <PortalWithState closeOnOutsideClick closeOnEsc>
-              {(p: IReactPortalProps) => <SubscribeFormCloseButton {...p} />}
-            </PortalWithState>
+            <SubscribeFormCloseButton />
           </TopWrapper>
           <DetailWrapper>
             <Detail>Receive notification when new article get posted</Detail>

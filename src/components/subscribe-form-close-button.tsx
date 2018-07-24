@@ -1,8 +1,17 @@
 import React, { PureComponent } from 'react'
+import { Portal } from 'react-portal'
+import { animated, Spring, Transition } from 'react-spring'
+// @ts-ignore
+// tslint:disable-next-line:no-submodule-imports
+import { Easing, TimingAnimation } from 'react-spring/dist/addons'
 
 import { storeItem } from '../utils/localStorage'
 import styled from '../utils/styled'
 import Close from './icons/close'
+
+const KEYCODES = {
+  ESCAPE: 27,
+}
 
 const CloseButton = styled('button')`
   ${tw('appearance-none border-0 cursor-pointer bg-transparent')};
@@ -12,18 +21,8 @@ const CloseIcon = styled(Close)`
   ${tw('text-grey-dark h-4 w-4')};
 `
 
-const ModalWrapper = styled('div')`
+const ModalWrapper = styled(animated.div)`
   ${tw('fixed pin z-20 bg-black-60')};
-  animation: fadein 200ms ease-in-out;
-
-  @keyframes fadein {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
 `
 
 const Modal = styled('div')`
@@ -52,56 +51,97 @@ const ButtonConfirm = styled('button')`
 
 const ButtonCancel = styled('button')`
   ${tw(
-    'appearance-none py-2 px-4 text-gray bg-transparent border-0 text-base cursor-pointer'
+    'appearance-none py-2 px-4 text-grey bg-transparent border-0 text-base cursor-pointer'
   )};
 `
 
 const NOT_SHOW_SUB = '@equimper-not-show-sub'
 
-interface IProps extends IReactPortalProps {}
+interface IProps {}
 
-class SubscribeFormCloseButton extends PureComponent<IProps> {
+type State = Readonly<{
+  isOpen: boolean
+}>
+
+class SubscribeFormCloseButton extends PureComponent<IProps, State> {
+  readonly state = {
+    isOpen: false,
+  }
+
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeydown)
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeydown)
+  }
+
   onDontShowClick = () => {
-    this.setState({ notShowSub: true }, () => {
-      const event = new CustomEvent('itemInserted', {
-        detail: {
-          notShowSub: true,
-        },
-      })
-      window.dispatchEvent(event)
-
-      this.props.closePortal()
-
-      storeItem(NOT_SHOW_SUB, true)
+    const event = new CustomEvent('itemInserted', {
+      detail: {
+        notShowSub: true,
+      },
     })
+    window.dispatchEvent(event)
+
+    this.closePortal()
+
+    storeItem(NOT_SHOW_SUB, true)
+  }
+
+  openPortal = () => {
+    this.setState({ isOpen: true })
+  }
+
+  closePortal = () => {
+    this.setState({ isOpen: false })
+  }
+
+  handleKeydown = (e: KeyboardEvent) => {
+    if (e.keyCode === KEYCODES.ESCAPE && this.state.isOpen) {
+      this.closePortal()
+    }
   }
 
   render() {
-    const { portal, closePortal, openPortal } = this.props
-
     return (
       <>
-        <CloseButton onClick={openPortal}>
+        <CloseButton onClick={this.openPortal}>
           <CloseIcon />
         </CloseButton>
-        {portal(
-          <>
-            <ModalWrapper onClick={closePortal} />
-            <Modal>
-              <TitleWrapper>
-                <Title>
-                  Are you sure you don't want to receive any notification when
-                  new article get posted ?
-                </Title>
-              </TitleWrapper>
-              <ButtonsWrapper>
-                <ButtonCancel onClick={closePortal}>Cancel</ButtonCancel>
-                <ButtonConfirm onClick={this.onDontShowClick}>
-                  Yes
-                </ButtonConfirm>
-              </ButtonsWrapper>
-            </Modal>
-          </>
+
+        {this.state.isOpen && (
+          <Portal>
+            <Spring
+              impl={TimingAnimation}
+              native
+              from={{ opacity: 0 }}
+              to={{ opacity: 1 }}
+              config={{ duration: 400, easing: Easing.inOut(Easing.ease) }}
+            >
+              {styles => (
+                <>
+                  <ModalWrapper style={styles} onClick={this.closePortal} />
+                  <Modal>
+                    <TitleWrapper>
+                      <Title>
+                        Are you sure you don't want to receive any notification
+                        when new article get posted ?
+                      </Title>
+                    </TitleWrapper>
+                    <ButtonsWrapper>
+                      <ButtonCancel onClick={this.closePortal}>
+                        Cancel
+                      </ButtonCancel>
+                      <ButtonConfirm onClick={this.onDontShowClick}>
+                        Yes
+                      </ButtonConfirm>
+                    </ButtonsWrapper>
+                  </Modal>
+                </>
+              )}
+            </Spring>
+          </Portal>
         )}
       </>
     )

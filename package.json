@@ -42,6 +42,7 @@
     "react-emotion": "^9.2.6",
     "react-helmet": "^5.2.0",
     "react-portal": "^4.1.5",
+    "react-spring": "^5.4.4",
     "typeface-cormorant-garamond": "^0.0.54",
     "typeface-lato": "^0.0.54"
   },
