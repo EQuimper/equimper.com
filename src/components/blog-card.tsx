@@ -18,7 +18,7 @@ const TopWrapper = styled('div')`
 `
 
 const PostTitleWrapper = styled('div')`
-  ${tw('w-3/4 mb-4 sm:mb-0')};
+  ${tw('sm:w-3/4 mb-4 sm:mb-0')};
 `
 
 const DateWrapper = styled('div')`
