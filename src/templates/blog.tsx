@@ -15,9 +15,11 @@ const ButtonsWrapper = styled('div')`
   ${tw('flex items-center justify-between mt-8 mb-4')};
 `
 
-const ButtonWrapper = styled('div')``
-
 const Button = styled(Link)`
+  ${tw('text-grey font-bold text-sm uppercase tracking-wide')};
+`
+
+const PageCount = styled('p')`
   ${tw('text-grey font-bold text-sm uppercase tracking-wide')};
 `
 
@@ -34,7 +36,7 @@ interface IProps {
 }
 
 const BlogPage = ({ pathContext }: IProps) => {
-  const { group, index, first, last } = pathContext
+  const { group, index, first, last, pageCount } = pathContext
   const previousUrl = index - 1 === 1 ? '' : (index - 1).toString()
   const nextUrl = (index + 1).toString()
 
@@ -46,12 +48,21 @@ const BlogPage = ({ pathContext }: IProps) => {
         {group.map(({ node }) => <BlogCard key={node.id} data={node} />)}
 
         <ButtonsWrapper>
-          <ButtonWrapper>
-            {!first && <Button to={`/blog/${previousUrl}`}>Newer Posts</Button>}
-          </ButtonWrapper>
-          <ButtonWrapper>
-            {!last && <Button to={`/blog/${nextUrl}`}>Older Posts</Button>}
-          </ButtonWrapper>
+          {!first && (
+            <div>
+              <Button to={`/blog/${previousUrl}`}>Newer</Button>
+            </div>
+          )}
+          <div>
+            <PageCount>
+              Page {index} of {pageCount}
+            </PageCount>
+          </div>
+          {!last && (
+            <div>
+              <Button to={`/blog/${nextUrl}`}>Older</Button>
+            </div>
+          )}
         </ButtonsWrapper>
       </Root>
     </Layout>
