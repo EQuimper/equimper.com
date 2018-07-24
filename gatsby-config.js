@@ -2,11 +2,12 @@ module.exports = {
   siteMetadata: {
     title: '<EQuimper />',
     description: 'A blog about programming',
-    siteUrl: 'http://nostalgic-euclid-fc7515.netlify.com/',
+    siteUrl: 'http://nostalgic-euclid-fc7515.netlify.com',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-emotion',
+    'gatsby-plugin-sitemap',
     'gatsby-plugin-typescript',
     'gatsby-plugin-catch-links',
     'gatsby-plugin-sharp',
@@ -52,8 +53,8 @@ module.exports = {
             serialize: ({ query: { site, allMarkdownRemark } }) => {
               return allMarkdownRemark.edges.map(edge => {
                 return Object.assign({}, edge.node.frontmatter, {
-                  url: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                  guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  url: site.siteMetadata.siteUrl + '/blog/' + edge.node.fields.slug,
+                  guid: site.siteMetadata.siteUrl + '/blog/' + edge.node.fields.slug,
                 })
               })
             },
