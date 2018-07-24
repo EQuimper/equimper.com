@@ -9,6 +9,7 @@ const get = require('lodash.get')
 const uniq = require('lodash.uniq')
 const kebabCase = require('lodash.kebabcase')
 const crypto = require('crypto')
+const createPaginatedPages = require('gatsby-paginate')
 
 const digest = str =>
   crypto
@@ -48,10 +49,13 @@ exports.createPages = ({ graphql, actions }) => {
         allMarkdownRemark {
           edges {
             node {
+              id
               fields {
                 slug
               }
               frontmatter {
+                title
+                description
                 tags
               }
             }
@@ -61,6 +65,14 @@ exports.createPages = ({ graphql, actions }) => {
     `).then(result => {
       const posts = result.data.allMarkdownRemark.edges
       // Blog Post
+      createPaginatedPages({
+        edges: posts,
+        createPage,
+        pageTemplate: './src/pages/blog.tsx',
+        pageLength: 5,
+        pathPrefix: 'blog',
+        context: {},
+      })
       posts.forEach(({ node }) => {
         createPage({
           path: `blog/${node.fields.slug}`,

@@ -1,4 +1,4 @@
-import { graphql, Link as GatsbyLink } from 'gatsby'
+import { Link } from 'gatsby'
 import React from 'react'
 
 import BlogCard from '../components/blog-card'
@@ -11,49 +11,54 @@ const Root = styled('div')`
   ${tw('sm:w-full md:w-3/4 lg:w-1/2 mx-auto pb-10')};
 `
 
+const ButtonsWrapper = styled('div')`
+  ${tw('flex items-center justify-between mt-8')};
+`
+
+const ButtonWrapper = styled('div')``
+
+const Button = styled(Link)`
+  ${tw('text-grey font-bold text-sm uppercase tracking-wide')} &:disabled {
+    ${tw('text-grey-light')};
+  }
+`
+
 interface IProps {
-  data: {
-    allMarkdownRemark: {
-      edges: Array<{
-        node: IBlogPost
-      }>
-    }
+  pathContext: {
+    group: Array<{
+      node: IBlogPost
+    }>
+    index: number
+    first: boolean
+    last: boolean
+    pageCount: number
   }
 }
 
-const BlogPage = ({ data }: IProps) => (
-  <Layout>
-    <Root>
-      <RowTitle title="Latest Blog Posts" />
+const BlogPage = ({ pathContext }: IProps) => {
+  const { group, index, first, last, pageCount } = pathContext
+  const previousUrl = index - 1 === 1 ? '' : (index - 1).toString()
+  const nextUrl = (index + 1).toString()
 
-      {data.allMarkdownRemark.edges.map(({ node }) => (
-        <BlogCard key={node.id} data={node} />
-      ))}
-    </Root>
-  </Layout>
-)
+  return (
+    <Layout>
+      <Root>
+        {console.log('context', pathContext)}
+        <RowTitle title="Latest Blog Posts" />
+
+        {group.map(({ node }) => <BlogCard key={node.id} data={node} />)}
+
+        <ButtonsWrapper>
+          <ButtonWrapper>
+            {!first && <Button to={`/blog/${previousUrl}`}>Newer Posts</Button>}
+          </ButtonWrapper>
+          <ButtonWrapper>
+            {!last && <Button to={`/blog/${nextUrl}`}>Older Posts</Button>}
+          </ButtonWrapper>
+        </ButtonsWrapper>
+      </Root>
+    </Layout>
+  )
+}
 
 export default BlogPage
-
-export const query = graphql`
-  query BlogQuery {
-    allMarkdownRemark(
-      sort: { order: DESC, fields: [frontmatter___date] }
-      limit: 10
-    ) {
-      edges {
-        node {
-          id
-          fields {
-            slug
-          }
-          frontmatter {
-            title
-            description
-            tags
-          }
-        }
-      }
-    }
-  }
-`
