@@ -46,7 +46,7 @@ exports.createPages = ({ graphql, actions }) => {
   return new Promise((resolve, reject) => {
     graphql(`
       {
-        allMarkdownRemark {
+        allMarkdownRemark(sort: { fields: frontmatter___date, order: DESC }) {
           edges {
             node {
               id
@@ -57,6 +57,7 @@ exports.createPages = ({ graphql, actions }) => {
                 title
                 description
                 tags
+                date(formatString: "MMMM DD, YYYY")
               }
             }
           }

@@ -8,7 +8,7 @@ import { IBlogPost } from '../interfaces/BlogPost'
 import styled from '../utils/styled'
 
 const Root = styled('div')`
-  ${tw('sm:w-full md:w-3/4 lg:w-1/2 mx-auto pb-10')};
+  ${tw('w-full xl:w-1/2 mx-auto pb-10 sm:pb-0')};
 `
 
 const ButtonsWrapper = styled('div')`

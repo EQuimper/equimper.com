@@ -4,6 +4,7 @@ import React from 'react'
 import Layout from '../components/layout'
 import SubscribeForm from '../components/subscribe-form'
 import TagList from '../components/tags-list'
+import { IBlogPost } from '../interfaces/BlogPost'
 import styled from '../utils/styled'
 
 const Root = styled('div')`
@@ -15,22 +16,24 @@ const Article = styled('article')`
 `
 
 const ArticleTitleWrapper = styled('div')`
-  ${tw('mb-8')};
+  ${tw('mb-6')};
 `
 
 const ArticleTitle = styled('h1')`
   ${tw('text-grey-darkest')};
 `
 
+const Date = styled('p')`
+  ${tw('text-xs leading-normal tracking-wide text-grey uppercase')};
+`
+
+const DetailWrapper = styled('div')`
+  ${tw('mb-6')};
+`
+
 interface IProps {
   data: {
-    markdownRemark: {
-      html: string
-      frontmatter: {
-        title: string
-        tags: string[]
-      }
-    }
+    markdownRemark: IBlogPost
     avatarImg: {
       fixed: any
     }
@@ -49,6 +52,9 @@ const BlogPost = ({ data }: IProps) => {
           <ArticleTitleWrapper>
             <ArticleTitle>{post.frontmatter.title}</ArticleTitle>
           </ArticleTitleWrapper>
+          <DetailWrapper>
+            <Date>{post.frontmatter.date}</Date>
+          </DetailWrapper>
 
           <TagList tags={post.frontmatter.tags} />
           <div
@@ -70,6 +76,7 @@ export const query = graphql`
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       frontmatter {
+        date(formatString: "MMMM DD, YYYY")
         title
         tags
       }
