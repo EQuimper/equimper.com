@@ -26,7 +26,7 @@ const ModalWrapper = styled(animated.div)`
 `
 
 const Modal = styled('div')`
-  ${tw('fixed h-1/2 z-40 bg-white p-4 rounded shadow')};
+  ${tw('w-3/4 lg:w-1/3 fixed h-1/2 z-40 bg-white p-4 rounded shadow')};
 
   top: 50%;
   left: 50%;
@@ -36,7 +36,7 @@ const Modal = styled('div')`
 const TitleWrapper = styled('div')``
 
 const Title = styled('h2')`
-  ${tw('font-bold text-lg text-grey-darker')};
+  ${tw('text-base font-bold sm:text-lg text-grey-darker')};
 `
 
 const ButtonsWrapper = styled('div')`
