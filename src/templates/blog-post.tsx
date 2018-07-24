@@ -3,6 +3,7 @@ import React from 'react'
 
 import Layout from '../components/layout'
 import SubscribeForm from '../components/subscribe-form'
+import TagList from '../components/tags-list'
 import styled from '../utils/styled'
 
 const Root = styled('div')`
@@ -13,12 +14,21 @@ const Article = styled('article')`
   ${tw('bg-white p-4 rounded shadow mb-6')};
 `
 
+const ArticleTitleWrapper = styled('div')`
+  ${tw('mb-8')};
+`
+
+const ArticleTitle = styled('h1')`
+  ${tw('text-grey-darkest')};
+`
+
 interface IProps {
   data: {
     markdownRemark: {
       html: string
       frontmatter: {
         title: string
+        tags: string[]
       }
     }
     avatarImg: {
@@ -36,7 +46,11 @@ const BlogPost = ({ data }: IProps) => {
         <SubscribeForm avatar={data.avatarImg.fixed} />
 
         <Article>
-          <h1>{post.frontmatter.title}</h1>
+          <ArticleTitleWrapper>
+            <ArticleTitle>{post.frontmatter.title}</ArticleTitle>
+          </ArticleTitleWrapper>
+
+          <TagList tags={post.frontmatter.tags} />
           <div
             className="md-content"
             dangerouslySetInnerHTML={{ __html: post.html }}
@@ -57,6 +71,7 @@ export const query = graphql`
       html
       frontmatter {
         title
+        tags
       }
     }
 
