@@ -18,9 +18,7 @@ const ButtonsWrapper = styled('div')`
 const ButtonWrapper = styled('div')``
 
 const Button = styled(Link)`
-  ${tw('text-grey font-bold text-sm uppercase tracking-wide')} &:disabled {
-    ${tw('text-grey-light')};
-  }
+  ${tw('text-grey font-bold text-sm uppercase tracking-wide')};
 `
 
 interface IProps {
@@ -43,7 +41,6 @@ const BlogPage = ({ pathContext }: IProps) => {
   return (
     <Layout>
       <Root>
-        {console.log('context', pathContext)}
         <RowTitle title="Latest Blog Posts" />
 
         {group.map(({ node }) => <BlogCard key={node.id} data={node} />)}
