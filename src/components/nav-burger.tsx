@@ -47,7 +47,7 @@ const Link = styled(GatsbyLink)`
 `
 
 const CloseButton = styled('button')`
-  ${tw('p-4')}
+  ${tw('p-4 cursor-pointer appearance-none bg-transparent border-0')};
 `
 
 const CloseIcon = styled(Close)`
