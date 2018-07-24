@@ -38,6 +38,7 @@ injectGlobal`
     padding: 0;
     height: 100%;
     font-family: Lato;
+    position: relative;
   }
 
   .md-content > p {
