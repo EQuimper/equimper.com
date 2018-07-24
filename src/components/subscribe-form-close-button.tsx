@@ -90,10 +90,12 @@ class SubscribeFormCloseButton extends PureComponent<IProps, State> {
   }
 
   openPortal = () => {
+    document.body.style.overflow = 'hidden'
     this.setState({ isOpen: true })
   }
 
   closePortal = () => {
+    document.body.style.overflow = ''
     this.setState({ isOpen: false })
   }
 
