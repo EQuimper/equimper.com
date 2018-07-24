@@ -4,10 +4,11 @@ import React, { ChangeEvent, FormEvent, PureComponent } from 'react'
 import { isValidEmail } from '../utils/isValidEmail'
 import { getItemFromStorage, storeItem } from '../utils/localStorage'
 import styled from '../utils/styled'
+import Close from './icons/close'
 import Spinner from './spinner'
 
 const Root = styled('div')`
-  ${tw('w-full')};
+  ${tw('w-full mb-6')};
 `
 
 const Container = styled('div')`
@@ -29,7 +30,7 @@ const Form = styled('form')`
 `
 
 const InputWrapper = styled('div')`
-  ${tw('mr-4 pb-2 relative')};
+  ${tw('sm:mr-4 pb-2 relative')};
 `
 
 const Title = styled('h2')`
@@ -37,7 +38,7 @@ const Title = styled('h2')`
 `
 
 const TitleWrapper = styled('div')`
-  ${tw('text-center mb-4 sm:text-left')};
+  ${tw('text-left mb-4 sm:text-left')};
 `
 
 const DetailWrapper = styled('div')`
@@ -68,10 +69,23 @@ const ErrorMessage = styled('p')`
   ${tw('text-red text-xs italic')};
 `
 
+const CloseButton = styled('button')`
+  ${tw('appearance-none border-0 cursor-pointer')};
+`
+
+const CloseIcon = styled(Close)`
+  ${tw('text-grey-dark h-4 w-4')};
+`
+
+const TopWrapper = styled('div')`
+  ${tw('flex items-baseline justify-between')};
+`
+
 const MAILCHIMP_SIGNUP_URL =
   'https://f3gb25pq7i.execute-api.us-east-1.amazonaws.com/dev/api/mailchimp/subscribe'
 
 const SUB_KEY = '@equimper-sub'
+const NOT_SHOW_SUB = '@equimper-not-show-sub'
 
 interface IProps {
   avatar: any
@@ -87,6 +101,7 @@ type State = Readonly<{
   haveError: boolean
   emailVisited: boolean
   emailErrorMsg: string | null
+  notShowSub: boolean
 }>
 
 class SubscribeForm extends PureComponent<IProps, State> {
@@ -100,10 +115,15 @@ class SubscribeForm extends PureComponent<IProps, State> {
     haveError: false,
     emailVisited: false,
     emailErrorMsg: null,
+    notShowSub: !!getItemFromStorage(NOT_SHOW_SUB),
   }
 
   componentDidMount() {
     this.checkIfSub()
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('itemInserted', this.listenToStorage, false)
+    }
   }
 
   componentDidUpdate(prevProps: IProps, prevState: State) {
@@ -126,6 +146,20 @@ class SubscribeForm extends PureComponent<IProps, State> {
           emailErrorMsg: 'Email is not valid',
         })
       }
+    }
+  }
+
+  componentWillUnmount() {
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('itemInserted', this.listenToStorage, false)
+    }
+  }
+
+  listenToStorage = (e: Event) => {
+    const event = e as CustomEvent
+
+    if (event.detail.notShowSub) {
+      this.setState({ notShowSub: true })
     }
   }
 
@@ -179,8 +213,22 @@ class SubscribeForm extends PureComponent<IProps, State> {
     this.setState({ emailVisited: true })
   }
 
+  onDontShowClick = () => {
+    if (window.confirm('Are you sure you don\'t want to receive any notification when new article get posted ?')) {
+      this.setState({ notShowSub: true }, () => {
+        const event = new CustomEvent('itemInserted', {
+          detail: {
+            notShowSub: true,
+          },
+        })
+        window.dispatchEvent(event)
+        storeItem(NOT_SHOW_SUB, true)
+      })
+    }
+  }
+
   render() {
-    if (this.state.alreadySub) {
+    if (this.state.alreadySub || this.state.notShowSub) {
       return null
     }
 
@@ -227,9 +275,14 @@ class SubscribeForm extends PureComponent<IProps, State> {
     return (
       <Root>
         <Container>
-          <TitleWrapper>
-            <Title>Subscribe to the Newsletter</Title>
-          </TitleWrapper>
+          <TopWrapper>
+            <TitleWrapper>
+              <Title>Subscribe to the Newsletter</Title>
+            </TitleWrapper>
+            <CloseButton onClick={this.onDontShowClick}>
+              <CloseIcon />
+            </CloseButton>
+          </TopWrapper>
           <DetailWrapper>
             <Detail>Receive notification when new article get posted</Detail>
           </DetailWrapper>

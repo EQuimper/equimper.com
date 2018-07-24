@@ -33,6 +33,8 @@ const BlogPost = ({ data }: IProps) => {
   return (
     <Layout>
       <Root>
+        <SubscribeForm avatar={data.avatarImg.fixed} />
+
         <Article>
           <h1>{post.frontmatter.title}</h1>
           <div

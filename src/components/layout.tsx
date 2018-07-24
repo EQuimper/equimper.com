@@ -9,7 +9,6 @@ import 'typeface-cormorant-garamond'
 import 'typeface-lato'
 
 import styled from '../utils/styled'
-import { theme } from '../utils/theme'
 import Footer from './footer'
 import Header from './header'
 
