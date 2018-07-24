@@ -12,7 +12,7 @@ const Root = styled('div')`
 `
 
 const ButtonsWrapper = styled('div')`
-  ${tw('flex items-center justify-between mt-8')};
+  ${tw('flex items-center justify-between mt-8 mb-4')};
 `
 
 const ButtonWrapper = styled('div')``
