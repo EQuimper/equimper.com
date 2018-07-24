@@ -68,7 +68,7 @@ exports.createPages = ({ graphql, actions }) => {
       createPaginatedPages({
         edges: posts,
         createPage,
-        pageTemplate: './src/pages/blog.tsx',
+        pageTemplate: './src/templates/blog.tsx',
         pageLength: 5,
         pathPrefix: 'blog',
         context: {},
