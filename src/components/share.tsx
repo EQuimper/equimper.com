@@ -6,6 +6,7 @@ import {
   RedditShareButton,
   TwitterShareButton,
 } from 'react-share'
+import { twitterUsername } from '../utils/constants'
 import styled from '../utils/styled'
 import Facebook from './icons/facebook'
 import GooglePlus from './icons/google-plus'
@@ -46,7 +47,7 @@ const Share = ({ url }: IProps) => (
     <FacebookShareButton url={url}>
       <FacebookIcon />
     </FacebookShareButton>
-    <TwitterShareButton url={url}>
+    <TwitterShareButton url={url} via={twitterUsername}>
       <TwitterIcon />
     </TwitterShareButton>
     <LinkedinShareButton url={url}>
