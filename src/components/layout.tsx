@@ -187,13 +187,6 @@ const Layout: SFC = ({ children }) => (
     // tslint:disable-next-line:jsx-no-lambda
     render={(data: IndexPageData) => (
       <Body>
-        <Helmet
-          title={data.site.siteMetadata.title}
-          meta={[
-            { name: 'description', content: 'This is my blog' },
-            { name: 'keywords', content: 'sample, something' },
-          ]}
-        />
         <html lang="en" />
         <Header siteTitle={data.site.siteMetadata.title} />
         <Root>{children}</Root>

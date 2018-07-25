@@ -6,7 +6,8 @@ import {
   RedditShareButton,
   TwitterShareButton,
 } from 'react-share'
-import { twitterUsername } from '../utils/constants'
+
+import { constants } from '../utils/constants'
 import styled from '../utils/styled'
 import Facebook from './icons/facebook'
 import GooglePlus from './icons/google-plus'
@@ -35,7 +36,11 @@ const GooglePlusIcon = styled(GooglePlus)`
 `
 
 const ShareWrapper = styled('div')`
-  ${tw('flex items-center mt-8')};
+  ${tw('flex items-center')};
+`
+
+const Root = styled('div')`
+  ${tw('mt-12')};
 `
 
 interface IProps {
@@ -44,23 +49,29 @@ interface IProps {
 }
 
 const Share = ({ url, title }: IProps) => (
-  <ShareWrapper>
-    <FacebookShareButton url={url}>
-      <FacebookIcon />
-    </FacebookShareButton>
-    <TwitterShareButton title={title} url={url} via={twitterUsername}>
-      <TwitterIcon />
-    </TwitterShareButton>
-    <LinkedinShareButton title={title} url={url}>
-      <LinkedinIcon />
-    </LinkedinShareButton>
-    <RedditShareButton title={title} url={url}>
-      <RedditIcon />
-    </RedditShareButton>
-    <GooglePlusShareButton url={url}>
-      <GooglePlusIcon />
-    </GooglePlusShareButton>
-  </ShareWrapper>
+  <Root>
+    <ShareWrapper>
+      <FacebookShareButton url={url}>
+        <FacebookIcon />
+      </FacebookShareButton>
+      <TwitterShareButton
+        title={title}
+        url={url}
+        via={constants.twitterUsername}
+      >
+        <TwitterIcon />
+      </TwitterShareButton>
+      <LinkedinShareButton title={title} url={url}>
+        <LinkedinIcon />
+      </LinkedinShareButton>
+      <RedditShareButton title={title} url={url}>
+        <RedditIcon />
+      </RedditShareButton>
+      <GooglePlusShareButton url={url}>
+        <GooglePlusIcon />
+      </GooglePlusShareButton>
+    </ShareWrapper>
+  </Root>
 )
 
 export default Share

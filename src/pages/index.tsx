@@ -6,8 +6,10 @@ import AuthorIntro from '../components/author-intro'
 import BlogCard from '../components/blog-card'
 import Layout from '../components/layout'
 import RowTitle from '../components/row-title'
+import SEO from '../components/seo'
 import VideoCard from '../components/video-card'
 import { IBlogPost } from '../interfaces/BlogPost'
+import { constants } from '../utils/constants'
 import styled from '../utils/styled'
 
 const Root = styled('div')`
@@ -62,6 +64,7 @@ interface IProps {
 
 const IndexPage = ({ data }: IProps) => (
   <Layout>
+    <SEO url={constants.site.url} customTitle="Home Page" />
     <Root>
       <AuthorIntro data={data} />
 

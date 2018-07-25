@@ -4,7 +4,9 @@ import React from 'react'
 import BlogCard from '../components/blog-card'
 import Layout from '../components/layout'
 import RowTitle from '../components/row-title'
+import SEO from '../components/seo'
 import { IBlogPost } from '../interfaces/BlogPost'
+import { constants } from '../utils/constants'
 import styled from '../utils/styled'
 
 const Root = styled('div')`
@@ -42,6 +44,7 @@ const BlogPage = ({ pathContext }: IProps) => {
 
   return (
     <Layout>
+      <SEO url={`${constants.site.url}/blog`} customTitle="Blog" />
       <Root>
         <RowTitle title="Latest Blog Posts" />
 

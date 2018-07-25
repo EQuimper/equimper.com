@@ -2,6 +2,7 @@ import { graphql } from 'gatsby'
 import React from 'react'
 
 import Layout from '../components/layout'
+import SEO from '../components/seo'
 import Share from '../components/share'
 import SubscribeForm from '../components/subscribe-form'
 import TagList from '../components/tags-list'
@@ -52,8 +53,11 @@ interface IProps {
 const BlogPost = ({ data, location }: IProps) => {
   const post = data.markdownRemark
 
+  const url = `${data.site.siteMetadata.siteUrl}${location.pathname}`
+
   return (
     <Layout>
+      <SEO url={url} isBlogPost postMeta={post.frontmatter} />
       <Root>
         <SubscribeForm avatar={data.avatarImg.fixed} />
 
@@ -71,10 +75,7 @@ const BlogPost = ({ data, location }: IProps) => {
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
 
-          <Share
-            title={post.frontmatter.title}
-            url={`${data.site.siteMetadata.siteUrl}${location.pathname}`}
-          />
+          <Share title={post.frontmatter.title} url={url} />
         </Article>
 
         <SubscribeForm avatar={data.avatarImg.fixed} />
@@ -99,6 +100,7 @@ export const query = graphql`
         date(formatString: "MMMM DD, YYYY")
         title
         tags
+        description
       }
     }
 

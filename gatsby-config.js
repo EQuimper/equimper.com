@@ -53,8 +53,14 @@ module.exports = {
             serialize: ({ query: { site, allMarkdownRemark } }) => {
               return allMarkdownRemark.edges.map(edge => {
                 return Object.assign({}, edge.node.frontmatter, {
-                  url: site.siteMetadata.siteUrl + '/blog/' + edge.node.fields.slug,
-                  guid: site.siteMetadata.siteUrl + '/blog/' + edge.node.fields.slug,
+                  url:
+                    site.siteMetadata.siteUrl +
+                    '/blog/' +
+                    edge.node.fields.slug,
+                  guid:
+                    site.siteMetadata.siteUrl +
+                    '/blog/' +
+                    edge.node.fields.slug,
                 })
               })
             },
