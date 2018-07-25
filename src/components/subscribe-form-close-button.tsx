@@ -108,7 +108,7 @@ class SubscribeFormCloseButton extends PureComponent<IProps, State> {
   render() {
     return (
       <>
-        <CloseButton onClick={this.openPortal}>
+        <CloseButton type="button" aria-label="Close" onClick={this.openPortal}>
           <CloseIcon />
         </CloseButton>
 
@@ -132,11 +132,19 @@ class SubscribeFormCloseButton extends PureComponent<IProps, State> {
                       </Title>
                     </TitleWrapper>
                     <ButtonsWrapper>
-                      <ButtonCancel onClick={this.closePortal}>
+                      <ButtonCancel
+                        type="button"
+                        aria-label="Cancel"
+                        onClick={this.closePortal}
+                      >
                         Cancel
                       </ButtonCancel>
-                      <ButtonConfirm onClick={this.onDontShowClick}>
-                        Yes
+                      <ButtonConfirm
+                        type="button"
+                        aria-label="Confirm"
+                        onClick={this.onDontShowClick}
+                      >
+                        Confirm
                       </ButtonConfirm>
                     </ButtonsWrapper>
                   </Modal>

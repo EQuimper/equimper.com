@@ -14,7 +14,9 @@ const Wrapper = styled('a')`
 `
 
 const VideoTitle = styled('h2')`
-  ${tw('text-base tracking-wide text-grey-darkest font-bold pb group-hover:underline')};
+  ${tw(
+    'text-base tracking-wide text-grey-darkest font-bold pb group-hover:underline'
+  )};
 `
 
 const ImgWrapper = styled('div')`
@@ -55,6 +57,7 @@ const VideoCard = ({ data }: IProps) => (
     <Wrapper
       target="_blank"
       href={`https://www.youtube.com/watch?v=${data.id}`}
+      rel="noreferrer"
     >
       <ImgWrapper>
         <Img

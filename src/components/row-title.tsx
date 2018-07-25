@@ -37,7 +37,11 @@ const RowTitle = ({
     {secondTitle &&
       secondTitleLink &&
       externalLink && (
-        <LinkExternalTitle target="_blank" href={secondTitleLink}>
+        <LinkExternalTitle
+          rel="noreferrer"
+          target="_blank"
+          href={secondTitleLink}
+        >
           {secondTitle}
         </LinkExternalTitle>
       )}

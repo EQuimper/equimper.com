@@ -114,7 +114,12 @@ const AuthorIntro = ({ data }: IProps) => {
         </UserDescriptionWrapper>
         <IconsWrapper>
           {socials.map(social => (
-            <IconWrapper key={social.link} href={social.link} target="_blank">
+            <IconWrapper
+              key={social.link}
+              rel="noreferrer"
+              href={social.link}
+              target="_blank"
+            >
               {social.icon}
             </IconWrapper>
           ))}

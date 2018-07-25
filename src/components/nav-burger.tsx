@@ -78,7 +78,7 @@ class NavBurger extends PureComponent<P, State> {
   render() {
     return (
       <>
-        <NavMenu type="button" onClick={this.openPortal}>
+        <NavMenu aria-label="Menu" type="button" onClick={this.openPortal}>
           <MenuIcon />
         </NavMenu>
 
@@ -95,7 +95,11 @@ class NavBurger extends PureComponent<P, State> {
                 <>
                   <ModalWrapper style={styles} />
                   <Modal>
-                    <CloseButton onClick={this.closePortal}>
+                    <CloseButton
+                      type="button"
+                      aria-label="Close"
+                      onClick={this.closePortal}
+                    >
                       <CloseIcon />
                     </CloseButton>
                     <LinkList>
