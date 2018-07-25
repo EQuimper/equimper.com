@@ -2,10 +2,12 @@ import { Link } from 'gatsby'
 import Img from 'gatsby-image'
 import React from 'react'
 
+import { constants } from '../utils/constants'
 import styled from '../utils/styled'
 import Facebook from './icons/facebook'
 import Github from './icons/github'
 import Linkedin from './icons/linkedin'
+import RSS from './icons/rss'
 import Twitter from './icons/twitter'
 import Youtube from './icons/youtube'
 
@@ -57,6 +59,10 @@ const YoutubeIcon = styled(Youtube)`
   ${tw('text-grey-dark h-8 w-8 hover:text-blue-lighter')};
 `
 
+const RSSIcon = styled(RSS)`
+  ${tw('text-grey-dark h-8 w-8 hover:text-blue-lighter')};
+`
+
 const IconsWrapper = styled('div')`
   ${tw('')};
 `
@@ -81,6 +87,10 @@ const socials = [
   {
     link: 'https://www.facebook.com/EQuimperCoding',
     icon: <FacebookIcon />,
+  },
+  {
+    link: `${constants.site.url}/rss.xml`,
+    icon: <RSSIcon />,
   },
 ]
 
