@@ -1,7 +1,7 @@
 {
   "name": "equimper.me",
   "description": "EQuimper blog",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Emanuel Quimper",
   "dependencies": {
     "axios": "^0.18.0",
