@@ -35,6 +35,7 @@ const SEO = ({ postMeta, url, isBlogPost, postImage, customTitle }: IProps) => {
     image,
     description,
     datePublished: (postMeta && postMeta.date) || '',
+    dateModified: (postMeta && postMeta.date) || '',
   })
 
   const keywords =

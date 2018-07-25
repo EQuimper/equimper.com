@@ -7,6 +7,7 @@ interface IProps {
   title?: string
   image?: string
   datePublished: string
+  dateModified: string
   description?: string
 }
 
@@ -17,6 +18,7 @@ export const getSchemaOrgJSONLD = ({
   description,
   datePublished,
   image,
+  dateModified,
 }: IProps) => {
   const schemaOrgJSONLD = [
     {
@@ -65,14 +67,21 @@ export const getSchemaOrgJSONLD = ({
           publisher: {
             '@type': 'Organization',
             url: siteConfig.site.url,
-            logo: constants.image,
             name: siteConfig.site.url,
+            logo: {
+              '@type': 'ImageObject',
+              name: 'EQuimper logo',
+              width: '60',
+              height: '600',
+              url: constants.image,
+            },
           },
           mainEntityOfPage: {
             '@type': 'WebSite',
             '@id': siteConfig.site.url,
           },
           datePublished,
+          dateModified,
         },
       ]
     : schemaOrgJSONLD
