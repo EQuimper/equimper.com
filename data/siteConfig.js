@@ -7,8 +7,7 @@ module.exports = {
   lang: 'en',
   twitterHandler: 'QuimperEmanuel',
   author: 'Emanuel Quimper',
-  keywords:
-    'personal blog, technology blog, Emanuel Quimper, EQuimper, javascript',
+  keywords: 'personal blog,technology blog,Emanuel Quimper,EQuimper',
   postsPerPage: 5,
   fbAppID: '2109515342704303',
   gaId: 'UA-88632749-2',

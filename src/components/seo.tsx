@@ -13,6 +13,7 @@ interface IProps {
     title: string
     date: string
     description: string
+    tags: string
   }
   customTitle?: string
 }
@@ -35,6 +36,13 @@ const SEO = ({ postMeta, url, isBlogPost, postImage, customTitle }: IProps) => {
     description,
     datePublished: (postMeta && postMeta.date) || '',
   })
+
+  const keywords =
+    isBlogPost && postMeta
+      ? siteConfig.keywords.concat(',', postMeta.tags)
+      : siteConfig.keywords
+
+  console.log('keywords', keywords)
 
   return (
     <Helmet>
@@ -63,6 +71,7 @@ const SEO = ({ postMeta, url, isBlogPost, postImage, customTitle }: IProps) => {
       <meta property="og:image:width" content="400" />
       <meta property="og:site_name" content={siteConfig.site.title} />
       <meta property="fb:app_id" content={siteConfig.fbAppID} />
+      <meta itemProp="keywords" content={keywords} />
 
       {/* Twitter Card tags */}
       <meta name="twitter:card" content="summary_large_image" />
