@@ -60,7 +60,7 @@ const Footer: SFC<IProps> = ({ siteTitle }) => (
     <FooterWrapper>
       <AllContentWrapper>
         <AllContent>All content &copy; 2018</AllContent>
-        <SiteTitle to="https://www.github.com/EQuimper" target="_blank">
+        <SiteTitle to="/">
           {siteTitle}
         </SiteTitle>
       </AllContentWrapper>

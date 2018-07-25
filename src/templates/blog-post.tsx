@@ -2,6 +2,7 @@ import { graphql } from 'gatsby'
 import React from 'react'
 
 import Layout from '../components/layout'
+import Share from '../components/share'
 import SubscribeForm from '../components/subscribe-form'
 import TagList from '../components/tags-list'
 import { IBlogPost } from '../interfaces/BlogPost'
@@ -37,10 +38,18 @@ interface IProps {
     avatarImg: {
       fixed: any
     }
+    site: {
+      siteMetadata: {
+        siteUrl: string
+      }
+    }
+  }
+  location: {
+    pathname: string
   }
 }
 
-const BlogPost = ({ data }: IProps) => {
+const BlogPost = ({ data, location }: IProps) => {
   const post = data.markdownRemark
 
   return (
@@ -61,6 +70,10 @@ const BlogPost = ({ data }: IProps) => {
             className="md-content"
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
+
+          <Share
+            url={`${data.site.siteMetadata.siteUrl}${location.pathname}`}
+          />
         </Article>
 
         <SubscribeForm avatar={data.avatarImg.fixed} />
@@ -73,6 +86,12 @@ export default BlogPost
 
 export const query = graphql`
   query($slug: String!) {
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
+
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       frontmatter {
