@@ -73,7 +73,7 @@ export const getSchemaOrgJSONLD = ({
               name: 'EQuimper logo',
               width: '60',
               height: '600',
-              url: constants.image,
+              url: siteConfig.site.logo,
             },
           },
           mainEntityOfPage: {

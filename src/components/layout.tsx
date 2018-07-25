@@ -1,6 +1,7 @@
 import { injectGlobal } from 'emotion'
 import { graphql, StaticQuery } from 'gatsby'
 import React, { SFC } from 'react'
+import Helmet from 'react-helmet'
 
 // tslint:disable-next-line:no-submodule-imports
 import 'prismjs/themes/prism-solarizedlight.css'
@@ -186,6 +187,29 @@ const Layout: SFC = ({ children }) => (
     // tslint:disable-next-line:jsx-no-lambda
     render={(data: IndexPageData) => (
       <Body>
+        <Helmet titleTemplate="%s · <EQuimper />" defaultTitle="<EQuimper />">
+          <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16x16.png"
+          />
+          <link rel="manifest" href="/site.webmanifest" />
+          <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+          <meta name="msapplication-TileColor" content="#da532c" />
+          <meta name="theme-color" content="#ffffff" />
+        </Helmet>
         <html lang="en" />
         <Header siteTitle={data.site.siteMetadata.title} />
         <Root>{children}</Root>
