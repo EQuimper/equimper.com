@@ -1,7 +1,7 @@
 import Img from 'gatsby-image'
 import React from 'react'
 
-import { constants } from '../utils/constants'
+import siteConfig from '../../data/siteConfig.js'
 import styled from '../utils/styled'
 import Facebook from './icons/facebook'
 import Github from './icons/github'
@@ -88,7 +88,7 @@ const socials = [
     icon: <FacebookIcon />,
   },
   {
-    link: `${constants.site.url}/rss.xml`,
+    link: `${siteConfig.site.url}/rss.xml`,
     icon: <RSSIcon />,
   },
 ]

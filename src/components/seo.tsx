@@ -1,6 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 
+import siteConfig from '../../data/siteConfig'
 import { constants } from '../utils/constants'
 
 interface IProps {
@@ -19,16 +20,16 @@ const SEO = ({ postMeta, url, isBlogPost, postImage, customTitle }: IProps) => {
   const image = postImage || constants.image
   const description = isBlogPost
     ? postMeta && postMeta.description
-    : constants.site.description
+    : siteConfig.site.description
 
   const title = isBlogPost
     ? postMeta && postMeta.title
-    : customTitle || constants.site.title
+    : customTitle || siteConfig.site.title
 
   return (
     <Helmet>
       <meta name="description" content={description} />
-      <meta name="author" content={constants.author} />
+      <meta name="author" content={siteConfig.author} />
       {isBlogPost && (
         <meta itemProp="datePublished" content={postMeta && postMeta.date} />
       )}
@@ -45,14 +46,15 @@ const SEO = ({ postMeta, url, isBlogPost, postImage, customTitle }: IProps) => {
       <meta property="og:image:type" content="image/png" />
       <meta property="og:image:height" content="300" />
       <meta property="og:image:width" content="400" />
-      <meta property="og:site_name" content={constants.site.title} />
+      <meta property="og:site_name" content={siteConfig.site.title} />
+      <meta property="fb:app_id" content={siteConfig.fbAppID} />
 
       {/* Twitter Card tags */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:label1" content="Written by" />
-      <meta name="twitter:data1" content={constants.author} />
-      <meta name="twitter:creator" content={`@${constants.twitterUsername}`} />
-      <meta name="twitter:site" content={`@${constants.twitterUsername}`} />
+      <meta name="twitter:data1" content={siteConfig.author} />
+      <meta name="twitter:creator" content={`@${siteConfig.twitterUsername}`} />
+      <meta name="twitter:site" content={`@${siteConfig.twitterUsername}`} />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />

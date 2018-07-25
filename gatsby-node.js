@@ -11,6 +11,8 @@ const kebabCase = require('lodash.kebabcase')
 const crypto = require('crypto')
 const createPaginatedPages = require('gatsby-paginate')
 
+const siteConfig = require('./data/siteConfig')
+
 const digest = str =>
   crypto
     .createHash(`md5`)
@@ -70,7 +72,7 @@ exports.createPages = ({ graphql, actions }) => {
         edges: posts,
         createPage,
         pageTemplate: './src/templates/blog.tsx',
-        pageLength: 5,
+        pageLength: siteConfig.postsPerPage,
         pathPrefix: 'blog',
         context: {},
       })

@@ -1,8 +1,14 @@
+const siteConfig = require('./data/siteConfig')
+
 module.exports = {
   siteMetadata: {
-    title: '<EQuimper />',
-    description: 'A blog about programming',
-    siteUrl: 'http://nostalgic-euclid-fc7515.netlify.com',
+    title: siteConfig.site.title,
+    description: siteConfig.site.description,
+    siteUrl: siteConfig.site.url,
+    author: siteConfig.author,
+    keywords: siteConfig.keywords,
+    lang: siteConfig.lang,
+    twitterHandler: siteConfig.twitterHandler,
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -34,6 +40,19 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-plugin-canonical-urls',
+      options: {
+        siteUrl: 'http://nostalgic-euclid-fc7515.netlify.com',
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-google-analytics',
+      options: {
+        trackingId: 'UA-88632749-2',
+        anonymize: true,
+      },
+    },
+    {
       resolve: 'gatsby-plugin-feed',
       options: {
         query: `
@@ -61,6 +80,11 @@ module.exports = {
                     site.siteMetadata.siteUrl +
                     '/blog/' +
                     edge.node.fields.slug,
+                  title: edge.node.frontmatter.title,
+                  description: edge.node.frontmatter.description,
+                  date: edge.node.frontmatter.date,
+                  custom_elements: [{ 'content:encoded': edge.node.html }],
+                  categories: edge.node.frontmatter.tags,
                 })
               })
             },
@@ -72,10 +96,12 @@ module.exports = {
                 ) {
                   edges {
                     node {
+                      html
                       fields { slug }
                       frontmatter {
                         title
                         date
+                        tags
                         description
                       }
                     }

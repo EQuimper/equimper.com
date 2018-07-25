@@ -1,12 +1,12 @@
 import React from 'react'
 
+import siteConfig from '../../data/siteConfig'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-import { constants } from '../utils/constants'
 
 const Contact = () => (
   <Layout>
-    <SEO url={`${constants.site.url}/contact`} customTitle="Contact Me" />
+    <SEO url={`${siteConfig.site.url}/contact`} customTitle="Contact Me" />
     <h1>Contact Me</h1>
   </Layout>
 )
