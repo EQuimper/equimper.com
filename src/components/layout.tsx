@@ -1,7 +1,6 @@
 import { injectGlobal } from 'emotion'
 import { graphql, StaticQuery } from 'gatsby'
 import React, { SFC } from 'react'
-import Helmet from 'react-helmet'
 
 // tslint:disable-next-line:no-submodule-imports
 import 'prismjs/themes/prism-solarizedlight.css'

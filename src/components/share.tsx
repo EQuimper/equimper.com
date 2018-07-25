@@ -16,23 +16,23 @@ import Reddit from './icons/reddit'
 import Twitter from './icons/twitter'
 
 const FacebookIcon = styled(Facebook)`
-  ${tw('h-8 w-8 text-grey-dark cursor-pointer hover:text-blue-lighter mr-1')};
+  ${tw('h-8 w-8 text-grey-dark cursor-pointer hover:text-blue-lighter')};
 `
 
 const TwitterIcon = styled(Twitter)`
-  ${tw('h-8 w-8 text-grey-dark cursor-pointer hover:text-blue-lighter mr-1')};
+  ${tw('h-8 w-8 text-grey-dark cursor-pointer hover:text-blue-lighter')};
 `
 
 const LinkedinIcon = styled(Linkedin)`
-  ${tw('h-8 w-8 text-grey-dark cursor-pointer hover:text-blue-lighter mr-1')};
+  ${tw('h-8 w-8 text-grey-dark cursor-pointer hover:text-blue-lighter')};
 `
 
 const RedditIcon = styled(Reddit)`
-  ${tw('h-8 w-8 text-grey-dark cursor-pointer hover:text-blue-lighter mr-1')};
+  ${tw('h-8 w-8 text-grey-dark cursor-pointer hover:text-blue-lighter')};
 `
 
 const GooglePlusIcon = styled(GooglePlus)`
-  ${tw('h-8 w-8 text-grey-dark cursor-pointer hover:text-blue-lighter mr-1')};
+  ${tw('h-8 w-8 text-grey-dark cursor-pointer hover:text-blue-lighter')};
 `
 
 const ShareWrapper = styled('div')`
