@@ -22,6 +22,7 @@
     "gatsby-plugin-netlify-cache": "^0.1.0",
     "gatsby-plugin-offline": "^1.0.18",
     "gatsby-plugin-react-helmet": "next",
+    "gatsby-plugin-robots-txt": "^1.2.0",
     "gatsby-plugin-sharp": "^2.0.0-beta.7",
     "gatsby-plugin-sitemap": "^2.0.0-beta.3",
     "gatsby-plugin-typescript": "^2.0.0-beta.6",
