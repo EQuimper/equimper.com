@@ -19,7 +19,7 @@ interface IProps {
 }
 
 const SEO = ({ postMeta, url, isBlogPost, postImage, customTitle }: IProps) => {
-  const image = postImage || `${siteConfig.site.url}/${constants.image}`
+  const image = postImage || constants.image
   const description = isBlogPost
     ? postMeta && postMeta.description
     : siteConfig.site.description
