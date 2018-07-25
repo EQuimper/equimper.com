@@ -43,7 +43,7 @@ export const getSchemaOrgJSONLD = ({
               item: {
                 '@id': url,
                 name: title,
-                image: image || constants.image,
+                image: image || `${siteConfig.site.url}/${constants.image}`,
               },
             },
           ],
