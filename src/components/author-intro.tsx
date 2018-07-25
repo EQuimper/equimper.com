@@ -70,26 +70,32 @@ const socials = [
   {
     link: 'https://github.com/EQuimper',
     icon: <GithubIcon />,
+    name: 'Github',
   },
   {
     link: 'https://twitter.com/QuimperEmanuel',
     icon: <TwitterIcon />,
+    name: 'Twitter',
   },
   {
     link: 'https://www.youtube.com/channel/UC7R7bcH9-KEBDiGNP1mZnmw',
     icon: <YoutubeIcon />,
+    name: 'Youtube',
   },
   {
     link: 'https://www.linkedin.com/in/emanuelquimper',
     icon: <LinkedinIcon />,
+    name: 'Linkedin',
   },
   {
     link: 'https://www.facebook.com/EQuimperCoding',
     icon: <FacebookIcon />,
+    name: 'Facebook',
   },
   {
     link: `${siteConfig.site.url}/rss.xml`,
     icon: <RSSIcon />,
+    name: 'RSS',
   },
 ]
 
@@ -115,6 +121,7 @@ const AuthorIntro = ({ data }: IProps) => {
         <IconsWrapper>
           {socials.map(social => (
             <IconWrapper
+              aria-label={social.name}
               key={social.link}
               rel="noreferrer"
               href={social.link}
