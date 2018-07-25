@@ -18,6 +18,6 @@ functions:
           method: post
           cors:
             - enabled: true
-              origin: "*"
+              origin: "https://equimper.com"
               headers: "Content-Type,application/json"
               methods: "POST"

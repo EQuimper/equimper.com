@@ -5,7 +5,7 @@
   "author": "Emanuel Quimper <EQuimper> <quimperemanuel@gmail.com> (https://equimper.me)",
   "license": "MIT",
   "scripts": {
-    "deploy": "serverless deploy --aws-profile blog"
+    "deploy": "sls deploy"
   },
   "dependencies": {
     "axios": "^0.18.0",
