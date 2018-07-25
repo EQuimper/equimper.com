@@ -72,6 +72,7 @@ const BlogPost = ({ data, location }: IProps) => {
           />
 
           <Share
+            title={post.frontmatter.title}
             url={`${data.site.siteMetadata.siteUrl}${location.pathname}`}
           />
         </Article>

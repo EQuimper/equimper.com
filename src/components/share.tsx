@@ -40,20 +40,21 @@ const ShareWrapper = styled('div')`
 
 interface IProps {
   url: string
+  title: string
 }
 
-const Share = ({ url }: IProps) => (
+const Share = ({ url, title }: IProps) => (
   <ShareWrapper>
     <FacebookShareButton url={url}>
       <FacebookIcon />
     </FacebookShareButton>
-    <TwitterShareButton url={url} via={twitterUsername}>
+    <TwitterShareButton title={title} url={url} via={twitterUsername}>
       <TwitterIcon />
     </TwitterShareButton>
-    <LinkedinShareButton url={url}>
+    <LinkedinShareButton title={title} url={url}>
       <LinkedinIcon />
     </LinkedinShareButton>
-    <RedditShareButton url={url}>
+    <RedditShareButton title={title} url={url}>
       <RedditIcon />
     </RedditShareButton>
     <GooglePlusShareButton url={url}>
