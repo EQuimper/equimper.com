@@ -60,9 +60,7 @@ const Footer: SFC<IProps> = ({ siteTitle }) => (
     <FooterWrapper>
       <AllContentWrapper>
         <AllContent>All content &copy; 2018</AllContent>
-        <SiteTitle to="/">
-          {siteTitle}
-        </SiteTitle>
+        <SiteTitle to="/">{siteTitle}</SiteTitle>
       </AllContentWrapper>
       <LinkList>
         <LinkItem>
