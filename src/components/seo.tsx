@@ -42,8 +42,6 @@ const SEO = ({ postMeta, url, isBlogPost, postImage, customTitle }: IProps) => {
       ? siteConfig.keywords.concat(',', postMeta.tags)
       : siteConfig.keywords
 
-  console.log('keywords', keywords)
-
   return (
     <Helmet>
       <meta name="description" content={description} />
