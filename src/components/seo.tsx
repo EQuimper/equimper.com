@@ -3,6 +3,7 @@ import Helmet from 'react-helmet'
 
 import siteConfig from '../../data/siteConfig'
 import { constants } from '../utils/constants'
+import { getSchemaOrgJSONLD } from '../utils/getSchemaOrgJSONLD'
 
 interface IProps {
   url: string
@@ -26,6 +27,15 @@ const SEO = ({ postMeta, url, isBlogPost, postImage, customTitle }: IProps) => {
     ? postMeta && postMeta.title
     : customTitle || siteConfig.site.title
 
+  const schemaOrgJSONLD = getSchemaOrgJSONLD({
+    isBlogPost,
+    url,
+    title,
+    image,
+    description,
+    datePublished: (postMeta && postMeta.date) || '',
+  })
+
   return (
     <Helmet>
       <meta name="description" content={description} />
@@ -36,6 +46,11 @@ const SEO = ({ postMeta, url, isBlogPost, postImage, customTitle }: IProps) => {
       {isBlogPost && (
         <meta itemProp="dateModified" content={postMeta && postMeta.date} />
       )}
+
+      {/* Schema.org tags */}
+      <script type="application/ld+json">
+        {JSON.stringify(schemaOrgJSONLD)}
+      </script>
 
       {/* OpenGraph tags */}
       <meta property="og:url" content={url} />

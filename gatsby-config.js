@@ -42,13 +42,13 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-canonical-urls',
       options: {
-        siteUrl: 'http://nostalgic-euclid-fc7515.netlify.com',
+        siteUrl: siteConfig.site.url,
       },
     },
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
-        trackingId: 'UA-88632749-2',
+        trackingId: siteConfig.gaId,
         anonymize: true,
       },
     },
@@ -148,11 +148,11 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'EQuimper | Programming blog',
+        name: 'EQuimper | Programming Blog',
         short_name: 'EQuimper',
         start_url: '/',
-        background_color: '#2779bd',
-        theme_color: '#2779bd',
+        background_color: siteConfig.themeColor,
+        theme_color: siteConfig.themeColor,
         display: 'minimal-ui',
       },
     },

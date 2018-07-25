@@ -179,7 +179,7 @@ const createVideoNode = (videos, createNode) => {
 
 exports.sourceNodes = async ({ actions, store, cache }) => {
   const { createNode } = actions
-  const CHANNEL_ID = 'UC7R7bcH9-KEBDiGNP1mZnmw'
+  const CHANNEL_ID = siteConfig.youtubeChannelId
   const API_KEY = process.env.YOUTUBE_API_KEY
   const MAX_VIDEOS = 10
 

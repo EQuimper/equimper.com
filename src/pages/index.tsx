@@ -10,6 +10,7 @@ import RowTitle from '../components/row-title'
 import SEO from '../components/seo'
 import VideoCard from '../components/video-card'
 import { IBlogPost } from '../interfaces/BlogPost'
+import { IYoutubeVideo } from '../interfaces/YoutubeVideo'
 import styled from '../utils/styled'
 
 const Root = styled('div')`
@@ -36,24 +37,7 @@ interface IProps {
     }
     allYoutubeVideo: {
       edges: Array<{
-        node: {
-          id: string
-          title: string
-          description: string
-          thumbnail: {
-            url: string
-            height: number
-            width: number
-          }
-          channelTitle: string
-          publishedAt: string
-          localThumbnail: {
-            childImageSharp: {
-              resolutions: any
-              fluid: any
-            }
-          }
-        }
+        node: IYoutubeVideo
       }>
     }
     avatarImg: {
@@ -84,7 +68,7 @@ const IndexPage = ({ data }: IProps) => (
         title="Latest Videos"
         secondTitle="View All"
         externalLink
-        secondTitleLink="https://www.youtube.com/channel/UC7R7bcH9-KEBDiGNP1mZnmw"
+        secondTitleLink={siteConfig.youtubeChannelUrl}
       />
 
       <RowWrapper>
