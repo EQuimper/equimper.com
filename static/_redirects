@@ -2,4 +2,7 @@
 https://equimper.me/* https://equimper.com/:splat 301!
 http://equimper.me/* https://equimper.com/:splat 301!
 
+/post/how-do-i-manage-my-state-with-react /blog/how-do-i-manage-my-state-with-react
+/post/my-goals-for-2018 /blog/my-goals-for-2018
+
 /post/* /blog
