@@ -1,3 +1,5 @@
 # Redirect domain aliases to primary domain
 https://equimper.me/* https://equimper.com/:splat 301!
 http://equimper.me/* https://equimper.com/:splat 301!
+
+/post/* /blog
