@@ -4,5 +4,10 @@ http://equimper.me/* https://equimper.com/:splat 301!
 
 /post/how-do-i-manage-my-state-with-react /blog/how-do-i-manage-my-state-with-react
 /post/my-goals-for-2018 /blog/my-goals-for-2018
+/post/make-iterm-more-powerful /blog/make-iterm-more-powerful
+/post/what-i-found-by-building-my-own-nodejs-boilerplate /blog/what-i-found-by-building-my-own-nodejs-boilerplate
+/post/why-i-moved-away-from-atom-to-visual-studio-code-and-my-setup /blog/why-i-moved-away-from-atom-to-visual-studio-code-and-my-setup
+/post/testing-your-api-with-postman /blog/testing-your-api-with-postman
+/post/my-goals-for-2017 /blog/my-goals-for-2017
 
 /post/* /blog
