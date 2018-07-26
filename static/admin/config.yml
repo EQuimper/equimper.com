@@ -12,7 +12,7 @@ display_url: https://equimper.com
 
 collections:
   - name: "blog"
-    label: "Blog"
+    label: "Blog Post"
     folder: "posts"
     create: true
     slug: "{{slug}}"
