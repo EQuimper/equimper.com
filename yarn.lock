@@ -5103,6 +5103,12 @@ gatsby-plugin-sitemap@^2.0.0-beta.3:
     "@babel/runtime" "7.0.0-beta.52"
     sitemap "^1.12.0"
 
+gatsby-plugin-twitter@^2.0.0-beta.3:
+  version "2.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-twitter/-/gatsby-plugin-twitter-2.0.0-beta.3.tgz#eb43c72fd4b7edb29c95ca80a0ee35e0e8b45fc9"
+  dependencies:
+    "@babel/runtime" "7.0.0-beta.52"
+
 gatsby-plugin-typescript@^2.0.0-beta.6:
   version "2.0.0-beta.7"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-typescript/-/gatsby-plugin-typescript-2.0.0-beta.7.tgz#5927d136b1a9d825e8b30d59b6428c7d512ae36f"

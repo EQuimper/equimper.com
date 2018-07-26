@@ -16,6 +16,7 @@ module.exports = {
     'gatsby-plugin-sitemap',
     'gatsby-plugin-typescript',
     'gatsby-plugin-catch-links',
+    'gatsby-plugin-twitter',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     {
