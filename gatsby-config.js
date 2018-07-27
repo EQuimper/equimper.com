@@ -16,7 +16,6 @@ module.exports = {
     'gatsby-plugin-sitemap',
     'gatsby-plugin-typescript',
     'gatsby-plugin-catch-links',
-    'gatsby-plugin-twitter',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     {
@@ -213,6 +212,7 @@ module.exports = {
         ],
       },
     },
+    'gatsby-plugin-twitter',
     'gatsby-plugin-offline',
     'gatsby-plugin-netlify-cache',
     'gatsby-plugin-netlify', // need to be last
