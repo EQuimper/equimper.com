@@ -76,8 +76,8 @@ const SEO = ({ postMeta, url, isBlogPost, postImage, customTitle }: IProps) => {
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:label1" content="Written by" />
       <meta name="twitter:data1" content={siteConfig.author} />
-      <meta name="twitter:creator" content={`@${siteConfig.twitterUsername}`} />
-      <meta name="twitter:site" content={`@${siteConfig.twitterUsername}`} />
+      <meta name="twitter:creator" content={`@${siteConfig.twitterHandler}`} />
+      <meta name="twitter:site" content={`@${siteConfig.twitterHandler}`} />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
