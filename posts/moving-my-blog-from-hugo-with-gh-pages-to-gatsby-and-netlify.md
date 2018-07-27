@@ -19,7 +19,7 @@ How not be excited about this 😀. Also another big thing I see on my feed was 
 
 ## Why did I move?
 
-So first thing my blog was on [Hugo](https://gohugo.io/) another static site generator but who use the [Golang](https://golang.org/) language. I was really happy with this tech. The thing was why use a language I don't really use everyday when Gatsby come with React and GraphQL. Two techs I use at my current job and also even teach it on [Youtube](https://www.youtube.com/channel/UC7R7bcH9-KEBDiGNP1mZnmw).
+So first thing my blog was on [Hugo](https://gohugo.io/), another static site generator but who use the [Golang](https://golang.org/) language. I was really happy with this tech. The thing was why use a language I don't really use everyday when Gatsby come with React and GraphQL. Two techs I use at my current job and also even teach it on [Youtube](https://www.youtube.com/channel/UC7R7bcH9-KEBDiGNP1mZnmw).
 
 Before doing the move, I search a lot on the web for tutorial about how use Gatsby, how the deploy go, how you do a query, how you create page and also if you can use all the React ecosystem. All my questions was really simple to answer just by looking at all the great documentation the Gatsby [site](https://www.gatsbyjs.org/docs/) have. They don't let you go all in with this without teaching you how to use their product, this is a big plus for me.
 
@@ -28,3 +28,12 @@ Because it's open source, a lot of plugin are create by the community to leverag
 
 ## Netlify CMS
 
+In my other blog I was writing the markdown post right from my text editor. Was great, I mean for a developer this is like you do everyday. But I feel like I don't wrote as many post I want because the experience is not so great.
+
+I was reading a lot about headless CMS, like [Contentful](https://contentful.com/) or [Prismic](https://prismic.io/). Really like the idea about it. I even create this blog with this tool first. But one night I was watching some video on youtube and see this one.
+
+`youtube:YyRwMy59d4M`
+
+This talk really sell me Netlify CMS. I mean first I already want to use Netlify for the deployment, second I want to be able to customize all my experience with it, and finally I don't want to pay for something I can handle for free in my text editor.
+
+So I give it a chance, I navigated to their [website](https://www.netlifycms.org/) and follow the docs about how to setup it. Because I know Gatsby build lot of awesome plugin I try to search if one exist to make my life even easier to install it. And yes 😀I found this plugin call [gatsby-plugin-netlify-cms](https://www.gatsbyjs.org/packages/gatsby-plugin-netlify-cms).
