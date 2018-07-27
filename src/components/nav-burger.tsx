@@ -67,11 +67,13 @@ class NavBurger extends PureComponent<P, State> {
 
   openPortal = () => {
     document.body.style.overflow = 'hidden'
+    document.body.style.touchAction = 'none'
     this.setState({ isOpen: true })
   }
 
   closePortal = () => {
     document.body.style.overflow = ''
+    document.body.style.touchAction = ''
     this.setState({ isOpen: false })
   }
 
