@@ -74,6 +74,9 @@ const Share = ({ url, title }: IProps) => (
       <FacebookShareButton url={url}>
         <FacebookIcon />
       </FacebookShareButton>
+      <RedditShareButton title={title} url={url}>
+        <RedditIcon />
+      </RedditShareButton>
       <TwitterShareButton
         title={title}
         url={url}
@@ -81,15 +84,12 @@ const Share = ({ url, title }: IProps) => (
       >
         <TwitterIcon />
       </TwitterShareButton>
-      <LinkedinShareButton title={title} url={url}>
-        <LinkedinIcon />
-      </LinkedinShareButton>
-      <RedditShareButton title={title} url={url}>
-        <RedditIcon />
-      </RedditShareButton>
       <GooglePlusShareButton url={url}>
         <GooglePlusIcon />
       </GooglePlusShareButton>
+      <LinkedinShareButton title={title} url={url}>
+        <LinkedinIcon />
+      </LinkedinShareButton>
     </ShareWrapper>
   </Root>
 )
