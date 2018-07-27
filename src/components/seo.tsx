@@ -26,7 +26,7 @@ const SEO = ({ postMeta, url, isBlogPost, postImage, customTitle }: IProps) => {
 
   const title = isBlogPost
     ? postMeta && postMeta.title
-    : customTitle || siteConfig.site.title
+    : customTitle || siteConfig.site.seoTitle
 
   const schemaOrgJSONLD = getSchemaOrgJSONLD({
     isBlogPost,
@@ -68,7 +68,7 @@ const SEO = ({ postMeta, url, isBlogPost, postImage, customTitle }: IProps) => {
       <meta property="og:image:type" content="image/png" />
       <meta property="og:image:height" content="400" />
       <meta property="og:image:width" content="400" />
-      <meta property="og:site_name" content={siteConfig.site.title} />
+      <meta property="og:site_name" content={siteConfig.site.seoTitle} />
       <meta property="fb:app_id" content={siteConfig.fbAppID} />
       <meta itemProp="keywords" content={keywords} />
 

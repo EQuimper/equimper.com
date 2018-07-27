@@ -4,6 +4,7 @@ module.exports = {
   site: {
     url: siteUrl,
     title: '<EQuimper />',
+    seoTitle: 'EQuimper',
     description: 'A blog about programming',
     logo: `${siteUrl}/android-chrome-384x384.png`,
   },
