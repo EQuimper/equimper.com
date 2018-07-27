@@ -173,6 +173,10 @@ injectGlobal`
   .headroom--unfixed > header > nav {
     background: #fff;
   }
+
+  .stop-scrolling {
+    overflow: hidden;
+  }
 `
 
 const Body = styled('div')`
