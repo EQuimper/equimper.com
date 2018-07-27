@@ -39,23 +39,43 @@ const IconWrapper = styled('a')`
 `
 
 const GithubIcon = styled(Github)`
-  ${tw('text-grey-dark h-8 w-8 hover:text-blue-lighter')};
+  ${tw('text-grey-dark h-8 w-8')};
+
+  &:hover {
+    color: ${props => props.theme.colors.socialBrand.github};
+  }
 `
 
 const LinkedinIcon = styled(Linkedin)`
-  ${tw('text-grey-dark h-8 w-8 hover:text-blue-lighter')};
+  ${tw('text-grey-dark h-8 w-8')};
+
+  &:hover {
+    color: ${props => props.theme.colors.socialBrand.linkedin};
+  }
 `
 
 const TwitterIcon = styled(Twitter)`
-  ${tw('text-grey-dark h-8 w-8 hover:text-blue-lighter')};
+  ${tw('text-grey-dark h-8 w-8')};
+
+  &:hover {
+    color: ${props => props.theme.colors.socialBrand.twitter};
+  }
 `
 
 const FacebookIcon = styled(Facebook)`
-  ${tw('text-grey-dark h-8 w-8 hover:text-blue-lighter')};
+  ${tw('text-grey-dark h-8 w-8')};
+
+  &:hover {
+    color: ${props => props.theme.colors.socialBrand.facebook};
+  }
 `
 
 const YoutubeIcon = styled(Youtube)`
-  ${tw('text-grey-dark h-8 w-8 hover:text-blue-lighter')};
+  ${tw('text-grey-dark h-8 w-8')};
+
+  &:hover {
+    color: ${props => props.theme.colors.socialBrand.youtube};
+  }
 `
 
 const RSSIcon = styled(RSS)`
@@ -73,9 +93,9 @@ const socials = [
     name: 'Github',
   },
   {
-    link: 'https://twitter.com/QuimperEmanuel',
-    icon: <TwitterIcon />,
-    name: 'Twitter',
+    link: 'https://www.linkedin.com/in/emanuelquimper',
+    icon: <LinkedinIcon />,
+    name: 'Linkedin',
   },
   {
     link: 'https://www.youtube.com/channel/UC7R7bcH9-KEBDiGNP1mZnmw',
@@ -83,9 +103,9 @@ const socials = [
     name: 'Youtube',
   },
   {
-    link: 'https://www.linkedin.com/in/emanuelquimper',
-    icon: <LinkedinIcon />,
-    name: 'Linkedin',
+    link: 'https://twitter.com/QuimperEmanuel',
+    icon: <TwitterIcon />,
+    name: 'Twitter',
   },
   {
     link: 'https://www.facebook.com/EQuimperCoding',

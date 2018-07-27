@@ -1,4 +1,5 @@
 import { injectGlobal } from 'emotion'
+import { ThemeProvider } from 'emotion-theming'
 import { graphql, StaticQuery } from 'gatsby'
 import React, { SFC } from 'react'
 import Helmet from 'react-helmet'
@@ -9,6 +10,7 @@ import 'typeface-cormorant-garamond'
 import 'typeface-lato'
 
 import styled from '../utils/styled'
+import { theme } from '../utils/theme'
 import Footer from './footer'
 import Header from './header'
 
@@ -194,34 +196,40 @@ const Layout: SFC = ({ children }) => (
     `}
     // tslint:disable-next-line:jsx-no-lambda
     render={(data: IndexPageData) => (
-      <Body>
-        <Helmet titleTemplate="%s · <EQuimper />" defaultTitle="<EQuimper />">
-          <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="/apple-touch-icon.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="/favicon-32x32.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="/favicon-16x16.png"
-          />
-          <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
-          <meta name="msapplication-TileColor" content="#da532c" />
-          <meta name="theme-color" content="#ffffff" />
-        </Helmet>
-        <html lang="en" />
-        <Header siteTitle={data.site.siteMetadata.title} />
-        <Root>{children}</Root>
-        <Footer siteTitle={data.site.siteMetadata.title} />
-      </Body>
+      <ThemeProvider theme={theme}>
+        <Body>
+          <Helmet titleTemplate="%s · <EQuimper />" defaultTitle="<EQuimper />">
+            <link
+              rel="apple-touch-icon"
+              sizes="180x180"
+              href="/apple-touch-icon.png"
+            />
+            <link
+              rel="icon"
+              type="image/png"
+              sizes="32x32"
+              href="/favicon-32x32.png"
+            />
+            <link
+              rel="icon"
+              type="image/png"
+              sizes="16x16"
+              href="/favicon-16x16.png"
+            />
+            <link
+              rel="mask-icon"
+              href="/safari-pinned-tab.svg"
+              color="#5bbad5"
+            />
+            <meta name="msapplication-TileColor" content="#da532c" />
+            <meta name="theme-color" content="#ffffff" />
+          </Helmet>
+          <html lang="en" />
+          <Header siteTitle={data.site.siteMetadata.title} />
+          <Root>{children}</Root>
+          <Footer siteTitle={data.site.siteMetadata.title} />
+        </Body>
+      </ThemeProvider>
     )}
   />
 )
