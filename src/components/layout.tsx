@@ -163,6 +163,14 @@ injectGlobal`
       transform: scale(1.0);
     }
   }
+
+  .twitter-tweet.twitter-tweet-rendered {
+    margin: 30px auto;
+  }
+
+  .headroom--unfixed > header > nav {
+    background: #fff;
+  }
 `
 
 const Body = styled('div')`

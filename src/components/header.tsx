@@ -1,5 +1,6 @@
 import { Link as GatsbyLink } from 'gatsby'
 import React, { SFC } from 'react'
+import Headroom from 'react-headroom'
 
 import styled from '../utils/styled'
 import NavBurger from './nav-burger'
@@ -9,7 +10,7 @@ interface IProps {
 }
 
 const Nav = styled('nav')`
-  ${tw('bg-white w-full shadow')};
+  ${tw('w-full shadow bg-white-80')};
 `
 
 const NavWrapper = styled('div')`
@@ -46,33 +47,35 @@ const BrandLink = styled(GatsbyLink)`
 `
 
 const Header: SFC<IProps> = ({ siteTitle }) => (
-  <header>
-    <Nav>
-      <NavWrapper>
-        <BrandWrapper>
-          <BrandLink to="/">{siteTitle}</BrandLink>
-        </BrandWrapper>
-        <NavBurger />
-        <LinkList>
-          <LinkItem>
-            <Link activeClassName={activeClassName} exact to="/about">
-              About
-            </Link>
-          </LinkItem>
-          <LinkItem>
-            <Link activeClassName={activeClassName} exact to="/blog">
-              Blog
-            </Link>
-          </LinkItem>
-          <LinkItem>
-            <Link activeClassName={activeClassName} exact to="/contact">
-              Contact Me
-            </Link>
-          </LinkItem>
-        </LinkList>
-      </NavWrapper>
-    </Nav>
-  </header>
+  <Headroom>
+    <header>
+      <Nav>
+        <NavWrapper>
+          <BrandWrapper>
+            <BrandLink to="/">{siteTitle}</BrandLink>
+          </BrandWrapper>
+          <NavBurger />
+          <LinkList>
+            <LinkItem>
+              <Link activeClassName={activeClassName} exact to="/about">
+                About
+              </Link>
+            </LinkItem>
+            <LinkItem>
+              <Link activeClassName={activeClassName} exact to="/blog">
+                Blog
+              </Link>
+            </LinkItem>
+            <LinkItem>
+              <Link activeClassName={activeClassName} exact to="/contact">
+                Contact Me
+              </Link>
+            </LinkItem>
+          </LinkList>
+        </NavWrapper>
+      </Nav>
+    </header>
+  </Headroom>
 )
 
 export default Header

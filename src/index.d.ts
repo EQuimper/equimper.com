@@ -3,6 +3,7 @@ declare function tw(string): string
 declare module 'typeface-lato'
 declare module 'gatsby-image'
 declare module 'react-portal'
+declare module 'react-headroom'
 declare module '*.png'
 
 declare interface IReactPortalProps {

@@ -45,6 +45,7 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-emotion": "^9.2.6",
+    "react-headroom": "^2.2.2",
     "react-helmet": "^5.2.0",
     "react-portal": "^4.1.5",
     "react-share": "^2.2.0",
