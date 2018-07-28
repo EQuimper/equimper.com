@@ -4,7 +4,7 @@ import qs from 'qs'
 import React, { PureComponent } from 'react'
 import * as Yup from 'yup'
 
-import { GithubApi } from '../services/githubApi'
+import { GithubApi } from '../services/GithubApi'
 import { constants } from '../utils/constants'
 import styled from '../utils/styled'
 import Spinner from './spinner'
