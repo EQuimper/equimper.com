@@ -19,16 +19,28 @@ const VideoTitle = styled('h2')`
   )};
 `
 
+const VideoTitleWrapper = styled('div')`
+  display: flex;
+  flex: 1;
+  align-items: center;
+`
+
 const ImgWrapper = styled('div')`
   ${tw('h-1/3 w-full')};
 `
 
 const DetailWrapper = styled('div')`
-  ${tw('w-full h-2/3 px-4 text-left')};
+  ${tw('w-full h-full px-4 text-left flex flex-col')};
+`
+
+const VideoDateWrapper = styled('div')`
+  display: flex;
+  flex: 0.2;
+  align-items: center;
 `
 
 const VideoDate = styled('p')`
-  ${tw('text-grey-dark text-sm')};
+  ${tw('text-xs leading-normal tracking-wide text-grey uppercase')};
 `
 
 interface IProps {
@@ -66,8 +78,12 @@ const VideoCard = ({ data }: IProps) => (
         />
       </ImgWrapper>
       <DetailWrapper>
-        <VideoTitle>{data.title}</VideoTitle>
-        <VideoDate>Published at: {data.publishedAt}</VideoDate>
+        <VideoTitleWrapper>
+          <VideoTitle>{data.title}</VideoTitle>
+        </VideoTitleWrapper>
+        <VideoDateWrapper>
+          <VideoDate>{data.publishedAt}</VideoDate>
+        </VideoDateWrapper>
       </DetailWrapper>
     </Wrapper>
   </Container>

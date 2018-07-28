@@ -1,12 +1,15 @@
 import { graphql } from 'gatsby'
 import React from 'react'
 
+import CommentForm from '../components/comment-form'
+import CommentsList from '../components/comments-list'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Share from '../components/share'
 import SubscribeForm from '../components/subscribe-form'
 import TagList from '../components/tags-list'
 import { IBlogPost } from '../interfaces/BlogPost'
+import { IComment } from '../interfaces/Comment'
 import styled from '../utils/styled'
 
 const Root = styled('div')`
@@ -39,10 +42,18 @@ interface IProps {
     avatarImg: {
       fixed: any
     }
+    smallAvatarImg: {
+      fixed: any
+    }
     site: {
       siteMetadata: {
         siteUrl: string
       }
+    }
+    comments: {
+      edges: Array<{
+        node: IComment
+      }>
     }
   }
   location: {
@@ -79,6 +90,13 @@ const BlogPost = ({ data, location }: IProps) => {
         </Article>
 
         <SubscribeForm avatar={data.avatarImg.fixed} />
+
+        <CommentForm slug={data.markdownRemark.fields.slug} />
+
+        <CommentsList
+          avatarImg={data.smallAvatarImg.fixed}
+          comments={(data.comments && data.comments.edges) || []}
+        />
       </Root>
     </Layout>
   )
@@ -96,6 +114,9 @@ export const query = graphql`
 
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
+      fields {
+        slug
+      }
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         title
@@ -104,8 +125,25 @@ export const query = graphql`
       }
     }
 
+    comments: allCommentsYaml(filter: { slug: { eq: $slug } }, limit: 5) {
+      edges {
+        node {
+          id
+          name
+          message
+          date(formatString: "MMMM DD, YYYY")
+        }
+      }
+    }
+
     avatarImg: imageSharp(original: { src: { regex: "/avatar/" } }) {
       fixed(width: 100) {
+        ...GatsbyImageSharpFixed
+      }
+    }
+
+    smallAvatarImg: imageSharp(original: { src: { regex: "/avatar/" } }) {
+      fixed(width: 60) {
         ...GatsbyImageSharpFixed
       }
     }

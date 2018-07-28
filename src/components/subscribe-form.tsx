@@ -1,7 +1,8 @@
 import axios from 'axios'
-import React, { ChangeEvent, FormEvent, PureComponent } from 'react'
+import { Formik, FormikActions, FormikProps } from 'formik'
+import React, { PureComponent } from 'react'
+import * as Yup from 'yup'
 
-import { isValidEmail } from '../utils/isValidEmail'
 import { getItemFromStorage, storeItem } from '../utils/localStorage'
 import styled from '../utils/styled'
 import Spinner from './spinner'
@@ -79,34 +80,27 @@ const MAILCHIMP_SIGNUP_URL =
 const SUB_KEY = '@equimper-sub'
 const NOT_SHOW_SUB = '@equimper-not-show-sub'
 
+interface IFormValues {
+  email: string
+  firstName: string
+}
+
 interface IProps {
   avatar: any
 }
 
 type State = Readonly<{
-  email: string
-  firstName: string
-  isValid: boolean
-  isSubmitting: boolean
   alreadySub: boolean
   showThankYou: boolean
   haveError: boolean
-  emailVisited: boolean
-  emailErrorMsg: string | null
   notShowSub: boolean
 }>
 
 class SubscribeForm extends PureComponent<IProps, State> {
   state = {
-    email: '',
-    firstName: '',
-    isValid: false,
-    isSubmitting: false,
     alreadySub: false,
     showThankYou: false,
     haveError: false,
-    emailVisited: false,
-    emailErrorMsg: null,
     notShowSub: !!getItemFromStorage(NOT_SHOW_SUB),
   }
 
@@ -115,29 +109,6 @@ class SubscribeForm extends PureComponent<IProps, State> {
 
     if (typeof window !== 'undefined') {
       window.addEventListener('itemInserted', this.listenToStorage, false)
-    }
-  }
-
-  componentDidUpdate(prevProps: IProps, prevState: State) {
-    if (this.state.email !== prevState.email) {
-      if (isValidEmail(this.state.email)) {
-        this.setState({
-          isValid: true,
-          emailErrorMsg: null,
-        })
-      } else {
-        this.setState({
-          isValid: false,
-        })
-      }
-    }
-
-    if (this.state.emailVisited) {
-      if (!isValidEmail(this.state.email)) {
-        this.setState({
-          emailErrorMsg: 'Email is not valid',
-        })
-      }
     }
   }
 
@@ -163,26 +134,16 @@ class SubscribeForm extends PureComponent<IProps, State> {
     }
   }
 
-  handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    // @ts-ignore
-    this.setState({
-      [e.target.name]: e.target.value,
-    })
-  }
-
-  handleSubmit = async (e: FormEvent) => {
-    e.preventDefault()
-
-    this.setState({
-      isSubmitting: true,
-    })
-
+  handleSubmit = async (
+    values: IFormValues,
+    bag: FormikActions<IFormValues>
+  ) => {
     try {
       const res = await axios.post(
         MAILCHIMP_SIGNUP_URL,
         {
-          email: this.state.email,
-          firstName: this.state.firstName,
+          email: values.email,
+          firstName: values.firstName,
         },
         {
           headers: {
@@ -192,34 +153,19 @@ class SubscribeForm extends PureComponent<IProps, State> {
       )
 
       if (res.data.success) {
-        this.setState({ isSubmitting: false, showThankYou: true })
+        this.setState({ showThankYou: true })
 
         storeItem(SUB_KEY, { isSubscribed: true })
       }
     } catch (error) {
-      this.setState({ isSubmitting: false, haveError: true })
+      bag.setSubmitting(false)
+      this.setState({ haveError: true })
     }
-  }
-
-  handleEmailBlur = () => {
-    this.setState({ emailVisited: true })
   }
 
   render() {
     if (this.state.alreadySub || this.state.notShowSub) {
       return null
-    }
-
-    if (this.state.isSubmitting) {
-      return (
-        <Root>
-          <Container>
-            <LoadingWrapper>
-              <Spinner />
-            </LoadingWrapper>
-          </Container>
-        </Root>
-      )
     }
 
     if (this.state.haveError) {
@@ -251,54 +197,95 @@ class SubscribeForm extends PureComponent<IProps, State> {
       )
     }
     return (
-      <Root>
-        <Container>
-          <TopWrapper>
-            <TitleWrapper>
-              <Title>Subscribe to the Newsletter</Title>
-            </TitleWrapper>
-            <SubscribeFormCloseButton />
-          </TopWrapper>
-          <DetailWrapper>
-            <Detail>Receive notification when new article get posted</Detail>
-          </DetailWrapper>
-          <Form onSubmit={this.handleSubmit}>
-            <InputWrapper>
-              <Input
-                onBlur={this.handleEmailBlur}
-                name="email"
-                value={this.state.email}
-                type="email"
-                placeholder="Email"
-                onChange={this.handleChange}
-              />
-              {this.state.emailVisited &&
-                this.state.emailErrorMsg && (
-                  <ErrorWrapper>
-                    <ErrorMessage>{this.state.emailErrorMsg}</ErrorMessage>
-                  </ErrorWrapper>
-                )}
-            </InputWrapper>
-            <InputWrapper>
-              <Input
-                name="firstName"
-                onChange={this.handleChange}
-                value={this.state.firstName}
-                type="text"
-                placeholder="First Name"
-              />
-            </InputWrapper>
-            <ButtonWrapper>
-              <Button
-                disabled={!this.state.isValid || this.state.isSubmitting}
-                type="submit"
-              >
-                Subscribe
-              </Button>
-            </ButtonWrapper>
-          </Form>
-        </Container>
-      </Root>
+      <Formik
+        initialValues={{ email: '', firstName: '' }}
+        validationSchema={Yup.object().shape({
+          email: Yup.string()
+            .email('Not a valid Email')
+            .required('Email is a required field'),
+          firstName: Yup.string().required('First Name is a required field'),
+        })}
+        onSubmit={this.handleSubmit}
+      >
+        {({
+          values,
+          handleBlur,
+          handleChange,
+          isSubmitting,
+          handleSubmit,
+          errors,
+          touched,
+          isValid,
+        }: FormikProps<IFormValues>) => {
+          if (isSubmitting) {
+            return (
+              <Root>
+                <Container>
+                  <LoadingWrapper>
+                    <Spinner />
+                  </LoadingWrapper>
+                </Container>
+              </Root>
+            )
+          }
+          return (
+            <Root>
+              <Container>
+                <TopWrapper>
+                  <TitleWrapper>
+                    <Title>Subscribe to the Newsletter</Title>
+                  </TitleWrapper>
+                  <SubscribeFormCloseButton />
+                </TopWrapper>
+                <DetailWrapper>
+                  <Detail>
+                    Receive notification when new article get posted
+                  </Detail>
+                </DetailWrapper>
+                <Form onSubmit={handleSubmit}>
+                  <InputWrapper>
+                    <Input
+                      onBlur={handleBlur}
+                      name="email"
+                      value={values.email}
+                      type="email"
+                      placeholder="Email*"
+                      onChange={handleChange}
+                    />
+                    {touched.email &&
+                      errors.email && (
+                        <ErrorWrapper>
+                          <ErrorMessage>{errors.email}</ErrorMessage>
+                        </ErrorWrapper>
+                      )}
+                  </InputWrapper>
+                  <InputWrapper>
+                    <Input
+                      name="firstName"
+                      onBlur={handleBlur}
+                      onChange={handleChange}
+                      value={values.firstName}
+                      type="text"
+                      placeholder="First Name*"
+                    />
+                    {touched.firstName &&
+                      errors.firstName && (
+                        <ErrorWrapper>
+                          <ErrorMessage>{errors.firstName}</ErrorMessage>
+                        </ErrorWrapper>
+                      )}
+                  </InputWrapper>
+                  <ButtonWrapper>
+                    <Button disabled={!isValid || isSubmitting} type="submit">
+                      Subscribe
+                    </Button>
+                  </ButtonWrapper>
+                </Form>
+              </Container>
+            </Root>
+          )
+        }}
+      </Formik>
     )
   }
 }

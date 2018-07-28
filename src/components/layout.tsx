@@ -33,6 +33,8 @@ injectGlobal`
     --secondary: #00fff0;
     --grey-dark: #8795a1;
     --grey-darkest: #3d4852;
+    --grey-lighter: #f3f7f9;
+    --green: #38c172;
   }
 
   body {
@@ -176,6 +178,74 @@ injectGlobal`
 
   .stop-scrolling {
     overflow: hidden;
+  }
+
+
+  /* Checkbox */
+  .control:hover input ~ .control__indicator,
+  .control input:focus ~ .control__indicator {
+    background: var(--grey-lighter);
+  }
+
+  .control input:checked ~ .control__indicator {
+  }
+
+  .control:hover input:not([disabled]):checked ~ .control__indicator,
+  .control input:checked:focus ~ .control__indicator {
+    background: var(--green);
+  }
+
+  .control input:disabled ~ .control__indicator {
+    pointer-events: none;
+    opacity: .6;
+    background: var(--grey-lighter);
+  }
+
+  .control__indicator:after {
+    position: absolute;
+    display: none;
+    content: '';
+  }
+
+  .control input:checked ~ .control__indicator:after {
+    display: block;
+  }
+
+  .control--checkbox .control__indicator:after {
+    top: 4px;
+    left: 8px;
+    width: 3px;
+    height: 8px;
+    transform: rotate(45deg);
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+  }
+
+  .control--checkbox input:disabled ~ .control__indicator:after {
+    border-color: #7b7b7b;
+  }
+
+  .control__indicator {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    width: 20px;
+    height: 20px;
+  }
+
+  .control {
+    font-size: 18px;
+    position: relative;
+    display: block;
+    margin-bottom: 15px;
+    padding-left: 30px;
+    cursor: pointer;
+  }
+
+  .control input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
   }
 `
 

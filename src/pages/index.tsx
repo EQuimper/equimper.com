@@ -118,7 +118,7 @@ export const query = graphql`
             width
           }
           channelTitle
-          publishedAt(formatString: "YYYY-MM-DD")
+          publishedAt(formatString: "MMMM DD, YYYY")
           localThumbnail {
             childImageSharp {
               fluid(maxWidth: 600) {
