@@ -17,6 +17,10 @@ const InputWrapper = styled('div')`
   ${tw('mb-4')};
 `
 
+const CheckBoxWrapper = styled('div')`
+  ${tw('my-8')};
+`
+
 const Input = styled('input')`
   ${tw(
     'bg-grey-lighter appearance-none border-0 border-grey-lighter rounded w-full py-2 px-3 text-sm text-grey-darker leading-tight sm:text-base sm:py-3 sm:px-4'
@@ -28,7 +32,6 @@ const MessageInput = styled('textarea')`
     'bg-grey-lighter appearance-none border-0 border-grey-lighter rounded w-full py-2 px-3 text-sm text-grey-darker leading-tight sm:text-base sm:py-3 sm:px-4'
   )};
 
-  min-height: 10rem;
   resize: vertical;
 `
 
@@ -64,10 +67,19 @@ const ErrorMessage = styled('p')`
   ${tw('text-red text-xs italic')};
 `
 
+const CheckBox = styled('input')`
+  ${tw('')};
+`
+
+const CheckBoxTitle = styled('label')`
+  ${tw('text-sm text-grey-dark')};
+`
+
 interface IFormValues {
   email: string
   comment: string
   name: string
+  notification: boolean
 }
 
 interface IProps {
@@ -92,6 +104,12 @@ class CommentForm extends PureComponent<IProps, State> {
     try {
       const message = await GithubApi.parseToMarkdown(values.comment)
 
+      const options: { subscribe?: string } = {}
+
+      if (values.notification) {
+        options.subscribe = values.email
+      }
+
       const data = qs.stringify({
         fields: {
           email: values.email,
@@ -99,6 +117,7 @@ class CommentForm extends PureComponent<IProps, State> {
           name: values.name,
           slug: this.props.slug,
         },
+        options,
       })
 
       const res = await axios.post(`${constants.staticManUrl}/comments`, data, {
@@ -152,6 +171,7 @@ class CommentForm extends PureComponent<IProps, State> {
           email: '',
           comment: '',
           name: '',
+          notification: false,
         }}
         validationSchema={Yup.object().shape({
           email: Yup.string()
@@ -163,6 +183,7 @@ class CommentForm extends PureComponent<IProps, State> {
           comment: Yup.string()
             .min(2, 'Not long enough')
             .required('Comment is a required field'),
+          notification: Yup.boolean(),
         })}
       >
         {({
@@ -230,6 +251,7 @@ class CommentForm extends PureComponent<IProps, State> {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.comment}
+                    rows={10}
                     placeholder="Your Comment* (markdown is accepted)"
                   />
                   {touched.comment &&
@@ -238,6 +260,20 @@ class CommentForm extends PureComponent<IProps, State> {
                         <ErrorMessage>{errors.comment}</ErrorMessage>
                       </ErrorWrapper>
                     )}
+                </InputWrapper>
+                <InputWrapper>
+                  <CheckBoxWrapper>
+                    <CheckBox
+                      name="notification"
+                      onChange={handleChange}
+                      checked={values.notification}
+                      type="checkbox"
+                      id="notification"
+                    />
+                    <CheckBoxTitle htmlFor="notification">
+                      Notify me of new comments by email!
+                    </CheckBoxTitle>
+                  </CheckBoxWrapper>
                 </InputWrapper>
                 <ButtonWrapper>
                   <Button disabled={!isValid || isSubmitting} type="submit">
