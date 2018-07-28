@@ -20,7 +20,7 @@ comments:
   moderation: true
   name: "equimper.com"
 
-  path: "data/comments/{options.slug}"
+  path: "data/comments"
 
   requiredFields: ["name", "email", "message"]
 
