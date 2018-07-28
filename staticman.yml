@@ -1,5 +1,5 @@
 comments:
-  allowedFields: ["name", "email", "message"]
+  allowedFields: ["name", "email", "message", "slug"]
 
   allowedOrigins: ["localhost", "equimper.com"]
 
