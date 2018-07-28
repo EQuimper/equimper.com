@@ -249,7 +249,7 @@ class SubscribeForm extends PureComponent<IProps, State> {
                       name="email"
                       value={values.email}
                       type="email"
-                      placeholder="Email"
+                      placeholder="Email*"
                       onChange={handleChange}
                     />
                     {touched.email &&
@@ -266,7 +266,7 @@ class SubscribeForm extends PureComponent<IProps, State> {
                       onChange={handleChange}
                       value={values.firstName}
                       type="text"
-                      placeholder="First Name"
+                      placeholder="First Name*"
                     />
                     {touched.firstName &&
                       errors.firstName && (
