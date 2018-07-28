@@ -16,11 +16,12 @@ interface IProps {
   comments: Array<{
     node: IComment
   }>
+  avatarImg: any
 }
 
 const commentText = (num: number) => (num > 1 ? 'Comments' : 'Comment')
 
-const CommentsList = ({ comments }: IProps) => (
+const CommentsList = ({ comments, avatarImg }: IProps) => (
   <Root>
     {comments.length === 0 ? (
       <Title>No comment yet!</Title>
@@ -29,7 +30,14 @@ const CommentsList = ({ comments }: IProps) => (
         {comments.length} {commentText(comments.length)}
       </Title>
     )}
-    {comments.map(({ node }) => <Comment key={node.id} data={node} />)}
+    {comments.map(({ node }) => (
+      <Comment
+        isAuthor={node.name === 'EQuimper'}
+        avatarImg={avatarImg}
+        key={node.id}
+        data={node}
+      />
+    ))}
   </Root>
 )
 

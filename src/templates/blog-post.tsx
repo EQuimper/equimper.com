@@ -42,6 +42,9 @@ interface IProps {
     avatarImg: {
       fixed: any
     }
+    smallAvatarImg: {
+      fixed: any
+    }
     site: {
       siteMetadata: {
         siteUrl: string
@@ -90,7 +93,10 @@ const BlogPost = ({ data, location }: IProps) => {
 
         <CommentForm slug={data.markdownRemark.fields.slug} />
 
-        <CommentsList comments={data.comments && data.comments.edges || []} />
+        <CommentsList
+          avatarImg={data.smallAvatarImg.fixed}
+          comments={(data.comments && data.comments.edges) || []}
+        />
       </Root>
     </Layout>
   )
@@ -132,6 +138,12 @@ export const query = graphql`
 
     avatarImg: imageSharp(original: { src: { regex: "/avatar/" } }) {
       fixed(width: 100) {
+        ...GatsbyImageSharpFixed
+      }
+    }
+
+    smallAvatarImg: imageSharp(original: { src: { regex: "/avatar/" } }) {
+      fixed(width: 60) {
         ...GatsbyImageSharpFixed
       }
     }

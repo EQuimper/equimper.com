@@ -28,7 +28,7 @@ const DetailWrapper = styled('div')`
 `
 
 const VideoDate = styled('p')`
-  ${tw('text-grey-dark text-sm')};
+  ${tw('text-xs leading-normal tracking-wide text-grey uppercase')};
 `
 
 interface IProps {
@@ -67,7 +67,7 @@ const VideoCard = ({ data }: IProps) => (
       </ImgWrapper>
       <DetailWrapper>
         <VideoTitle>{data.title}</VideoTitle>
-        <VideoDate>Published at: {data.publishedAt}</VideoDate>
+        <VideoDate>{data.publishedAt}</VideoDate>
       </DetailWrapper>
     </Wrapper>
   </Container>

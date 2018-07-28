@@ -1,3 +1,4 @@
+import Img from 'gatsby-image'
 import React, { PureComponent } from 'react'
 
 import { IComment } from '../interfaces/Comment'
@@ -8,7 +9,7 @@ const Root = styled('div')`
 `
 
 const MetaWrapper = styled('div')`
-  ${tw('w-full')};
+  ${tw('w-full flex items-center')};
 `
 
 const ContentWrapper = styled('div')`
@@ -30,11 +31,25 @@ const Author = styled('h4')`
 `
 
 const Date = styled('p')`
-  ${tw('text-grey text-sm')};
+  ${tw('text-xs leading-normal tracking-wide text-grey uppercase')};
+`
+
+const AuthorImg = styled(Img)`
+  ${tw('rounded-full')};
+`
+
+const AuthorImgWrapper = styled('div')`
+  ${tw('mr-4')};
+`
+
+const CommentInfoWrapper = styled('div')`
+  ${tw('')};
 `
 
 interface IProps {
   data: IComment
+  isAuthor: boolean
+  avatarImg: any
 }
 
 class Comment extends PureComponent<IProps> {
@@ -42,12 +57,19 @@ class Comment extends PureComponent<IProps> {
     window.alert('Not implement yet!')
   }
   render() {
-    const { data } = this.props
+    const { data, avatarImg, isAuthor } = this.props
     return (
       <Root>
         <MetaWrapper>
-          <Author>{data.name}</Author>
-          <Date>{data.date}</Date>
+          {isAuthor && (
+            <AuthorImgWrapper>
+              <AuthorImg fixed={avatarImg} />
+            </AuthorImgWrapper>
+          )}
+          <CommentInfoWrapper>
+            <Author>{data.name}</Author>
+            <Date>{data.date}</Date>
+          </CommentInfoWrapper>
         </MetaWrapper>
         <ContentWrapper>
           <div
