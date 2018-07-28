@@ -13,6 +13,7 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-emotion',
+    'gatsby-transformer-yaml',
     'gatsby-plugin-sitemap',
     'gatsby-plugin-typescript',
     'gatsby-plugin-catch-links',
@@ -29,6 +30,13 @@ module.exports = {
       options: {
         path: `${__dirname}/src`,
         name: 'src',
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/data/comments`,
+        name: 'comments',
       },
     },
     {
