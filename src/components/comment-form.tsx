@@ -17,10 +17,6 @@ const InputWrapper = styled('div')`
   ${tw('mb-4')};
 `
 
-const CheckBoxWrapper = styled('div')`
-  ${tw('my-8')};
-`
-
 const Input = styled('input')`
   ${tw(
     'bg-grey-lighter appearance-none border-0 border-grey-lighter rounded w-full py-2 px-3 text-sm text-grey-darker leading-tight sm:text-base sm:py-3 sm:px-4'
@@ -68,11 +64,25 @@ const ErrorMessage = styled('p')`
 `
 
 const CheckBox = styled('input')`
-  ${tw('')};
+  ${tw('appearance-none')};
+
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+
+  &:checked {
+    display: block;
+  }
 `
 
-const CheckBoxTitle = styled('label')`
+const CheckBoxWrapper = styled('label')``
+
+const CheckBoxTitle = styled('span')`
   ${tw('text-sm text-grey-dark')};
+`
+
+const Indicator = styled('div')`
+  ${tw('rounded bg-grey-lighter')};
 `
 
 interface IFormValues {
@@ -262,15 +272,15 @@ class CommentForm extends PureComponent<IProps, State> {
                     )}
                 </InputWrapper>
                 <InputWrapper>
-                  <CheckBoxWrapper>
+                  <CheckBoxWrapper className="control control--checkbox">
                     <CheckBox
                       name="notification"
                       onChange={handleChange}
                       checked={values.notification}
                       type="checkbox"
-                      id="notification"
                     />
-                    <CheckBoxTitle htmlFor="notification">
+                    <Indicator className="control__indicator" />
+                    <CheckBoxTitle>
                       Notify me of new comments by email!
                     </CheckBoxTitle>
                   </CheckBoxWrapper>
