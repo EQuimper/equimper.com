@@ -198,7 +198,7 @@ injectGlobal`
   .control input:disabled ~ .control__indicator {
     pointer-events: none;
     opacity: .6;
-    background: #e6e6e6;
+    background: var(--grey-lighter);
   }
 
   .control__indicator:after {

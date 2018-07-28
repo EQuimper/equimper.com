@@ -75,10 +75,20 @@ const CheckBox = styled('input')`
   }
 `
 
-const CheckBoxWrapper = styled('label')``
+interface ICheckBoxProps {
+  disabled: boolean
+}
+
+const CheckBoxWrapper = styled('label')`
+  cursor: ${(props: ICheckBoxProps) =>
+    props.disabled ? 'not-allowed' : 'pointer'};
+`
 
 const CheckBoxTitle = styled('span')`
-  ${tw('text-sm text-grey-dark')};
+  ${tw('text-sm text-red')};
+
+  ${(props: ICheckBoxProps) =>
+    props.disabled ? tw('text-grey') : tw('text-grey-darker')};
 `
 
 const Indicator = styled('div')`
@@ -99,12 +109,29 @@ interface IProps {
 type State = Readonly<{
   showThankYou: boolean
   haveError: boolean
+  notificationIsHover: boolean
 }>
 
 class CommentForm extends PureComponent<IProps, State> {
   readonly state = {
     showThankYou: false,
     haveError: false,
+    notificationIsHover: false,
+  }
+
+  notificationHoverTimeout?: NodeJS.Timer
+
+  onNotificationHover = () => {
+    this.notificationHoverTimeout = setTimeout(() => {
+      this.setState({ notificationIsHover: true })
+    }, 500)
+  }
+
+  onHoverNotificationOut = () => {
+    if (this.notificationHoverTimeout) {
+      clearTimeout(this.notificationHoverTimeout)
+    }
+    this.setState({ notificationIsHover: false })
   }
 
   handleSubmit = async (
@@ -216,6 +243,8 @@ class CommentForm extends PureComponent<IProps, State> {
             )
           }
 
+          const emailIsValid = values.email.length > 0 && !errors.email
+
           return (
             <Root>
               <TitleWrapper>
@@ -272,17 +301,34 @@ class CommentForm extends PureComponent<IProps, State> {
                     )}
                 </InputWrapper>
                 <InputWrapper>
-                  <CheckBoxWrapper className="control control--checkbox">
+                  <CheckBoxWrapper
+                    className="control control--checkbox"
+                    disabled={!emailIsValid}
+                    onMouseOver={this.onNotificationHover}
+                    onMouseOut={this.onHoverNotificationOut}
+                  >
                     <CheckBox
                       name="notification"
                       onChange={handleChange}
                       checked={values.notification}
                       type="checkbox"
+                      disabled={!emailIsValid}
                     />
                     <Indicator className="control__indicator" />
-                    <CheckBoxTitle>
+
+                    <CheckBoxTitle disabled={!emailIsValid}>
                       Notify me of new comments by email!
                     </CheckBoxTitle>
+                    {!emailIsValid &&
+                      this.state.notificationIsHover && (
+                        <ErrorWrapper>
+                          <ErrorMessage>
+                            {values.email.length === 0
+                              ? 'To be able to check, you must provide a email'
+                              : 'To be able to check, you must provide a valid email'}
+                          </ErrorMessage>
+                        </ErrorWrapper>
+                      )}
                   </CheckBoxWrapper>
                 </InputWrapper>
                 <ButtonWrapper>
