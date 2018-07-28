@@ -1,0 +1,29 @@
+comments:
+  allowedFields: ["name", "email", "message"]
+
+  allowedOrigins: ["localhost", "equimper.com"]
+
+  branch: "master"
+
+  commitMessage: "New Comment"
+
+  filename: "entry{@timestamp}"
+
+  format: "yml"
+
+  generatedFields:
+    date:
+      type: date
+      options:
+        format: "timestamp-seconds"
+
+  moderation: true
+  name: "equimper.com"
+
+  path: "data/comments/{options.slug}"
+
+  requiredFields: ["name", "email", "message"]
+
+  transforms:
+    email: md5
+
