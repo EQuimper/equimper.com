@@ -13,7 +13,7 @@ interface IProps {
     title: string
     date: string
     description: string
-    tags: string
+    tags: string[]
   }
   customTitle?: string
 }
@@ -40,7 +40,7 @@ const SEO = ({ postMeta, url, isBlogPost, postImage, customTitle }: IProps) => {
 
   const keywords =
     isBlogPost && postMeta
-      ? siteConfig.keywords.concat(',', postMeta.tags)
+      ? siteConfig.keywords.concat(',', String(postMeta.tags))
       : siteConfig.keywords
 
   return (
