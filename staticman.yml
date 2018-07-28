@@ -1,5 +1,5 @@
 comments:
-  allowedFields: ["name", "email", "message"]
+  allowedFields: ["name", "email", "message", "slug"]
 
   allowedOrigins: ["localhost", "equimper.com"]
 
@@ -16,8 +16,6 @@ comments:
       type: date
       options:
         format: "iso8601"
-    slug:
-      type: slugify
 
   moderation: true
   name: "equimper.com"
