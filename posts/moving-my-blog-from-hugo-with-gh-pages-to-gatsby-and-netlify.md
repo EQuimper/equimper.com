@@ -1,7 +1,10 @@
 ---
 layout: blog
 title: Moving my blog from Hugo with Gh-Pages to Gatsby and Netlify
-description: '  How was my experience moving from Hugo to Gatsby, Gh-Pages to Netlify. How using Netlify-CMS make my workflow for this blog much more simple. How Staticman give me a replacement of Disqus.'
+description: >-
+  How was my experience moving from Hugo to Gatsby, Gh-Pages to Netlify. How
+  using Netlify-CMS make my workflow for this blog much more simple. How
+  Staticman give me a replacement of Disqus.
 date: '2018-07-26T18:58:40-04:00'
 tags:
   - netlify
@@ -13,7 +16,7 @@ tags:
   - css in js
   - react-emotion
   - formik
-  - serveless
+  - serverless
 ---
 ## Intro
 
@@ -69,5 +72,9 @@ One of your question question maybe is ok so everything manage in git ok, but wh
 
 ## Removing Disqus for Staticman
 
-[Staticman](https://staticman.net/) it's 
+[Staticman](https://staticman.net/) help you building system on top of git. For this blog I use it for providing my comment system. With a simple `yaml` file you can easily build it. You choose which field you want, those required also, and you just let Staticman send pull request to your repos with the element provided. After this is you provide the key `moderation: true` you can just accept the pull request and with the help of Netlify and their continuous deployment the site rebuild and you get your comment on the site in less than a minute after the merge.
+
+## Netlify to the rescue
+
+As you can see, this is one of the reason why I like so much Netlify, yes they rebuild the site like Gh-Pages etc. But this one can also give you a preview. What I mean ? Example you want to try something, you create a pull request and they gonna deploy to a new url the change you just did. So you can test your stuff on real prod env but without breaking the master one. This is really a game changer for me. 
 
