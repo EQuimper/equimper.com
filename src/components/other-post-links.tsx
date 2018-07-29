@@ -7,7 +7,7 @@ import { IBlogPost } from '../interfaces/BlogPost'
 import styled from '../utils/styled'
 
 const OtherPostWrapper = styled('div')`
-  ${tw('flex-col sm:flex-row my-8 flex items-center justify-between')};
+  ${tw('flex-col sm:flex-row my-12 flex items-center justify-between')};
 `
 
 const ArrowRightIcon = styled(ArrowRight)`
@@ -75,7 +75,7 @@ interface IProps {
 
 const OtherPostLinks = ({ next, previous }: IProps) => (
   <OtherPostWrapper>
-    <Wrapper previous>
+    <Wrapper previous={!!previous}>
       {previous && (
         <PreviousWrapper to={`/blog/${previous.fields.slug}`}>
           <TopWrapper>
