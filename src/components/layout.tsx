@@ -185,7 +185,7 @@ injectGlobal`
   /* Checkbox */
   .control:hover input ~ .control__indicator,
   .control input:focus ~ .control__indicator {
-    background: var(--grey);
+    background: var(--grey-lighter);
   }
 
   .control input:checked ~ .control__indicator {
@@ -198,8 +198,7 @@ injectGlobal`
 
   .control input:disabled ~ .control__indicator {
     pointer-events: none;
-    opacity: .6;
-    background: var(--grey);
+    background: var(--grey-lighter);
   }
 
   .control__indicator:after {

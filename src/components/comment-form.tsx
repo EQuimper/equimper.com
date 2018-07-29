@@ -92,7 +92,9 @@ const CheckBoxTitle = styled('span')`
 `
 
 const Indicator = styled('div')`
-  ${tw('rounded bg-grey-light')};
+  ${tw('rounded bg-grey-lighter')};
+
+  border: 0.5px dotted var(--grey);
 `
 
 interface IFormValues {
