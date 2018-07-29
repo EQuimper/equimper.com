@@ -54,7 +54,7 @@ const PostTitleWrapper = styled('div')`
 
 const Title = styled('h4')`
   ${tw(
-    'tracking-wide leading-tight uppercase text-grey m-0 text-sm sm:text-base'
+    'tracking-wide font-bold leading-tight uppercase text-grey m-0 sm:text-sm'
   )};
 `
 
@@ -63,7 +63,7 @@ interface IPostTitleProps {
 }
 
 const PostTitle = styled('p')`
-  ${tw('leading-tight text-grey text-xs sm:text-sm m-0')};
+  ${tw('leading-tight text-grey text-sm sm:text-base m-0 underline')};
 
   text-align: ${(props: IPostTitleProps) => props.side};
 `
