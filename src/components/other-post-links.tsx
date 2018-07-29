@@ -7,7 +7,7 @@ import { IBlogPost } from '../interfaces/BlogPost'
 import styled from '../utils/styled'
 
 const OtherPostWrapper = styled('div')`
-  ${tw('flex-col sm:flex-row mb-6 py-4 flex items-center justify-between')};
+  ${tw('flex-col sm:flex-row my-8 flex items-center justify-between')};
 `
 
 const ArrowRightIcon = styled(ArrowRight)`
@@ -30,8 +30,14 @@ const NextWrapper = styled(GatsbyLink)`
   )};
 `
 
+interface IWrapperProps {
+  previous?: boolean
+}
+
 const Wrapper = styled('div')`
-  ${tw('w-full h-full flex flex-1 mb-8 sm:w-1/2 sm:mb-0')};
+  ${tw('w-full h-full flex flex-1 sm:w-1/2')};
+
+  ${(props: IWrapperProps) => props.previous && tw('mb-8 sm:mb-0')};
 `
 
 const TitleWrapper = styled('div')`
@@ -69,7 +75,7 @@ interface IProps {
 
 const OtherPostLinks = ({ next, previous }: IProps) => (
   <OtherPostWrapper>
-    <Wrapper>
+    <Wrapper previous>
       {previous && (
         <PreviousWrapper to={`/blog/${previous.fields.slug}`}>
           <TopWrapper>
