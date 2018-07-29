@@ -4,6 +4,7 @@ import React from 'react'
 import CommentForm from '../components/comment-form'
 import CommentsList from '../components/comments-list'
 import Layout from '../components/layout'
+import OtherPostLinks from '../components/other-post-links'
 import SEO from '../components/seo'
 import Share from '../components/share'
 import SubscribeForm from '../components/subscribe-form'
@@ -59,9 +60,13 @@ interface IProps {
   location: {
     pathname: string
   }
+  pageContext: {
+    next: null | IBlogPost
+    previous: null | IBlogPost
+  }
 }
 
-const BlogPost = ({ data, location }: IProps) => {
+const BlogPost = ({ data, location, pageContext }: IProps) => {
   const post = data.markdownRemark
 
   const url = `${data.site.siteMetadata.siteUrl}${location.pathname}`
@@ -88,6 +93,11 @@ const BlogPost = ({ data, location }: IProps) => {
 
           <Share title={post.frontmatter.title} url={url} />
         </Article>
+
+        <OtherPostLinks
+          next={pageContext.next}
+          previous={pageContext.previous}
+        />
 
         <SubscribeForm avatar={data.avatarImg.fixed} />
 
