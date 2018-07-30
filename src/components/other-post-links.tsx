@@ -7,7 +7,21 @@ import { IBlogPost } from '../interfaces/BlogPost'
 import styled from '../utils/styled'
 
 const OtherPostWrapper = styled('div')`
-  ${tw('flex-col sm:flex-row my-12 flex items-center justify-between')};
+  ${tw('flex-col flex-1 sm:flex-row my-12 flex items-stretch justify-between')};
+`
+
+interface IWrapperProps {
+  previous?: boolean
+  side: 'left' | 'right'
+}
+
+const Wrapper = styled('div')`
+  ${tw('flex flex-1')};
+
+  ${(props: IWrapperProps) => props.previous && tw('mb-8 sm:mb-0')};
+
+  ${(props: IWrapperProps) =>
+    props.side === 'right' ? tw('justify-end') : tw('justify-start')};
 `
 
 const ArrowRightIcon = styled(ArrowRight)`
@@ -18,30 +32,21 @@ const ArrowLeftIcon = styled(ArrowLeft)`
   ${tw('h-4 w-4 text-grey mr-2')};
 `
 
-const PreviousWrapper = styled(GatsbyLink)`
-  ${tw(
-    'flex no-underline flex-1 flex-col items-start appearance-none border-0 text-grey bg-transparent'
-  )};
-`
-
-const NextWrapper = styled(GatsbyLink)`
-  ${tw(
-    'flex no-underline flex-1 flex-col items-end appearance-none border-0 text-grey bg-transparent'
-  )};
-`
-
-interface IWrapperProps {
-  previous?: boolean
+interface ILinkProps {
+  side: 'left' | 'right'
 }
 
-const Wrapper = styled('div')`
-  ${tw('w-full h-full flex flex-1 sm:w-1/2')};
+const Link = styled(GatsbyLink)`
+  ${tw(
+    'no-underline appearance-none border-0 text-grey bg-transparent flex flex-col'
+  )};
 
-  ${(props: IWrapperProps) => props.previous && tw('mb-8 sm:mb-0')};
+  ${(props: ILinkProps) =>
+    props.side === 'left' ? tw('items-start') : tw('items-end')};
 `
 
 const TitleWrapper = styled('div')`
-  ${tw('')};
+  ${tw('flex flex-')};
 `
 
 const TopWrapper = styled('div')`
@@ -75,9 +80,9 @@ interface IProps {
 
 const OtherPostLinks = ({ next, previous }: IProps) => (
   <OtherPostWrapper>
-    <Wrapper previous={!!previous}>
+    <Wrapper side="left" previous={!!previous}>
       {previous && (
-        <PreviousWrapper to={`/blog/${previous.fields.slug}`}>
+        <Link side="left" to={`/blog/${previous.fields.slug}`}>
           <TopWrapper>
             <ArrowLeftIcon />
             <TitleWrapper>
@@ -87,12 +92,12 @@ const OtherPostLinks = ({ next, previous }: IProps) => (
           <PostTitleWrapper>
             <PostTitle side="left">{previous.frontmatter.title}</PostTitle>
           </PostTitleWrapper>
-        </PreviousWrapper>
+        </Link>
       )}
     </Wrapper>
-    <Wrapper>
+    <Wrapper side="right">
       {next && (
-        <NextWrapper to={`/blog/${next.fields.slug}`}>
+        <Link side="right" to={`/blog/${next.fields.slug}`}>
           <TopWrapper>
             <TitleWrapper>
               <Title>Next</Title>
@@ -102,7 +107,7 @@ const OtherPostLinks = ({ next, previous }: IProps) => (
           <PostTitleWrapper>
             <PostTitle side="right">{next.frontmatter.title}</PostTitle>
           </PostTitleWrapper>
-        </NextWrapper>
+        </Link>
       )}
     </Wrapper>
   </OtherPostWrapper>
