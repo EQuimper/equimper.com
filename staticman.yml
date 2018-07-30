@@ -1,28 +1,28 @@
 comments:
-  allowedFields: ["name", "email", "message", "slug"]
+  allowedFields: ['name', 'email', 'message', 'slug']
 
-  allowedOrigins: ["localhost", "equimper.com"]
+  allowedOrigins: ['localhost', 'equimper.com']
 
-  branch: "master"
+  branch: 'master'
 
-  commitMessage: "New Comment"
+  commitMessage: 'New Comment'
 
-  filename: "entry{@timestamp}"
+  filename: 'entry{@timestamp}'
 
-  format: "yml"
+  format: 'yml'
 
   generatedFields:
     date:
       type: date
       options:
-        format: "iso8601"
+        format: 'iso8601'
 
   moderation: true
-  name: "equimper.com"
+  name: 'equimper.com'
 
-  path: "data/comments"
+  path: 'data/comments'
 
-  requiredFields: ["name", "email", "message"]
+  requiredFields: ['name', 'email', 'message']
 
   transforms:
     email: md5
@@ -30,6 +30,8 @@ comments:
   notifications:
     enabled: true
     # (!) ENCRYPTED
-    apiKey: MiEZmFR/xEHK+wBwcnL5+JMAEt91m+LdVo+q2sSTSz73jr5Te2l5MJphJxNl3D/HxkLoZa02lvM1oLfnj4/0V58sadSu16W0+H8Ntad1f1EhydkBlnxoOZ9bBJw7gf92Zzl9LEt8qYNXmsMmJ7DmJo5m9nUzd5ep3rfDTgfLA78=
+    apiKey:
+      MiEZmFR/xEHK+wBwcnL5+JMAEt91m+LdVo+q2sSTSz73jr5Te2l5MJphJxNl3D/HxkLoZa02lvM1oLfnj4/0V58sadSu16W0+H8Ntad1f1EhydkBlnxoOZ9bBJw7gf92Zzl9LEt8qYNXmsMmJ7DmJo5m9nUzd5ep3rfDTgfLA78=
     # (!) ENCRYPTED
-    domain: yK2CKd6cr9V+YN3W2+f6j01XQpkJZzEiWSt3MRLa+a2qjfXqAXAxAvAV2+QVIISBO+MInWsFCbdFa/2z2+lF3WaJ012Zx8tNlptCSYs84tUv6HWVe54eGWU+AOb/ZRZQYlubkTjt/IeK78Nqm5/F5G+2ioN3bZ5NfFW4UjQc+B0=
+    domain:
+      yK2CKd6cr9V+YN3W2+f6j01XQpkJZzEiWSt3MRLa+a2qjfXqAXAxAvAV2+QVIISBO+MInWsFCbdFa/2z2+lF3WaJ012Zx8tNlptCSYs84tUv6HWVe54eGWU+AOb/ZRZQYlubkTjt/IeK78Nqm5/F5G+2ioN3bZ5NfFW4UjQc+B0=

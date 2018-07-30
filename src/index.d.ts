@@ -1,3 +1,4 @@
+// tslint:disable-next-line
 declare function tw(string): string
 
 declare module 'typeface-lato'

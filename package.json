@@ -65,7 +65,9 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "predevelop": "postcss tailwind.css -o tailwind.custom.css",
-    "prebuild": "postcss tailwind.css -o tailwind.custom.css"
+    "prebuild": "postcss tailwind.css -o tailwind.custom.css",
+    "prettier": "prettier --write 'src/**/*.{ts, tsx}' 'staticman.yml' 'gatsby-node.js' 'gatsby-browser.js' 'gatsby-config.js'",
+    "lint": "tslint -c tslint.json 'src/**/*.ts?(x)'"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",

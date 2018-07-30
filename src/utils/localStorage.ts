@@ -2,7 +2,8 @@
 
 const localStorageGlobal = typeof window !== 'undefined' && window.localStorage
 
-export const clearStorage = () => localStorageGlobal && localStorageGlobal.clear()
+export const clearStorage = () =>
+  localStorageGlobal && localStorageGlobal.clear()
 
 export const getItemFromStorage = (key: string) => {
   if (!localStorageGlobal) {
