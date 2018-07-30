@@ -12,7 +12,7 @@ import Menu from './icons/menu'
 
 const NavMenu = styled('button')`
   ${tw(
-    'block sm:hidden p-4 cursor-pointer appearance-none bg-transparent border-0'
+    'focus:outline-none focus:shadow-outline block sm:hidden p-4 cursor-pointer appearance-none bg-transparent border-0'
   )};
 `
 

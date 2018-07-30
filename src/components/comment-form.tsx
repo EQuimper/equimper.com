@@ -19,23 +19,24 @@ const InputWrapper = styled('div')`
 
 const Input = styled('input')`
   ${tw(
-    'bg-grey-lighter appearance-none border-0 border-grey-lighter rounded w-full py-2 px-3 text-sm text-grey-darker leading-tight sm:text-base sm:py-3 sm:px-4'
+    'focus:outline-none focus:shadow-outline bg-grey-lighter appearance-none border-0 border-grey-lighter rounded w-full py-3 px-4 text-sm text-grey-darker leading-tight sm:text-base'
   )};
 `
 
 const MessageInput = styled('textarea')`
   ${tw(
-    'bg-grey-lighter appearance-none border-0 border-grey-lighter rounded w-full py-2 px-3 text-sm text-grey-darker leading-tight sm:text-base sm:py-3 sm:px-4'
+    'focus:outline-none focus:shadow-outline font-sans bg-grey-lighter appearance-none border-0 border-grey-lighter rounded w-full py-3 px-4 text-sm text-grey-darker leading-tight sm:text-base'
   )};
 
   resize: vertical;
+  min-height: 15rem;
 `
 
 const ButtonWrapper = styled('div')``
 
 const Button = styled('button')`
   ${tw(
-    'w-full text-white text-sm font-bold py-2 px-4 rounded border-0 cursor-pointer bg-green-light bg-green-light sm:text-base sm:py-3 sm:px-5'
+    'focus:outline-none focus:shadow-outline w-full text-white text-sm font-bold py-3 px-5 rounded border-0 cursor-pointer bg-blue-lighter sm:text-base'
   )};
 
   &:disabled {
@@ -91,10 +92,18 @@ const CheckBoxTitle = styled('span')`
     props.disabled ? tw('text-grey') : tw('text-grey-darker')};
 `
 
-const Indicator = styled('div')`
-  ${tw('rounded bg-grey-lighter')};
+interface IIndicatorProps {
+  isChecked: boolean
+}
 
-  border: 0.5px dotted var(--grey);
+const Indicator = styled('div')`
+  ${tw('rounded')};
+
+  ${(props: IIndicatorProps) =>
+    props.isChecked ? tw('bg-blue-lighter') : 'bg-grey-lighter'};
+
+  ${(props: IIndicatorProps) =>
+    !props.isChecked && 'border: 0.5px solid var(--grey)'};
 `
 
 interface IFormValues {
@@ -316,7 +325,10 @@ class CommentForm extends PureComponent<IProps, State> {
                       type="checkbox"
                       disabled={!emailIsValid}
                     />
-                    <Indicator className="control__indicator" />
+                    <Indicator
+                      isChecked={values.notification}
+                      className="control__indicator"
+                    />
 
                     <CheckBoxTitle disabled={!emailIsValid}>
                       Notify me of new comments by email!

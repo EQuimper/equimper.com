@@ -22,7 +22,7 @@ const LoadingWrapper = styled('div')`
 
 const Input = styled('input')`
   ${tw(
-    'bg-grey-lighter appearance-none border-0 border-grey-lighter rounded w-full mb-4 py-2 px-3 text-sm text-grey-darker leading-tight sm:text-base sm:mb-0 sm:py-3 sm:px-4'
+    'focus:outline-none focus:shadow-outline bg-grey-lighter appearance-none border-0 border-grey-lighter rounded w-full mb-4 py-3 px-4 text-sm text-grey-darker leading-tight sm:text-base sm:mb-0'
   )};
 `
 
@@ -31,7 +31,7 @@ const Form = styled('form')`
 `
 
 const InputWrapper = styled('div')`
-  ${tw('sm:mr-4 pb-2 relative')};
+  ${tw('sm:mr-4 pb-2 relative w-full sm:w-auto')};
 `
 
 const Title = styled('h2')`
@@ -50,11 +50,13 @@ const Detail = styled('p')`
   ${tw('text-sm text-grey-dark')};
 `
 
-const ButtonWrapper = styled('div')``
+const ButtonWrapper = styled('div')`
+  ${tw('w-full sm:w-auto')};
+`
 
 const Button = styled('button')`
   ${tw(
-    'text-white text-sm font-bold py-2 px-4 rounded border-0 cursor-pointer bg-green-light bg-green-light sm:text-base sm:py-3 sm:px-5'
+    'focus:outline-none focus:shadow-outline text-white w-full sm:w-auto text-sm font-bold py-3 px-5 rounded border-0 cursor-pointer bg-blue-lighter sm:text-base'
   )};
 
   &:disabled {

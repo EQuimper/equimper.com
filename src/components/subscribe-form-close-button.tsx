@@ -14,7 +14,7 @@ const KEYCODES = {
 }
 
 const CloseButton = styled('button')`
-  ${tw('appearance-none border-0 cursor-pointer bg-transparent')};
+  ${tw('appearance-none focus:outline-none focus:shadow-outline border-0 cursor-pointer bg-transparent')};
 `
 
 const CloseIcon = styled(Close)`
@@ -45,7 +45,7 @@ const ButtonsWrapper = styled('div')`
 
 const ButtonConfirm = styled('button')`
   ${tw(
-    'appearance-none py-2 px-4 bg-transparent border-0 text-blue text-base font-bold cursor-pointer'
+    'appearance-none py-2 px-4 bg-transparent border-0 text-blue-lighter text-base font-bold cursor-pointer'
   )};
 `
 

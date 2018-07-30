@@ -193,7 +193,7 @@ injectGlobal`
 
   .control:hover input:not([disabled]):checked ~ .control__indicator,
   .control input:checked:focus ~ .control__indicator {
-    background: var(--green);
+    background: var(--secondary);
   }
 
   .control input:disabled ~ .control__indicator {
