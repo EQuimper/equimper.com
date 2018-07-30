@@ -5,11 +5,11 @@ export const theme: ITheme = {
     socialBrand: {
       youtube: '#ff0000',
       facebook: '#3b5998',
-      twitter: '#33ccff',
-      github: '#24292e',
-      googlePlus: '#d34836',
+      twitter: '#1DA1F2',
+      github: '#181717',
+      googlePlus: '#DC4E41',
       linkedin: '#0077b5',
-      reddit: '#FF5700',
+      reddit: '#FF4500',
     },
   },
 }
