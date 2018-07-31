@@ -4,7 +4,7 @@ title: 'Hey, I am Emanuel. Happy to see you there.'
 
 #### Intro
 
-I’m from Quebec, a city in the beautiful country call Canada. My current position its **Full-Stack Web & Mobile Developer**. I work mainly with this techs
+I’m from Quebec, a city in the beautiful country call Canada. My current position its **Full-Stack Web & Mobile Developer** at [AppAndFlow](https://appandflow.com/). I work mainly with this techs
 
 - React
 - React-Native

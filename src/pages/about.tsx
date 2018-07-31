@@ -46,11 +46,19 @@ const FollowTitle = styled('h3')`
 `
 
 const Content = styled('div')`
-  ${tw('mb-6')}
+  ${tw('mb-6')};
 `
 
 const ContentWrapper = styled('div')`
   ${tw('bg-white p-4 rounded shadow')};
+
+  h4 {
+    margin-top: 0;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
 `
 
 interface IProps {
