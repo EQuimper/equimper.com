@@ -26,7 +26,7 @@ const ArticleTitleWrapper = styled('div')`
 `
 
 const ArticleTitle = styled('h1')`
-  ${tw('text-grey-darkest')};
+  ${tw('text-grey-darkest mt-0')};
 `
 
 const Date = styled('p')`
