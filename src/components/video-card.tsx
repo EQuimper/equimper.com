@@ -7,16 +7,20 @@ const Container = styled('div')`
   ${tw('w-full h-full flex')};
 `
 
+const VideoTitle = styled('h2')`
+  ${tw('text-base tracking-wide text-grey-darkest font-bold pb')};
+`
+
 const Wrapper = styled('a')`
   ${tw(
     'no-underline flex flex-1 flex-col items-center bg-white rounded pb-4 shadow overflow-hidden'
   )};
-`
 
-const VideoTitle = styled('h2')`
-  ${tw(
-    'text-base tracking-wide text-grey-darkest font-bold pb group-hover:underline'
-  )};
+  &:hover {
+    ${VideoTitle} {
+      text-decoration: underline;
+    }
+  }
 `
 
 const VideoTitleWrapper = styled('div')`
