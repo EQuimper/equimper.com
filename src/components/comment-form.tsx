@@ -86,7 +86,7 @@ const CheckBoxWrapper = styled('label')`
 `
 
 const CheckBoxTitle = styled('span')`
-  ${tw('text-sm text-red')};
+  ${tw('text-sm')};
 
   ${(props: ICheckBoxProps) =>
     props.disabled ? tw('text-grey') : tw('text-grey-darker')};
@@ -104,6 +104,10 @@ const Indicator = styled('div')`
 
   ${(props: IIndicatorProps) =>
     !props.isChecked && 'border: 0.5px solid var(--grey)'};
+`
+
+const ThankYouTitle = styled('h3')`
+  ${tw('text-grey-darker font-bold text-base text-center')}
 `
 
 interface IFormValues {
@@ -192,13 +196,13 @@ class CommentForm extends PureComponent<IProps, State> {
   }
 
   render() {
-    if (this.state.showThankYou) {
+    if (!this.state.showThankYou) {
       return (
         <Root>
-          <h3>
+          <ThankYouTitle>
             Thank you, I will reviewed your comment. It will show on the site
             once it has been approved.
-          </h3>
+          </ThankYouTitle>
           <div>
             <Button
               type="submit"
