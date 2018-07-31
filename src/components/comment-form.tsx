@@ -196,7 +196,7 @@ class CommentForm extends PureComponent<IProps, State> {
   }
 
   render() {
-    if (!this.state.showThankYou) {
+    if (this.state.showThankYou) {
       return (
         <Root>
           <ThankYouTitle>
