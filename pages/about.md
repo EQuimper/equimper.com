@@ -1,0 +1,24 @@
+---
+title: 'Hey, I am Emanuel. Happy to see you there.'
+---
+
+#### Intro
+
+I’m from Quebec, a city in the beautiful country call Canada. My current position its **Full-Stack Web & Mobile Developer**. I work mainly with this techs
+
+- ReactJS
+- React-Native
+- NodeJS
+- GraphQL
+- Elixir
+- MongoDB
+- Postgresql
+- VueJS
+
+I’ve been doing this for the last 3 years, before that, I was in the Canadian Forces. I also work at [Thinkful](https://www.thinkful.com/) where I am a mentor who helps student getting into the web development industry.
+
+Besides that, I own a [Youtube Channel](https://www.youtube.com/channel/UC7R7bcH9-KEBDiGNP1mZnmw) where I teach web development. I try my best to give a good insight into how I think about working with certain problems. I help then getting into Javascript as well with server-side stuff.
+
+#### Why having this blog?
+
+This blog is a place for me to write down what I think. This helps me first with my English who is not my native language, and that also help me empty my brain. By doing this I hope I can help people with some of the thinking, tutorial or whatever stuff I wrote here.

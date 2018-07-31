@@ -1,6 +1,6 @@
 import { Link as GatsbyLink } from 'gatsby'
 import kebabCase from 'lodash.kebabcase'
-import React from 'react'
+import React, { SFC } from 'react'
 
 import styled from '../utils/styled'
 
@@ -22,7 +22,7 @@ interface IProps {
   tags: string[]
 }
 
-const TagList = ({ tags }: IProps) => (
+const TagList: SFC<IProps> = ({ tags }) => (
   <Root>
     {tags.map(tag => (
       <TagWrapper key={tag}>

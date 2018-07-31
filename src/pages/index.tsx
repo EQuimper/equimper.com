@@ -88,6 +88,7 @@ export const query = graphql`
   query IndexQuery {
     allMarkdownRemark(
       sort: { order: DESC, fields: [frontmatter___date] }
+      filter: { fileAbsolutePath: { regex: "/posts/" } }
       limit: 1
     ) {
       edges {

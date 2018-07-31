@@ -9419,8 +9419,8 @@ postcss@^6.0.0, postcss@^6.0.1, postcss@^6.0.11, postcss@^6.0.14, postcss@^6.0.2
     supports-color "^5.4.0"
 
 postcss@^7.0.0:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.1.tgz#db20ca4fc90aa56809674eea75864148c66b67fa"
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.2.tgz#7b5a109de356804e27f95a960bef0e4d5bc9bb18"
   dependencies:
     chalk "^2.4.1"
     source-map "^0.6.1"
@@ -9961,8 +9961,8 @@ react-split-pane@^0.1.66:
     react-style-proptype "^3.0.0"
 
 react-spring@^5.4.4:
-  version "5.4.4"
-  resolved "https://registry.yarnpkg.com/react-spring/-/react-spring-5.4.4.tgz#d4f7c9626c9fb83b7e85769538cd80bcc7ba6f61"
+  version "5.5.1"
+  resolved "https://registry.yarnpkg.com/react-spring/-/react-spring-5.5.1.tgz#3c66044bd3d1a960462491c3c2728b3357781c81"
   dependencies:
     "@babel/runtime" "7.0.0-beta.51"
 

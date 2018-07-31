@@ -30,7 +30,7 @@ collections:
     files:
       - label: "About Page"
         name: "about"
-        file: "content/about.md"
+        file: "pages/about.md"
         fields:
-          - {label: "Bio", name: "bio", widget: "markdown"}
+          - {label: "Title", name: "title", widget: "string"}
           - {label: "Body", name: "body", widget: "markdown"}

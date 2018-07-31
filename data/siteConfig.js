@@ -18,4 +18,5 @@ module.exports = {
   themeColor: '#2779bd',
   youtubeChannelId: 'UC7R7bcH9-KEBDiGNP1mZnmw',
   youtubeChannelUrl: 'https://www.youtube.com/channel/UC7R7bcH9-KEBDiGNP1mZnmw',
+  twitchUrl: 'https://www.twitch.tv/equimper'
 }
