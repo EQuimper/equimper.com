@@ -10,7 +10,7 @@ import SocialFollow from '../components/social-follow'
 import styled from '../utils/styled'
 
 const Root = styled('div')`
-  ${tw('container mx-auto pb-10 w-full xl:w-1/2')};
+  ${tw('container mx-auto pb-10 sm:pb-0 w-full xl:w-1/2')};
 `
 
 const Wrapper = styled('div')`
@@ -45,7 +45,9 @@ const FollowTitle = styled('h3')`
   ${tw('text-grey-dark font-bold text-xl m-0 tracking-wide text-center')};
 `
 
-const Content = styled('div')``
+const Content = styled('div')`
+  ${tw('mb-6')}
+`
 
 const ContentWrapper = styled('div')`
   ${tw('bg-white p-4 rounded shadow')};
