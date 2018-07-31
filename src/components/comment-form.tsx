@@ -4,6 +4,7 @@ import qs from 'qs'
 import React, { PureComponent } from 'react'
 import * as Yup from 'yup'
 
+import Input from '../commons/input'
 import { GithubApi } from '../services/GithubApi'
 import { constants } from '../utils/constants'
 import styled from '../utils/styled'
@@ -15,12 +16,6 @@ const Root = styled('div')`
 
 const InputWrapper = styled('div')`
   ${tw('mb-4')};
-`
-
-const Input = styled('input')`
-  ${tw(
-    'focus:outline-none focus:shadow-outline bg-grey-lighter appearance-none border-0 border-grey-lighter rounded w-full py-3 px-4 text-sm text-grey-darker leading-tight sm:text-base'
-  )};
 `
 
 const MessageInput = styled('textarea')`
@@ -107,7 +102,7 @@ const Indicator = styled('div')`
 `
 
 const ThankYouTitle = styled('h3')`
-  ${tw('text-grey-darker font-bold text-base text-center')}
+  ${tw('text-grey-darker font-bold text-base text-center')};
 `
 
 interface IFormValues {

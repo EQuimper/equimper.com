@@ -3,6 +3,7 @@ import { Formik, FormikActions, FormikProps } from 'formik'
 import React, { PureComponent } from 'react'
 import * as Yup from 'yup'
 
+import Input from '../commons/input'
 import { getItemFromStorage, storeItem } from '../utils/localStorage'
 import styled from '../utils/styled'
 import Spinner from './spinner'
@@ -20,18 +21,16 @@ const LoadingWrapper = styled('div')`
   ${tw('flex items-center justify-center py-10')};
 `
 
-const Input = styled('input')`
-  ${tw(
-    'focus:outline-none focus:shadow-outline bg-grey-lighter appearance-none border-0 border-grey-lighter rounded w-full mb-4 py-3 px-4 text-sm text-grey-darker leading-tight sm:text-base sm:mb-0'
-  )};
+const Form = styled('form')`
+  ${tw('flex items-center flex-col sm:flex-row sm:items-baseline')};
 `
 
-const Form = styled('form')`
-  ${tw('flex items-center mb-2 flex-col sm:flex-row sm:items-baseline')};
+const SubInput = styled(Input)`
+  ${tw('')};
 `
 
 const InputWrapper = styled('div')`
-  ${tw('sm:mr-4 pb-2 relative w-full sm:w-auto')};
+  ${tw('sm:mr-4 mb-4 sm:mb-0 w-full sm:w-auto')};
 `
 
 const Title = styled('h2')`
@@ -57,19 +56,17 @@ const ButtonWrapper = styled('div')`
 const Button = styled('button')`
   ${tw(
     'focus:outline-none focus:shadow-outline text-white w-full sm:w-auto text-sm font-bold py-3 px-5 rounded border-0 cursor-pointer bg-blue-lighter sm:text-base'
-  )};
-
-  &:disabled {
+  )} &:disabled {
     ${tw('bg-grey cursor-not-allowed')};
   }
 `
 
 const ErrorWrapper = styled('div')`
-  ${tw('pb-4 -mt-4 sm:mt-9 sm:absolute sm:pb-0')} bottom: -25px;
+  ${tw('mt-1')};
 `
 
 const ErrorMessage = styled('p')`
-  ${tw('text-red text-xs italic')};
+  ${tw('text-red text-xs italic mb-0')};
 `
 
 const TopWrapper = styled('div')`
@@ -246,7 +243,7 @@ class SubscribeForm extends PureComponent<IProps, State> {
                 </DetailWrapper>
                 <Form onSubmit={handleSubmit}>
                   <InputWrapper>
-                    <Input
+                    <SubInput
                       onBlur={handleBlur}
                       name="email"
                       value={values.email}
@@ -262,7 +259,7 @@ class SubscribeForm extends PureComponent<IProps, State> {
                       )}
                   </InputWrapper>
                   <InputWrapper>
-                    <Input
+                    <SubInput
                       name="firstName"
                       onBlur={handleBlur}
                       onChange={handleChange}
