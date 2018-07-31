@@ -14,7 +14,7 @@ const TagWrapper = styled('li')`
 
 const Tag = styled(GatsbyLink)`
   ${tw(
-    'no-underline lowercase text-sm bg-grey-lighter rounded p-2 hover:shadow text-black'
+    'no-underline lowercase text-sm bg-grey-lighter rounded p-2 hover:shadow text-black tracking-small'
   )};
 `
 
