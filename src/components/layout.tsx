@@ -48,6 +48,7 @@ injectGlobal`
 
   .md-content > p {
     line-height: 1.5;
+    letter-spacing: 0.01em;
   }
 
   .md-content > p > strong {
@@ -60,6 +61,7 @@ injectGlobal`
     text-decoration: none;
     box-shadow: inset 0 -0.5em 0 var(--primary);
     transition: box-shadow .2s ease-in-out,-webkit-box-shadow .2s ease-in-out;
+    font-weight: 700;
   }
 
   .md-content > p > a:hover, .md-content > ol > li > a:hover, .md-content > ul > li > a:hover {
@@ -77,9 +79,15 @@ injectGlobal`
 
   .md-content > ul > li, .md-content > ul > li > a {
     line-height: 1.5;
+    letter-spacing: 0.01em;
   }
 
-  .md-content > h1, h2, h3, h4, h5, .md-content > h3 > a {
+  .md-content > h1,
+  .md-content > h2,
+  .md-content > h3,
+  .md-content > h4,
+  .md-content > h5,
+  .md-content > h3 > a {
     margin: 30px 0;
     color: var(--grey-darkest);
     letter-spacing: 0.05em;

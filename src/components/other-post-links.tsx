@@ -68,7 +68,7 @@ interface IPostTitleProps {
 }
 
 const PostTitle = styled('p')`
-  ${tw('leading-tight text-grey text-sm sm:text-base m-0 underline')};
+  ${tw('leading-tight text-grey text-sm sm:text-base m-0 underline tracking-wide')};
 
   text-align: ${(props: IPostTitleProps) => props.side};
 `

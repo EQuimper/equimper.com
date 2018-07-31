@@ -32,7 +32,7 @@ const PostTitle = styled(GatsbyLink)`
 `
 
 const Description = styled('p')`
-  ${tw('text-md leading-normal text-grey-darker')};
+  ${tw('text-md leading-normal text-grey-darker tracking-small')};
 `
 
 const Date = styled('p')`

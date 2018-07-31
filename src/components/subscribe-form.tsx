@@ -34,7 +34,7 @@ const InputWrapper = styled('div')`
 `
 
 const Title = styled('h2')`
-  ${tw('font-bold text-lg text-grey-darker m-0')};
+  ${tw('font-bold text-lg text-grey-darker m-0 tracking-wide')};
 `
 
 const TitleWrapper = styled('div')`
@@ -46,7 +46,7 @@ const DetailWrapper = styled('div')`
 `
 
 const Detail = styled('p')`
-  ${tw('text-sm text-grey-dark')};
+  ${tw('text-sm text-grey-dark tracking-small')};
 `
 
 const ButtonWrapper = styled('div')`

@@ -44,7 +44,7 @@ const TitleWrapper = styled('div')`
 `
 
 const Title = styled('h2')`
-  ${tw('text-grey-darker m-0 text-lg font-bold text-left')};
+  ${tw('text-grey-darker m-0 text-lg font-bold text-left tracking-wide')};
 `
 
 const LoadingWrapper = styled('div')`
@@ -81,7 +81,7 @@ const CheckBoxWrapper = styled('label')`
 `
 
 const CheckBoxTitle = styled('span')`
-  ${tw('text-sm')};
+  ${tw('text-sm tracking-small')};
 
   ${(props: ICheckBoxProps) =>
     props.disabled ? tw('text-grey') : tw('text-grey-darker')};

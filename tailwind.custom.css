@@ -5406,6 +5406,10 @@ table {
   letter-spacing: 0;
 }
 
+.tracking-small {
+  letter-spacing: .01em;
+}
+
 .tracking-wide {
   letter-spacing: .05em;
 }
@@ -10434,6 +10438,10 @@ table {
     letter-spacing: 0;
   }
 
+  .sm\:tracking-small {
+    letter-spacing: .01em;
+  }
+
   .sm\:tracking-wide {
     letter-spacing: .05em;
   }
@@ -15433,6 +15441,10 @@ table {
 
   .md\:tracking-normal {
     letter-spacing: 0;
+  }
+
+  .md\:tracking-small {
+    letter-spacing: .01em;
   }
 
   .md\:tracking-wide {
@@ -20436,6 +20448,10 @@ table {
     letter-spacing: 0;
   }
 
+  .lg\:tracking-small {
+    letter-spacing: .01em;
+  }
+
   .lg\:tracking-wide {
     letter-spacing: .05em;
   }
@@ -25435,6 +25451,10 @@ table {
 
   .xl\:tracking-normal {
     letter-spacing: 0;
+  }
+
+  .xl\:tracking-small {
+    letter-spacing: .01em;
   }
 
   .xl\:tracking-wide {

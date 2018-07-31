@@ -300,6 +300,7 @@ module.exports = {
   tracking: {
     tight: '-0.05em',
     normal: '0',
+    small: '0.01em',
     wide: '0.05em',
   },
 

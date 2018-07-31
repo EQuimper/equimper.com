@@ -2,8 +2,8 @@
 title: "My Goals for 2018"
 date: 2018-01-12T21:53:12-05:00
 linktitle: My goals for 2018
-description: What is my goals for 2018? Where my youtube channel go?.
-tags: ["random", "my life"]
+description: What is my goals for 2018? Where my youtube channel go?
+tags: ["random", "my life", "youtube channel"]
 ---
 
 ## Intro
