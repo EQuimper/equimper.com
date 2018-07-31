@@ -19,7 +19,7 @@ I’ve been doing this for the last 3 years, before that, I was in the Canadian 
 
 Besides that, I own a [Youtube Channel](https://www.youtube.com/channel/UC7R7bcH9-KEBDiGNP1mZnmw) where I teach web development. I try my best to give a good insight into how I think about working with certain problems. I help then getting into Javascript as well with server-side stuff.
 
-When I'm not working I still code some of my personal projects. Programming is more than just a work for me, this is a hobby, it's a **passion**. But if I'm not in front of a computer I pass all my time with my beautiful fiance and our two dogs. At the end of the year, a small little person joins the family 😃.
+When I'm not working I still code some of my personal projects. Programming is more than just a work for me, this is a hobby, it's a **passion**. But if I'm not in front of a computer I pass all my time with my beautiful fiance and our two dogs. At the end of the year, a small little person will joins the family 😃.
 
 #### Why having this blog?
 
