@@ -43,8 +43,8 @@ const TitleWrapper = styled('div')`
   ${tw('mb-8')};
 `
 
-const Title = styled('h3')`
-  ${tw('text-grey-darker m-0 text-left')};
+const Title = styled('h2')`
+  ${tw('text-grey-darker m-0 text-lg font-bold text-left')};
 `
 
 const LoadingWrapper = styled('div')`
