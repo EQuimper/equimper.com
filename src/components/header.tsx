@@ -32,7 +32,7 @@ const BrandWrapper = styled('div')`
 const activeClassName = 'nav-item-active'
 
 const Link = styled(GatsbyLink)`
-  ${tw('no-underline text-grey-darkest hover:text-grey')};
+  ${tw('no-underline text-grey-darkest hover:text-grey tracking-small')};
 
   &.${activeClassName} {
     ${tw('text-grey')};

@@ -24,7 +24,7 @@ const AllContentWrapper = styled('div')`
 `
 
 const AllContent = styled('p')`
-  ${tw('text-xs mr-4 text-grey-darker')};
+  ${tw('text-xs mr-4 text-grey-darker tracking-small')};
 `
 
 const SiteTitle = styled(GatsbyLink)`
@@ -43,7 +43,7 @@ const activeClassName = 'nav-item-active'
 
 const Link = styled(GatsbyLink)`
   ${tw(
-    'text-sm no-underline text-grey-darker hover:text-grey-darkest sm:text-base'
+    'text-sm no-underline text-grey-darker hover:text-grey-darkest sm:text-base tracking-small'
   )};
 
   &.${activeClassName} {

@@ -25,7 +25,7 @@ const UserDescriptionWrapper = styled('div')`
 `
 
 const UserDescription = styled('p')`
-  ${tw('text-sm text-grey-dark text-base leading-normal')};
+  ${tw('text-sm text-grey-dark text-base leading-normal tracking-small')};
 `
 
 interface IProps {
