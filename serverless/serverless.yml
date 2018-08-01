@@ -21,3 +21,14 @@ functions:
               origin: "https://equimper.com"
               headers: "Content-Type,application/json"
               methods: "POST"
+  mailgun:
+    handler: mailgun.sendEmailToMe
+    events:
+      - http:
+          path: api/contact-me
+          method: post
+          cors:
+            - enabled: true
+              origin: "https://equimper.com"
+              headers: "Content-Type,application/json"
+              methods: "POST"

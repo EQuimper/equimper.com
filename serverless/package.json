@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "dotenv": "^6.0.0"
+    "dotenv": "^6.0.0",
+    "mailgun-js": "^0.20.0"
   },
   "devDependencies": {
     "serverless-offline": "^3.25.6"
