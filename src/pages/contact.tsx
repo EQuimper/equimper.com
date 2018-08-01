@@ -61,9 +61,9 @@ const Contact: SFC<IProps> = ({ data }) => (
           <Title>Do you have a question?</Title>
 
           <Message>
-            You want to connect with me about anything? You can just wrote a
-            message here with your name, email and subject. I would answer you
-            as fast as possible.
+            Do you want to connect with me about anything? You can just write
+            the message here with your name, email, and subject. I would answer
+            you as fast as possible.
           </Message>
         </TopWrapper>
 
