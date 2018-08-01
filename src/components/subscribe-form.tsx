@@ -4,6 +4,7 @@ import React, { PureComponent } from 'react'
 import * as Yup from 'yup'
 
 import Input from '../commons/input'
+import { constants } from '../utils/constants'
 import { getItemFromStorage, storeItem } from '../utils/localStorage'
 import styled from '../utils/styled'
 import Spinner from './spinner'
@@ -73,9 +74,6 @@ const TopWrapper = styled('div')`
   ${tw('flex items-baseline justify-between')};
 `
 
-const MAILCHIMP_SIGNUP_URL =
-  'https://f3gb25pq7i.execute-api.us-east-1.amazonaws.com/dev/api/mailchimp/subscribe'
-
 const SUB_KEY = '@equimper-sub'
 const NOT_SHOW_SUB = '@equimper-not-show-sub'
 
@@ -139,7 +137,7 @@ class SubscribeForm extends PureComponent<IProps, State> {
   ) => {
     try {
       const res = await axios.post(
-        MAILCHIMP_SIGNUP_URL,
+        constants.mailChimpUrl,
         {
           email: values.email,
           firstName: values.firstName,
