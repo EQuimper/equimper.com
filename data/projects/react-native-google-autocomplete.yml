@@ -1,0 +1,10 @@
+title: 'React-Native-Google-Autocomplete'
+repo: 'https://github.com/EQuimper/react-native-google-autocomplete'
+type: 'LIBRARY'
+description: 'A react-native render props library to make google autocomplete work nicely with any design.'
+text: "I've build this library cause the current one I was using came with his own ui. Yes it's possible to kind of custom it, but this is a bit painful. With this library, you can use any ui you want, the only think I do it's provided you props."
+techs:
+  - react-native
+  - react
+  - javascript
+  - typescript

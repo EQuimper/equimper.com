@@ -22,7 +22,7 @@ interface IProps {
 }
 
 const Root = styled('div')`
-  ${tw('sm:w-full md:w-3/4 lg:w-1/2 mx-auto pb-10')};
+  ${tw('sm:w-full xl:w-3/4 mx-auto pb-10')};
 `
 
 const postPluralize = (num: number) => (num > 1 ? 'posts' : 'post')

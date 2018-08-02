@@ -1,6 +1,7 @@
 import { Link as GatsbyLink } from 'gatsby'
 import React, { SFC } from 'react'
 
+import { constants } from '../utils/constants'
 import styled from '../utils/styled'
 
 interface IProps {
@@ -15,7 +16,7 @@ const Root = styled('footer')`
 
 const FooterWrapper = styled('div')`
   ${tw(
-    'flex-col-reverse w-full xl:w-1/2 flex items-center justify-between sm:flex-row'
+    'flex-col-reverse w-full xl:w-3/4 flex items-center justify-between sm:flex-row'
   )};
 `
 
@@ -63,21 +64,13 @@ const Footer: SFC<IProps> = ({ siteTitle }) => (
         <SiteTitle to="/">{siteTitle}</SiteTitle>
       </AllContentWrapper>
       <LinkList>
-        <LinkItem>
-          <Link exact activeClassName={activeClassName} to="/about">
-            About
-          </Link>
-        </LinkItem>
-        <LinkItem>
-          <Link exact activeClassName={activeClassName} to="/blog">
-            Blog
-          </Link>
-        </LinkItem>
-        <LinkItem>
-          <Link exact activeClassName={activeClassName} to="/contact">
-            Contact Me
-          </Link>
-        </LinkItem>
+        {constants.siteNav.map(el => (
+          <LinkItem key={el.name}>
+            <Link exact activeClassName={activeClassName} to={el.url}>
+              {el.name}
+            </Link>
+          </LinkItem>
+        ))}
       </LinkList>
     </FooterWrapper>
   </Root>

@@ -1,0 +1,9 @@
+title: 'Autohub Appraisal'
+url: 'https://itunes.apple.com/us/app/autohub-appraisal/id1321168394?mt=8'
+type: 'APP'
+description: 'AutoHub appraisal makes it both easier and more efficient to appraise customer trade-ins at the dealership. AutoHub appraisal is designed to be used by dealership professionals with the AutoHub bluetooth OBD II reader.'
+techs:
+  - react-native
+  - nodejs
+  - javascript
+  - typescript

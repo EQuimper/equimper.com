@@ -2,6 +2,7 @@ import { Link as GatsbyLink } from 'gatsby'
 import React, { SFC } from 'react'
 import Headroom from 'react-headroom'
 
+import { constants } from '../utils/constants'
 import styled from '../utils/styled'
 import NavBurger from './nav-burger'
 
@@ -56,21 +57,13 @@ const Header: SFC<IProps> = ({ siteTitle }) => (
           </BrandWrapper>
           <NavBurger />
           <LinkList>
-            <LinkItem>
-              <Link activeClassName={activeClassName} exact to="/about">
-                About
-              </Link>
-            </LinkItem>
-            <LinkItem>
-              <Link activeClassName={activeClassName} exact to="/blog">
-                Blog
-              </Link>
-            </LinkItem>
-            <LinkItem>
-              <Link activeClassName={activeClassName} exact to="/contact">
-                Contact Me
-              </Link>
-            </LinkItem>
+            {constants.siteNav.map(el => (
+              <LinkItem key={el.name}>
+                <Link activeClassName={activeClassName} exact to={el.url}>
+                  {el.name}
+                </Link>
+              </LinkItem>
+            ))}
           </LinkList>
         </NavWrapper>
       </Nav>

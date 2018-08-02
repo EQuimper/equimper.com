@@ -1,0 +1,8 @@
+title: 'Crossbow Miles'
+url: 'https://itunes.apple.com/us/app/crossbow-miles/id1265566491?mt=8'
+type: 'APP'
+description: 'Get Fit For A Cause. Crossbow app allows you to unlock resources for causes you care about, all while working towards a fitter you. Every step counts and you can add to your tally by challenging friends, cheering their causes and so on.'
+techs:
+  - react-native
+  - javascript
+  - flowtype

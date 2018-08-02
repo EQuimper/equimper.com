@@ -10,4 +10,23 @@ export const constants = {
     'https://api.staticman.net/v2/entry/EQuimper/equimper.com/master',
   mailChimpUrl: `${serverBaseUrl}/mailchimp/subscribe`,
   contactMeUrl: `${serverBaseUrl}/contact-me`,
+
+  siteNav: [
+    {
+      name: 'About',
+      url: '/about',
+    },
+    {
+      name: 'Blog',
+      url: '/blog',
+    },
+    {
+      name: 'Projects',
+      url: '/projects',
+    },
+    {
+      name: 'Contact Me',
+      url: '/contact',
+    },
+  ],
 }

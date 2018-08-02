@@ -6,6 +6,7 @@ import { animated, Spring } from 'react-spring'
 // tslint:disable-next-line:no-submodule-imports
 import { Easing, TimingAnimation } from 'react-spring/dist/addons'
 
+import { constants } from '../utils/constants'
 import styled from '../utils/styled'
 import Close from './icons/close'
 import Menu from './icons/menu'
@@ -103,15 +104,11 @@ class NavBurger extends PureComponent<P, State> {
                       <CloseIcon />
                     </CloseButton>
                     <LinkList>
-                      <LinkItem>
-                        <Link to="/about">About</Link>
-                      </LinkItem>
-                      <LinkItem>
-                        <Link to="/blog">Blog</Link>
-                      </LinkItem>
-                      <LinkItem>
-                        <Link to="/contact">Contact Me</Link>
-                      </LinkItem>
+                      {constants.siteNav.map(el => (
+                        <LinkItem key={el.name}>
+                          <Link to={el.url}>{el.name}</Link>
+                        </LinkItem>
+                      ))}
                     </LinkList>
                   </Modal>
                 </>

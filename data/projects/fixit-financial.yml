@@ -1,0 +1,10 @@
+title: 'Fixit Financial'
+url: 'https://www.tryfixit.ca'
+type: 'APP'
+description: 'Fixit is an app that allows you to leverage the value of your vehicle to pay for its repairs. It is a simple solution to get the car repair loans you need for your vehicle.'
+techs:
+  - react-native
+  - firebase
+  - nodejs
+  - typescript
+  - javascript
