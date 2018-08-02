@@ -40,14 +40,22 @@ const ProjectTitle = styled('a')`
 `
 
 const AppAndFlow = styled('a')`
-  ${tw('text-grey-dark no-underline hover:underline text-xs m-0')};
+  ${tw('text-grey-dark no-underline text-xs m-0 font-bold')};
+
+  font-style: italic;
+  box-shadow: inset 0 -0.5em 0 var(--primary);
+  transition: box-shadow 0.2s ease-in-out, -webkit-box-shadow 0.2s ease-in-out;
+
+  &:hover {
+    box-shadow: inset 0 -1.2em 0 var(--secondary);
+  }
 `
 
 const ProjectCard = styled('div')`
   ${tw('bg-white rounded shadow p-4 mb-4')};
 
   &:last-child {
-    ${tw('mb-8 sm:mb-4')}
+    ${tw('mb-8 sm:mb-4')};
   }
 `
 
