@@ -2,6 +2,7 @@ import { graphql } from 'gatsby'
 import React, { SFC } from 'react'
 
 import siteConfig from '../../data/siteConfig'
+import TitleWithQuotes from '../commons/title-with-quotes'
 import Layout from '../components/layout'
 import RowTitle from '../components/row-title'
 import SEO from '../components/seo'
@@ -24,6 +25,10 @@ const PageDescription = styled('p')`
   ${tw('text-grey-dark text-base tracking-small m-0')};
 `
 
+const ProjectText = styled(TitleWithQuotes.withComponent('p'))`
+  ${tw('text-grey-dark text-base tracking-small m-0 mt-6')};
+`
+
 const Root = styled('div')`
   ${tw('container mx-auto pb-10 sm:pb-0 w-full xl:w-3/4')};
 `
@@ -40,6 +45,10 @@ const AppAndFlow = styled('a')`
 
 const ProjectCard = styled('div')`
   ${tw('bg-white rounded shadow p-4 mb-4')};
+
+  &:last-child {
+    ${tw('mb-8 sm:mb-4')}
+  }
 `
 
 const Row = styled('div')`
@@ -86,7 +95,7 @@ const ProjectsPage: SFC<IProps> = ({ data }) => (
       <TitleCard>
         <PageTitle>Projects</PageTitle>
         <PageDescription>
-          Here a list of the current projects I've worked on recently
+          Here a list of the projects I've worked on recently
         </PageDescription>
       </TitleCard>
 
@@ -111,7 +120,7 @@ const ProjectsPage: SFC<IProps> = ({ data }) => (
               ))}
             </TechsWrapper>
             <PageDescription>{node.description}</PageDescription>
-            <PageDescription>{node.text}</PageDescription>
+            <ProjectText>{node.text}</ProjectText>
           </ProjectCard>
         ))}
       </Row>
