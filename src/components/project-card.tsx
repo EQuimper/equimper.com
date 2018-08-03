@@ -36,10 +36,6 @@ const AppAndFlow = styled('a')`
 
 const Root = styled('div')`
   ${tw('bg-white rounded shadow p-4 mb-4')};
-
-  &:last-child {
-    ${tw('mb-8 sm:mb-4')};
-  }
 `
 
 const TechsWrapper = styled('ul')`

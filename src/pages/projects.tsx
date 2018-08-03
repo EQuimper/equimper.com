@@ -22,7 +22,7 @@ const PageDescription = styled('p')`
 `
 
 const Root = styled('div')`
-  ${tw('container mx-auto pb-10 sm:pb-0 w-full xl:w-3/4')};
+  ${tw('container mx-auto pb-20 sm:pb-0 w-full xl:w-3/4')};
 `
 
 const Row = styled('div')`
