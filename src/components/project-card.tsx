@@ -1,6 +1,6 @@
 import React, { SFC } from 'react'
 
-import TitleWithQuotes from '../commons/title-with-quotes'
+import TextWithQuotes from '../commons/text-with-quotes'
 import { IProject } from '../interfaces/Project'
 import styled from '../utils/styled'
 
@@ -12,7 +12,7 @@ const Description = styled('p')`
   ${tw('text-grey-dark text-base tracking-small m-0')};
 `
 
-const Text = styled(TitleWithQuotes.withComponent('p'))`
+const Text = styled(TextWithQuotes.withComponent('p'))`
   ${tw('text-grey-dark text-base tracking-small m-0 mt-6')};
 `
 

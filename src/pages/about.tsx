@@ -3,7 +3,7 @@ import Img from 'gatsby-image'
 import React, { SFC } from 'react'
 
 import siteConfig from '../../data/siteConfig'
-import TitleWithQuotes from '../commons/title-with-quotes'
+import TextWithQuotes from '../commons/text-with-quotes'
 import Layout from '../components/layout'
 import RowTitle from '../components/row-title'
 import SEO from '../components/seo'
@@ -38,7 +38,7 @@ const TitleWrapper = styled('div')`
   ${tw('py-4')};
 `
 
-const Title = styled(TitleWithQuotes)`
+const Title = styled(TextWithQuotes)`
   ${tw('text-grey-darker font-bold text-2xl tracking-wide text-center')};
 `
 

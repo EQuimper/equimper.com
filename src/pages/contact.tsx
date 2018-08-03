@@ -3,7 +3,7 @@ import Img from 'gatsby-image'
 import React, { SFC } from 'react'
 
 import siteConfig from '../../data/siteConfig'
-import TitleWithQuotes from '../commons/title-with-quotes'
+import TextWithQuotes from '../commons/text-with-quotes'
 import ContactForm from '../components/contact-form'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
@@ -36,7 +36,7 @@ const Title = styled('h1')`
   ${tw('tracking-wide text-grey-darker font-bold text-2xl mt-0')};
 `
 
-const FollowTitle = styled(TitleWithQuotes.withComponent('h3'))`
+const FollowTitle = styled(TextWithQuotes.withComponent('h3'))`
   ${tw('tracking-wide text-grey-darker font-bold text-xl mt-0')};
 `
 

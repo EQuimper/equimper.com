@@ -1,6 +1,6 @@
 import styled from '../utils/styled'
 
-const TitleWithQuotes = styled('h1')`
+const TextWithQuotes = styled('h1')`
   quotes: '“' '”' '‘' '’';
 
   &::before {
@@ -12,6 +12,6 @@ const TitleWithQuotes = styled('h1')`
   }
 `
 
-TitleWithQuotes.displayName = 'TitleWithQuotes'
+TextWithQuotes.displayName = 'TextWithQuotes'
 
-export default TitleWithQuotes
+export default TextWithQuotes
