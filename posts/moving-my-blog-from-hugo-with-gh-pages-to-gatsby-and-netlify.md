@@ -5,7 +5,7 @@ description: >-
   How was my experience moving from Hugo to Gatsby, Gh-Pages to Netlify. How
   using Netlify-CMS make my workflow for this blog much more simple. How
   Staticman give me a replacement of Disqus.
-date: '2018-07-26T18:58:40-04:00'
+date: '2018-08-03T18:58:40-04:00'
 tags:
   - netlify
   - gatsby
@@ -43,7 +43,7 @@ The stack of this blog
 
 So first thing my blog was on [Hugo](https://gohugo.io/), another static site generator on [Golang](https://golang.org/). I was really happy with this tech. The thing who make me want to go away was why use a language I don't really use everyday when Gatsby come with React and GraphQL. Two techs I use at my current job and also even teach it on [Youtube](https://www.youtube.com/channel/UC7R7bcH9-KEBDiGNP1mZnmw).
 
-Before doing the move, I search a lot on the web for tutorial about how to get started with Gatsby, how to deploy, how the query work, how can you create a page and also if you can use all the React ecosystem. All my questions was really simple to get answer just by looking at all the great documentation from the [Gatsby site](https://www.gatsbyjs.org/docs/). They don't let you go all in with this without teaching you how to use their product, this is a big plus for me.
+Before doing the move, I search a lot on the web for tutorial about how to get started with Gatsby. How to deploy, how the query work, how can you create a page and also if you can use all the React ecosystem. All my questions was really simple to get answer just by looking at all the great documentation from the [Gatsby site](https://www.gatsbyjs.org/docs/). They don't let you go all in with this without teaching you how to use their product, this is a big plus for me.
 
 Because it's open source, a lot of library call plugin are create by the community to leverage the ecosystem. Example you want to use markdown? [gatsby-transformer-remark](https://www.gatsbyjs.org/packages/gatsby-transformer-remark) is there for you. You search for better performance for you images? [gatsby-image](https://www.gatsbyjs.org/packages/gatsby-image) is an awesome plugin for this. As you can see, almost everything you can ask for you site you can get it with a plugin. "You can still use almost all the library you use in your regular react app 😀, but search for a plugin first 😀"
 
@@ -51,13 +51,13 @@ Also one thing I told myself was, hey this is my blog, I'm the client of it, thi
 
 ## Create my own CMS or use a new tool for this ?
 
-In my other blog I was writing the markdown post right from my text editor. Was great, I mean for a developer this is like you do everyday. But I feel like I don't wrote as many post I want because the experience is not so great.
+In my other blog I was writing the markdown post right from my text editor. Was great, I mean for a developer this is like you do everyday. But I feel like I don't wrote as many post I want because the experience is not so great. So I was I thinking why not create my CMS for my own blog. But the thing with that it's now you need to manage also security and everything because now you have a database etc. So I feel building a CMS for a simple blog was overkill.
 
-I was reading a lot about headless CMS, like [Contentful](https://contentful.com/) or [Prismic](https://prismic.io/). Really like the idea about it. I even create this blog with this tool first. But one night I was watching some video on youtube and see this one.
+I was also reading a lot about headless CMS, like [Contentful](https://contentful.com/) or [Prismic](https://prismic.io/). Really like the idea about it. I even create this blog with this tool first. But one night I was watching some video on youtube and see this one.
 
 `youtube:YyRwMy59d4M`
 
-This talk really sell me Netlify CMS. I mean first I already want to use Netlify for the deployment, second I want to be able to customize all my experience with it, and finally I don't want to pay for something I can handle for free in my text editor.
+This talk really sell me Netlify CMS. I mean first, I already want to use Netlify for the deployment, second I want to be able to customize all of my experience with it, and finally I don't want to pay for something I can handle for free in my text editor.
 
 So I give it a chance, I navigated to their [website](https://www.netlifycms.org/) and follow the docs about how to setup it. Because I know Gatsby build lot of awesome plugin I try to search if one exist to make my life even easier to install it. And yes 😀I found this plugin call [gatsby-plugin-netlify-cms](https://www.gatsbyjs.org/packages/gatsby-plugin-netlify-cms). Just with a simple file with less than 20 line you can setup a CMS for creating blog post or anything you want. This is really awesome. One thing, this is free and you don't need to pay for storage or anything. Here all the stuff we build go to git and all is manage in git. Only thing, you need to use one of the 3 main git hosting provider.
 
@@ -68,7 +68,7 @@ So I give it a chance, I navigated to their [website](https://www.netlifycms.org
 
 - Bitbucket
 
-One of your question question maybe is ok so everything manage in git ok, but why ? This is a really good question. First, this is really easy to follow the project, all in one place. Also here by using nothing else than static markup we gain lot of security. We don't need to hit a database etc.
+One of your question question maybe is why manage everything in git? This is a really good question. First, this is really easy to follow the project, all in one place. Also here by using nothing else than static markup we gain lot of security. We don't need to hit a database etc. I really think this kind of workflow can work with bigger team. When you create example a blog post or whatever else. You can use the workflow of NetlifyCMS. This is kind of a [Trello](http://trello.com/) for your post. You can after this make sure you want to publish it and when you do this create a pull request to your repos, you accept it, Netlify rebuild your site and deploy it. That's it.
 
 ## Removing Disqus for Staticman
 
