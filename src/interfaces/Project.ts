@@ -7,4 +7,5 @@ export interface IProject {
   type: 'LIBRARY' | 'APP'
   techs: string[]
   text: string
+  author: 'AppAndFlow' | 'MySelf'
 }

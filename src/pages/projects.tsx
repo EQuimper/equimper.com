@@ -2,8 +2,8 @@ import { graphql } from 'gatsby'
 import React, { SFC } from 'react'
 
 import siteConfig from '../../data/siteConfig'
-import TitleWithQuotes from '../commons/title-with-quotes'
 import Layout from '../components/layout'
+import ProjectCard from '../components/project-card'
 import RowTitle from '../components/row-title'
 import SEO from '../components/seo'
 import { IProject } from '../interfaces/Project'
@@ -17,46 +17,12 @@ const PageTitle = styled('h1')`
   ${tw('text-grey-darker text-3xl tracking-wide mt-0')};
 `
 
-const ProjectTitleWrapper = styled('div')`
-  ${tw('mb-4')};
-`
-
 const PageDescription = styled('p')`
   ${tw('text-grey-dark text-base tracking-small m-0')};
 `
 
-const ProjectText = styled(TitleWithQuotes.withComponent('p'))`
-  ${tw('text-grey-dark text-base tracking-small m-0 mt-6')};
-`
-
 const Root = styled('div')`
   ${tw('container mx-auto pb-10 sm:pb-0 w-full xl:w-3/4')};
-`
-
-const ProjectTitle = styled('a')`
-  ${tw(
-    'text-grey-darkest no-underline font-bold tracking-wide text-2xl hover:underline mt-0'
-  )};
-`
-
-const AppAndFlow = styled('a')`
-  ${tw('text-grey-dark no-underline text-xs m-0 font-bold')};
-
-  font-style: italic;
-  box-shadow: inset 0 -0.5em 0 var(--primary);
-  transition: box-shadow 0.2s ease-in-out, -webkit-box-shadow 0.2s ease-in-out;
-
-  &:hover {
-    box-shadow: inset 0 -1.2em 0 var(--secondary);
-  }
-`
-
-const ProjectCard = styled('div')`
-  ${tw('bg-white rounded shadow p-4 mb-4')};
-
-  &:last-child {
-    ${tw('mb-8 sm:mb-4')};
-  }
 `
 
 const Row = styled('div')`
@@ -64,20 +30,6 @@ const Row = styled('div')`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-column-gap: 1em;
-`
-
-const TechsWrapper = styled('ul')`
-  ${tw('list-reset flex flex-wrap items-center')};
-`
-
-const TagWrapper = styled('li')`
-  ${tw('mr-4')};
-`
-
-const Tag = styled('p')`
-  ${tw(
-    'no-underline lowercase text-sm bg-grey-lighter rounded p-2 text-black tracking-small'
-  )};
 `
 
 interface IProps {
@@ -111,25 +63,7 @@ const ProjectsPage: SFC<IProps> = ({ data }) => (
 
       <Row>
         {data.libraries.edges.map(({ node }) => (
-          <ProjectCard key={node.id}>
-            <ProjectTitle
-              aria-label="Github repos link"
-              rel="noreferrer"
-              target="_blank"
-              href={node.repo}
-            >
-              {node.title}
-            </ProjectTitle>
-            <TechsWrapper>
-              {node.techs.map(tech => (
-                <TagWrapper key={tech}>
-                  <Tag>{tech}</Tag>
-                </TagWrapper>
-              ))}
-            </TechsWrapper>
-            <PageDescription>{node.description}</PageDescription>
-            <ProjectText>{node.text}</ProjectText>
-          </ProjectCard>
+          <ProjectCard key={node.id} data={node} />
         ))}
       </Row>
 
@@ -137,29 +71,7 @@ const ProjectsPage: SFC<IProps> = ({ data }) => (
 
       <Row>
         {data.applications.edges.map(({ node }) => (
-          <ProjectCard key={node.id}>
-            <ProjectTitleWrapper>
-              <ProjectTitle
-                href={node.url}
-                aria-label={`${node.title} link`}
-                rel="noreferrer"
-                target="_blank"
-              >
-                {node.title}
-              </ProjectTitle>
-            </ProjectTitleWrapper>
-            <AppAndFlow href="https://appandflow.com">
-              Made at AppAndFlow
-            </AppAndFlow>
-            <TechsWrapper>
-              {node.techs.map(tech => (
-                <TagWrapper key={tech}>
-                  <Tag>{tech}</Tag>
-                </TagWrapper>
-              ))}
-            </TechsWrapper>
-            <PageDescription>{node.description}</PageDescription>
-          </ProjectCard>
+          <ProjectCard key={node.id} data={node} />
         ))}
       </Row>
     </Root>
@@ -181,6 +93,7 @@ export const query = graphql`
           type
           techs
           repo
+          author
         }
       }
     }
@@ -194,6 +107,7 @@ export const query = graphql`
           url
           type
           techs
+          author
         }
       }
     }
