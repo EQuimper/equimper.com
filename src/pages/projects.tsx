@@ -11,14 +11,14 @@ import styled from '../utils/styled'
 
 const TitleCard = styled('div')`
   ${tw('bg-white p-4 mb-8 rounded shadow')};
-`
 
-const PageTitle = styled('h1')`
-  ${tw('text-grey-darker text-3xl tracking-wide mt-0')};
-`
+  h1 {
+    ${tw('text-grey-darker text-3xl tracking-wide mt-0')};
+  }
 
-const PageDescription = styled('p')`
-  ${tw('text-grey-dark text-base tracking-small m-0')};
+  p {
+    ${tw('text-grey-dark text-base tracking-small m-0')};
+  }
 `
 
 const Root = styled('div')`
@@ -53,10 +53,8 @@ const ProjectsPage: SFC<IProps> = ({ data }) => (
 
     <Root>
       <TitleCard>
-        <PageTitle>Projects</PageTitle>
-        <PageDescription>
-          Here a list of the projects I've worked on recently
-        </PageDescription>
+        <h1>Projects</h1>
+        <p>Here a list of the projects I've worked on recently</p>
       </TitleCard>
 
       <RowTitle title="Librairies" />

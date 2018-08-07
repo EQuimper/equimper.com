@@ -30,18 +30,18 @@ const BottomWrapper = styled(Wrapper)`
 
 const TopWrapper = styled('div')`
   ${tw('mb-8')};
-`
 
-const Title = styled('h1')`
-  ${tw('tracking-wide text-grey-darker font-bold text-2xl mt-0')};
+  h1 {
+    ${tw('tracking-wide text-grey-darker font-bold text-2xl mt-0')};
+  }
+
+  p {
+    ${tw('leading-tight tracking-small text-grey-darker')};
+  }
 `
 
 const FollowTitle = styled(TextWithQuotes.withComponent('h3'))`
   ${tw('tracking-wide text-grey-darker font-bold text-xl mt-0')};
-`
-
-const Message = styled('p')`
-  ${tw('leading-tight tracking-small text-grey-darker')};
 `
 
 const Avatar = styled(Img)`
@@ -63,13 +63,13 @@ const Contact: SFC<IProps> = ({ data }) => (
     <Root>
       <Wrapper>
         <TopWrapper>
-          <Title>Do you have a question?</Title>
+          <h1>Do you have a question?</h1>
 
-          <Message>
+          <p>
             Do you want to connect with me about anything? You can just write
             the message here with your name, email, and subject. I would answer
             you as fast as possible.
-          </Message>
+          </p>
         </TopWrapper>
 
         <ContactForm />
