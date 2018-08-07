@@ -8,4 +8,5 @@ export interface IProject {
   techs: string[]
   text: string
   author: 'AppAndFlow' | 'MySelf'
+  order?: number
 }

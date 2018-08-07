@@ -98,7 +98,10 @@ export const query = graphql`
       }
     }
 
-    applications: allProjectsYaml(filter: { type: { eq: "APP" } }) {
+    applications: allProjectsYaml(
+      filter: { type: { eq: "APP" } }
+      sort: { fields: order, order: ASC }
+    ) {
       edges {
         node {
           id

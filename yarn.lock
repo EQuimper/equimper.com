@@ -5072,7 +5072,7 @@ gatsby-plugin-netlify-cache@^0.1.0:
     babel-runtime "^6.26.0"
     fs-extra "^6.0.1"
 
-gatsby-plugin-netlify-cms@^2.0.0-beta.7:
+gatsby-plugin-netlify-cms@2.0.0-beta.7:
   version "2.0.0-beta.7"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify-cms/-/gatsby-plugin-netlify-cms-2.0.0-beta.7.tgz#5318f32cf85566d0bcd5446430dc52faa19b59ef"
   dependencies:
