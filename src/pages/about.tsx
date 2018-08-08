@@ -38,6 +38,7 @@ const Avatar = styled(Img)`
 
 const TitleWrapper = styled('div')`
   ${tw('py-4 text-center text-grey-darker font-bold text-2xl')};
+
   quotes: '“' '”' '‘' '’';
 
   &::before {
@@ -97,8 +98,13 @@ class AboutPage extends React.Component<IProps> {
   }
 
   componentDidMount() {
+    const str =
+      window.innerWidth <= 576
+        ? 'Hey, I am Emanuel. <br>Happy to see you there.'
+        : 'Hey, I am Emanuel. Happy to see you there.'
+
     const options = {
-      strings: [this.props.data.markdownRemark.frontmatter.title],
+      strings: [str],
       typeSpeed: 70,
       backSpeed: 50,
     }
