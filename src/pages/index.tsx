@@ -1,4 +1,5 @@
 import { graphql } from 'gatsby'
+import { Trail } from 'react-spring'
 
 import React from 'react'
 
@@ -73,9 +74,21 @@ const IndexPage = ({ data }: IProps) => (
 
       <RowWrapper>
         <VideosWrapper>
-          {data.allYoutubeVideo.edges.map(({ node }) => (
-            <VideoCard key={node.id} data={node} />
-          ))}
+          <Trail
+            from={{ opacity: 0, y: 100 }}
+            to={{ opacity: 1, y: 0 }}
+            native
+            keys={data.allYoutubeVideo.edges.map(({ node }) => node.id)}
+          >
+            {data.allYoutubeVideo.edges.map(({ node }) => (styles: any) => (
+              <VideoCard
+                withAnimation
+                style={styles}
+                key={node.id}
+                data={node}
+              />
+            ))}
+          </Trail>
         </VideosWrapper>
       </RowWrapper>
     </Root>

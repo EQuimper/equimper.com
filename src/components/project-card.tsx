@@ -1,7 +1,9 @@
 import React, { SFC } from 'react'
+import { animated } from 'react-spring'
 
 import TextWithQuotes from '../commons/text-with-quotes'
 import { IProject } from '../interfaces/Project'
+import { animationFromBottom } from '../utils/animations'
 import styled from '../utils/styled'
 
 const TitleWrapper = styled('div')`
@@ -34,7 +36,7 @@ const AppAndFlow = styled('a')`
   }
 `
 
-const Root = styled('div')`
+const Root = styled(animated.div)`
   ${tw('bg-white rounded shadow p-4 mb-4')};
 `
 
@@ -54,10 +56,15 @@ const Tag = styled('p')`
 
 interface IProps {
   data: IProject
+  style?: {
+    opacity: number
+    y: any
+  }
+  withAnimation?: boolean
 }
 
-const ProjectCard: SFC<IProps> = ({ data }) => (
-  <Root>
+const ProjectCard: SFC<IProps> = ({ data, withAnimation = false, style }) => (
+  <Root style={animationFromBottom(style, withAnimation)}>
     <TitleWrapper>
       <Title
         href={data.repo || data.url || ''}

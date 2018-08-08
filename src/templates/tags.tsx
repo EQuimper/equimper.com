@@ -1,6 +1,7 @@
 import { graphql } from 'gatsby'
 import React from 'react'
 
+import { Trail, Transition } from 'react-spring'
 import BlogCard from '../components/blog-card'
 import Layout from '../components/layout'
 import RowTitle from '../components/row-title'
@@ -22,7 +23,7 @@ interface IProps {
 }
 
 const Root = styled('div')`
-  ${tw('sm:w-full xl:w-3/4 mx-auto pb-10')};
+  ${tw('w-full xl:w-3/4 mx-auto pb-20 sm:pb-0')};
 `
 
 const postPluralize = (num: number) => (num > 1 ? 'posts' : 'post')
@@ -39,7 +40,19 @@ const Tags = ({ data, pageContext }: IProps) => {
         />
         {console.log('data', data)}
 
-        {edges.map(({ node }) => <BlogCard key={node.id} data={node} />)}
+        {edges.map(({ node }) => (
+          <Transition
+            from={{ opacity: 0, x: -100 }}
+            enter={{ opacity: 1, x: 0 }}
+            leave={{ opacity: 0, x: 100 }}
+            native
+            key={node.id}
+          >
+            {(styles: any) => (
+              <BlogCard withAnimation style={styles} data={node} />
+            )}
+          </Transition>
+        ))}
       </Root>
     </Layout>
   )

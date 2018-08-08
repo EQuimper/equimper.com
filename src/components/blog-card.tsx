@@ -3,6 +3,7 @@ import React from 'react'
 import { animated } from 'react-spring'
 
 import { IBlogPost } from '../interfaces/BlogPost'
+import { animationFromLeft } from '../utils/animations'
 import styled from '../utils/styled'
 import TagList from './tags-list'
 
@@ -50,18 +51,7 @@ interface IProps {
 }
 
 const BlogCard = ({ data, style, withAnimation = false }: IProps) => (
-  <Post
-    style={
-      withAnimation && style
-        ? {
-            opacity: style.opacity,
-            transform: style.x.interpolate(
-              (x: number) => `translate3d(${x}%,0,0)`
-            ),
-          }
-        : undefined
-    }
-  >
+  <Post style={animationFromLeft(style, withAnimation)}>
     <TopWrapper>
       <PostTitleWrapper>
         <PostTitle to={`/blog/${data.fields.slug}`}>

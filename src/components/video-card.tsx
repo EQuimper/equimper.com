@@ -1,9 +1,11 @@
 import Img from 'gatsby-image'
 import React from 'react'
+import { animated } from 'react-spring'
 
+import { animationFromBottom } from '../utils/animations'
 import styled from '../utils/styled'
 
-const Container = styled('div')`
+const Container = styled(animated.div)`
   ${tw('w-full h-full flex')};
 `
 
@@ -66,10 +68,15 @@ interface IProps {
       }
     }
   }
+  withAnimation?: boolean
+  style?: {
+    opacity: number
+    y: any
+  }
 }
 
-const VideoCard = ({ data }: IProps) => (
-  <Container>
+const VideoCard = ({ data, withAnimation = false, style }: IProps) => (
+  <Container style={animationFromBottom(style, withAnimation)}>
     <Wrapper
       target="_blank"
       href={`https://www.youtube.com/watch?v=${data.id}`}

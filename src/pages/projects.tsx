@@ -1,5 +1,6 @@
 import { graphql } from 'gatsby'
 import React, { SFC } from 'react'
+import { Trail } from 'react-spring'
 
 import siteConfig from '../../data/siteConfig'
 import Layout from '../components/layout'
@@ -68,9 +69,21 @@ const ProjectsPage: SFC<IProps> = ({ data }) => (
       <RowTitle title="Applications" />
 
       <Row>
-        {data.applications.edges.map(({ node }) => (
-          <ProjectCard key={node.id} data={node} />
-        ))}
+        <Trail
+          from={{ opacity: 0, y: 100 }}
+          to={{ opacity: 1, y: 0 }}
+          native
+          keys={data.libraries.edges.map(({ node }) => node.id)}
+        >
+          {data.applications.edges.map(({ node }) => (styles: any) => (
+            <ProjectCard
+              withAnimation
+              style={styles}
+              key={node.id}
+              data={node}
+            />
+          ))}
+        </Trail>
       </Row>
     </Root>
   </Layout>
