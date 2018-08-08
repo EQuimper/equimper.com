@@ -73,12 +73,12 @@ class NavBurger extends PureComponent<P, State> {
   }
 
   openPortal = () => {
-    document.body.classList.add('stop-scrolling')
+    // document.body.classList.add('stop-scrolling')
     this.setState({ isOpen: true })
   }
 
   closePortal = () => {
-    document.body.classList.remove('stop-scrolling')
+    // document.body.classList.remove('stop-scrolling')
     this.setState({ isOpen: false })
   }
 
