@@ -5,7 +5,7 @@ import styled from '../utils/styled'
 import Comment from './comment'
 
 const Root = styled('div')`
-  ${tw('mt-10')};
+  ${tw('my-10')};
 `
 
 const Title = styled('h3')`

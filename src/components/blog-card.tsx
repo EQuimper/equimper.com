@@ -42,7 +42,7 @@ const Date = styled('p')`
 
 interface IProps {
   data: IBlogPost
-  style: {
+  style?: {
     opacity: number
     x: any
   }
@@ -52,7 +52,7 @@ interface IProps {
 const BlogCard = ({ data, style, withAnimation = false }: IProps) => (
   <Post
     style={
-      withAnimation
+      withAnimation && style
         ? {
             opacity: style.opacity,
             transform: style.x.interpolate(

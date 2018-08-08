@@ -255,6 +255,10 @@ injectGlobal`
     z-index: -1;
     opacity: 0;
   }
+
+  .typed-cursor {
+    font-weight: 400;
+  }
 `
 
 const Body = styled('div')`

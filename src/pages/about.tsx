@@ -1,6 +1,8 @@
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
-import React, { SFC } from 'react'
+import React, { RefObject } from 'react'
+import { css } from 'react-emotion'
+import Typed from 'typed.js'
 
 import siteConfig from '../../data/siteConfig'
 import TextWithQuotes from '../commons/text-with-quotes'
@@ -35,11 +37,20 @@ const Avatar = styled(Img)`
 `
 
 const TitleWrapper = styled('div')`
-  ${tw('py-4')};
+  ${tw('py-4 text-center text-grey-darker font-bold text-2xl')};
+  quotes: '“' '”' '‘' '’';
+
+  &::before {
+    content: open-quote;
+  }
+
+  &::after {
+    content: close-quote;
+  }
 `
 
-const Title = styled(TextWithQuotes)`
-  ${tw('text-grey-darker font-bold text-2xl tracking-wide text-center')};
+const Title = css`
+  ${tw('text-grey-darker font-bold text-2xl tracking-wide')};
 `
 
 const FollowTitle = styled('h3')`
@@ -76,35 +87,65 @@ interface IProps {
   }
 }
 
-const AboutPage: SFC<IProps> = ({ data }) => (
-  <Layout>
-    <SEO url={`${siteConfig.site.url}/about`} customTitle="About" />
+class AboutPage extends React.Component<IProps> {
+  typed?: Typed
+  el: RefObject<any>
 
-    <Root>
-      <Wrapper>
-        <AvatarWrapper>
-          <Avatar fixed={data.avatarImg.fixed} />
-        </AvatarWrapper>
-        <TitleWrapper>
-          <Title>{data.markdownRemark.frontmatter.title}</Title>
-        </TitleWrapper>
-        <FollowWrapper>
-          <FollowTitle>You can follow me on</FollowTitle>
-        </FollowWrapper>
-        <SocialFollowWrapper>
-          <SocialFollow />
-        </SocialFollowWrapper>
-      </Wrapper>
-      <RowTitle title="About Myself" />
-      <Content>
-        <ContentWrapper
-          dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
-          className="md-content"
-        />
-      </Content>
-    </Root>
-  </Layout>
-)
+  constructor(props: IProps) {
+    super(props)
+    this.el = React.createRef()
+  }
+
+  componentDidMount() {
+    const options = {
+      strings: [this.props.data.markdownRemark.frontmatter.title],
+      typeSpeed: 70,
+      backSpeed: 50,
+    }
+
+    this.typed = new Typed(this.el.current, options)
+  }
+
+  componentWillUnmount() {
+    if (this.typed) {
+      this.typed.destroy()
+    }
+  }
+
+  render() {
+    const { data } = this.props
+    console.log(this.typed)
+    return (
+      <Layout>
+        <SEO url={`${siteConfig.site.url}/about`} customTitle="About" />
+
+        <Root>
+          <Wrapper>
+            <AvatarWrapper>
+              <Avatar fixed={data.avatarImg.fixed} />
+            </AvatarWrapper>
+            <TitleWrapper>
+              <span ref={this.el} />
+            </TitleWrapper>
+            <FollowWrapper>
+              <FollowTitle>You can follow me on</FollowTitle>
+            </FollowWrapper>
+            <SocialFollowWrapper>
+              <SocialFollow />
+            </SocialFollowWrapper>
+          </Wrapper>
+          <RowTitle title="About Myself" />
+          <Content>
+            <ContentWrapper
+              dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
+              className="md-content"
+            />
+          </Content>
+        </Root>
+      </Layout>
+    )
+  }
+}
 
 export default AboutPage
 
