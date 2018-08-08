@@ -1,7 +1,7 @@
 import { graphql } from 'gatsby'
 import React from 'react'
+import { Transition } from 'react-spring'
 
-import { Trail, Transition } from 'react-spring'
 import BlogCard from '../components/blog-card'
 import Layout from '../components/layout'
 import RowTitle from '../components/row-title'

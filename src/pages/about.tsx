@@ -5,7 +5,6 @@ import { css } from 'react-emotion'
 import Typed from 'typed.js'
 
 import siteConfig from '../../data/siteConfig'
-import TextWithQuotes from '../commons/text-with-quotes'
 import Layout from '../components/layout'
 import RowTitle from '../components/row-title'
 import SEO from '../components/seo'
@@ -48,10 +47,6 @@ const TitleWrapper = styled('div')`
   &::after {
     content: close-quote;
   }
-`
-
-const Title = css`
-  ${tw('text-grey-darker font-bold text-2xl tracking-wide')};
 `
 
 const FollowTitle = styled('h3')`
@@ -120,7 +115,6 @@ class AboutPage extends React.Component<IProps> {
 
   render() {
     const { data } = this.props
-    console.log(this.typed)
     return (
       <Layout>
         <SEO url={`${siteConfig.site.url}/about`} customTitle="About" />

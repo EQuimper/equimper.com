@@ -66,7 +66,11 @@ const Footer: SFC<IProps> = ({ siteTitle }) => (
       <LinkList>
         {constants.siteNav.map(el => (
           <LinkItem key={el.name}>
-            <Link exact activeClassName={activeClassName} to={el.url}>
+            <Link
+              exact={el.url !== '/blog'}
+              activeClassName={activeClassName}
+              to={el.url}
+            >
               {el.name}
             </Link>
           </LinkItem>

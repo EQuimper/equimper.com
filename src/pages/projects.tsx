@@ -73,7 +73,7 @@ const ProjectsPage: SFC<IProps> = ({ data }) => (
           from={{ opacity: 0, y: 100 }}
           to={{ opacity: 1, y: 0 }}
           native
-          keys={data.libraries.edges.map(({ node }) => node.id)}
+          keys={data.applications.edges.map(({ node }) => node.id)}
         >
           {data.applications.edges.map(({ node }) => (styles: any) => (
             <ProjectCard
