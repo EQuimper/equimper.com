@@ -8,5 +8,7 @@ techs:
   - nodejs
   - typescript
   - javascript
+  - serverless
+  - firebase-functions
 author: 'AppAndFlow'
-order: 3
+order: 4

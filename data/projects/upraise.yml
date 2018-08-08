@@ -1,0 +1,10 @@
+title: 'Upraise'
+url: 'https://itunes.apple.com/us/app/upraise-frictionless-feedback/id1247801773?mt=8'
+type: 'APP'
+description: "With Upraise, you can give feedback on your experiences, staff members or any services at partner resorts. Your reviews don't go unheard! Based on your ratings, staff members with the best reputation are generously rewarded and you earn points for genuine reviews. The application uses the iBeacons technology to easily track nearby staff members, who you can review instantly!"
+techs:
+  - react-native
+  - javascript
+  - flowtype
+author: 'AppAndFlow'
+order: 2

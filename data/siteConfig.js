@@ -5,7 +5,7 @@ module.exports = {
     url: siteUrl,
     title: '<EQuimper />',
     seoTitle: 'EQuimper',
-    description: 'A blog about programming',
+    description: 'A blog about full-stack web development.',
     logo: `${siteUrl}/android-chrome-384x384.png`,
   },
   lang: 'en',
