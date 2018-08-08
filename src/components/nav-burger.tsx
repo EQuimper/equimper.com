@@ -43,8 +43,14 @@ const LinkItem = styled('li')`
   ${tw('text-center mb-4')};
 `
 
+const activeClassName = 'nav-item-active'
+
 const Link = styled(GatsbyLink)`
   ${tw('no-underline text-grey-darker font-bold text-xl p-4')};
+
+  &.${activeClassName} {
+    ${tw('text-grey')};
+  }
 `
 
 const CloseButton = styled('button')`
@@ -106,7 +112,9 @@ class NavBurger extends PureComponent<P, State> {
                     <LinkList>
                       {constants.siteNav.map(el => (
                         <LinkItem key={el.name}>
-                          <Link to={el.url}>{el.name}</Link>
+                          <Link activeClassName={activeClassName} to={el.url}>
+                            {el.name}
+                          </Link>
                         </LinkItem>
                       ))}
                     </LinkList>

@@ -44,7 +44,7 @@ const AuthorIntro = ({ data }: IProps) => {
         <Title>EQuimper's Blog</Title>
         <UserDescriptionWrapper>
           <UserDescription>
-            Programmer - Mentor - Blogger - Youtuber
+            Developer - Mentor - Blogger - Youtuber
           </UserDescription>
         </UserDescriptionWrapper>
         <SocialFollow />
