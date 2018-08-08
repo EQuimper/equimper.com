@@ -2,7 +2,7 @@ import Img from 'gatsby-image'
 import React from 'react'
 import { animated } from 'react-spring'
 
-import { animationFromBottom } from '../utils/animations'
+import { animationFromY } from '../utils/animations'
 import styled from '../utils/styled'
 
 const Container = styled(animated.div)`
@@ -76,7 +76,7 @@ interface IProps {
 }
 
 const VideoCard = ({ data, withAnimation = false, style }: IProps) => (
-  <Container style={animationFromBottom(style, withAnimation)}>
+  <Container style={animationFromY(style, withAnimation)}>
     <Wrapper
       target="_blank"
       href={`https://www.youtube.com/watch?v=${data.id}`}

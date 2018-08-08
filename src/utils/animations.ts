@@ -1,4 +1,4 @@
-export const animationFromBottom = (
+export const animationFromY = (
   style: any,
   withAnimation: boolean
 ): object | undefined =>
@@ -9,7 +9,7 @@ export const animationFromBottom = (
       }
     : undefined
 
-export const animationFromLeft = (
+export const animationFromX = (
   style: any,
   withAnimation: boolean
 ): object | undefined =>

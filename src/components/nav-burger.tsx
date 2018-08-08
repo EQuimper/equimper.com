@@ -1,11 +1,12 @@
 import { Link as GatsbyLink } from 'gatsby'
 import React, { PureComponent } from 'react'
 import { Portal } from 'react-portal'
-import { animated, Spring } from 'react-spring'
+import { animated, Spring, Trail } from 'react-spring'
 // @ts-ignore
 // tslint:disable-next-line:no-submodule-imports
 import { Easing, TimingAnimation } from 'react-spring/dist/addons'
 
+import { animationFromY } from '../utils/animations'
 import { constants } from '../utils/constants'
 import styled from '../utils/styled'
 import Close from './icons/close'
@@ -39,7 +40,7 @@ const LinkList = styled('ul')`
   ${tw('list-reset items-center')};
 `
 
-const LinkItem = styled('li')`
+const LinkItem = styled(animated.li)`
   ${tw('text-center mb-4')};
 `
 
@@ -110,13 +111,23 @@ class NavBurger extends PureComponent<P, State> {
                       <CloseIcon />
                     </CloseButton>
                     <LinkList>
-                      {constants.siteNav.map(el => (
-                        <LinkItem key={el.name}>
-                          <Link activeClassName={activeClassName} to={el.url}>
-                            {el.name}
-                          </Link>
-                        </LinkItem>
-                      ))}
+                      <Trail
+                        from={{ opacity: 0, y: -100 }}
+                        to={{ opacity: 1, y: 0 }}
+                        native
+                        keys={constants.siteNav.map(el => el.name)}
+                      >
+                        {constants.siteNav.map(el => (s: any) => (
+                          <LinkItem
+                            key={el.name}
+                            style={animationFromY(s, true)}
+                          >
+                            <Link activeClassName={activeClassName} to={el.url}>
+                              {el.name}
+                            </Link>
+                          </LinkItem>
+                        ))}
+                      </Trail>
                     </LinkList>
                   </Modal>
                 </>

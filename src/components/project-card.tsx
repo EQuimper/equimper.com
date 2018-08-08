@@ -3,7 +3,7 @@ import { animated } from 'react-spring'
 
 import TextWithQuotes from '../commons/text-with-quotes'
 import { IProject } from '../interfaces/Project'
-import { animationFromBottom } from '../utils/animations'
+import { animationFromY } from '../utils/animations'
 import styled from '../utils/styled'
 
 const TitleWrapper = styled('div')`
@@ -64,7 +64,7 @@ interface IProps {
 }
 
 const ProjectCard: SFC<IProps> = ({ data, withAnimation = false, style }) => (
-  <Root style={animationFromBottom(style, withAnimation)}>
+  <Root style={animationFromY(style, withAnimation)}>
     <TitleWrapper>
       <Title
         href={data.repo || data.url || ''}
