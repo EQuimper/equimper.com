@@ -48,6 +48,11 @@ interface IProps {
   }
 }
 
+const animOpts = {
+  from: { opacity: 0, y: 100 },
+  to: { opacity: 1, y: 0 },
+}
+
 const ProjectsPage: SFC<IProps> = ({ data }) => (
   <Layout>
     <SEO url={`${siteConfig.site.url}/projects`} customTitle="Projects" />
@@ -61,17 +66,27 @@ const ProjectsPage: SFC<IProps> = ({ data }) => (
       <RowTitle title="Librairies" />
 
       <Row>
-        {data.libraries.edges.map(({ node }) => (
-          <ProjectCard key={node.id} data={node} />
-        ))}
+        <Trail
+          {...animOpts}
+          native
+          keys={data.libraries.edges.map(({ node }) => node.id)}
+        >
+          {data.libraries.edges.map(({ node }) => (styles: any) => (
+            <ProjectCard
+              withAnimation
+              style={styles}
+              key={node.id}
+              data={node}
+            />
+          ))}
+        </Trail>
       </Row>
 
       <RowTitle title="Applications" />
 
       <Row>
         <Trail
-          from={{ opacity: 0, y: 100 }}
-          to={{ opacity: 1, y: 0 }}
+          {...animOpts}
           native
           keys={data.applications.edges.map(({ node }) => node.id)}
         >
@@ -93,7 +108,10 @@ export default ProjectsPage
 
 export const query = graphql`
   query ProjectsQuery {
-    libraries: allProjectsYaml(filter: { type: { eq: "LIBRARY" } }) {
+    libraries: allProjectsYaml(
+      filter: { type: { eq: "LIBRARY" } }
+      sort: { fields: order, order: ASC }
+    ) {
       edges {
         node {
           id

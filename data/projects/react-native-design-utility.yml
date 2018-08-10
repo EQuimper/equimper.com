@@ -1,0 +1,12 @@
+title: 'React-Native-Design-Utility'
+repo: 'https://github.com/EQuimper/react-native-design-utility'
+type: 'LIBRARY'
+description: 'Utility for building design system in react-native'
+text: "I've been using Tailwind lately for the web. Loved it, but I didn't find any solution like this for react-native. So I build one who look like it but more for react-native design styling."
+techs:
+  - react-native
+  - javascript
+  - typescript
+  - design-system
+author: 'MySelf'
+order: 2
