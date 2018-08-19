@@ -47,7 +47,7 @@ interface IProps {
   }
 }
 
-const IndexPage = ({ data }: IProps) => (
+const IndexPage: React.SFC<IProps> = ({ data }) => (
   <Layout>
     <SEO url={siteConfig.site.url} customTitle="Home Page" />
     <Root>

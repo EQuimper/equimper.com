@@ -13,6 +13,7 @@ import styled from '../utils/styled'
 import { theme } from '../utils/theme'
 import Footer from './footer'
 import Header from './header'
+import PageTransition from './page-transition'
 
 interface IndexPageData {
   site: {
@@ -312,7 +313,9 @@ const Layout: SFC = ({ children }) => (
           </Helmet>
           <html lang="en" />
           <Header siteTitle={data.site.siteMetadata.title} />
-          <Root>{children}</Root>
+          <PageTransition>
+            <Root>{children}</Root>
+          </PageTransition>
           <Footer siteTitle={data.site.siteMetadata.title} />
         </Body>
       </ThemeProvider>
