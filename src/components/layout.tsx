@@ -14,6 +14,7 @@ import { theme } from '../utils/theme'
 import Footer from './footer'
 import Header from './header'
 import PageTransition from './page-transition'
+import ScrollingProgress from './scrolling-progress'
 
 interface IndexPageData {
   site: {
@@ -260,6 +261,19 @@ injectGlobal`
   .typed-cursor {
     font-weight: 400;
   }
+
+  ::-webkit-scrollbar {
+    width: .4em;
+  }
+
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+  }
 `
 
 const Body = styled('div')`
@@ -270,7 +284,11 @@ const Root = styled('div')`
   ${tw('container mx-auto pt-10 pb-20 sm:py-10 px-4')};
 `
 
-const Layout: SFC = ({ children }) => (
+interface IProps {
+  showProgress?: boolean
+}
+
+const Layout: SFC<IProps> = ({ children, showProgress }) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -312,6 +330,7 @@ const Layout: SFC = ({ children }) => (
             <meta name="theme-color" content="#ffffff" />
           </Helmet>
           <html lang="en" />
+          <ScrollingProgress showProgress={showProgress} />
           <Header siteTitle={data.site.siteMetadata.title} />
           <PageTransition>
             <Root>{children}</Root>

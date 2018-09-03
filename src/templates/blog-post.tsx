@@ -72,7 +72,7 @@ const BlogPost = ({ data, location, pageContext }: IProps) => {
   const url = `${data.site.siteMetadata.siteUrl}${location.pathname}`
 
   return (
-    <Layout>
+    <Layout showProgress>
       <SEO url={url} isBlogPost postMeta={post.frontmatter} />
       <Root>
         <SubscribeForm avatar={data.avatarImg.fixed} />
