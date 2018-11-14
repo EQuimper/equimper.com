@@ -1,0 +1,12 @@
+title: 'Crumbs'
+url: 'https://www.crumbsapp.com/'
+type: 'APP'
+description: 'Crumbs makes crypto investing effortless and automated, so now you won’t miss the right time to buy.'
+techs:
+  - react-native
+  - javascript
+  - typescript
+  - mobx-state-tree
+  - mobx
+author: 'AppAndFlow'
+order: 5

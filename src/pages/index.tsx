@@ -1,7 +1,6 @@
 import { graphql } from 'gatsby'
-import { Trail } from 'react-spring'
-
 import React from 'react'
+import { Trail } from 'react-spring'
 
 import siteConfig from '../../data/siteConfig'
 import AuthorIntro from '../components/author-intro'

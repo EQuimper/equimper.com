@@ -6,5 +6,6 @@ techs:
   - react-native
   - javascript
   - flowtype
+  - redux
 author: 'AppAndFlow'
 order: 1

@@ -10,5 +10,6 @@ techs:
   - javascript
   - serverless
   - firebase-functions
+  - redux
 author: 'AppAndFlow'
 order: 4

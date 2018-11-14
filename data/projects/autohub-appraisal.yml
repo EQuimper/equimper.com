@@ -7,5 +7,6 @@ techs:
   - nodejs
   - javascript
   - typescript
+  - redux
 author: 'AppAndFlow'
 order: 3
