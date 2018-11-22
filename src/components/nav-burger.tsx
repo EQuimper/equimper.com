@@ -122,11 +122,7 @@ class NavBurger extends PureComponent<P, State> {
                             key={el.name}
                             style={animationFromY(s, true)}
                           >
-                            <Link
-                              exact={el.url !== '/blog'}
-                              activeClassName={activeClassName}
-                              to={el.url}
-                            >
+                            <Link activeClassName={activeClassName} to={el.url}>
                               {el.name}
                             </Link>
                           </LinkItem>
