@@ -147,6 +147,7 @@ const downloadThumbnails = async ({ items, store, cache, createNode }) =>
   Promise.all(
     items.map(async item => {
       let fileNode
+
       if (item.thumbnail && item.thumbnail.url) {
         try {
           fileNode = await createRemoteFileNode({
@@ -154,6 +155,7 @@ const downloadThumbnails = async ({ items, store, cache, createNode }) =>
             store,
             cache,
             createNode,
+            createNodeId: () => item.thumbnail.url + item.id,
           })
         } catch (error) {
           console.error(error)

@@ -328,9 +328,10 @@ const Layout: SFC<IProps> = ({ children, showProgress }) => (
             />
             <meta name="msapplication-TileColor" content="#da532c" />
             <meta name="theme-color" content="#ffffff" />
+            <noscript>{`<h1>Plz yurn on JavaScript</h1>`}</noscript>
           </Helmet>
           <html lang="en" />
-          <ScrollingProgress showProgress={showProgress} />
+          <ScrollingProgress showProgress={!!showProgress} />
           <Header siteTitle={data.site.siteMetadata.title} />
           <PageTransition>
             <Root>{children}</Root>
