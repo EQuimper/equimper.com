@@ -64,7 +64,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "dev": "gatsby develop",
     "predevelop": "postcss tailwind.css -o tailwind.custom.css",
     "prebuild": "postcss tailwind.css -o tailwind.custom.css",
     "prettier": "prettier --write 'src/**/*.{ts, tsx}' 'staticman.yml' 'gatsby-node.js' 'gatsby-browser.js' 'gatsby-config.js'",

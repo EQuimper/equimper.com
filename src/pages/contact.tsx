@@ -5,6 +5,7 @@ import React, { SFC } from 'react'
 import siteConfig from '../../data/siteConfig'
 import TextWithQuotes from '../commons/text-with-quotes'
 import ContactForm from '../components/contact-form'
+import ContactIcon from '../components/icons/contact'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import SocialFollow from '../components/social-follow'
@@ -15,6 +16,10 @@ const Root = styled('div')`
 `
 
 const Wrapper = styled('div')`
+  ${tw('bg-white rounded shadow p-4 mb-8 flex flex-col sm:flex-row items-center sm:justify-between')};
+`
+
+const ContactWrapper = styled('div')`
   ${tw('bg-white rounded shadow p-4 mb-8')};
 `
 
@@ -29,7 +34,7 @@ const BottomWrapper = styled(Wrapper)`
 `
 
 const TopWrapper = styled('div')`
-  ${tw('mb-8')};
+  ${tw('mb-8 w-100 sm:w-2/3')};
 
   h1 {
     ${tw('tracking-wide text-grey-darker font-bold text-2xl mt-0')};
@@ -40,12 +45,23 @@ const TopWrapper = styled('div')`
   }
 `
 
+const ContactImgWrapper = styled('div')`
+  ${tw('flex w-100 sm:w-1/3')}
+`
+
 const FollowTitle = styled(TextWithQuotes.withComponent('h3'))`
   ${tw('tracking-wide text-grey-darker font-bold text-xl mt-0')};
 `
 
 const Avatar = styled(Img)`
   ${tw('rounded-full')};
+`
+
+const ContactImg = styled(ContactIcon)`
+  ${tw('text-blue-light')};
+
+  width: 100%;
+  height: 9.375em;
 `
 
 interface IProps {
@@ -63,7 +79,7 @@ const Contact: SFC<IProps> = ({ data }) => (
     <Root>
       <Wrapper>
         <TopWrapper>
-          <h1>Do you have a question?</h1>
+          <h1>Send me a message?</h1>
 
           <p>
             Do you want to connect with me about anything? You can just write
@@ -71,9 +87,13 @@ const Contact: SFC<IProps> = ({ data }) => (
             you as fast as possible.
           </p>
         </TopWrapper>
-
-        <ContactForm />
+        <ContactImgWrapper>
+        <ContactImg />
+        </ContactImgWrapper>
       </Wrapper>
+      <ContactWrapper>
+        <ContactForm />
+      </ContactWrapper>
 
       <BottomWrapper>
         <AvatarWrapper>

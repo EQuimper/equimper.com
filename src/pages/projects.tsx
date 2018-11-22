@@ -3,6 +3,7 @@ import React, { SFC } from 'react'
 import { Trail } from 'react-spring'
 
 import siteConfig from '../../data/siteConfig'
+import ProjectsIcon from '../components/icons/projects'
 import Layout from '../components/layout'
 import ProjectCard from '../components/project-card'
 import RowTitle from '../components/row-title'
@@ -48,6 +49,21 @@ interface IProps {
   }
 }
 
+const ProjectsImgWrapper = styled('div')`
+  ${tw('w-100 flex align-center justify-center')};
+`
+
+const ProjectsImg = styled(ProjectsIcon)`
+  ${tw('text-blue-light')};
+
+  width: 100%;
+  height: 21.875em;
+`
+
+const TitleTopWrapper = styled('div')`
+  ${tw('mb-4')};
+`
+
 const animOpts = {
   from: { opacity: 0, y: 100 },
   to: { opacity: 1, y: 0 },
@@ -59,8 +75,13 @@ const ProjectsPage: SFC<IProps> = ({ data }) => (
 
     <Root>
       <TitleCard>
-        <h1>Projects</h1>
-        <p>Here a list of the projects I've worked on recently</p>
+        <TitleTopWrapper>
+          <h1>Projects</h1>
+          <p>Here a list of the projects I've worked on recently</p>
+        </TitleTopWrapper>
+        <ProjectsImgWrapper>
+          <ProjectsImg />
+        </ProjectsImgWrapper>
       </TitleCard>
 
       <RowTitle title="Librairies" />
