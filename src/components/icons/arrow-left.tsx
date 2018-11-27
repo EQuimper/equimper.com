@@ -4,7 +4,7 @@ interface IProps {
   className?: string
 }
 
-const ArrowLeft = ({ className }: IProps) => (
+const ArrowLeft: React.SFC<IProps> = ({ className }) => (
   <svg
     role="img"
     xmlns="http://www.w3.org/2000/svg"

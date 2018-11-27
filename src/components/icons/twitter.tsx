@@ -4,7 +4,7 @@ interface IProps {
   className?: string
 }
 
-const Twitter = ({ className }: IProps) => (
+const Twitter: React.SFC<IProps> = ({ className }) => (
   <svg
     aria-hidden="true"
     className={className}

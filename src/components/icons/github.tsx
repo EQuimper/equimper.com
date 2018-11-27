@@ -4,7 +4,7 @@ interface IProps {
   className?: string
 }
 
-const Github = ({ className }: IProps) => (
+const Github: React.SFC<IProps> = ({ className }) => (
   <svg
     aria-hidden="true"
     role="img"

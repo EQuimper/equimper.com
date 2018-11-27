@@ -4,7 +4,7 @@ interface IProps {
   className?: string
 }
 
-const Linkedin = ({ className }: IProps) => (
+const Linkedin: React.SFC<IProps> = ({ className }) => (
   <svg
     aria-hidden="true"
     role="img"

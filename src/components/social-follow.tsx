@@ -6,6 +6,7 @@ import Facebook from './icons/facebook'
 import Github from './icons/github'
 import Linkedin from './icons/linkedin'
 import RSS from './icons/rss'
+import StackOverFlow from './icons/stackoverflow'
 import Twitter from './icons/twitter'
 import Youtube from './icons/youtube'
 
@@ -53,6 +54,14 @@ const YoutubeIcon = styled(Youtube)`
   }
 `
 
+const StackOverFlowIcon = styled(StackOverFlow)`
+  ${tw('text-grey-dark h-8 w-8')};
+
+  &:hover {
+    color: ${props => props.theme.colors.socialBrand.stackoverflow};
+  }
+`
+
 const RSSIcon = styled(RSS)`
   ${tw('text-grey-dark h-8 w-8 hover:text-blue-lighter')};
 `
@@ -86,6 +95,11 @@ const socials = [
     link: 'https://www.facebook.com/EQuimperCoding',
     icon: <FacebookIcon />,
     name: 'Facebook',
+  },
+  {
+    link: 'https://stackoverflow.com/users/5670861/equimper?tab=profile',
+    icon: <StackOverFlowIcon />,
+    name: 'StackOverFlow',
   },
   {
     link: `${siteConfig.site.url}/rss.xml`,

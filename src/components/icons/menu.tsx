@@ -4,7 +4,7 @@ interface IProps {
   className?: string
 }
 
-const Menu = ({ className }: IProps) => (
+const Menu: React.SFC<IProps> = ({ className }) => (
   <svg
     aria-hidden="true"
     role="img"

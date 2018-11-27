@@ -4,7 +4,7 @@ interface IProps {
   className?: string
 }
 
-const RSS = ({ className }: IProps) => (
+const RSS: React.SFC<IProps> = ({ className }) => (
   <svg
     aria-hidden="true"
     role="img"

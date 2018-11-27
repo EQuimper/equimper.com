@@ -4,7 +4,7 @@ interface IProps {
   className?: string
 }
 
-const Reddit = ({ className }: IProps) => (
+const Reddit: React.SFC<IProps> = ({ className }) => (
   <svg
     aria-hidden="true"
     role="img"

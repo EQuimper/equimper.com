@@ -8,6 +8,7 @@ export interface ITheme {
       googlePlus: string
       linkedin: string
       reddit: string
+      stackoverflow: string
     }
   }
 }

@@ -4,7 +4,7 @@ interface IProps {
   className?: string
 }
 
-const Youtube = ({ className }: IProps) => (
+const Youtube: React.SFC<IProps> = ({ className }) => (
   <svg
     aria-hidden="true"
     role="img"

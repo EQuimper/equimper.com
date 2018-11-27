@@ -4,7 +4,7 @@ interface IProps {
   className?: string
 }
 
-const Close = ({ className }: IProps) => (
+const Close: React.SFC<IProps> = ({ className }) => (
   <svg
     aria-hidden="true"
     role="img"

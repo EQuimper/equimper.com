@@ -10,6 +10,7 @@ export const theme: ITheme = {
       googlePlus: '#DC4E41',
       linkedin: '#0077b5',
       reddit: '#FF4500',
+      stackoverflow: '#F48023',
     },
   },
 }
