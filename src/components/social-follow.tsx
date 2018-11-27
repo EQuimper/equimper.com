@@ -97,14 +97,14 @@ const socials = [
     name: 'Facebook',
   },
   {
-    link: 'https://stackoverflow.com/users/5670861/equimper?tab=profile',
-    icon: <StackOverFlowIcon />,
-    name: 'StackOverFlow',
-  },
-  {
     link: `${siteConfig.site.url}/rss.xml`,
     icon: <RSSIcon />,
     name: 'RSS',
+  },
+  {
+    link: 'https://stackoverflow.com/users/5670861/equimper?tab=profile',
+    icon: <StackOverFlowIcon />,
+    name: 'StackOverFlow',
   },
 ]
 
