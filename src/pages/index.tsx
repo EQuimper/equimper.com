@@ -101,7 +101,7 @@ export const query = graphql`
     allMarkdownRemark(
       sort: { order: DESC, fields: [frontmatter___date] }
       filter: { fileAbsolutePath: { regex: "/posts/" } }
-      limit: 1
+      limit: 3
     ) {
       edges {
         node {
@@ -119,7 +119,7 @@ export const query = graphql`
       }
     }
 
-    allYoutubeVideo(limit: 3) {
+    allYoutubeVideo(limit: 5) {
       edges {
         node {
           id
