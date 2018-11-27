@@ -4,18 +4,19 @@ title: 'Hey, I am Emanuel. Happy to see you there.'
 
 #### Intro
 
-I’m from Quebec, a city in the beautiful country call Canada. My current position its **Full-Stack Web & Mobile Developer** at [AppAndFlow](https://appandflow.com/). I work mainly with this techs
+I’m from Quebec, a city in the beautiful country call Canada. My current position it's **Full-Stack Web & Mobile Developer** at [AppAndFlow](https://appandflow.com/). I work mainly with this techs
 
 - React
 - React-Native
 - NodeJS
 - GraphQL
+- Golang
 - Elixir
 - MongoDB
 - PostgreSQL
 - Vue
 
-I’ve been doing this for the last 3 years, before that, I was in the Canadian Forces. I also work at [Thinkful](https://www.thinkful.com/) and [Bloc](https://bloc.io) where I am a mentor who helps student getting into the web development industry.
+I’ve been doing this for more than 3 years now. Before that, I was in the Canadian Forces. I also work at [Thinkful](https://www.thinkful.com/) and [Bloc](https://bloc.io) where I am a mentor who helps student getting into the web development industry.
 
 Besides that, I own a [Youtube Channel](https://www.youtube.com/channel/UC7R7bcH9-KEBDiGNP1mZnmw) where I teach web development. I try my best to give a good insight into how I think about working with certain problems. I help then getting into Javascript as well with server-side stuff.
 
