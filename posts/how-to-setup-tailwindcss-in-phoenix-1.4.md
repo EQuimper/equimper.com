@@ -7,7 +7,7 @@ tags:
   ['elixir', 'css', 'article', 'phoenix', 'tailwindcss', 'tutorial', 'postcss']
 ---
 
-I've been using Tailwind lately and really loved it. But one thing about this one is how to install it in a new project. My last personal project was with the brand new Phoenix 1.4 framework and I did want to use Tailwind for this one. So here just a "How to" guide about installing this one.
+I've been using [Tailwind](https://tailwindcss.com) lately and really loved it. But one thing about this one is how to install it in a new project. My last personal project was with the brand new Phoenix 1.4 framework and I did want to use Tailwind for this one. So here just a "How to" guide about installing this one.
 
 I did this article, cause I did search for this kind of one in the net and didn't found anything. So I hope that can help someone who tries it :)
 
