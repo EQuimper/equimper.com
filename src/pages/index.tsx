@@ -119,7 +119,7 @@ export const query = graphql`
       }
     }
 
-    allYoutubeVideo(limit: 5) {
+    allYoutubeVideo(limit: 4) {
       edges {
         node {
           id
