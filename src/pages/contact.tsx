@@ -3,7 +3,6 @@ import Img from 'gatsby-image'
 import React, { SFC } from 'react'
 
 import siteConfig from '../../data/siteConfig'
-import TextWithQuotes from '../commons/text-with-quotes'
 import ContactForm from '../components/contact-form'
 import ContactIcon from '../components/icons/contact'
 import Layout from '../components/layout'
@@ -16,7 +15,9 @@ const Root = styled('div')`
 `
 
 const Wrapper = styled('div')`
-  ${tw('bg-white rounded shadow p-4 mb-8 flex flex-col sm:flex-row items-center sm:justify-between')};
+  ${tw(
+    'bg-white rounded shadow p-4 mb-8 flex flex-col sm:flex-row items-center sm:justify-between'
+  )};
 `
 
 const ContactWrapper = styled('div')`
@@ -31,6 +32,10 @@ const BottomWrapper = styled(Wrapper)`
   ${tw(
     'flex flex-col sm:flex-row items-center text-center sm:text-left sm:justify-start'
   )};
+`
+
+const BottomContentWrapper = styled('div')`
+  ${tw('flex-1 items-center text-center')}
 `
 
 const TopWrapper = styled('div')`
@@ -49,8 +54,10 @@ const ContactImgWrapper = styled('div')`
   ${tw('flex w-100 sm:w-1/3')}
 `
 
-const FollowTitle = styled(TextWithQuotes.withComponent('h3'))`
-  ${tw('tracking-wide text-grey-darker font-bold text-xl mt-0')};
+const FollowTitle = styled('blockquote')`
+  ${tw('text-4xl text-blue-dark my-4')}
+  transform: rotate(-3deg);
+  font-family: Shadows Into Light, cursive;
 `
 
 const Avatar = styled(Img)`
@@ -88,7 +95,7 @@ const Contact: SFC<IProps> = ({ data }) => (
           </p>
         </TopWrapper>
         <ContactImgWrapper>
-        <ContactImg />
+          <ContactImg />
         </ContactImgWrapper>
       </Wrapper>
       <ContactWrapper>
@@ -99,10 +106,10 @@ const Contact: SFC<IProps> = ({ data }) => (
         <AvatarWrapper>
           <Avatar fixed={data.avatarImg.fixed} />
         </AvatarWrapper>
-        <div>
-          <FollowTitle>You can also follow or contact me on</FollowTitle>
+        <BottomContentWrapper>
+          <FollowTitle>You can also follow me on</FollowTitle>
           <SocialFollow />
-        </div>
+        </BottomContentWrapper>
       </BottomWrapper>
     </Root>
   </Layout>
