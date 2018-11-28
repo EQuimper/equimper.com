@@ -14,7 +14,7 @@ import { IYoutubeVideo } from '../interfaces/YoutubeVideo'
 import styled from '../utils/styled'
 
 const Root = styled('div')`
-  ${tw('container mx-auto pb-20 sm:pb-0 w-full xl:w-3/4')};
+  ${tw('container mx-auto pb-20 sm:pb-0 w-full lg:w-3/4 2xl:w-1/2')};
 `
 
 const RowWrapper = styled('div')`

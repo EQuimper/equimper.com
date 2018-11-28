@@ -14,7 +14,7 @@ import { IComment } from '../interfaces/Comment'
 import styled from '../utils/styled'
 
 const Root = styled('div')`
-  ${tw('w-full xl:w-3/4 mx-auto pb-12')};
+  ${tw('w-full lg:w-3/4 2xl:w-1/2 mx-auto pb-12')};
 `
 
 const Article = styled('article')`
