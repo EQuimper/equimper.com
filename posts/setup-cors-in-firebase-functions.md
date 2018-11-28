@@ -2,7 +2,7 @@
 title: 'Setup CORS in Firebase Functions'
 linktitle: 'Setup CORS in Firebase Functions'
 date: 2018-11-27
-description: "How can I setup CORS in Google Cloud Functions. How can I remove the error 'Access-Control-Allow-Origin'."
+description: "How can I setup CORS in Google Cloud Functions. How can I remove the error 'Access-Control-Allow-Origin'. You get this issue about CORS and you don't know what to do ? I finnaly fix it on my side and I want to show you how I deal with it."
 tags:
   [
     'article',
@@ -27,7 +27,7 @@ it. Also the example I will show make use of [Typescript](https://www.typescript
 yarn add cors
 ```
 
-After inside your `index.ts` file or whatever file where you import your function just import cors and initialize it.
+After inside your `index.ts` file or whatever file where you import your function just import CORS and initialize it.
 
 ```js
 import cors from 'cors'
