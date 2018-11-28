@@ -248,6 +248,8 @@ class SubscribeForm extends PureComponent<IProps, State> {
                       type="email"
                       placeholder="Email*"
                       onChange={handleChange}
+                      isNotValid={!!(touched.email && errors.email)}
+                      valid={touched.email && !errors.email}
                     />
                     {touched.email &&
                       errors.email && (
@@ -264,6 +266,8 @@ class SubscribeForm extends PureComponent<IProps, State> {
                       value={values.firstName}
                       type="text"
                       placeholder="First Name*"
+                      isNotValid={!!(touched.firstName && errors.firstName)}
+                      valid={touched.firstName && !errors.firstName}
                     />
                     {touched.firstName &&
                       errors.firstName && (

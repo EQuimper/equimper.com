@@ -6,8 +6,11 @@ import Helmet from 'react-helmet'
 
 // tslint:disable-next-line:no-submodule-imports
 import 'prismjs/themes/prism-solarizedlight.css'
+// tslint:disable-next-line
+import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
 import 'typeface-cormorant-garamond'
 import 'typeface-lato'
+import 'typeface-shadows-into-light'
 
 import styled from '../utils/styled'
 import { theme } from '../utils/theme'
@@ -38,6 +41,8 @@ injectGlobal`
     --grey-darkest: #3d4852;
     --grey-lighter: #f3f7f9;
     --green: #38c172;
+    --hightlighter: #fff5c4;
+    --blue-dark: #2779bd;
   }
 
   body {
@@ -58,16 +63,15 @@ injectGlobal`
   }
 
   .md-content > p > a, .md-content > ol > li > a, .md-content > ul > li > a {
-    font-style: oblique;
-    color: var(--grey-darkest);
     text-decoration: none;
-    box-shadow: inset 0 -0.5em 0 var(--primary);
+    box-shadow: inset 0 -0.5em 0 var(--hightlighter);
     transition: box-shadow .2s ease-in-out,-webkit-box-shadow .2s ease-in-out;
     font-weight: 700;
+    color: var(--blue-dark);
   }
 
   .md-content > p > a:hover, .md-content > ol > li > a:hover, .md-content > ul > li > a:hover {
-    box-shadow: inset 0 -1.2em 0 var(--secondary);
+    box-shadow: inset 0 -1.2em 0 var(--hightlighter);
   }
 
   .md-content > p > img {
@@ -93,6 +97,26 @@ injectGlobal`
     margin: 30px 0;
     color: var(--grey-darkest);
     letter-spacing: 0.05em;
+  }
+
+  .md-content > blockquote {
+    /* border: 4px solid var(--secondary);
+    color: var(--secondary); */
+    border: 4px solid var(--blue-dark);
+    color: var(--blue-dark);
+    transform: rotate(-3deg);
+    padding: 16px 32px;
+    max-width: 80%;
+    font-family: Shadows Into Light, cursive;
+    font-size: 32px;
+    margin-top: 64px;
+    margin-bottom: 64px;
+  }
+
+  @media (max-width: 576px) {
+    .md-content > blockquote {
+      max-width: 100%;
+    }
   }
 
   .gatsby-resp-iframe-wrapper {

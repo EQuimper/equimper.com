@@ -20,7 +20,8 @@ In one of my last project, I was using [Firebase Functions](https://firebase.goo
 
 Yes, that will have been so much easier I know. But I want to fix that without going to this path. So after searching on StackOverFlow a lot and try/error I finally figured out :).
 
-First, we need to add this CORS package. Yes I know you can set it without it, but for this tutorial, I will show with it. Also the example I will show make use of [Typescript](https://www.typescriptlang.org/). You can use javascript without any problem also :)
+First, we need to add this CORS package. Yes I know you can set it without it, but for this tutorial, I will show with
+it. Also the example I will show make use of [Typescript](https://www.typescriptlang.org/). You can use javascript without any problem also :)
 
 ```
 yarn add cors
@@ -37,7 +38,7 @@ const corsHandler = cors({
     // Staging URL
     // PROD URL
   ],
-})
+}****)
 ```
 
 We will need to add this `corsHandler` function to your functions.

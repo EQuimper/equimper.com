@@ -18,6 +18,11 @@ const InputWrapper = styled('div')`
   ${tw('mb-4')};
 `
 
+interface IMessageInputProps {
+  valid?: boolean
+  isNotValid?: boolean
+}
+
 const MessageInput = styled('textarea')`
   ${tw(
     'focus:outline-none focus:shadow-outline font-sans bg-grey-lighter appearance-none border-0 border-grey-lighter rounded w-full py-3 px-4 text-sm text-grey-darker leading-tight sm:text-base'
@@ -25,6 +30,28 @@ const MessageInput = styled('textarea')`
 
   resize: vertical;
   min-height: 15rem;
+
+  &:focus {
+    box-shadow: rgba(0, 255, 240, 0.25) 0px 0px 0px 0.2rem;
+    border-color: rgb(0, 255, 240);
+    border-width: 1px;
+  }
+
+  ${(props: IMessageInputProps) => {
+    if (props.valid) {
+      return `
+        box-shadow: rgba(40, 167, 69, 0.25) 0px 0px 0px 0.2rem;
+        border-color: rgb(40, 167, 69);
+        border-width: 1px;
+      `
+    } else if (props.isNotValid) {
+      return `
+        box-shadow: rgba(220, 53, 69, 0.25) 0px 0px 0px 0.2rem;
+        border-color: rgb(220, 53, 69);
+        border-width: 1px;
+      `
+    }
+  }};
 `
 
 const ButtonWrapper = styled('div')``
@@ -270,13 +297,14 @@ class CommentForm extends PureComponent<IProps, State> {
                     value={values.name}
                     type="text"
                     placeholder="Your Name*"
+                    isNotValid={!!(touched.name && errors.name)}
+                    valid={touched.name && !errors.name}
                   />
-                  {touched.name &&
-                    errors.name && (
-                      <ErrorWrapper>
-                        <ErrorMessage>{errors.name}</ErrorMessage>
-                      </ErrorWrapper>
-                    )}
+                  {touched.name && errors.name && (
+                    <ErrorWrapper>
+                      <ErrorMessage>{errors.name}</ErrorMessage>
+                    </ErrorWrapper>
+                  )}
                 </InputWrapper>
                 <InputWrapper>
                   <Input
@@ -286,13 +314,14 @@ class CommentForm extends PureComponent<IProps, State> {
                     value={values.email}
                     type="email"
                     placeholder="Your Email*"
+                    isNotValid={!!(touched.email && errors.email)}
+                    valid={touched.email && !errors.email}
                   />
-                  {touched.email &&
-                    errors.email && (
-                      <ErrorWrapper>
-                        <ErrorMessage>{errors.email}</ErrorMessage>
-                      </ErrorWrapper>
-                    )}
+                  {touched.email && errors.email && (
+                    <ErrorWrapper>
+                      <ErrorMessage>{errors.email}</ErrorMessage>
+                    </ErrorWrapper>
+                  )}
                 </InputWrapper>
                 <InputWrapper>
                   <MessageInput
@@ -302,13 +331,14 @@ class CommentForm extends PureComponent<IProps, State> {
                     value={values.comment}
                     rows={10}
                     placeholder="Your Comment* (markdown is accepted)"
+                    isNotValid={!!(touched.comment && errors.comment)}
+                    valid={touched.comment && !errors.comment}
                   />
-                  {touched.comment &&
-                    errors.comment && (
-                      <ErrorWrapper>
-                        <ErrorMessage>{errors.comment}</ErrorMessage>
-                      </ErrorWrapper>
-                    )}
+                  {touched.comment && errors.comment && (
+                    <ErrorWrapper>
+                      <ErrorMessage>{errors.comment}</ErrorMessage>
+                    </ErrorWrapper>
+                  )}
                 </InputWrapper>
                 <InputWrapper>
                   <CheckBoxWrapper
@@ -332,16 +362,15 @@ class CommentForm extends PureComponent<IProps, State> {
                     <CheckBoxTitle disabled={!emailIsValid}>
                       Notify me of new comments by email!
                     </CheckBoxTitle>
-                    {!emailIsValid &&
-                      this.state.notificationIsHover && (
-                        <ErrorWrapper>
-                          <ErrorMessage>
-                            {values.email.length === 0
-                              ? 'To be able to check, you must provide a email'
-                              : 'To be able to check, you must provide a valid email'}
-                          </ErrorMessage>
-                        </ErrorWrapper>
-                      )}
+                    {!emailIsValid && this.state.notificationIsHover && (
+                      <ErrorWrapper>
+                        <ErrorMessage>
+                          {values.email.length === 0
+                            ? 'To be able to check, you must provide a email'
+                            : 'To be able to check, you must provide a valid email'}
+                        </ErrorMessage>
+                      </ErrorWrapper>
+                    )}
                   </CheckBoxWrapper>
                 </InputWrapper>
                 <ButtonWrapper>

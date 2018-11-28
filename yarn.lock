@@ -14441,6 +14441,11 @@ typeface-lato@^0.0.54:
   resolved "https://registry.yarnpkg.com/typeface-lato/-/typeface-lato-0.0.54.tgz#6ea56309a8b0cfdb7e8246e05de4b58b8272b47c"
   integrity sha512-2/oP5YrXCBSLg+N2ZdWnMbJ0PRIidrJVFHgRoLxo5MNsdu9eE4aBwsoEY/K/+9rKdktGO8zpiXBYPRn9F6U/Sw==
 
+typeface-shadows-into-light@^0.0.54:
+  version "0.0.54"
+  resolved "https://registry.yarnpkg.com/typeface-shadows-into-light/-/typeface-shadows-into-light-0.0.54.tgz#feb434fd96ac21c10775311c073a39f19e529bf5"
+  integrity sha512-1nz9hySCjyQ0l//6+JJx8pwOwzphbPkPFWAZDErmXGplvFX9F14iau4lPbzCLeXoKcWB80qlYkcjwoo+afzLDA==
+
 typescript@^3.1.6:
   version "3.1.6"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.1.6.tgz#b6543a83cfc8c2befb3f4c8fba6896f5b0c9be68"

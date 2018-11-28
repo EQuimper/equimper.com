@@ -57,6 +57,7 @@
     "typed.js": "^2.0.9",
     "typeface-cormorant-garamond": "^0.0.54",
     "typeface-lato": "^0.0.54",
+    "typeface-shadows-into-light": "^0.0.54",
     "yup": "^0.26.6"
   },
   "keywords": [
