@@ -83,7 +83,6 @@ const SEO = ({ postMeta, url, isBlogPost, postImage, customTitle }: IProps) => {
       <meta name="twitter:image" content={image} />
 
       {/* Google Verification tags */}
-
       <meta name="google-site-verification" content={siteConfig.googleVerification} />
 
       <title>{title}</title>
