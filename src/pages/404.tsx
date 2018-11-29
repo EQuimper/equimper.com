@@ -5,11 +5,15 @@ import Layout from '../components/layout'
 import styled from '../utils/styled'
 
 const Wrapper = styled('div')`
-  ${tw('flex flex-col lg:flex-row align-center justify-center')}
+  ${tw('flex flex-col lg:flex-row align-center justify-center lg:justify-start pb-20 lg:pb-0')}
 `
 
 const TextWrapper = styled('div')`
-  ${tw('flex flex-1 text-center lg:text-left align-center justify-center')};
+  ${tw('flex flex-1 text-center lg:text-left align-center mb-4')};
+
+  div {
+    ${tw('w-full')};
+  }
 
   h1 {
     ${tw('tracking-wide text-grey-darker font-bold')};
@@ -21,11 +25,11 @@ const TextWrapper = styled('div')`
 `
 
 const IconWrapper = styled('div')`
-  ${tw('flex flex-1')};
+  ${tw('flex flex-1 align-center justify-center')};
 `
 
 const NotFoundIcon = styled(NotFound)`
-  ${tw('text-blue-dark')};
+  ${tw('text-blue-dark h-64 lg:h-full')};
 
   width: 90%;
 `
