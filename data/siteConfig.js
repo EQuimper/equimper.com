@@ -19,4 +19,5 @@ module.exports = {
   youtubeChannelId: 'UC7R7bcH9-KEBDiGNP1mZnmw',
   youtubeChannelUrl: 'https://www.youtube.com/channel/UC7R7bcH9-KEBDiGNP1mZnmw',
   twitchUrl: 'https://www.twitch.tv/equimper',
+  googleVerification: 'GTGPKnFFTHwpqTch_CsUY13zUgReCkjDBEhX6DSjWXE'
 }
