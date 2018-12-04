@@ -4,14 +4,13 @@ import { graphql, StaticQuery } from 'gatsby'
 import React, { SFC } from 'react'
 import Helmet from 'react-helmet'
 
-// tslint:disable-next-line:no-submodule-imports
-import 'prismjs/themes/prism-solarizedlight.css'
 // tslint:disable-next-line
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
 import 'typeface-cormorant-garamond'
 import 'typeface-lato'
 import 'typeface-shadows-into-light'
 
+import '../assets/code_theme.css'
 import styled from '../utils/styled'
 import { theme } from '../utils/theme'
 import Footer from './footer'
@@ -129,10 +128,6 @@ injectGlobal`
     white-space: nowrap
   }
 
-  .gatsby-highlight pre[class*="language-"] {
-    background-color: #f3f7f9;
-  }
-
   .sk-circle {
     width: 40px;
     height: 40px;
@@ -159,7 +154,6 @@ injectGlobal`
 
     -webkit-animation: sk-bouncedelay 1.2s infinite ease-in-out;
     animation: sk-bouncedelay 1.2s infinite ease-in-out;
-    /* Prevent first frame from flickering when animation starts */
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
   }
