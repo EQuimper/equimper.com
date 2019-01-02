@@ -17,7 +17,7 @@ In the past few month, I wrote all my backend project with the TDD pattern, and 
 
 ### About this tutorial
 
-So in this tutorial we gonna build kind of a bucket list for movies to watch. A user can create a challenge, and put movies to this one. I know not the must awesome project ever, but this will help you see how Lucid, the Adonis ORM work with relationship. We gonna also see how easy this framework will make our live.
+So in this tutorial we gonna build kind of a bucket list for movies to watch. A user can create a challenge, and put movies to this one. I know, this is not the most awesome project ever, but this will help you see how Lucid, the Adonis ORM work with relationship. We gonna also see how easy this framework will make our live.
 
 At the end of this tutorial, we gonna create a service where a user can finally enter just the name of the movie and the year. Us we will use [TheMovieDB Api](https://www.themoviedb.org) and find info about this movie.
 
