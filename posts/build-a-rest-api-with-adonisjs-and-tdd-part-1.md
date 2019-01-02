@@ -7,7 +7,11 @@ tags: ['tutorial', 'adonisjs', 'tdd', 'javascript']
 
 ## Build a REST API with AdonisJs and TDD Part 1
 
-I've been playing lately with [AdonisJs](https://adonisjs.com) a NodeJS MVC framework who look a lot like [Laravel](https://laravel.com/) a really popular PHP framework. I really started to love the Adonis approach, more convention than configuration. I also love the fact they say in the headline `Writing micro-services or you are a fan of TDD, it all boils down to confidence. AdonisJs simplicity will make you feel confident about your code.`.
+I've been playing lately with [AdonisJs](https://adonisjs.com) a NodeJS MVC framework who look a lot like [Laravel](https://laravel.com/) a really popular PHP framework. I really started to love the Adonis approach, more convention than configuration. I also love the fact they say in the headline.
+
+```
+Writing micro-services or you are a fan of TDD, it all boils down to confidence. AdonisJs simplicity will make you feel confident about your code.
+```
 
 In the past few month, I wrote all my backend project with the TDD pattern, and I really feel this help me getting more productive, and more confident with my code. I know TDD is not perfect, can slow you down, when you start, but I really think this can improved your code in the long term.
 
