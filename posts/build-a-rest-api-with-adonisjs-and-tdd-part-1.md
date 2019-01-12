@@ -2,10 +2,8 @@
 title: 'Build a REST API with AdonisJs and TDD Part 1'
 date: 2019-01-02
 description: 'Want to learn how to use AdonisJs by building a rest api using TDD approach? This is the tutorial you want'
-tags: ['tutorial', 'adonisjs', 'tdd', 'javascript']
+tags: ['tutorial', 'adonisjs', 'tdd', 'javascript', 'testing']
 ---
-
-## Build a REST API with AdonisJs and TDD Part 1
 
 I've been playing lately with [AdonisJs](https://adonisjs.com) a NodeJS MVC framework who look a lot like [Laravel](https://laravel.com/) a really popular PHP framework. I really started to love the Adonis approach, more convention than configuration. I also love the fact they say in the headline.
 
@@ -315,9 +313,11 @@ error: relation "users" does not exist
 
 What that mean ? It's because Vow by default don't run migration. But us a developer we don't want to run it manually on every test that will be painful. What can we do ? Adonis make again our live easy. Go in the file `vowfile.js` and uncomment the code already wrote for this
 
-On line 14 `const ace = require('@adonisjs/ace')`
-On line 37 `await ace.call('migration:run', {}, { silent: true })`
-On line 60 `await ace.call('migration:reset', {}, { silent: true })`
+```
+On line 14: const ace = require('@adonisjs/ace')
+On line 37: await ace.call('migration:run', {}, { silent: true })
+On line 60: await ace.call('migration:reset', {}, { silent: true })
+```
 
 Now if you rerun the test you will see
 
@@ -355,9 +355,10 @@ Rerun the test
 'RuntimeException: E_UNDEFINED_METHOD: Method store missing on App/Controllers/Http/ChallengeController\n> More details: https://err.sh/adonisjs/errors/E_UNDEFINED_METHOD'
 ```
 
-Method store is missing. Fine this is normal the controller is empty. Add this to your file `app/Controllers/Http/ChallengeController.js`
+Method store is missing. Fine this is normal the controller is empty. Add this to your file
 
 ```js
+// app/Controllers/Http/ChallengeController.js
 class ChallengeController {
   store() {}
 }
