@@ -56,24 +56,28 @@ const LinkList = styled('ul')`
   ${tw('flex-col list-reset flex items-center sm:flex-row')};
 `
 
-const Footer: SFC<IProps> = ({ siteTitle }) => (
-  <Root>
-    <FooterWrapper>
-      <AllContentWrapper>
-        <AllContent>All content &copy; 2018</AllContent>
-        <SiteTitle to="/">{siteTitle}</SiteTitle>
-      </AllContentWrapper>
-      <LinkList>
-        {constants.siteNav.map(el => (
-          <LinkItem key={el.name}>
-            <Link activeClassName={activeClassName} to={el.url}>
-              {el.name}
-            </Link>
-          </LinkItem>
-        ))}
-      </LinkList>
-    </FooterWrapper>
-  </Root>
-)
+const Footer: SFC<IProps> = ({ siteTitle }) => {
+  const year = new Date().getFullYear()
+
+  return (
+    <Root>
+      <FooterWrapper>
+        <AllContentWrapper>
+          <AllContent>All content &copy; {year}</AllContent>
+          <SiteTitle to="/">{siteTitle}</SiteTitle>
+        </AllContentWrapper>
+        <LinkList>
+          {constants.siteNav.map(el => (
+            <LinkItem key={el.name}>
+              <Link activeClassName={activeClassName} to={el.url}>
+                {el.name}
+              </Link>
+            </LinkItem>
+          ))}
+        </LinkList>
+      </FooterWrapper>
+    </Root>
+  )
+}
 
 export default Footer
