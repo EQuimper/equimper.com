@@ -5,7 +5,7 @@ description: >-
   How was my experience moving from Hugo to Gatsby, Gh-Pages to Netlify. How
   using Netlify-CMS make my workflow for this blog much more simple. How
   Staticman give me a replacement of Disqus.
-date: '2018-08-03T18:58:40-04:00'
+date: 2019-02-05T23:58:40.000Z
 tags:
   - netlify
   - gatsby
