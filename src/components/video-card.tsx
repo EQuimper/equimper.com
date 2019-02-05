@@ -19,7 +19,7 @@ const Wrapper = styled('a')`
   )};
 
   &:hover {
-    ${VideoTitle} {
+    h2 {
       text-decoration: underline;
     }
   }
