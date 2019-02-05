@@ -14436,10 +14436,10 @@ typeface-cormorant-garamond@^0.0.54:
   resolved "https://registry.yarnpkg.com/typeface-cormorant-garamond/-/typeface-cormorant-garamond-0.0.54.tgz#3ade5c92c4686098c6d65d1d75d53f03acd702de"
   integrity sha512-N9F8i6b7CvhgyPTLm3szIueK6nk2samXO36y5N0Gr0VsNEaht5LXrtuwEag9vWuq/wPjR9Dj0Rb1ChGPu9Rpzw==
 
-typeface-lato@^0.0.54:
-  version "0.0.54"
-  resolved "https://registry.yarnpkg.com/typeface-lato/-/typeface-lato-0.0.54.tgz#6ea56309a8b0cfdb7e8246e05de4b58b8272b47c"
-  integrity sha512-2/oP5YrXCBSLg+N2ZdWnMbJ0PRIidrJVFHgRoLxo5MNsdu9eE4aBwsoEY/K/+9rKdktGO8zpiXBYPRn9F6U/Sw==
+typeface-inter@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/typeface-inter/-/typeface-inter-3.2.0.tgz#ca110ea31588dca584afba014e6561349a7ce9db"
+  integrity sha512-RKTJlfgfBpsBiStmjWHfqEFX+MsMbvylS3ZP4j244HsjW6mRqB1nQEF8FN3uRjJfx6N/WH+4T6Xpylez+3Cwaw==
 
 typeface-shadows-into-light@^0.0.54:
   version "0.0.54"

@@ -7,7 +7,7 @@ import Helmet from 'react-helmet'
 // tslint:disable-next-line
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
 import 'typeface-cormorant-garamond'
-import 'typeface-lato'
+import 'typeface-inter'
 import 'typeface-shadows-into-light'
 
 import '../assets/code_theme.css'
@@ -44,8 +44,6 @@ injectGlobal`
     --blue-dark: #2779bd;
   }
 
-
-
   @media screen and (min-width: 576px) {
     html {
       width:100vw;
@@ -57,7 +55,7 @@ injectGlobal`
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: Lato;
+    font-family: Inter;
     position: relative;
   }
 
