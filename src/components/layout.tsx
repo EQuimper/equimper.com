@@ -44,6 +44,15 @@ injectGlobal`
     --blue-dark: #2779bd;
   }
 
+
+
+  @media screen and (min-width: 576px) {
+    html {
+      width:100vw;
+      overflow-x:hidden;
+    }
+  }
+
   body {
     margin: 0;
     padding: 0;
