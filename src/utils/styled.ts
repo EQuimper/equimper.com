@@ -1,4 +1,4 @@
-import styled, { CreateStyled } from 'react-emotion'
+import styled, { CreateStyled } from '@emotion/styled'
 
 import { ITheme } from '../interfaces/Theme'
 
