@@ -2303,7 +2303,7 @@ table {
 }
 
 .font-sans {
-  font-family: Lato, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, sans-serif, Helvetica Neue;
+  font-family: Inter, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, sans-serif, Helvetica Neue;
 }
 
 .font-serif {
@@ -7105,7 +7105,7 @@ table {
   }
 
   .sm\:font-sans {
-    font-family: Lato, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, sans-serif, Helvetica Neue;
+    font-family: Inter, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, sans-serif, Helvetica Neue;
   }
 
   .sm\:font-serif {
@@ -11858,7 +11858,7 @@ table {
   }
 
   .md\:font-sans {
-    font-family: Lato, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, sans-serif, Helvetica Neue;
+    font-family: Inter, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, sans-serif, Helvetica Neue;
   }
 
   .md\:font-serif {
@@ -16611,7 +16611,7 @@ table {
   }
 
   .lg\:font-sans {
-    font-family: Lato, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, sans-serif, Helvetica Neue;
+    font-family: Inter, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, sans-serif, Helvetica Neue;
   }
 
   .lg\:font-serif {
@@ -21364,7 +21364,7 @@ table {
   }
 
   .xl\:font-sans {
-    font-family: Lato, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, sans-serif, Helvetica Neue;
+    font-family: Inter, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, sans-serif, Helvetica Neue;
   }
 
   .xl\:font-serif {
@@ -26117,7 +26117,7 @@ table {
   }
 
   .2xl\:font-sans {
-    font-family: Lato, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, sans-serif, Helvetica Neue;
+    font-family: Inter, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, sans-serif, Helvetica Neue;
   }
 
   .2xl\:font-serif {

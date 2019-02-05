@@ -55,7 +55,7 @@ injectGlobal`
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     position: relative;
   }
 
