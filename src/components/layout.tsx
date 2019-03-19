@@ -5,7 +5,6 @@ import React, { SFC } from 'react'
 import Helmet from 'react-helmet'
 
 // tslint:disable-next-line
-import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
 import 'typeface-cormorant-garamond'
 import 'typeface-inter'
 import 'typeface-shadows-into-light'
