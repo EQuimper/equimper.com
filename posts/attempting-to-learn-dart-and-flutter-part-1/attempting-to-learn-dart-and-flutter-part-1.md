@@ -1,0 +1,92 @@
+---
+title: 'Attempting to learn Dart and Flutter: Part 1'
+date: 2019-03-18T10:00:40-04:00
+description: "I've been playing with Flutter for the past month and just wow. So I would like to keep track of what I learn here about Flutter and Dart, maybe that can help other."
+tags: ['tutorial', 'flutter', 'dart', 'react-native']
+---
+
+## Intro
+
+I've been playing with [Flutter](https://flutter.dev/) for the past month and just wow. So here would be kind of a journal of my progress in the path of learning Flutter and Dart.
+
+## Why doing this ?
+
+After [reading this awesome series](https://dev.to/shindakun/attempting-to-learn-go---building-a-downloader-part-01-44gl) where Steve show how he learn Go I figured out why not doing this also. I learn a lot just from those post and maybe some people can learn from mine here.
+
+## What this series is about ?
+
+So for those who know me, I'm a React/React-Native developer for the past 3+ years. I loved [React](https://reactjs.org/) and [React-Native](https://facebook.github.io/react-native/). But as a developer who is always curious and also who loved to learn I decided why not giving a chance to Flutter.
+
+So I've watch lot of videos on Youtube about it, tutorial, [widget of the week](https://www.youtube.com/playlist?list=PLOU2XLYxmsIL0pH0zWe_ZOHgGhZ7UasUE) etc... . I even start to created a playlist about those must watch video [here](https://www.youtube.com/playlist?list=PLzQWIQOqeUSMhUDr4ntMmtBHIdn4DaLqr).
+
+In this series I will try to show tips and tricks for those coming like me from the world on React-Native. I always find it easier when learning new stuff, comparing it with what you already know. This will be a place for 
+me to also improved, cause when you teach you learn so much. 
+
+## Attempting to learn Dart and Flutter: Part 1
+
+**This part 1 is more an introduction of the series, not lot of code will be involved in this one.** 
+
+### Dart
+
+I've been playing with [Typescript](https://www.typescriptlang.org/) for the past year and really like it, this is really an upgrade of javascript for me. I really loved type.
+
+So when I see [Dart](https://www.dartlang.org/) is type and look a lot like it I really start to get excited. First I even feel `Dart > Typescript`. The type system is easier, you can have everything you like in Typescript almost but I fill is more tighten to the language.
+The devtools is awesome with dart also. Really well integrated with [VSCode](https://code.visualstudio.com/) or the text editor I used right now [IntelliJ](https://www.jetbrains.com/idea/).
+
+  
+For learning Dart and Flutter my first step was to do this [Tutorial](https://www.udemy.com/dart-and-flutter-the-complete-developers-guide/) by Stephen Grider. Just loved it :) Wow, I take so many course from him in the past, and this one again is so good.
+You start by going over Dart and right after Flutter. 
+
+You learn: 
+
+- State Management
+- RxDart
+- Animation
+- Navigation
+- Abstract Class
+- Testing http call
+
+### What I liked about Flutter ?
+
+So here a list of what I really like about Flutter and why I think this can maybe become really really big.
+
+- Hot Stateful Reload
+- Integration with DevTools
+- Profiler
+- Performance peek right inside the Text Editor
+- The performance of Flutter is wow even for a cross-platform tool.
+- Debugger is top notch
+- Navigation is integrated no package to install and also really easy to use.
+- [FutureBuilder](https://youtu.be/ek8ZPdWj4Qo) are just wow, they are like Suspense in react
+- Build in testing tool
+- App size are really small for the hello world project. [2.7mb](https://flutter.dev/docs/resources/faq#how-big-is-the-flutter-engine)
+- [StreamBuilder](https://youtu.be/MkKEWHfy99Y) pretty nice too.
+- Android app are really good, I can get easily 60fps for animation and same for ios, something who was hard to get in react-native. 
+- Animation are so good, really easy to figure out how to play with, I love using also canvas etc.
+- In ios when you use [Cupertino](https://flutter.dev/docs/development/ui/widgets/cupertino) you can have even the navigation big title animation
+- Context kind of api with Inherited Widget
+
+Image of what I mean when I say really well integrated with Text Editor
+
+<img src="/images/1.png">
+
+### What are the cons
+
+Here a list of what I don't really like for now about it
+
+- State management is not simple like react-native
+- Not all packages are create yet, react-native have all the js ecosystem who is a big plus.
+- Widget hell
+
+### A list of stuff to check if you are interested.
+
+- [CodeMagic](https://codemagic.io/) A CI/CD just for Flutter 
+- [Fluttery](https://www.youtube.com/channel/UCtWyVkPpb8An90SNDTNF0Pg) An awesome Youtube Channel about Flutter animation etc 
+- [Inkino](https://github.com/roughike/inKino) An open source cinema app build for the mobile + web cause yes dart can be used for the web.
+- [itsallwidgets](https://itsallwidgets.com/) A site for showcasing app build with Flutter
+
+### End word
+
+I hope you enjoy this little intro, yes I know not lot of code. But in the next part we gonna start to learn a bit more. :) Let me know in the comments if you have any questions or more :)
+
+Happy Coding.
