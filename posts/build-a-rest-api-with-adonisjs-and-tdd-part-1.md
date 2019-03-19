@@ -158,7 +158,11 @@ adonis make:test CreateChallenge
 
 When you get ask unit or functionnal test use functionnal and click enter.
 
-This will create a file `test/functional/create-challenge.spec.js`.
+This will create a file
+
+```
+test/functional/create-challenge.spec.js
+```
 
 Nice first test file create :)
 
