@@ -89,4 +89,4 @@ Here a list of what I don't really like for now about it
 
 I hope you enjoy this little intro, yes I know not lot of code. But in the next part we gonna start to learn a bit more. :) Let me know in the comments if you have any questions or more :)
 
-Happy Coding.
+Happy Coding :)

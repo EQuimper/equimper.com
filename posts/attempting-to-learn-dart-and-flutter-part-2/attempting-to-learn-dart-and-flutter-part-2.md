@@ -1,0 +1,143 @@
+---
+title: 'Attempting to learn Dart and Flutter: Part 2'
+date: 2019-03-25T10:00:40-04:00
+description: "Second post of my series Attempting to learn Dart and Flutter, in this one we will talk about how I'm able to dismissed the keyboard and how to close a modal."
+tags: ['tutorial', 'flutter', 'dart', 'react-native']
+---
+
+## Intro
+
+Flutter has so many widgets, they are all so awesome, you have one for almost everything.
+I really like that, this lets you create your app so much faster, and you have less code to write.
+Less code less bug :) But sometimes, in Flutter, I find stuff pretty hidden, I mean the docs are really really great.
+But in the case I want to show here, I was quite confused about how I will use this.
+
+## Dismissed the keyboard.
+
+So for those coming from react-native, we can use the component [react-native-keyboard-aware-scroll-view](https://github.com/APSL/react-native-keyboard-aware-scroll-view) who follow the input and also handle the dismiss of the keyboard.
+Love this package, but at the same time, I ask myself why this one is not built in. I know you have the [KeyboardAvoidingView](https://facebook.github.io/react-native/docs/keyboardavoidingview) but it's
+not the same quality as this community package. For dismissing a keyboard programmatically, we can do
+
+```js
+Keyboard.dismiss()
+```
+
+Easy enough. I like this. Now time to see how to do this in Flutter.
+
+In Flutter, the keyboard will follow with the input, at least in android. It's pretty nice, so no need to have a third-party library or doing any effort to have this keyboard not showing on top of the input.
+But the thing is how can I dismiss the keyboard. Yes, it's not already built. 
+So what I found is that. **PS** I don't know if this is the best solution but for my case, it's work pretty good.
+
+```dart
+return GestureDetector(
+  onTap: () {
+    // Dismiss keyboard on outside tap
+    FocusScope.of(context).requestFocus(new FocusNode());
+  },
+  child: Scaffold(
+    body: SingleChildScrollView(
+      child: Container(),
+    ),
+  ),
+);
+```
+
+As you can see I wrap the full `Scaffold` widget with a `GestureDetector` and I check for the `onTap` event. 
+When press I can then request the focus on something else.
+This way I can dismiss the keyboard. 
+Not as straight forward as react-native but not that bad.
+
+## Close the ModalBottomSheet
+
+Flutter give us for free an awesome `ModalBottomSheet` who can be used to help a user see action at the bottom of the screen. 
+I love this thing so much. If you want to show this to the user you only need to call `showModalBottomSheet` and that's it.
+
+```dart
+_onFabPress(BuildContext context) {
+  showModalBottomSheet(
+    context: context,
+    builder: (BuildContext context) {
+      return SafeArea(
+        child: Container(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              new ListTile(
+                leading: Icon(Icons.directions_run),
+                title: Text('New Workout'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return WorkoutScreen(
+                          workout: WorkoutModel(
+                            title: 'New Workout',
+                            date: DateTime.now(),
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+      );
+    });
+}
+```
+
+Here I can show the modal with 1 list tile. The modal will then dismiss on outside press, can be swipe down etc. But if use this like that, when I click on an item and open a new screen, and after I go back the modal will still open.
+I need to implicitly tell the navigation to dismiss this one. How can I do this? Pretty easy, I just added `Navigator.pop(context);` before the navigation inside the `onTap()`
+
+```dart
+_onFabPress(BuildContext context) {
+  showModalBottomSheet(
+    context: context,
+    builder: (BuildContext context) {
+      return SafeArea(
+        child: Container(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              new ListTile(
+                leading: Icon(Icons.directions_run),
+                title: Text('New Workout'),
+                onTap: () {
+                  // This will dismiss the modal
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return WorkoutScreen(
+                          workout: WorkoutModel(
+                            title: 'New Workout',
+                            date: DateTime.now(),
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+      );
+    });
+}
+```
+
+## End word
+
+Right now, I really liked Flutter, I'm building my first real app with this and just wow. So many great things. 
+Yes is not all Pros, I have some Cons.
+Lot of them is because I know how to make it in react-native and need to search a lot for the Flutter version. 
+But at the same time, so many thing are much easier.
+
+Hope you enjoy.
+
+Happy Coding :) 
