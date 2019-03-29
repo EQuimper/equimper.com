@@ -87,7 +87,9 @@ class TodosBloc {
   }
 
   void getTodos() {
-    _repository.getTodos().pipe(_todos);
+    _repository.getTodos().onList((doc) {
+      _todos.sink.add(doc);
+    });
   }
 
   StreamTransformer<QuerySnapshot, List<TodoModel>> _todosTransformer() {
@@ -106,7 +108,7 @@ class TodosBloc {
 }
 ```
 
-Here is nothing crazy, **I will make another post about a tutorial about it maybe later, here it's just to show you how I did** the main point here is I pipe my stream from Firestore who is the stream who return a list of map to a new stream who transform his values to a list of TodoModel. Now when I want to use it I can do that.
+Here is nothing crazy, **I will make another post about a tutorial about it maybe later, here it's just to show you how I did** the main point here is I listen to my stream from Firestore who is the stream who return a list of map to a new stream who transform his values to a list of TodoModel. Now when I want to use it I can do that.
 
 ```dart
 return StreamBuilder(
