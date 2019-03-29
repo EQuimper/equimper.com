@@ -87,9 +87,7 @@ class TodosBloc {
   }
 
   void getTodos() {
-    _repository.getTodos().onList((doc) {
-      _todos.sink.add(doc);
-    });
+    _repository.getTodos().onList(_todos.sink.add);
   }
 
   StreamTransformer<QuerySnapshot, List<TodoModel>> _todosTransformer() {
