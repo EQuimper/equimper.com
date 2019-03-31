@@ -1,0 +1,74 @@
+_id: ea155190-53c1-11e9-b3c5-295a240c9847
+email: 3635ef511ddff22b114c869b2eb90723
+message: >-
+  <p>Great post dude!</p>
+
+  <p>I'm having trouble using Factories in my tests. Theoretically the record is
+  created in the database. When I run the console.log it returns the record, but
+  when I check into the database it does not appear in the listing. Any
+  suggestion?</p>
+
+  <p>´´´
+
+  test('can create a queue if valid data', async ({ client }) =&gt; {
+
+  const user = await Factory.model('App/Domains/User/User').create();
+
+  const userIdHashed = userId(user.id)
+
+  const newQueue = {
+
+  name: 'Queue Name',
+
+  description: 'Queue Description',
+
+  status: 'opened',
+
+  privacity: 'public',
+
+  price: '55',
+
+  user_id: userIdHashed,
+
+  max_tickets: '5',
+
+  category: 'uncategorized'
+
+  }</p>
+
+  <p>const response = await client
+
+  .post('/queues')
+
+  .send(newQueue)
+
+  .end()</p>
+
+  <p>response.assertStatus(200)
+
+  response.assertJSONSubset({
+
+  name: newQueue.name,
+
+  description: newQueue.description,
+
+  status: 'Opened',
+
+  privacity: 'Public',
+
+  category: 'Uncategorized',
+
+  price: newQueue.price,
+
+  max_tickets: newQueue['max_tickets'],
+
+  user_id: userIdHashed
+
+  })
+
+  })
+
+  ´´´</p>
+name: Fellipe Botelho
+slug: build-a-rest-api-with-adonisjs-and-tdd-part-1
+date: '2019-03-31T14:33:13.715Z'
