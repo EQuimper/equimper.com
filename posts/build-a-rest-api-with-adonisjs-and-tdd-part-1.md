@@ -533,7 +533,7 @@ Now open the Challenge model in `app/Models/Challenge.js` and add this code
 ```js
 class Challenge extends Model {
   user() {
-    this.belongsTo('App/Models/User')
+    return this.belongsTo('App/Models/User')
   }
 }
 ```
