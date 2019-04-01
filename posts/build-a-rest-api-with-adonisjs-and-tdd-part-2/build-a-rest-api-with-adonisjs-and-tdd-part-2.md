@@ -7,7 +7,7 @@ tags: ['tutorial', 'adonisjs', 'tdd', 'javascript', 'testing']
 
 ## Intro
 
-Been a long time since part 1, sorry about that.
+Been a long time since [part 1](https://equimper.com/blog/build-a-rest-api-with-adonisjs-and-tdd-part-1), sorry about that.
 
 In this part, we will continue our Movies rest API with TDD. We will go a bit faster cause we now know the step we need to make in order to follow the TDD approach.
 
