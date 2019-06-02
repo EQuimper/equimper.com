@@ -1,7 +1,6 @@
 import React from 'react'
 import {
   FacebookShareButton,
-  GooglePlusShareButton,
   LinkedinShareButton,
   RedditShareButton,
   TwitterShareButton,
@@ -10,7 +9,6 @@ import {
 import siteConfig from '../../data/siteConfig'
 import styled from '../utils/styled'
 import Facebook from './icons/facebook'
-import GooglePlus from './icons/google-plus'
 import Linkedin from './icons/linkedin'
 import Reddit from './icons/reddit'
 import Twitter from './icons/twitter'
@@ -47,14 +45,6 @@ const RedditIcon = styled(Reddit)`
   }
 `
 
-const GooglePlusIcon = styled(GooglePlus)`
-  ${tw('h-8 w-8 text-grey-dark cursor-pointer')};
-
-  &:hover {
-    color: ${props => props.theme.colors.socialBrand.googlePlus};
-  }
-`
-
 const ShareWrapper = styled('div')`
   ${tw('flex items-center')};
 `
@@ -84,9 +74,6 @@ const Share = ({ url, title }: IProps) => (
       >
         <TwitterIcon />
       </TwitterShareButton>
-      <GooglePlusShareButton url={url}>
-        <GooglePlusIcon />
-      </GooglePlusShareButton>
       <LinkedinShareButton title={title} url={url}>
         <LinkedinIcon />
       </LinkedinShareButton>
