@@ -1,0 +1,432 @@
+---
+title: 'Build a REST API with AdonisJs and TDD Part 3'
+date: 2019-06-02
+description: 'Want to learn how to use AdonisJs by building a rest api using TDD approach? This is the tutorial you want'
+tags: ['tutorial', 'adonisjs', 'tdd', 'javascript', 'testing']
+---
+
+- [Part 1](https://equimper.com/blog/build-a-rest-api-with-adonisjs-and-tdd-part-1)
+- [Part 2](https://equimper.com/blog/build-a-rest-api-with-adonisjs-and-tdd-part-2)
+
+## Intro
+
+In this part, we jump straight back to our challenges API endpoint where we will add
+a way to a user to fetch all his own challenges. Also would be nice if the user can update and delete an own challenge.
+
+## Get /api/me/challenges
+
+First thing create a new functional test by running
+
+```
+adonis make:test GetUserChallenges
+```
+
+In the test, we will write it in one go.
+
+```js
+'use strict'
+
+const Factory = use('Factory')
+const { test, trait } = use('Test/Suite')('Get User Challenges')
+
+trait('Test/ApiClient')
+trait('Auth/Client')
+
+test('can get all the user challenges', async ({ assert, client }) => {
+  const user = await Factory.model('App/Models/User').create()
+  const otherUser = await Factory.model('App/Models/User').create();
+  const challenges = await Factory.model('App/Models/Challenge').makeMany(2)
+  const otherChallenges = await Factory.model('App/Models/Challenge').makeMany(2)
+
+  await user.challenges().saveMany(challenges)
+  await otherUser.challenges().saveMany(otherChallenges)
+
+  const response = await client
+    .get('/api/me/challenges')
+    .loginVia(user, 'jwt')
+    .end()
+
+  response.assertStatus(200)
+
+  assert.equal(response.body.length, 2);
+
+  response.assertJSONSubset([
+    { title: challenges[0].title },
+    { title: challenges[1].title }
+  ])
+})
+```
+
+This test start we 2 user. One who will be our, and one different user. We also make 2 challenges for us and 2 for the other user.
+
+We make sure here don't save it right to the DB. We want to be able to add the relation with the user.
+
+So we add the challenges to the user with the saveMany method who batch save those challenges. We do the same
+with the other user.
+
+We create a response where we log the user with JWT. After this, we check for a status 200 Ok. Also, we want to make sure
+I just receive 2 challenges, no more, no less. I don't want this endpoint to return me challenges from a others user.
+I add the last check to make sure the 2 challenges we got are the one in the challenges variables.
+
+If you run the test with `adonis test` or `yarn test` you will get 404 error. Remember this mean routes not exist. So jump to the file `routes.js` and add this line.
+
+```js
+Route.get('/api/me/challenges', 'MeController.challenges').middleware(['auth'])
+```
+
+Here this route is nothing too strange, we make sure user is authenticated by using the middleware auth. *We did that already :)* Only thing change is I make use of another controller call MeController. I can have put it inside the ChallengeController but the thing is I like the controller to look like the route's path.
+
+You can create a controller by running
+
+```
+adonis make:controller Me
+```
+
+Go inside the new file created and add this code to the class
+
+```js
+async challenges() {
+
+}
+```
+
+Now your test will have error cause we return nothing etc. Time to add the logic, and wow Adonis make your life soooo easy.
+
+```js
+class MeController {
+  async challenges({ response ,auth}) {
+    const user = await auth.getUser();
+
+    const challenges = await user.challenges().fetch();
+
+    return response.ok(challenges.toJSON());
+  }
+}
+```
+
+First, we need to get the current user. By using the auth.getUser function we can get it. After this to get the challenges we can then
+ask the user to fetch all the challenges owned. This is possible cause of the user model we have done in the first part.
+
+```js
+challenges() {
+  return this.hasMany('App/Models/Challenge')
+}
+```
+
+This challenges method inside the User model gives us the one owned by the user. The thing is those challenges will not be in JSON format so that's why inside the response
+we ask the toJSON method.
+
+Now if you run your test all should be green :)
+
+## Put /api/challenges/:id
+
+Now time to work on the update endpoint. First, create a new test
+
+```
+adonis make:test UpdateChallenge
+```
+
+We will need to test here, the first one is to make sure a user who is the author of the challenge can update it and see the change. The second test is to make
+sure we don't let other users update a challenge.
+
+```js
+'use strict'
+
+const Factory = use('Factory')
+const { test, trait } = use('Test/Suite')('Update Challenge')
+
+trait('Test/ApiClient')
+trait('Auth/Client')
+
+test('a user can update a challenge owned', async ({ client }) => {
+  const user = await Factory.model('App/Models/User').create()
+  const challenge = await Factory.model('App/Models/Challenge').make()
+
+  await user.challenges().save(challenge)
+
+  const data = {
+    title: 'This is my new title'
+  }
+
+  const response = await client
+    .put(`/api/challenges/${challenge.id}`)
+    .loginVia(user, 'jwt')
+    .send(data)
+    .end()
+
+  response.assertStatus(200)
+
+  response.assertJSONSubset({
+    id: challenge.id,
+    title: data.title
+  })
+})
+```
+
+For the first test, this is pretty simple. We first create a user and link the challenge. We then create a data object who will contain the new title. We then use the client and send to the endpoint this data. We check the response to make sure this is 200 ok and also the JSON contains the same id and the new title.
+
+Run test, see it fail. Time to create the route first.
+
+```js
+Route.put('/api/challenges/:id', 'ChallengeController.update')
+  .validator('UpdateChallenge')
+  .middleware(['auth'])
+```
+
+The route is pretty simple, but we add a validator. I will not do the test for this cause this is pretty easy and I want to give you more on the business logic.
+
+For creating the validator just run
+
+```
+adonis make:validator UpdateChallenge
+```
+
+And inside this one paste that
+
+```js
+'use strict'
+
+class UpdateChallenge {
+  get rules() {
+    return {
+      title: 'string',
+      description: 'string'
+    }
+  }
+
+  get messages() {
+    return {
+      string: '{{ field }} is not a valid string'
+    }
+  }
+
+  get validateAll() {
+    return true
+  }
+
+  async fails(errorMessages) {
+    return this.ctx.response.status(400).json(errorMessages)
+  }
+}
+
+module.exports = UpdateChallenge
+```
+
+This is like the CreateChallenge validator but nothing is required.
+
+Inside your ChallengeController now add this method
+
+```js
+async update({ response, request, params, auth }) {
+  const user = await auth.getUser()
+
+  const challenge = await Challenge.findOrFail(params.id)
+
+  if (challenge.user_id !== user.id) {
+    throw new UnauthorizedException();
+  }
+
+  challenge.merge(request.only(['title', 'description']));
+
+  await challenge.save();
+
+  return response.ok(challenge)
+}
+```
+
+This update method will first get the user. Then find the challenge. This will return a free 404 if the challenge doesn't exist. After this, we check for the
+user_id key in the challenge to see if that match the current user. If not we throw an Exception.
+
+Time to make the exception
+
+```
+adonis make:exception UnauthorizedException
+```
+
+```js
+'use strict'
+
+const { LogicalException } = require('@adonisjs/generic-exceptions')
+
+class UnauthorizedException extends LogicalException {
+  handle(error, { response }) {
+    response.status(401).send('Not authorized')
+  }
+}
+
+module.exports = UnauthorizedException
+```
+
+This one will return a 401 with the message Not authorized.
+
+After this, if the user is the author we merge the request object for only title and description. Only fields we accept an update.
+
+We make sure to save the challenge, if not this will not persist. And finally, we return this challenge with the status 200.
+
+If you run the test all should be green. But we need to make sure a nonauthor cannot update.
+
+
+```js
+test('cannot update challenge if not the author', async ({
+  assert,
+  client
+}) => {
+  const user = await Factory.model('App/Models/User').create()
+  const otherUser = await Factory.model('App/Models/User').create()
+  const challenge = await Factory.model('App/Models/Challenge').make()
+
+  await otherUser.challenges().save(challenge)
+
+  const data = {
+    title: 'This is my new title'
+  }
+
+  const response = await client
+    .put(`/api/challenges/${challenge.id}`)
+    .loginVia(user, 'jwt')
+    .send(data)
+    .end()
+
+  response.assertStatus(401)
+
+  const _challenge = await use('App/Models/Challenge').find(challenge.id)
+
+  // check if the title really didn't change
+  assert.notEqual(_challenge.title, data.title)
+})
+```
+
+All should be green :)
+
+
+Time to work on the delete portion
+
+```
+adonis make:test DeleteUserChallenge
+```
+
+You must be good now with the basic stuff :) Lot of repetitive think here, but you win a lot of trust in your project.
+
+```js
+'use strict'
+
+const Factory = use('Factory')
+const { test, trait } = use('Test/Suite')('Delete Challenge')
+
+trait('Test/ApiClient')
+trait('Auth/Client')
+
+test('a user can delete a challenge owned', async ({ client }) => {
+  const user = await Factory.model('App/Models/User').create()
+  const challenge = await Factory.model('App/Models/Challenge').make()
+
+  await user.challenges().save(challenge)
+
+  const response = await client
+    .delete(`/api/challenges/${challenge.id}`)
+    .loginVia(user, 'jwt')
+    .end()
+
+  response.assertStatus(204)
+})
+
+test('cannot delete challenge if not the author', async ({
+  assert,
+  client
+}) => {
+  const user = await Factory.model('App/Models/User').create()
+  const otherUser = await Factory.model('App/Models/User').create()
+  const challenge = await Factory.model('App/Models/Challenge').make()
+
+  await otherUser.challenges().save(challenge)
+
+  const response = await client
+    .delete(`/api/challenges/${challenge.id}`)
+    .loginVia(user, 'jwt')
+    .end()
+
+  response.assertStatus(401)
+
+  const _challenge = await use('App/Models/Challenge').find(challenge.id)
+
+  assert.isNotNull(_challenge)
+})
+```
+
+First, we will test a current user who owns the challenge can delete it. It's almost a copy and paste of the update method. Same for the version where the user cannot delete a challenge if not own.
+
+For the routes now you should add
+
+```js
+Route
+  .delete('/api/challenges/:id', 'ChallengeController.delete')
+  .middleware([
+    'auth'
+  ])
+```
+
+And for your controller, it's easy like that
+
+```js
+  async destroy({ response, params, auth }) {
+    const user = await auth.getUser()
+
+    const challenge = await Challenge.findOrFail(params.id)
+
+    if (challenge.user_id !== user.id) {
+      throw new UnauthorizedException();
+    }
+
+    await challenge.delete()
+
+    return response.noContent();
+  }
+```
+
+Remember findOrFail give you a free 404 if the challenge doesn't exist. We need to just throw 401 exceptions if the user is not the author.
+
+---
+
+## The routes file
+
+If you look right now at your routes file this will look something like that
+
+```js
+Route.get('/api/challenges', 'ChallengeController.all')
+Route.get('/api/challenges/:id', 'ChallengeController.show')
+Route.put('/api/challenges/:id', 'ChallengeController.update')
+  .validator('UpdateChallenge')
+  .middleware(['auth'])
+Route.post('/api/challenges', 'ChallengeController.store')
+  .validator('CreateChallenge')
+  .middleware(['auth'])
+Route.delete('/api/challenges/:id', 'ChallengeController.destroy').middleware([
+  'auth'
+])
+
+Route.get('/api/me/challenges', 'MeController.challenges').middleware(['auth'])
+```
+
+Must be another way of doing this repetetive task ? And yes we can make use of [grouping](https://adonisjs.com/docs/4.1/routing#_route_groups)
+
+```js
+Route.group(() => {
+  Route.get('/', 'ChallengeController.all')
+  Route.get('/:id', 'ChallengeController.show')
+}).prefix('/api/challenges')
+Route.group(() => {
+  Route.post('/', 'ChallengeController.store').validator('CreateChallenge')
+  Route.put('/:id', 'ChallengeController.update').validator('UpdateChallenge')
+  Route.delete('/:id', 'ChallengeController.destroy')
+}).prefix('/api/challenges').middleware(['auth'])
+```
+
+If you ask why do we don't nested them, it's because right now we can't with the version we run. This is the error you will get
+
+```
+RuntimeException: E_NESTED_ROUTE_GROUPS: Nested route groups are not allowed
+```
+
+---
+
+I hope you enjoy this post :) And we talk in part 4 where we will start to add a bit more interaction with the API :)
