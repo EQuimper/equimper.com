@@ -10,7 +10,7 @@ tags: ['tutorial', 'adonisjs', 'tdd', 'javascript', 'testing']
 
 ## Intro
 
-In this part, we jump straight back to our challenges api endpoint where we will add
+In this part, we jump straight back to our challenges API endpoint where we will add
 a way to a user to fetch all his own challenges. Also would be nice if the user can update and delete an own challenge.
 
 ## Get /api/me/challenges
@@ -21,7 +21,7 @@ First thing create a new functional test by running
 adonis make:test GetUserChallenges
 ```
 
-In the test we will write it in one go.
+In the test, we will write it in one go.
 
 ```js
 'use strict'
@@ -59,14 +59,14 @@ test('can get all the user challenges', async ({ assert, client }) => {
 
 This test start we 2 user. One who will be our, and one different user. We also make 2 challenges for us and 2 for the other user.
 
-We make sure here don't save it right to the db. We want to be able to add the relation with the user.
+We make sure here don't save it right to the DB. We want to be able to add the relation with the user.
 
 So we add the challenges to the user with the saveMany method who batch save those challenges. We do the same
 with the other user.
 
-We create a response where we log the user with jwt. After this we check for a status 200 Ok. Also we want to make sure
+We create a response where we log the user with JWT. After this, we check for a status 200 Ok. Also, we want to make sure
 I just receive 2 challenges, no more, no less. I don't want this endpoint to return me challenges from a others user.
-I add a last check to make sure the 2 challenges we got are the one in the challenges variables.
+I add the last check to make sure the 2 challenges we got are the one in the challenges variables.
 
 If you run the test with `adonis test` or `yarn test` you will get 404 error. Remember this mean routes not exist. So jump to the file `routes.js` and add this line.
 
@@ -74,8 +74,7 @@ If you run the test with `adonis test` or `yarn test` you will get 404 error. Re
 Route.get('/api/me/challenges', 'MeController.challenges').middleware(['auth'])
 ```
 
-Here this route is nothing to strange, we make sure user is authenticated by using the middleware auth. *We did that already :)* Only thing change is I make use of an
-other controller call MeController. I can have put it inside the ChallengeController but the thing is I like the controller to look like the routes path.
+Here this route is nothing too strange, we make sure user is authenticated by using the middleware auth. *We did that already :)* Only thing change is I make use of another controller call MeController. I can have put it inside the ChallengeController but the thing is I like the controller to look like the route's path.
 
 You can create a controller by running
 
@@ -105,7 +104,7 @@ class MeController {
 }
 ```
 
-First we need to get the current user. By using the auth.getUser function we can get it. After this to get the challenges we can then
+First, we need to get the current user. By using the auth.getUser function we can get it. After this to get the challenges we can then
 ask the user to fetch all the challenges owned. This is possible cause of the user model we have done in the first part.
 
 ```js
@@ -114,21 +113,21 @@ challenges() {
 }
 ```
 
-This challenges method inside the User model give us the one owned by the user. The thing is those challenges will not be in json format so that's why inside the response
+This challenges method inside the User model gives us the one owned by the user. The thing is those challenges will not be in JSON format so that's why inside the response
 we ask the toJSON method.
 
 Now if you run your test all should be green :)
 
 ## Put /api/challenges/:id
 
-Now time to work on the update endpoint. First create new test
+Now time to work on the update endpoint. First, create a new test
 
 ```
 adonis make:test UpdateChallenge
 ```
 
 We will need to test here, the first one is to make sure a user who is the author of the challenge can update it and see the change. The second test is to make
-sure we don't let other user update a challenge.
+sure we don't let other users update a challenge.
 
 ```js
 'use strict'
@@ -164,8 +163,7 @@ test('a user can update a challenge owned', async ({ client }) => {
 })
 ```
 
-For the first test this is pretty simple. We first create a user, and link the challenge. We then create a data object who will contain the new title. We then
-use the client and send to the endpoint this data. We check the response to make sure this is 200 ok and also the json contain the same id and the new title.
+For the first test, this is pretty simple. We first create a user and link the challenge. We then create a data object who will contain the new title. We then use the client and send to the endpoint this data. We check the response to make sure this is 200 ok and also the JSON contains the same id and the new title.
 
 Run test, see it fail. Time to create the route first.
 
@@ -236,8 +234,8 @@ async update({ response, request, params, auth }) {
 }
 ```
 
-This update method will first get the user. Then find the challenge. This will return a free 404 if the challenge don't exist. After this we check for the
-user_id key in challenge to see if that match the current user. If not we throw an Exception.
+This update method will first get the user. Then find the challenge. This will return a free 404 if the challenge doesn't exist. After this, we check for the
+user_id key in the challenge to see if that match the current user. If not we throw an Exception.
 
 Time to make the exception
 
@@ -261,11 +259,11 @@ module.exports = UnauthorizedException
 
 This one will return a 401 with the message Not authorized.
 
-After this if the user is the author we merge the request object for only title and description. Only fields we accept an update.
+After this, if the user is the author we merge the request object for only title and description. Only fields we accept an update.
 
-We make sure to save the challenge, if not this will not persist. And finally we return this challenge with the status 200.
+We make sure to save the challenge, if not this will not persist. And finally, we return this challenge with the status 200.
 
-If you run the test all should be green. But we need to make sure a non author cannot update.
+If you run the test all should be green. But we need to make sure a nonauthor cannot update.
 
 
 ```js
@@ -355,7 +353,7 @@ test('cannot delete challenge if not the author', async ({
 })
 ```
 
-First we will test a current user who own the challenge can delete it. It's almost a copy and paste of the update method. Same for the version where the user cannot delete a challenge if not own.
+First, we will test a current user who owns the challenge can delete it. It's almost a copy and paste of the update method. Same for the version where the user cannot delete a challenge if not own.
 
 For the routes now you should add
 
@@ -385,7 +383,7 @@ And for your controller, it's easy like that
   }
 ```
 
-Remember findOrFail give you a free 404 if the challenge don't exist. We need to just throw 401 exception if the user is not the author.
+Remember findOrFail give you a free 404 if the challenge doesn't exist. We need to just throw 401 exceptions if the user is not the author.
 
 ---
 
@@ -431,4 +429,4 @@ RuntimeException: E_NESTED_ROUTE_GROUPS: Nested route groups are not allowed
 
 ---
 
-I hope you enjoy this post :) And we talk in part 4 where we will start to add a bit more interaction with the api :)
+I hope you enjoy this post :) And we talk in part 4 where we will start to add a bit more interaction with the API :)
