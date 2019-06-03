@@ -5,6 +5,10 @@ description: 'Want to learn how to use AdonisJs by building a rest api using TDD
 tags: ['tutorial', 'adonisjs', 'tdd', 'javascript', 'testing']
 ---
 
+- [Part 2](https://equimper.com/blog/build-a-rest-api-with-adonisjs-and-tdd-part-2)
+- [Part 3](https://equimper.com/blog/build-a-rest-api-with-adonisjs-and-tdd-part-3)
+- [Source Code](https://github.com/EQuimper/adonis-tdd-tutorial-demo)
+
 I've been playing lately with [AdonisJs](https://adonisjs.com) a NodeJS MVC framework who look a lot like [Laravel](https://laravel.com/) a really popular PHP framework. I really started to love the Adonis approach, more convention than configuration. I also love the fact they say in the headline.
 
 ```

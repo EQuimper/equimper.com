@@ -5,6 +5,10 @@ description: 'Want to learn how to use AdonisJs by building a rest api using TDD
 tags: ['tutorial', 'adonisjs', 'tdd', 'javascript', 'testing']
 ---
 
+- [Part 1](https://equimper.com/blog/build-a-rest-api-with-adonisjs-and-tdd-part-1)
+- [Part 3](https://equimper.com/blog/build-a-rest-api-with-adonisjs-and-tdd-part-3)
+- [Source Code](https://github.com/EQuimper/adonis-tdd-tutorial-demo)
+
 ## Intro
 
 Been a long time since [part 1](https://equimper.com/blog/build-a-rest-api-with-adonisjs-and-tdd-part-1), sorry about that.
