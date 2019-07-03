@@ -1,0 +1,44 @@
+_id: 61acf620-9dd9-11e9-81e8-0f4031fb7b4c
+email: e86cf869ec0320ef31c12261c3ba9910
+message: >-
+  <p>There are a couple additional changes that should be made to use sqlite3 in
+  memory vs. as a file:</p>
+
+  <p>In the vowfile.js, update the ace call for migration to include
+  <code>keepAlive: true</code>:</p>
+
+  <pre><code>  await ace.call('migration:run', {}, { silent: true, keepAlive:
+  true })
+
+  </code></pre>
+
+  <p>Without this, it fails to run properly.</p>
+
+  <p>Second, most importantly, how to actually run sqlite <em>in memory</em>
+
+  Either update the default sqlite db config, or add an additional one
+  specifically for testing. I opt for the latter.</p>
+
+  <p>In the <code>config/database.js</code> file:</p>
+
+  <pre><code>sqlite_testing: {
+    client: 'sqlite3',
+    connection: ':memory:',
+    useNullAsDefault: true,
+    debug: Env.get('DB_DEBUG', false),
+  },
+
+  </code></pre>
+
+  <p>The important bit is specifying the connection as <code>:memory:</code>
+  otherwise it'll write a file to disk...</p>
+
+  <p>Then of course, update the .env.testing file to use the appropriate db
+  config:</p>
+
+  <pre><code>DB_CONNECTION=sqlite_testing
+
+  </code></pre>
+name: Will Vincent
+slug: build-a-rest-api-with-adonisjs-and-tdd-part-2
+date: '2019-07-03T21:27:38.662Z'
