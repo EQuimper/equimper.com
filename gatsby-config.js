@@ -26,6 +26,12 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-plugin-disqus',
+      options: {
+        shortname: 'equimper',
+      },
+    },
+    {
       resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/src`,
