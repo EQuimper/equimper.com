@@ -1,10 +1,10 @@
 import { graphql } from 'gatsby'
+import { Disqus } from 'gatsby-plugin-disqus'
 import React from 'react'
 
-import CommentForm from '../components/comment-form'
-import CommentsList from '../components/comments-list'
 import Layout from '../components/layout'
 import OtherPostLinks from '../components/other-post-links'
+import RowTitle from '../components/row-title'
 import SEO from '../components/seo'
 import Share from '../components/share'
 import SubscribeForm from '../components/subscribe-form'
@@ -72,6 +72,12 @@ const BlogPost = ({ data, location, pageContext }: IProps) => {
 
   const url = `${data.site.siteMetadata.siteUrl}${location.pathname}`
 
+  const disqusConfig = {
+    url,
+    identifier: post.id,
+    title: post.frontmatter.title,
+  }
+
   return (
     <Layout showProgress>
       <SEO url={url} isBlogPost postMeta={post.frontmatter} />
@@ -105,12 +111,9 @@ const BlogPost = ({ data, location, pageContext }: IProps) => {
 
         <SubscribeForm avatar={data.avatarImg.fixed} />
 
-        <CommentForm slug={data.markdownRemark.fields.slug} />
+        <RowTitle title="Comments" />
 
-        <CommentsList
-          avatarImg={data.smallAvatarImg.fixed}
-          comments={(data.comments && data.comments.edges) || []}
-        />
+        <Disqus config={disqusConfig} />
       </Root>
     </Layout>
   )
@@ -137,17 +140,6 @@ export const query = graphql`
         title
         tags
         description
-      }
-    }
-
-    comments: allCommentsYaml(filter: { slug: { eq: $slug } }, limit: 5) {
-      edges {
-        node {
-          id
-          name
-          message
-          date(formatString: "MMMM DD, YYYY")
-        }
       }
     }
 
