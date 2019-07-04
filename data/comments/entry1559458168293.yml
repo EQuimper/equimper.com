@@ -1,0 +1,30 @@
+_id: 90dafbd0-8502-11e9-ba28-3542af84de90
+email: 92b2f1eef56fd94b7cf5a217d8b03bc3
+message: >-
+  <p>Hi there,
+
+  Thank you for great tutorial.
+
+  I have one issue with test runner.</p>
+
+  <p>The result of test is sandwich between migration up and migration down
+  information which I don't need.
+
+  Silent argument is passd to vowfile.js as well. This removes the list of
+  migration files run. But doesn't hide other unnecessary information.</p>
+
+  <p>const ace = require('@adonisjs/ace')
+
+  await ace.call('migration:run', {}, { silent: true })
+
+  await ace.call('migration:reset', {}, { silent: true })</p>
+
+  <p><a
+  href="https://stackoverflow.com/questions/56412661/how-do-i-hide-schema-and-migration-information-while-running-migration-in-adonis"
+  rel="nofollow">I have asked question in stackoverflow as well, haven't got
+  answer yet. </a></p>
+
+  <p>Thanks for advance.</p>
+name: Amrit Shrestha
+slug: build-a-rest-api-with-adonisjs-and-tdd-part-2
+date: '2019-06-02T06:49:28.292Z'
