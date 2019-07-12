@@ -2,7 +2,6 @@ import React, { SFC } from 'react'
 
 import siteConfig from '../../data/siteConfig.js'
 import styled from '../utils/styled'
-import Facebook from './icons/facebook'
 import Github from './icons/github'
 import Linkedin from './icons/linkedin'
 import RSS from './icons/rss'
@@ -35,14 +34,6 @@ const TwitterIcon = styled(Twitter)`
 
   &:hover {
     color: ${props => props.theme.colors.socialBrand.twitter};
-  }
-`
-
-const FacebookIcon = styled(Facebook)`
-  ${tw('text-grey-dark h-8 w-8')};
-
-  &:hover {
-    color: ${props => props.theme.colors.socialBrand.facebook};
   }
 `
 
@@ -90,11 +81,6 @@ const socials = [
     link: 'https://twitter.com/QuimperEmanuel',
     icon: <TwitterIcon />,
     name: 'Twitter',
-  },
-  {
-    link: 'https://www.facebook.com/EQuimperCoding',
-    icon: <FacebookIcon />,
-    name: 'Facebook',
   },
   {
     link: `${siteConfig.site.url}/rss.xml`,
