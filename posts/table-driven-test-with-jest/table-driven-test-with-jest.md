@@ -1,0 +1,57 @@
+---
+title: 'Table driven test with jest'
+date: 2019-10-03
+description: 'How can we use table driven test with jest. How can that make your life easier.'
+tags: ['jest', 'javascript', 'testing']
+---
+
+I've been doing some Golang lately, and kind of really like there idea about how they make the tests so simple. One of the ways to make a test in Go is what they call [Table Driven Tests](https://github.com/golang/go/wiki/TableDrivenTests).
+
+This is nice when you want to test something that is kind of tedious to right. Example, you create a function where you want to test a lot of input and see if the result is the expected one. You can go this way.
+
+```js
+describe('sum', () => {
+  it('should return 2 if input is 1 and 1', () => {
+    expect(sum(1, 1)).toBe(2)
+  })
+
+  it('should return 5 if input is 2 and 3', () => {
+    expect(sum(2, 3)).toBe(5)
+  })
+})
+```
+
+As you can see, this becomes a lot of repeated code. As a programmer, we are kind of lazy, but in a good way. We don't like to copy the same code again. First it's time-consuming and secondly, this is error-prone.
+
+So how can we rewrite this in a better way? This is where [jest each](https://jestjs.io/docs/en/api#testeachtable-name-fn-timeout) comes to the rescue. If you read the first sentence this will make sense
+
+```
+Use test.each if you keep duplicating the same test with different data. test.each allows you to write the test once and pass data in.
+```
+
+So how can I use this? Quite easy, first I will show you an example and I will explain right after.
+
+```js
+describe('sum', () => {
+  test.each`
+    inputA | inputB | expected
+    ${1}   | ${1}   | ${2}
+    ${2}   | ${3}   | ${5}
+  `(
+    'should return $expected if input is $inputA and $inputB',
+    ({ inputA, inputB, expected }) => {
+      expect(sum(inputA, inputB)).toBe(expected)
+    }
+  )
+})
+```
+
+<iframe src="https://codesandbox.io/embed/amazing-poincare-nf7b1?autoresize=1&fontsize=14&previewwindow=tests" title="amazing-poincare-nf7b1" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+
+So first we can write a table inside the tagged template literal. The second argument is the name of the test. As you can see you do have access to your table header variables. You just need to prefix those with `$` here we have `$inputA` example for the first table header. The 3rd argument is the test function, the same thing as what you do in any other test. As you can see the beauty of this, it's you can add test to that so easily. The only issue, I did get with that is almost the naming, but a tip is _keep the naming of your arguments_.
+
+## Conclusion
+
+I feel this is something you can add to your testing arsenal. This is not for every test for sure. But this can clean up a lot of duplicate code in those tests where this makes sense.
+
+Let me know what you think about it in the chat below.

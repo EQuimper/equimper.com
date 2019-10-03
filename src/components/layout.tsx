@@ -165,6 +165,9 @@ const Layout: SFC<IProps> = ({ children, showProgress }) => (
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
+                background-color: #011627;
+                color: #fff;
+                border-radius: 2px;
               }
 
               .sk-circle {

@@ -6,8 +6,6 @@ const serverBaseUrl =
 export const constants = {
   serverBaseUrl,
   image: avatar,
-  staticManUrl:
-    'https://api.staticman.net/v2/entry/EQuimper/equimper.com/master',
   mailChimpUrl: `${serverBaseUrl}/mailchimp/subscribe`,
   contactMeUrl: `${serverBaseUrl}/contact-me`,
 
