@@ -38,6 +38,10 @@ const DetailWrapper = styled('div')`
   ${tw('mb-6')};
 `
 
+const DisqusWrapper = styled('div')`
+  ${tw('mb-6')}
+`
+
 interface IProps {
   data: {
     markdownRemark: IBlogPost
@@ -113,7 +117,9 @@ const BlogPost = ({ data, location, pageContext }: IProps) => {
 
         <RowTitle title="Comments" />
 
-        <Disqus config={disqusConfig} />
+        <DisqusWrapper>
+          <Disqus config={disqusConfig} />
+        </DisqusWrapper>
       </Root>
     </Layout>
   )

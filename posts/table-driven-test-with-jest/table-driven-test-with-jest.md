@@ -48,7 +48,7 @@ describe('sum', () => {
 
 <iframe src="https://codesandbox.io/embed/amazing-poincare-nf7b1?autoresize=1&fontsize=14&previewwindow=tests" title="amazing-poincare-nf7b1" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;margin:30px 0;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
-So first we can write a table inside the tagged template literal. The second argument is the name of the test. As you can see you do have access to your table header variables. You just need to prefix those with `$` here we have `$inputA` example for the first table header. The 3rd argument is the test function, the same thing as what you do in any other test. As you can see the beauty of this, it's you can add test to that so easily. The only issue, I did get with that is almost the naming, but a tip is `keep the naming of your arguments`.
+So first we can write a table inside the tagged template literal. The second argument is the name of the test. As you can see you do have access to your table header variables. You just need to prefix those with `$` here we have `$inputA` example for the first table header. The 3rd argument is the test function, the same thing as what you do in any other test. As you can see the beauty of this, it's you can add test to that so easily. The only issue, I did get with that is almost the naming, but a tip is **keep the naming of your arguments**.
 
 ## Conclusion
 
