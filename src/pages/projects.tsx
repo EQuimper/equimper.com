@@ -1,6 +1,5 @@
 import { graphql } from 'gatsby'
-import React, { SFC } from 'react'
-import { Trail } from 'react-spring'
+import React from 'react'
 
 import siteConfig from '../../data/siteConfig'
 import ProjectsIcon from '../components/icons/projects'
@@ -69,7 +68,7 @@ const animOpts = {
   to: { opacity: 1, y: 0 },
 }
 
-const ProjectsPage: SFC<IProps> = ({ data }) => (
+const ProjectsPage: React.FC<IProps> = ({ data }) => (
   <Layout>
     <SEO url={`${siteConfig.site.url}/projects`} customTitle="Projects" />
 
@@ -87,39 +86,17 @@ const ProjectsPage: SFC<IProps> = ({ data }) => (
       <RowTitle title="Librairies" />
 
       <Row>
-        <Trail
-          {...animOpts}
-          native
-          keys={data.libraries.edges.map(({ node }) => node.id)}
-        >
-          {data.libraries.edges.map(({ node }) => (styles: any) => (
-            <ProjectCard
-              withAnimation
-              style={styles}
-              key={node.id}
-              data={node}
-            />
-          ))}
-        </Trail>
+        {data.libraries.edges.map(({ node }) => (
+          <ProjectCard withAnimation key={node.id} data={node} />
+        ))}
       </Row>
 
       <RowTitle title="Applications" />
 
       <Row>
-        <Trail
-          {...animOpts}
-          native
-          keys={data.applications.edges.map(({ node }) => node.id)}
-        >
-          {data.applications.edges.map(({ node }) => (styles: any) => (
-            <ProjectCard
-              withAnimation
-              style={styles}
-              key={node.id}
-              data={node}
-            />
-          ))}
-        </Trail>
+        {data.applications.edges.map(({ node }) => (
+          <ProjectCard withAnimation key={node.id} data={node} />
+        ))}
       </Row>
     </Root>
   </Layout>

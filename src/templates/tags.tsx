@@ -1,6 +1,5 @@
 import { graphql } from 'gatsby'
 import React from 'react'
-import { Transition } from 'react-spring'
 
 import BlogCard from '../components/blog-card'
 import Layout from '../components/layout'
@@ -41,17 +40,7 @@ const Tags = ({ data, pageContext }: IProps) => {
         {console.log('data', data)}
 
         {edges.map(({ node }) => (
-          <Transition
-            from={{ opacity: 0, x: -100 }}
-            enter={{ opacity: 1, x: 0 }}
-            leave={{ opacity: 0, x: 100 }}
-            native
-            key={node.id}
-          >
-            {(styles: any) => (
-              <BlogCard withAnimation style={styles} data={node} />
-            )}
-          </Transition>
+          <BlogCard withAnimation data={node} key={node.id} />
         ))}
       </Root>
     </Layout>

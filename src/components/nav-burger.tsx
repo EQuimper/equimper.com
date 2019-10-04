@@ -1,12 +1,7 @@
 import { Link as GatsbyLink } from 'gatsby'
-import React, { PureComponent } from 'react'
+import React, { useState } from 'react'
 import { Portal } from 'react-portal'
-import { animated, Spring, Trail } from 'react-spring'
-// @ts-ignore
-// tslint:disable-next-line:no-submodule-imports
-import { Easing, TimingAnimation } from 'react-spring/dist/addons'
 
-import { animationFromY } from '../utils/animations'
 import { constants } from '../utils/constants'
 import styled from '../utils/styled'
 import Close from './icons/close'
@@ -22,7 +17,7 @@ const MenuIcon = styled(Menu)`
   ${tw('h-4 w-4 text-grey-darker')};
 `
 
-const ModalWrapper = styled(animated.div)`
+const ModalWrapper = styled('div')`
   ${tw('fixed pin z-20 bg-white-80')};
 `
 
@@ -40,7 +35,7 @@ const LinkList = styled('ul')`
   ${tw('list-reset items-center')};
 `
 
-const LinkItem = styled(animated.li)`
+const LinkItem = styled('li')`
   ${tw('text-center mb-4')};
 `
 
@@ -68,76 +63,45 @@ type State = Readonly<{
   isOpen: boolean
 }>
 
-class NavBurger extends PureComponent<P, State> {
-  readonly state = {
-    isOpen: false,
-  }
+const NavBurger = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false)
 
-  openPortal = () => {
-    // document.body.classList.add('stop-scrolling')
-    this.setState({ isOpen: true })
-  }
+  const closePortal = () => setIsOpen(false)
+  const openPortal = () => setIsOpen(true)
 
-  closePortal = () => {
-    // document.body.classList.remove('stop-scrolling')
-    this.setState({ isOpen: false })
-  }
+  return (
+    <>
+      <NavMenu aria-label="Menu" type="button" onClick={openPortal}>
+        <MenuIcon />
+      </NavMenu>
 
-  render() {
-    return (
-      <>
-        <NavMenu aria-label="Menu" type="button" onClick={this.openPortal}>
-          <MenuIcon />
-        </NavMenu>
-
-        {this.state.isOpen && (
-          <Portal>
-            <Spring
-              impl={TimingAnimation}
-              native
-              from={{ opacity: 0 }}
-              to={{ opacity: 1 }}
-              config={{ duration: 400, easing: Easing.inOut(Easing.ease) }}
-            >
-              {styles => (
-                <>
-                  <ModalWrapper style={styles} />
-                  <Modal>
-                    <CloseButton
-                      type="button"
-                      aria-label="Close"
-                      onClick={this.closePortal}
-                    >
-                      <CloseIcon />
-                    </CloseButton>
-                    <LinkList>
-                      <Trail
-                        from={{ opacity: 0, y: -100 }}
-                        to={{ opacity: 1, y: 0 }}
-                        native
-                        keys={constants.siteNav.map(el => el.name)}
-                      >
-                        {constants.siteNav.map(el => (s: any) => (
-                          <LinkItem
-                            key={el.name}
-                            style={animationFromY(s, true)}
-                          >
-                            <Link activeClassName={activeClassName} to={el.url}>
-                              {el.name}
-                            </Link>
-                          </LinkItem>
-                        ))}
-                      </Trail>
-                    </LinkList>
-                  </Modal>
-                </>
-              )}
-            </Spring>
-          </Portal>
-        )}
-      </>
-    )
-  }
+      {isOpen && (
+        <Portal>
+          <>
+            <ModalWrapper />
+            <Modal>
+              <CloseButton
+                type="button"
+                aria-label="Close"
+                onClick={closePortal}
+              >
+                <CloseIcon />
+              </CloseButton>
+              <LinkList>
+                {constants.siteNav.map(item => (
+                  <LinkItem key={item.name}>
+                    <Link activeClassName={activeClassName} to={item.url}>
+                      {item.name}
+                    </Link>
+                  </LinkItem>
+                ))}
+              </LinkList>
+            </Modal>
+          </>
+        </Portal>
+      )}
+    </>
+  )
 }
 
 export default NavBurger

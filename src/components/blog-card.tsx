@@ -1,13 +1,12 @@
 import { Link as GatsbyLink } from 'gatsby'
 import React from 'react'
-import { animated } from 'react-spring'
 
 import { IBlogPost } from '../interfaces/BlogPost'
 import { animationFromX } from '../utils/animations'
 import styled from '../utils/styled'
 import TagList from './tags-list'
 
-const Post = styled(animated.div)`
+const Post = styled('div')`
   ${tw('bg-white rounded p-4 pb-0 mb-4 shadow')};
 `
 
@@ -47,11 +46,10 @@ interface IProps {
     opacity: number
     x: any
   }
-  withAnimation?: boolean
 }
 
-const BlogCard = ({ data, style, withAnimation = false }: IProps) => (
-  <Post style={animationFromX(style, withAnimation)}>
+const BlogCard: React.FC<IProps> = ({ data, style }) => (
+  <Post>
     <TopWrapper>
       <PostTitleWrapper>
         <PostTitle to={`/blog/${data.fields.slug}`}>

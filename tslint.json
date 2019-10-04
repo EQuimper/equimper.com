@@ -12,7 +12,8 @@
     "quotemark": [true, "single", "jsx-double"],
     "no-empty-interface": false,
     "object-literal-sort-keys": false,
-    "jsx-boolean-value": false
+    "jsx-boolean-value": false,
+    "no-submodule-imports": false
   },
   "rulesDirectory": []
 }
