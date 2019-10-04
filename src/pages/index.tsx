@@ -1,6 +1,5 @@
 import { graphql } from 'gatsby'
 import React from 'react'
-import { Trail } from 'react-spring'
 
 import siteConfig from '../../data/siteConfig'
 import AuthorIntro from '../components/author-intro'
@@ -73,21 +72,13 @@ const IndexPage: React.SFC<IProps> = ({ data }) => (
 
       <RowWrapper>
         <VideosWrapper>
-          <Trail
-            from={{ opacity: 0, y: 100 }}
-            to={{ opacity: 1, y: 0 }}
-            native
-            keys={data.allYoutubeVideo.edges.map(({ node }) => node.id)}
-          >
-            {data.allYoutubeVideo.edges.map(({ node }) => (styles: any) => (
-              <VideoCard
-                withAnimation
-                style={styles}
-                key={node.id}
-                data={node}
-              />
-            ))}
-          </Trail>
+          {data.allYoutubeVideo.edges.map(({ node }) => (
+            <VideoCard
+              withAnimation
+              key={node.id}
+              data={node}
+            />
+          ))}
         </VideosWrapper>
       </RowWrapper>
     </Root>

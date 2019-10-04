@@ -1,6 +1,5 @@
 import { Link } from 'gatsby'
 import React from 'react'
-import { Trail } from 'react-spring'
 
 import siteConfig from '../../data/siteConfig'
 import BlogCard from '../components/blog-card'
@@ -49,16 +48,9 @@ const BlogPage = ({ pathContext }: IProps) => {
       <Root>
         <RowTitle title="Latest Blog Posts" />
 
-        <Trail
-          from={{ opacity: 0, x: -100 }}
-          to={{ opacity: 1, x: 0 }}
-          native
-          keys={group.map(({ node }) => node.id)}
-        >
-          {group.map(({ node }) => (styles: any) => (
-            <BlogCard withAnimation style={styles} key={node.id} data={node} />
-          ))}
-        </Trail>
+        {group.map(({ node }) => (
+          <BlogCard key={node.id} data={node} />
+        ))}
 
         <ButtonsWrapper>
           {!first && (

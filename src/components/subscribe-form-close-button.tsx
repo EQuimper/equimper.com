@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react'
 import { Portal } from 'react-portal'
-import { animated, Spring } from 'react-spring'
-// @ts-ignore
-// tslint:disable-next-line:no-submodule-imports
-import { Easing, TimingAnimation } from 'react-spring/dist/addons'
+import { animated,  } from 'react-spring'
+import { Spring } from 'react-spring/renderprops';
+import * as easings from 'd3-ease'
+
 
 import { storeItem } from '../utils/localStorage'
 import styled from '../utils/styled'
@@ -115,11 +115,10 @@ class SubscribeFormCloseButton extends PureComponent<IProps, State> {
         {this.state.isOpen && (
           <Portal>
             <Spring
-              impl={TimingAnimation}
               native
               from={{ opacity: 0 }}
               to={{ opacity: 1 }}
-              config={{ duration: 400, easing: Easing.inOut(Easing.ease) }}
+              config={{ duration: 400, easing: easings.easeCubic }}
             >
               {styles => (
                 <>

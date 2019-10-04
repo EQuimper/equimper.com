@@ -1,7 +1,7 @@
 import { css, Global } from '@emotion/core'
 import { ThemeProvider } from 'emotion-theming'
 import { graphql, StaticQuery } from 'gatsby'
-import React, { SFC } from 'react'
+import React from 'react'
 import Helmet from 'react-helmet'
 
 // tslint:disable-next-line
@@ -37,7 +37,7 @@ interface IProps {
   showProgress?: boolean
 }
 
-const Layout: SFC<IProps> = ({ children, showProgress }) => (
+const Layout: React.FC<IProps> = ({ children, showProgress }) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {

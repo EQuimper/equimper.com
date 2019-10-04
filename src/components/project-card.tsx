@@ -1,5 +1,4 @@
 import React, { SFC } from 'react'
-import { animated } from 'react-spring'
 
 import TextWithQuotes from '../commons/text-with-quotes'
 import { IProject } from '../interfaces/Project'
@@ -35,7 +34,7 @@ const AppAndFlow = styled('a')`
   }
 `
 
-const Root = styled(animated.div)`
+const Root = styled('div')`
   ${tw('bg-white rounded shadow p-4 mb-4')};
 `
 
