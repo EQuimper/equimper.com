@@ -1,6 +1,7 @@
 import { Link as GatsbyLink } from 'gatsby'
 import React, { useState } from 'react'
 import { Portal } from 'react-portal'
+import { useSpring, animated } from 'react-spring'
 
 import { constants } from '../utils/constants'
 import styled from '../utils/styled'
@@ -17,7 +18,7 @@ const MenuIcon = styled(Menu)`
   ${tw('h-4 w-4 text-grey-darker')};
 `
 
-const ModalWrapper = styled('div')`
+const ModalWrapper = styled(animated.div)`
   ${tw('fixed pin z-20 bg-white-80')};
 `
 
@@ -57,17 +58,15 @@ const CloseIcon = styled(Close)`
   ${tw('h-5 w-5 text-grey-darker')};
 `
 
-interface P {}
-
-type State = Readonly<{
-  isOpen: boolean
-}>
-
 const NavBurger = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [styles, set] = useSpring(() => ({ opacity: 1 }))
 
   const closePortal = () => setIsOpen(false)
+
   const openPortal = () => setIsOpen(true)
+
+  set({ opacity: isOpen ? 1 : 0 })
 
   return (
     <>
@@ -78,7 +77,7 @@ const NavBurger = () => {
       {isOpen && (
         <Portal>
           <>
-            <ModalWrapper />
+            <ModalWrapper style={styles} />
             <Modal>
               <CloseButton
                 type="button"
