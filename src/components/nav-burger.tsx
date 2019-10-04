@@ -60,13 +60,11 @@ const CloseIcon = styled(Close)`
 
 const NavBurger = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const [styles, set] = useSpring(() => ({ opacity: 1 }))
+  const styles = useSpring({ opacity: isOpen ? 1 : 0 })
 
   const closePortal = () => setIsOpen(false)
 
   const openPortal = () => setIsOpen(true)
-
-  set({ opacity: isOpen ? 1 : 0 })
 
   return (
     <>
