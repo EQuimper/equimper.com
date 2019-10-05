@@ -1,10 +1,9 @@
 import { Link as GatsbyLink } from 'gatsby'
 import React from 'react'
 
-import { IBlogPost } from '../interfaces/BlogPost'
-import { animationFromX } from '../utils/animations'
 import styled from '../utils/styled'
 import TagList from './tags-list'
+import { Mdx } from '../../types/graphql-types'
 
 const Post = styled('div')`
   ${tw('bg-white rounded p-4 pb-0 mb-4 shadow')};
@@ -41,31 +40,31 @@ const Date = styled('p')`
 `
 
 interface IProps {
-  data: IBlogPost
-  style?: {
-    opacity: number
-    x: any
-  }
+  data: Mdx
 }
 
-const BlogCard: React.FC<IProps> = ({ data, style }) => (
-  <Post>
-    <TopWrapper>
-      <PostTitleWrapper>
-        <PostTitle to={`/blog/${data.fields.slug}`}>
-          {data.frontmatter.title}
-        </PostTitle>
-      </PostTitleWrapper>
-      <DateWrapper>
-        <Date>{data.frontmatter.date}</Date>
-      </DateWrapper>
-    </TopWrapper>
-    <DescriptionWrapper>
-      <Description>{data.frontmatter.description}</Description>
-    </DescriptionWrapper>
+const BlogCard: React.FC<IProps> = ({ data }) => {
+  return (
+    <Post>
+      <TopWrapper>
+        <PostTitleWrapper>
+          <PostTitle to={`/blog/${(data.fields && data.fields.slug) || ''}`}>
+            {(data.frontmatter && data.frontmatter.title) || ''}
+          </PostTitle>
+        </PostTitleWrapper>
+        <DateWrapper>
+          <Date>{(data.frontmatter && data.frontmatter.date) || ''}</Date>
+        </DateWrapper>
+      </TopWrapper>
+      <DescriptionWrapper>
+        <Description>
+          {(data.frontmatter && data.frontmatter.description) || ''}
+        </Description>
+      </DescriptionWrapper>
 
-    <TagList tags={data.frontmatter.tags} />
-  </Post>
-)
+      <TagList tags={(data.frontmatter && data.frontmatter.tags) || []} />
+    </Post>
+  )
+}
 
 export default BlogCard

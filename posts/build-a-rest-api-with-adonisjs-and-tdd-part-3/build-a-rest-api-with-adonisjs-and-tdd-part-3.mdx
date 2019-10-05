@@ -410,7 +410,7 @@ Route.get('/api/me/challenges', 'MeController.challenges').middleware(['auth'])
 
 Must be another way of doing this repetetive task ? And yes we can make use of [grouping](https://adonisjs.com/docs/4.1/routing#_route_groups)
 
-```js
+```js {1,4,5,9}
 Route.group(() => {
   Route.get('/', 'ChallengeController.all')
   Route.get('/:id', 'ChallengeController.show')

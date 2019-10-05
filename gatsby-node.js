@@ -24,7 +24,7 @@ exports.onCreateBabelConfig = ({ actions: { setBabelPlugin } }) => {
 }
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
-  if (node.internal.type === 'MarkdownRemark') {
+  if (node.internal.type === 'Mdx') {
     const fileNode = getNode(node.parent)
 
     const parsedFilePath = path.parse(fileNode.relativePath)
@@ -48,7 +48,7 @@ exports.createPages = ({ graphql, actions }) => {
   return new Promise((resolve, reject) => {
     graphql(`
       {
-        allMarkdownRemark(
+        allMdx(
           sort: { fields: frontmatter___date, order: DESC }
           filter: { fileAbsolutePath: { regex: "/posts/" } }
         ) {
@@ -70,7 +70,7 @@ exports.createPages = ({ graphql, actions }) => {
         }
       }
     `).then(result => {
-      const posts = result.data.allMarkdownRemark.edges
+      const posts = result.data.allMdx.edges
       // Blog Post
       createPaginatedPages({
         edges: posts,
@@ -262,5 +262,15 @@ exports.sourceNodes = async ({ actions, store, cache }) => {
   } catch (error) {
     console.error(error)
     process.exit(1)
+  }
+}
+
+exports.onCreateWebpackConfig = ({ getConfig, stage }) => {
+  const config = getConfig()
+  if (stage.startsWith('develop') && config.resolve) {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'react-dom': '@hot-loader/react-dom',
+    }
   }
 }

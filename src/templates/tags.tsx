@@ -4,17 +4,12 @@ import React from 'react'
 import BlogCard from '../components/blog-card'
 import Layout from '../components/layout'
 import RowTitle from '../components/row-title'
-import { IBlogPost } from '../interfaces/BlogPost'
 import styled from '../utils/styled'
+import { MdxConnection } from '../../types/graphql-types'
 
 interface IProps {
   data: {
-    allMarkdownRemark: {
-      totalCount: number
-      edges: Array<{
-        node: IBlogPost
-      }>
-    }
+    allMdx: MdxConnection
   }
   pageContext: {
     tag: string
@@ -28,7 +23,7 @@ const Root = styled('div')`
 const postPluralize = (num: number) => (num > 1 ? 'posts' : 'post')
 
 const Tags = ({ data, pageContext }: IProps) => {
-  const { edges, totalCount } = data.allMarkdownRemark
+  const { edges, totalCount } = data.allMdx
   return (
     <Layout>
       <Root>
@@ -40,7 +35,7 @@ const Tags = ({ data, pageContext }: IProps) => {
         {console.log('data', data)}
 
         {edges.map(({ node }) => (
-          <BlogCard withAnimation data={node} key={node.id} />
+          <BlogCard data={node} key={node.id} />
         ))}
       </Root>
     </Layout>
@@ -51,7 +46,7 @@ export default Tags
 
 export const query = graphql`
   query($tag: String!) {
-    allMarkdownRemark(
+    allMdx(
       limit: 10
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { frontmatter: { tags: { in: [$tag] } } }

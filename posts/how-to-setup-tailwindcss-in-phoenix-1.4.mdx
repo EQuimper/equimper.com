@@ -1,10 +1,8 @@
 ---
 title: 'How to setup TailwindCSS in Phoenix 1.4'
-linktitle: 'How to setup TailwindCSS in Phoenix 1.4'
-date: 2018-11-14T10:00:40-04:00
+date: 2018-11-14
 description: 'How to use TailwindCSS with Phoenix 1.4'
-tags:
-  ['elixir', 'css', 'article', 'phoenix', 'tailwindcss', 'tutorial', 'postcss']
+tags: ['elixir', 'css', 'article', 'phoenix', 'tailwindcss', 'tutorial', 'postcss']
 ---
 
 I've been using [Tailwind](https://tailwindcss.com) lately and really loved it. But one thing about this one is how to install it in a new project. My last personal project was with the brand new Phoenix 1.4 framework and I did want to use Tailwind for this one. So here just a "How to" guide about installing this one.
@@ -67,7 +65,7 @@ This will setup Tailwind with the file we have created when we run `./node_modul
 
 After this open you `webpack.config.js` file and add postcss-loader after the css-loader in the module object.
 
-```diff
+```js {35}
 // assets/webpack.config.js
 
 const path = require('path');
@@ -102,8 +100,7 @@ module.exports = (env, options) => ({
       },
       {
         test: /\.css$/,
--         use: [MiniCssExtractPlugin.loader, 'css-loader']
-+         use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
+          use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
       },
     ],
   },

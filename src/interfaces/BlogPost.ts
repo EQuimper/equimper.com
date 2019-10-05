@@ -2,7 +2,6 @@ export interface IBlogPost {
   fields: {
     slug: string
   }
-  html: string
   frontmatter: {
     title: string
     description: string
@@ -11,4 +10,5 @@ export interface IBlogPost {
   }
   timeToRead: number
   id: string
+  body: string;
 }

@@ -15,3 +15,19 @@ declare interface IReactPortalProps {
   isOpen: boolean
   closePortal: () => void
 }
+
+declare module '@mdx-js/react' {
+  import React, { ComponentType, StyleHTMLAttributes } from 'react'
+
+  type MDXProps = {
+    children: React.ReactNode
+    components: Object
+  }
+  export class MDXProvider extends React.Component<MDXProps> {}
+}
+
+declare module 'gatsby-plugin-mdx' {
+  import React from 'react'
+
+  export class MDXRenderer extends React.Component {}
+}

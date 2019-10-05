@@ -1,21 +1,25 @@
 import { css, Global } from '@emotion/core'
 import { ThemeProvider } from 'emotion-theming'
 import { graphql, StaticQuery } from 'gatsby'
+import { MDXProvider } from '@mdx-js/react'
 import React from 'react'
 import Helmet from 'react-helmet'
+
+
 
 // tslint:disable-next-line
 import 'typeface-cormorant-garamond'
 import 'typeface-inter'
 import 'typeface-shadows-into-light'
 
-import '../assets/code_theme.css'
+import '../assets/language_tabs.css'
 import styled from '../utils/styled'
 import { theme } from '../utils/theme'
 import Footer from './footer'
 import Header from './header'
 import PageTransition from './page-transition'
 import ScrollingProgress from './scrolling-progress'
+import MdxComponents from './mdx';
 
 interface IndexPageData {
   site: {
@@ -394,6 +398,55 @@ const Layout: React.FC<IProps> = ({ children, showProgress }) => (
                 opacity: 0;
               }
 
+               code {
+                padding: 2px 8px;
+                background: var(--hightlighter);
+                color: #011627;
+                border-radius: 3px;
+                font-size: 16px;
+              }
+
+              pre {
+                a {
+                  color: var(--secondary);
+                }
+              }
+
+              .highlight-line {
+                background-color: rgba(0, 255, 240, 0.1);
+                /* This is need so the line number are all align even if we do get a border left */
+                margin: 0 -10px;
+                padding: 0 0 0 5px;
+                border-left: 5px solid var(--secondary);
+              }
+
+              pre {
+                background-color: #061526 !important;
+                border-radius: 4px;
+                font-size: 1.2rem;
+                line-height: 20px;
+                overflow-x: auto;
+                position: relative;
+                margin: 5px 0;
+
+                /* Track */
+                ::-webkit-scrollbar {
+                  width: 100%;
+                  height: 3px;
+                  border-radius: 0 0 4px 4px;
+                }
+                ::-webkit-scrollbar-track {
+                  background: #061526;
+                  border-radius: 0 0 4px 4px;
+                  border: 1px solid rgba(0, 0, 0, 0.2);
+                }
+                /* Handle */
+                ::-webkit-scrollbar-thumb {
+                  background: #061526;
+                  border-radius: 4px;
+                }
+              }
+
               .typed-cursor {
                 font-weight: 400;
               }
@@ -403,16 +456,19 @@ const Layout: React.FC<IProps> = ({ children, showProgress }) => (
               }
 
               ::-webkit-scrollbar-track {
-                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                background-color: #06152630;
+                border-radius: 4px;
               }
 
               ::-webkit-scrollbar-thumb {
-                background-color: darkgrey;
-                outline: 1px solid slategrey;
+                background: #061526;
+                border-radius: 4px;
               }
             `}
           />
           <Body>
+            {/*
+            // @ts-ignore */}
             <Helmet
               titleTemplate="%s · <EQuimper />"
               defaultTitle="<EQuimper />"
@@ -447,7 +503,9 @@ const Layout: React.FC<IProps> = ({ children, showProgress }) => (
             <ScrollingProgress showProgress={!!showProgress} />
             <Header siteTitle={data.site.siteMetadata.title} />
             <PageTransition>
-              <Root>{children}</Root>
+              <Root>
+                <MDXProvider components={MdxComponents}>{children}</MDXProvider>
+              </Root>
             </PageTransition>
             <Footer siteTitle={data.site.siteMetadata.title} />
           </Body>
