@@ -48,11 +48,11 @@ Don't forget to remove the other one who touches the db.
 
 Now if you rerun the test with `adonis test` you should see all test pass
 
-<img src="/images/sqlite-test.png">
+<img src="./images/sqlite-test.png" />
 
 If you compare this to before you can see we get a bit faster. This will get faster more and more test we will add. SQLite is a in-memory db.
 
-<img src="/images/pg-benchmark.png">
+<img src="./images/pg-benchmark.png" />
 
 ## Get /api/challenges
 
@@ -107,19 +107,18 @@ test('can get all the challenges', async ({ assert, client }) => {
   response.assertJSONSubset([
     { title: challenges[0].title },
     { title: challenges[1].title },
-    { title: challenges[2].title }
+    { title: challenges[2].title },
   ])
 })
 ```
 
 Here we first create 3 challenges by using the createMany method on Factory. After we check the response status equal 200 and also the JSON response have all 3 titles inside the return array.
 
-<img src="images/error-1.png">
+<img src="images/error-1.png" />
 
 If you run the test this is what you see.
 
 Make sense we didn't create the route yet. Go to the route file and add
-
 
 ```js
 Route.get('/api/challenges', 'ChallengeController.all')
@@ -159,7 +158,7 @@ Time to work on getting a single challenge by his id.
 
 Pretty simple work again, just need to follow those step.
 
-```
+```cmd
 adonis make:test GetChallenge
 ```
 
@@ -189,7 +188,7 @@ test('can get a challenge by id', async ({ assert, client }) => {
 
 A pretty simple one, we create 3 challenges just to make it a bit more realistic. We after that create a variable challenge who will be the first one in the array. We then add the id to the URL. In the end, we check for the status 200 and also the JSON will need to have both title and id who match this challenge.
 
-<img src="images/error-2.png">
+<img src="images/error-2.png" />
 
 Follow the same step we have made before, so go to routes and add the route for this one.
 
@@ -205,7 +204,7 @@ async show({ response }) {
 }
 ```
 
-<img src="images/error-3.png">
+<img src="images/error-3.png" />
 
 The next error is important, is the one who checks if the return object matches what we supposed. It's pretty normal it failed here we return an empty object. So time to make it work.
 

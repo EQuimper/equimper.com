@@ -8,9 +8,11 @@ import Layout from '../components/layout'
 import RowTitle from '../components/row-title'
 import SEO from '../components/seo'
 import VideoCard from '../components/video-card'
-import { IBlogPost } from '../interfaces/BlogPost'
-import { IYoutubeVideo } from '../interfaces/YoutubeVideo'
 import styled from '../utils/styled'
+import {
+  MdxConnection,
+  YoutubeVideoConnection,
+} from '../../types/graphql-types'
 
 const Root = styled('div')`
   ${tw('container mx-auto pb-20 sm:pb-0 w-full lg:w-3/4 2xl:w-1/2')};
@@ -29,16 +31,8 @@ const VideosWrapper = styled('div')`
 
 interface IProps {
   data: {
-    allMarkdownRemark: {
-      edges: Array<{
-        node: IBlogPost
-      }>
-    }
-    allYoutubeVideo: {
-      edges: Array<{
-        node: IYoutubeVideo
-      }>
-    }
+    allMdx: MdxConnection
+    allYoutubeVideo: YoutubeVideoConnection
     avatarImg: {
       fixed: any
     }
@@ -58,7 +52,7 @@ const IndexPage: React.SFC<IProps> = ({ data }) => (
       />
 
       <RowWrapper>
-        {data.allMarkdownRemark.edges.map(({ node }) => (
+        {data.allMdx.edges.map(({ node }) => (
           <BlogCard key={node.id} data={node} />
         ))}
       </RowWrapper>
@@ -73,11 +67,7 @@ const IndexPage: React.SFC<IProps> = ({ data }) => (
       <RowWrapper>
         <VideosWrapper>
           {data.allYoutubeVideo.edges.map(({ node }) => (
-            <VideoCard
-              withAnimation
-              key={node.id}
-              data={node}
-            />
+            <VideoCard key={node.id} data={node} />
           ))}
         </VideosWrapper>
       </RowWrapper>
@@ -89,7 +79,7 @@ export default IndexPage
 
 export const query = graphql`
   query IndexQuery {
-    allMarkdownRemark(
+    allMdx(
       sort: { order: DESC, fields: [frontmatter___date] }
       filter: { fileAbsolutePath: { regex: "/posts/" } }
       limit: 3

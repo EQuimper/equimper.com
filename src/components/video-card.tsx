@@ -2,8 +2,8 @@ import Img from 'gatsby-image'
 import React from 'react'
 import { animated } from 'react-spring'
 
-import { animationFromY } from '../utils/animations'
 import styled from '../utils/styled'
+import { YoutubeVideo } from '../../types/graphql-types'
 
 const Container = styled(animated.div)`
   ${tw('w-full h-full flex')};
@@ -50,44 +50,24 @@ const VideoDate = styled('p')`
 `
 
 interface IProps {
-  data: {
-    id: string
-    title: string
-    description: string
-    thumbnail: {
-      url: string
-      height: number
-      width: number
-    }
-    channelTitle: string
-    publishedAt: string
-    localThumbnail: {
-      childImageSharp: {
-        resolutions: any
-        fluid: any
-      }
-    }
-  }
-  withAnimation?: boolean
-  style?: {
-    opacity: number
-    y: any
-  }
+  data: YoutubeVideo
 }
 
-const VideoCard = ({ data, withAnimation = false, style }: IProps) => (
-  <Container style={animationFromY(style, withAnimation)}>
+const VideoCard = ({ data }: IProps) => (
+  <Container>
     <Wrapper
       target="_blank"
       href={`https://www.youtube.com/watch?v=${data.id}`}
       rel="noreferrer"
     >
-      <ImgWrapper>
-        <Img
-          alt="thumbnail"
-          fluid={data.localThumbnail.childImageSharp.fluid}
-        />
-      </ImgWrapper>
+      {data.localThumbnail && data.localThumbnail.childImageSharp && (
+        <ImgWrapper>
+          <Img
+            alt="thumbnail"
+            fluid={data.localThumbnail.childImageSharp.fluid}
+          />
+        </ImgWrapper>
+      )}
       <DetailWrapper>
         <VideoTitleWrapper>
           <VideoTitle>{data.title}</VideoTitle>

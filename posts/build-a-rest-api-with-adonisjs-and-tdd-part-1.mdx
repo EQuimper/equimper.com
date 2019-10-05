@@ -27,13 +27,13 @@ At the end of this tutorial, we gonna create a service where a user can finally 
 
 First we need to install the Adonis cli
 
-```
+```cmd
 npm i -g @adonisjs/cli
 ```
 
 To make sure everything work run the command in your terminal
 
-```
+```cmd
 adonis --help
 ```
 
@@ -41,7 +41,7 @@ If you see a list of command that mean this is working :)
 
 For creating the project we will run this command in the terminal
 
-```
+```cmd
 adonis new movies_challenges --api-only
 ```
 
@@ -49,13 +49,13 @@ Here this will create a new project call `movies_challenges` and this will be an
 
 Follow the instructions
 
-```
+```cmd
 cd movies_challenges
 ```
 
 For running the project the command will be
 
-```
+```cmd
 adonis serve --dev
 ```
 
@@ -86,7 +86,7 @@ DB_DATABASE=movies_challenges_dev
 
 After I make sure I create the db from my terminal
 
-```
+```cmd
 createdb movies_challenges_dev
 ```
 
@@ -96,7 +96,7 @@ Adonis don't came with a testing framework out-of-the-box, but it's really easy 
 
 Run the command
 
-```
+```cmd
 adonis install @adonisjs/vow
 ```
 
@@ -125,7 +125,7 @@ DB_DATABASE=movies_challenges_test
 
 After I make sure I create the db from my terminal
 
-```
+```cmd
 createdb movies_challenges_test
 ```
 
@@ -147,16 +147,16 @@ The first thing I want to test is the fact a user can create a challenge. A chal
 
 Adonis give us lot of tool to make our live easier. One of them is generator command thank to ace. We will use a command to make our first test. But to be able to do this we need to register the vow test framework to the provider of the project. Open `start/app.js` and add this to your aceProvider
 
-```diff
+```js {3}
 const aceProviders = [
   '@adonisjs/lucid/providers/MigrationsProvider',
-+ '@adonisjs/vow/providers/VowProvider'
+  '@adonisjs/vow/providers/VowProvider',
 ]
 ```
 
 Now we can run the command
 
-```
+```cmd
 adonis make:test CreateChallenge
 ```
 
@@ -351,7 +351,7 @@ Error: Cannot find module \'/Users/equimper/coding/tutorial/movies_challenges/ap
 
 This mean the controller don't exist :) So we need to create one. Again adonis have a generator for this
 
-```
+```cmd
 adonis make:controller ChallengeController
 ```
 
@@ -426,7 +426,7 @@ Now if I rerun the test I see
 
 Fine make sense the model don't exist
 
-```
+```cmd
 adonis make:model Challenge -m
 ```
 
@@ -449,7 +449,7 @@ Make sense the table don't have a column description. So we should add one
 
 So open your migration file for the challenge_schema
 
-```js
+```js {4}
 class ChallengeSchema extends Schema {
   up() {
     this.create('challenges', table => {
@@ -475,7 +475,7 @@ Rerun the test
 
 Now is the same error but for title
 
-```js
+```js {4}
 class ChallengeSchema extends Schema {
   up() {
     this.create('challenges', table => {
@@ -508,7 +508,7 @@ The error mean the title and description are save, but the user_id don't exist, 
 
 Again in the migration file add
 
-```js
+```js {6-10}
 class ChallengeSchema extends Schema {
   up() {
     this.create('challenges', table => {
@@ -566,7 +566,7 @@ Run the test
 
 Same error ? Yes when we create we didn't put the user_id. So we need to
 
-```js
+```js {7}
 class ChallengeController {
   async store({ response, request, auth }) {
     const user = await auth.getUser()
@@ -644,20 +644,20 @@ Adonis give us access to another really nice tool can validator.
 
 We need to install the validator library
 
-```
+```cmd
 adonis install @adonisjs/validator
 ```
 
 Go to `start/app.js` and add the provider
 
-```diff
+```js {7}
 const providers = [
   '@adonisjs/framework/providers/AppProvider',
   '@adonisjs/auth/providers/AuthProvider',
   '@adonisjs/bodyparser/providers/BodyParserProvider',
   '@adonisjs/cors/providers/CorsProvider',
   '@adonisjs/lucid/providers/LucidProvider',
-+  '@adonisjs/validator/providers/ValidatorProvider'
+  '@adonisjs/validator/providers/ValidatorProvider',
 ]
 ```
 
@@ -750,7 +750,7 @@ That mean the Challenge get create but shouldn't
 
 So we need to add a validator for this
 
-```
+```cmd
 adonis make:validator CreateChallenge
 ```
 
@@ -812,13 +812,13 @@ A last test can be create to test both description and title need to be a string
 ```js
 test('cannot create a challenge if title and description are not a string', async ({
   assert,
-  client
+  client,
 }) => {
   const user = await Factory.model('App/Models/User').create()
 
   const data = {
     title: 123,
-    description: 123
+    description: 123,
   }
 
   const response = await client
@@ -832,13 +832,13 @@ test('cannot create a challenge if title and description are not a string', asyn
     {
       message: 'title is not a valid string',
       field: 'title',
-      validation: 'string'
+      validation: 'string',
     },
     {
       message: 'description is not a valid string',
       field: 'description',
-      validation: 'string'
-    }
+      validation: 'string',
+    },
   ])
 })
 ```

@@ -1,6 +1,8 @@
 import { graphql } from 'gatsby'
 import { Disqus } from 'gatsby-plugin-disqus'
 import React from 'react'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
+
 
 import Layout from '../components/layout'
 import OtherPostLinks from '../components/other-post-links'
@@ -44,7 +46,7 @@ const DisqusWrapper = styled('div')`
 
 interface IProps {
   data: {
-    markdownRemark: IBlogPost
+    mdx: IBlogPost
     avatarImg: {
       fixed: any
     }
@@ -72,7 +74,7 @@ interface IProps {
 }
 
 const BlogPost = ({ data, location, pageContext }: IProps) => {
-  const post = data.markdownRemark
+  const post = data.mdx
 
   const url = `${data.site.siteMetadata.siteUrl}${location.pathname}`
 
@@ -86,8 +88,6 @@ const BlogPost = ({ data, location, pageContext }: IProps) => {
     <Layout showProgress>
       <SEO url={url} isBlogPost postMeta={post.frontmatter} />
       <Root>
-        <SubscribeForm avatar={data.avatarImg.fixed} />
-
         <Article>
           <ArticleTitleWrapper>
             <ArticleTitle>{post.frontmatter.title}</ArticleTitle>
@@ -102,8 +102,11 @@ const BlogPost = ({ data, location, pageContext }: IProps) => {
           <TagList tags={post.frontmatter.tags} />
           <div
             className="md-content"
-            dangerouslySetInnerHTML={{ __html: post.html }}
-          />
+          >
+            <MDXRenderer>
+              {post.body}
+            </MDXRenderer>
+          </div>
 
           <Share title={post.frontmatter.title} url={url} />
         </Article>
@@ -135,8 +138,8 @@ export const query = graphql`
       }
     }
 
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
+    mdx(fields: { slug: { eq: $slug } }) {
+      body
       timeToRead
       fields {
         slug

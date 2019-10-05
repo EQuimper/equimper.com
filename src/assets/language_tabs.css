@@ -1,0 +1,64 @@
+.gatsby-highlight {
+  position: relative;
+  -webkit-overflow-scrolling: touch;
+  /* overflow: auto; */
+}
+.gatsby-highlight pre[class*="language-"] {
+  -webkit-overflow-scrolling: touch;
+  padding: 32px 10px;
+}
+.gatsby-highlight pre[class*="language-"]::before {
+  background: black;
+  border-radius: 0 0 0 0.25rem;
+  color: white;
+  font-size: 12px;
+  letter-spacing: 0.025rem;
+  padding: 0.2rem 1rem;
+  position: absolute;
+  right: 0;
+  text-align: right;
+  text-transform: uppercase;
+  top: 0;
+}
+
+.gatsby-highlight pre[class~="language-javascript"]::before {
+  content: "js";
+  background: #f7df1e;
+  color: black;
+}
+
+.gatsby-highlight pre[class~="language-js"]::before {
+  content: "js";
+  background: #f7df1e;
+  color: black;
+}
+
+.gatsby-highlight pre[class~="language-jsx"]::before {
+  content: "jsx";
+  background: #f7df1e;
+  color: black;
+}
+
+.gatsby-highlight pre[class~="language-html"]::before {
+  content: "html";
+  background: #005a9c;
+  color: white;
+}
+
+.gatsby-highlight pre[class~="language-css"]::before {
+  content: "css";
+  background: #ff9800;
+  color: white;
+}
+
+.gatsby-highlight pre[class~="language-dart"]::before {
+  content: "dart";
+  background: #1E589C;
+  color: white;
+}
+
+.gatsby-highlight pre[class~="language-cmd"]::before {
+  content: "cmd";
+  background: #b2f5ea;
+  color: black;
+}

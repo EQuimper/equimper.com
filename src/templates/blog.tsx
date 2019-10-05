@@ -6,8 +6,8 @@ import BlogCard from '../components/blog-card'
 import Layout from '../components/layout'
 import RowTitle from '../components/row-title'
 import SEO from '../components/seo'
-import { IBlogPost } from '../interfaces/BlogPost'
 import styled from '../utils/styled'
+import { Mdx } from '../../types/graphql-types'
 
 const Root = styled('div')`
   ${tw('w-full lg:w-3/4 2xl:w-1/2 mx-auto pb-20 sm:pb-0')};
@@ -28,7 +28,7 @@ const PageCount = styled('p')`
 interface IProps {
   pathContext: {
     group: Array<{
-      node: IBlogPost
+      node: Mdx
     }>
     index: number
     first: boolean

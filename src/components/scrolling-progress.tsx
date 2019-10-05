@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import styled from '../utils/styled'
 
@@ -26,24 +26,10 @@ interface IProps {
   showProgress: boolean
 }
 
-type State = Readonly<{
-  scrollHeight: number
-}>
+const ScrollingProgress: React.FC<IProps> = ({ showProgress }) => {
+  const [scrollHeight, setScrollHeight] = useState<number>(0)
 
-class ScrollingProgress extends React.PureComponent<IProps, State> {
-  state = {
-    scrollHeight: 0,
-  }
-
-  componentDidMount() {
-    window.addEventListener('scroll', this.listenToScroll)
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.listenToScroll)
-  }
-
-  listenToScroll = () => {
+  const listenToScroll = () => {
     const winScroll =
       document.body.scrollTop || document.documentElement.scrollTop
 
@@ -53,18 +39,22 @@ class ScrollingProgress extends React.PureComponent<IProps, State> {
 
     const scrolled = (winScroll / height) * 100
 
-    this.setState({
-      scrollHeight: scrolled,
-    })
+    setScrollHeight(scrolled)
   }
 
-  render() {
-    return (
-      <BarWrapper hidden={!this.props.showProgress}>
-        <Bar style={{ width: `${this.state.scrollHeight}%` }} />
-      </BarWrapper>
-    )
-  }
+  useEffect(() => {
+    window.addEventListener('scroll', listenToScroll)
+
+    return () => {
+      window.removeEventListener('scroll', listenToScroll)
+    }
+  }, [])
+
+  return (
+    <BarWrapper hidden={!showProgress}>
+      <Bar style={{ width: `${scrollHeight}%` }} />
+    </BarWrapper>
+  )
 }
 
 export default ScrollingProgress

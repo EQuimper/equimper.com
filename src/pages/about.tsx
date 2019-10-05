@@ -1,6 +1,7 @@
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
-import React, { RefObject } from 'react'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
+import React, { createRef, useEffect } from 'react'
 import Typed from 'typed.js'
 
 import siteConfig from '../../data/siteConfig'
@@ -73,8 +74,8 @@ interface IProps {
     avatarImg: {
       fixed: any
     }
-    markdownRemark: {
-      html: string
+    mdx: {
+      body: string
       frontmatter: {
         title: string
       }
@@ -82,16 +83,11 @@ interface IProps {
   }
 }
 
-class AboutPage extends React.Component<IProps> {
-  typed?: Typed
-  el: RefObject<any>
+const AboutPage: React.FC<IProps> = ({ data }) => {
+  let typed: Typed | null = null
+  const textElement = createRef<HTMLSpanElement>()
 
-  constructor(props: IProps) {
-    super(props)
-    this.el = React.createRef()
-  }
-
-  componentDidMount() {
+  useEffect(() => {
     const str =
       window.innerWidth <= 576
         ? 'Hey, I am Emanuel. <br>Happy to see you there.'
@@ -103,55 +99,53 @@ class AboutPage extends React.Component<IProps> {
       backSpeed: 50,
     }
 
-    this.typed = new Typed(this.el.current, options)
-  }
-
-  componentWillUnmount() {
-    if (this.typed) {
-      this.typed.destroy()
+    if (textElement.current) {
+      typed = new Typed(textElement.current as any, options)
     }
-  }
 
-  render() {
-    const { data } = this.props
-    return (
-      <Layout>
-        <SEO url={`${siteConfig.site.url}/about`} customTitle="About" />
+    return () => {
+      if (typed) {
+        typed.destroy()
+      }
+    }
+  }, [])
 
-        <Root>
-          <Wrapper>
-            <AvatarWrapper>
-              <Avatar fixed={data.avatarImg.fixed} />
-            </AvatarWrapper>
-            <TitleWrapper>
-              <span ref={this.el} />
-            </TitleWrapper>
-            <FollowWrapper>
-              <FollowTitle>You can follow me on</FollowTitle>
-            </FollowWrapper>
-            <SocialFollowWrapper>
-              <SocialFollow />
-            </SocialFollowWrapper>
-          </Wrapper>
-          <RowTitle title="About Myself" />
-          <Content>
-            <ContentWrapper
-              dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
-              className="md-content"
-            />
-          </Content>
-        </Root>
-      </Layout>
-    )
-  }
+  return (
+    <Layout>
+      <SEO url={`${siteConfig.site.url}/about`} customTitle="About" />
+
+      <Root>
+        <Wrapper>
+          <AvatarWrapper>
+            <Avatar fixed={data.avatarImg.fixed} />
+          </AvatarWrapper>
+          <TitleWrapper>
+            <span ref={textElement} />
+          </TitleWrapper>
+          <FollowWrapper>
+            <FollowTitle>You can follow me on</FollowTitle>
+          </FollowWrapper>
+          <SocialFollowWrapper>
+            <SocialFollow />
+          </SocialFollowWrapper>
+        </Wrapper>
+        <RowTitle title="About Myself" />
+        <Content>
+          <ContentWrapper className="md-content">
+            <MDXRenderer>{data.mdx.body}</MDXRenderer>
+          </ContentWrapper>
+        </Content>
+      </Root>
+    </Layout>
+  )
 }
 
 export default AboutPage
 
 export const query = graphql`
   query AboutQuery {
-    markdownRemark(fileAbsolutePath: { regex: "/about.md/" }) {
-      html
+    mdx(fileAbsolutePath: { regex: "/about.md/" }) {
+      body
       frontmatter {
         title
       }

@@ -1,5 +1,5 @@
 import { Link as GatsbyLink } from 'gatsby'
-import React, { SFC } from 'react'
+import React from 'react'
 import Headroom from 'react-headroom'
 
 import { constants } from '../utils/constants'
@@ -47,7 +47,7 @@ const BrandLink = styled(GatsbyLink)`
   font-family: Cormorant Garamond;
 `
 
-const Header: SFC<IProps> = ({ siteTitle }) => (
+const Header: React.FC<IProps> = ({ siteTitle }) => (
   <Headroom>
     <header>
       <Nav>

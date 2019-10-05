@@ -1,8 +1,9 @@
 import { Link as GatsbyLink } from 'gatsby'
 import kebabCase from 'lodash.kebabcase'
-import React, { SFC } from 'react'
+import React from 'react'
 
 import styled from '../utils/styled'
+import { MdxFrontmatter } from '../../types/graphql-types'
 
 const Root = styled('ul')`
   ${tw('list-reset flex flex-wrap items-center')};
@@ -19,14 +20,14 @@ const Tag = styled(GatsbyLink)`
 `
 
 interface IProps {
-  tags: string[]
+  tags: MdxFrontmatter['tags']
 }
 
-const TagList: SFC<IProps> = ({ tags }) => (
+const TagList: React.FC<IProps> = ({ tags }) => (
   <Root>
-    {tags.map(tag => (
-      <TagWrapper key={tag}>
-        <Tag to={`/tags/${kebabCase(tag)}`}>#{tag}</Tag>
+    {(tags || []).map(tag => (
+      <TagWrapper key={(tag && tag) || ''}>
+        <Tag to={`/tags/${kebabCase((tag && tag) || '')}`}>#{tag}</Tag>
       </TagWrapper>
     ))}
   </Root>
