@@ -424,15 +424,13 @@ const Layout: React.FC<IProps> = ({ children, showProgress }) => (
                 background-color: #061526 !important;
                 border-radius: 4px;
                 font-size: 1.2rem;
-                line-height: 20px;
-                overflow-x: auto;
-                position: relative;
-                margin: 5px 0;
+                line-height: 1.42;
+                overflow: auto;
 
                 /* Track */
                 ::-webkit-scrollbar {
                   width: 100%;
-                  height: 3px;
+                  height: 0.5rem;
                   border-radius: 0 0 4px 4px;
                 }
                 ::-webkit-scrollbar-track {
@@ -442,7 +440,7 @@ const Layout: React.FC<IProps> = ({ children, showProgress }) => (
                 }
                 /* Handle */
                 ::-webkit-scrollbar-thumb {
-                  background: #061526;
+                  background: var(--secondary);
                   border-radius: 4px;
                 }
               }

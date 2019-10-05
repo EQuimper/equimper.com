@@ -1,18 +1,14 @@
-import React from 'react'
 import { css } from '@emotion/core'
-import theme from 'prism-react-renderer/themes/vsDark'
 import Highlight, { defaultProps } from 'prism-react-renderer'
+import theme from 'prism-react-renderer/themes/vsDark'
+import React from 'react'
 
 const RE = /{([\d,-]+)}/
 
-const wrapperStyles = css`
-  overflow: auto;
-`
-
 const preStyles = css`
-  float: left;
+  /* float: left; */
   min-width: 100%;
-  overflow: initial;
+  overflow: auto;
 `
 
 function calculateLinesToHighlight(meta) {
@@ -43,7 +39,7 @@ function Code({ codeString, language, metastring }) {
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <div
-          css={wrapperStyles}
+          // css={wrapperStyles}
           className="gatsby-highlight"
           data-language={language}
         >
