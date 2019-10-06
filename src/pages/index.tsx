@@ -115,7 +115,7 @@ export const query = graphql`
           publishedAt(formatString: "MMMM DD, YYYY")
           localThumbnail {
             childImageSharp {
-              fluid(maxWidth: 600) {
+              fluid(maxWidth: 500) {
                 ...GatsbyImageSharpFluid
               }
             }
