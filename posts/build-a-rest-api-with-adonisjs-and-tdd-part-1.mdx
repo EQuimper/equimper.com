@@ -27,13 +27,13 @@ At the end of this tutorial, we gonna create a service where a user can finally 
 
 First we need to install the Adonis cli
 
-```cmd
+```sh
 npm i -g @adonisjs/cli
 ```
 
 To make sure everything work run the command in your terminal
 
-```cmd
+```sh
 adonis --help
 ```
 
@@ -41,7 +41,7 @@ If you see a list of command that mean this is working :)
 
 For creating the project we will run this command in the terminal
 
-```cmd
+```sh
 adonis new movies_challenges --api-only
 ```
 
@@ -49,13 +49,13 @@ Here this will create a new project call `movies_challenges` and this will be an
 
 Follow the instructions
 
-```cmd
+```cmshd
 cd movies_challenges
 ```
 
 For running the project the command will be
 
-```cmd
+```sh
 adonis serve --dev
 ```
 
@@ -86,7 +86,7 @@ DB_DATABASE=movies_challenges_dev
 
 After I make sure I create the db from my terminal
 
-```cmd
+```sh
 createdb movies_challenges_dev
 ```
 
@@ -96,7 +96,7 @@ Adonis don't came with a testing framework out-of-the-box, but it's really easy 
 
 Run the command
 
-```cmd
+```sh
 adonis install @adonisjs/vow
 ```
 
@@ -125,7 +125,7 @@ DB_DATABASE=movies_challenges_test
 
 After I make sure I create the db from my terminal
 
-```cmd
+```sh
 createdb movies_challenges_test
 ```
 
@@ -156,7 +156,7 @@ const aceProviders = [
 
 Now we can run the command
 
-```cmd
+```sh
 adonis make:test CreateChallenge
 ```
 
@@ -351,7 +351,7 @@ Error: Cannot find module \'/Users/equimper/coding/tutorial/movies_challenges/ap
 
 This mean the controller don't exist :) So we need to create one. Again adonis have a generator for this
 
-```cmd
+```sh
 adonis make:controller ChallengeController
 ```
 
@@ -426,7 +426,7 @@ Now if I rerun the test I see
 
 Fine make sense the model don't exist
 
-```cmd
+```sh
 adonis make:model Challenge -m
 ```
 
@@ -644,7 +644,7 @@ Adonis give us access to another really nice tool can validator.
 
 We need to install the validator library
 
-```cmd
+```sh
 adonis install @adonisjs/validator
 ```
 
@@ -750,7 +750,7 @@ That mean the Challenge get create but shouldn't
 
 So we need to add a validator for this
 
-```cmd
+```sh
 adonis make:validator CreateChallenge
 ```
 

@@ -57,8 +57,8 @@
   color: white;
 }
 
-.gatsby-highlight pre[class~="language-cmd"]::before {
-  content: "cmd";
+.gatsby-highlight pre[class~="language-sh"]::before {
+  content: "sh";
   background: #b2f5ea;
   color: black;
 }
