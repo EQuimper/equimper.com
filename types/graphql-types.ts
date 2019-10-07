@@ -4250,6 +4250,11 @@ export type SiteTitleQueryQueryVariables = {};
 
 export type SiteTitleQueryQuery = { site: Maybe<{ siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
 
+export type SeoQueryVariables = {};
+
+
+export type SeoQuery = { site: Maybe<{ siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
+
 export type AboutQueryQueryVariables = {};
 
 

@@ -21,7 +21,7 @@ interface IMessageInputProps {
   isNotValid?: boolean
 }
 
-const MessageInput = styled('textarea')`
+const MessageInput = styled('textarea')<IMessageInputProps>`
   ${tw(
     'focus:outline-none focus:shadow-outline font-sans bg-grey-lighter appearance-none border-0 border-grey-lighter rounded w-full py-3 px-4 text-sm text-grey-darker leading-tight sm:text-base'
   )};
@@ -35,7 +35,7 @@ const MessageInput = styled('textarea')`
     border-width: 1px;
   }
 
-  ${(props: IMessageInputProps) => {
+  ${(props) => {
     if (props.valid) {
       return `
         box-shadow: rgba(40, 167, 69, 0.25) 0px 0px 0px 0.2rem;
