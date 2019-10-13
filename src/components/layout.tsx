@@ -142,17 +142,33 @@ const Layout: React.FC<IProps> = ({ children, showProgress }) => (
               }
 
               .md-content > blockquote {
-                /* border: 4px solid var(--secondary);
-    color: var(--secondary); */
-                border: 4px solid var(--blue-dark);
-                color: var(--blue-dark);
-                transform: rotate(-3deg);
                 padding: 16px 32px;
                 max-width: 80%;
-                font-family: Shadows Into Light, cursive;
-                font-size: 32px;
+                font-size: 28px;
                 margin-top: 64px;
                 margin-bottom: 64px;
+                quotes: '“' '”' '‘' '’';
+
+                padding-left: 1em;
+                border-left: 5px solid #00fff050;
+              }
+
+              .md-content > blockquote > p {
+                margin: 0;
+                display: inline-block;
+              }
+
+              .md-content > blockquote > p::before {
+                content: open-quote;
+              }
+
+              .md-content > blockquote > p::after {
+                content: close-quote;
+              }
+
+              .md-content > blockquote > p::before,
+              .md-content > blockquote > p::after {
+                color: var(--grey-darkest);
               }
 
               @media (max-width: 576px) {

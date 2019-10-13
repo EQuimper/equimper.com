@@ -1,0 +1,143 @@
+---
+title: 'Create and Test a Hook in React-Native'
+date: 2019-10-13
+description: 'React Hooks are awesome, but how can we test them? How can we build Hook and use Native API in React-Native?'
+tags: ['jest', 'javascript', 'testing', 'react', 'react-native', 'react-hook']
+---
+
+[In React 16.8 Hook was introduced](https://reactjs.org/docs/hooks-intro.html). This was kind of mind-blowing for me. First time I did see those I was like ok
+this is just some kind of syntax sugar etc. But after playing with Hooks for like months I'm loving this. The first thing they makes is to let sharing code easier.
+In the past `Class` component was great, but did you try to share some code with that? It's not easy. For me hook even give me a lot of love back to React.
+
+So why this post? One thing I did find online is how to create Hook. Perfect great, but how can I test them? Also, one thing I
+find missing in React-Native's tutorial is testing. I have a [youtube channel](https://youtube.com/c/equimper)
+and like others React-Native developer on this platform "even Udemy etc" we don't show testing. It's normal too, cause testing take lot of time. So when
+doing example like me a big tutorial series of already 40+ videos imagine adding testing.
+
+So here I will try to show you how you can start doing a bit more test in React-Native and also how to do this with Hook.
+
+> P.S I'm not saying I'm an expert here, just want to help you to get more into testing.
+
+First thing, a library that will make our lives easier is [react-hooks-testing-library](https://github.com/testing-library/react-hooks-testing-library).
+This will help us a lot in this process. One reason is the fact then this will help us testing Hook without mounting components.
+So the unit testing of the Hook will be painless.
+
+#### useStatusBar
+
+For the first demo, we will make a simple Hook who will set the statusBar color when the screen is focused. For this we will also use the library
+[react-navigation-hooks](https://github.com/react-navigation/hooks)
+
+This use `typescript` but can use plain `javascript` just remove the types :)
+
+```tsx
+import { useEffect } from 'react';
+import { StatusBar, StatusBarStyle } from 'react-native';
+import { useFocusState } from 'react-navigation-hooks';
+
+const useStatusBar = (style: StatusBarStyle, animated = true) => {
+  const { isFocused } = useFocusState();
+
+  useEffect(() => {
+    if (isFocused) {
+      StatusBar.setBarStyle(style, animated);
+    }
+  }, [isFocused]);
+};
+
+export default useStatusBar;
+```
+
+Here as you can see it's a pretty simple case. The Hook will run a effect when the `isFocused` boolean value will change.
+This will happen when the sceen get focused.
+
+Now how can we test that?
+
+The first thing we will need is to create a file call `useStatusBar.test.ts` Inside this one we will need to render the hook first
+
+```ts {1,7}
+import { renderHook } from '@testing-library/react-hooks';
+
+import useStatusBar from '../useStatusBar';
+
+describe('useStatusBar', () => {
+  it('should set the status bar style as light-content when screen is focused', () => {
+    renderHook(() => useStatusBar('light-content'))
+  });
+});
+```
+
+The hook first argument is the style we do want. Here, in this case, we want `light-content` the second argument is a default animated value to true.
+As you can see render the Hook is simple. Time to add some testing. The first thing we need to
+do for accomplishing the **Unit Test** is to mock dependencies. In this one we have 2 deps to mock. The StatusBar native API and the react-navigation hook.
+
+How can we do this? [Jest](https://jestjs.io) to the rescue!!!
+
+Jest came with Spy + Mock and this is all we need. So first time to spy on the StatusBar API.
+
+```tsx {1,8}
+import { StatusBar } from 'react-native';
+import { renderHook } from '@testing-library/react-hooks';
+
+import useStatusBar from '../useStatusBar';
+
+describe('useStatusBar', () => {
+  it('should set the status bar style as light-content when screen is focused', () => {
+    const setBarStyleSpy = jest.spyOn(StatusBar, 'setBarStyle');
+
+    renderHook(() => useStatusBar('light-content'))
+  });
+});
+```
+
+As you can see, we create a variable call `setBarStyleSpy` who will be a spy on the method from the StatusBar `setBarStyle`. We
+will spy on this one so we can make sure we do call this method once with the value we expected.
+
+```tsx {12-13}
+import { StatusBar } from 'react-native';
+import { renderHook } from '@testing-library/react-hooks';
+
+import useStatusBar from '../useStatusBar';
+
+describe('useStatusBar', () => {
+  it('should set the status bar style as light-content when screen is focused', () => {
+    const setBarStyleSpy = jest.spyOn(StatusBar, 'setBarStyle');
+
+    renderHook(() => useStatusBar('light-content'))
+
+    expect(setBarStyleSpy).toHaveBeenCalledTimes(1);
+    expect(setBarStyleSpy).toHaveBeenCalledWith('light-content', true);
+  });
+});
+```
+
+Here we do check `setBarStyle` did get called only once and the value provided was `light-content` and `true` who is the default value pass.
+
+In the last step we do need to mock the `react-navigation-hooks`.
+
+
+```tsx {10-12}
+import { StatusBar } from 'react-native';
+import { renderHook } from '@testing-library/react-hooks';
+
+import useStatusBar from '../useStatusBar';
+
+describe('useStatusBar', () => {
+  it('should set the status bar style as light-content when screen is focused', () => {
+    const setBarStyleSpy = jest.spyOn(StatusBar, 'setBarStyle');
+
+    jest
+      .spyOn(reactNavigationHooks, 'useFocusState')
+      .mockImplementation(() => ({ isFocused: true }));
+
+    renderHook(() => useStatusBar('light-content'))
+
+    expect(setBarStyleSpy).toHaveBeenCalledTimes(1);
+    expect(setBarStyleSpy).toHaveBeenCalledWith('light-content', true);
+  });
+});
+```
+
+Here we mock only once the `useFocusState` method to return an object who contain `isFocused: true` this one will trigger
+the useEffect of our hook who then will cause the StatusBar `setBarStyle` to get a call.
+
+That's it this is how we can use jest and mock/spy on dependencies of our code so we can **Unit Test** easily.
