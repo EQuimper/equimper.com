@@ -7,6 +7,8 @@ const Wrapper = styled('div')`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  ${tw('mx-auto w-full xl:w-3/4')}
 `
 
 const SubBtn = styled('a')`
@@ -25,7 +27,7 @@ const Youtube: React.FC<Props> = ({ videoId }) => {
   return (
     <Wrapper>
       <iframe
-        width="800"
+        width="100%"
         height="500"
         src={`https://www.youtube.com/embed/${videoId}`}
         frameborder="0"
