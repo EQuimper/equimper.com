@@ -14,7 +14,7 @@ const SubBtn = styled('a')`
     'rounded mt-8 py-4 px-8 self-end shadow text-white font-bold text-center no-underline'
   )};
 
-  background-color: ${p => p.theme.colors.socialBrand.youtube};
+  background-color: #ff0000;
 `
 
 interface Props {
