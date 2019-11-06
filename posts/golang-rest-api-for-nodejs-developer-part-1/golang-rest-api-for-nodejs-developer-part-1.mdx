@@ -1,0 +1,173 @@
+---
+title: 'Golang Rest API for NodeJS developer - Part 1'
+date: 2019-11-06
+description: 'How to create a Golang Rest API coming from a NodeJS background'
+tags: ['nodejs', 'tutorial', 'golang']
+---
+
+import Youtube from '../../src/components/mdx/youtube'
+
+<Youtube videoId="3NLUbS7jy5Q" />
+
+## Golang Rest API for NodeJS developer - Part 1
+
+In part 1, we will set up the foundation of our project. First, make sure you do have Go v1.13 install. On Mac, I recommend using Homebrew for that.
+
+### Go module init
+
+First, create a folder where you will put the code for this project. Inside this folder run the command `go mod init todo` todo here will be the name of the project. In **NodeJS** we do `npm init`.
+
+### Setup the db connection
+
+In this project, we will use the library [go-pg](https://github.com/go-pg/pg) so for that, we need to install it by running `go get github.com/go-pg/pg`. This will install the library and all the dependency.
+Coming from a **NodeJS** background this is the equivalent of `npm install`. Create a folder called `postgres` in the root of your project and a file with the same name with go as the extension.
+
+In this file, we will create a function New where the only job of this one is returning a **pointer** to a DB instance
+
+```go
+// postgres/postgres.go
+
+package postgres
+
+import (
+	"github.com/go-pg/pg/v9"
+	_ "github.com/lib/pq"
+)
+
+func New(opts *pg.Options) *pg.DB {
+	db := pg.Connect(opts)
+
+	return db
+}
+```
+
+> I like to keep the root of the package the same name as the folder, It's a convention I like to follow and make life easier
+
+### Setup the basic handlers/endpoint
+
+Handlers will be like our controller ish stuff. This will be where the logic of the app are bound with the client, in this case, rest API.
+We will also set up middlewares and bind them to the router instance. For the routing, we use [Chi](https://github.com/go-chi/chi) and we can install it with `go get github.com/go-chi/chi`.
+I found `Chi` to be the best routing library in **Go**. The reason is first for me to look like Express who is the routing library I use each time in **NodeJS**.
+Also, this library follows the signature of the standard library. And in the **Go** community this is something they want.
+
+
+```go
+// handlers/handlers.go
+
+package handlers
+
+import (
+	"time"
+
+	"github.com/go-chi/chi"
+	"github.com/go-chi/chi/middleware"
+)
+
+type Server struct {
+
+}
+
+func setupMiddleware(r *chi.Mux) {
+	r.Use(middleware.RequestID)
+	r.Use(middleware.RealIP)
+	r.Use(middleware.Compress(6, "application/json"))
+	r.Use(middleware.Logger)
+	r.Use(middleware.Recoverer)
+	r.Use(middleware.URLFormat)
+	r.Use(middleware.Timeout(60 * time.Second))
+}
+
+func NewServer() *Server {
+	return &Server{}
+}
+
+func SetupRouter() *chi.Mux {
+	server := NewServer()
+
+	r := chi.NewRouter()
+
+	setupMiddleware(r)
+
+	server.setupEndpoints(r)
+
+	return r
+}
+```
+
+After this, we want some base endpoint. For this part-1 we will make just the barebone of it.
+
+```go
+// handlers/endpoint.go
+
+package handlers
+
+import "github.com/go-chi/chi"
+
+func (s *Server) setupEndpoints(r *chi.Mux) {
+	r.Route("/api/v1", func(r chi.Router) {
+		r.Route("/users", func(r chi.Router) {
+
+		})
+	})
+}
+```
+
+### Setup the Main function
+
+In **Go** everything starts from the Main function. So in our, we will finally initialize the database plus the routing.
+We also gonna make sure the router is running on a certain port. We check if the env variables provide a `PORT` variables else we use `8081`.
+This is the equivalent in **NodeJS** of
+
+```js
+const port = process.env.PORT || 8081;
+```
+
+So create a file `main.go` in the root of the project and this should look like this.
+
+```go
+// main.go
+
+package main
+
+import (
+	"fmt"
+	"log"
+	"net/http"
+	"os"
+
+	"github.com/go-pg/pg/v9"
+
+	"todo/handlers"
+	"todo/postgres"
+)
+
+func main() {
+	DB := postgres.New(&pg.Options{
+		User:     "postgres",
+		Password: "postgres",
+		Database: "todo_dev",
+	})
+
+	defer DB.Close()
+
+	r := handlers.SetupRouter()
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8081"
+	}
+
+	err := http.ListenAndServe(fmt.Sprintf(":%s", port), r)
+	if err != nil {
+		log.Fatalf("cannot start server %v", err)
+	}
+}
+
+```
+
+### Conclusion
+
+If you did like this tutorial don't forget to subscribe to my newsletter below. Also, the video link is at the top of the post.
+If you have any question don't hesitate to ask in the comment section below.
+
+Happy Coding :)

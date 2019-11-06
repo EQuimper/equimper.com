@@ -142,13 +142,13 @@ const Layout: React.FC<IProps> = ({ children, showProgress }) => (
               }
 
               .md-content > blockquote {
-                padding: 16px 32px;
-                max-width: 80%;
-                font-size: 28px;
-                margin-top: 64px;
-                margin-bottom: 64px;
+                padding: 16px 0;
+                width: 100%;
+                font-size: 18px;
+                margin: 32px 0;
                 quotes: '“' '”' '‘' '’';
 
+                background-color: #00fff020;
                 padding-left: 1em;
                 border-left: 5px solid #00fff050;
               }
