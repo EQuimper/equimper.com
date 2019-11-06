@@ -1,0 +1,12 @@
+title: 'Point'
+url: 'https://www.point.app/'
+type: 'APP'
+description: 'As a mobile-first bank account, Point puts you in charge of your finances with an app that is powerful yet intuitive.'
+techs:
+  - react-native
+  - graphql
+  - javascript
+  - typescript
+  - mobx
+author: 'AppAndFlow'
+order: 7
