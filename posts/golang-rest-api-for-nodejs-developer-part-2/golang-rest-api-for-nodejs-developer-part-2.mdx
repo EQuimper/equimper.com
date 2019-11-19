@@ -14,13 +14,13 @@ import Youtube from '../../src/components/mdx/youtube'
 
 ## Golang Rest API for NodeJS developer - Part 2
 
-In part 1 we did setup the foundation of our REST api. In this part we will setup the Register logic for our authentication portion of the app.
-Authenticaton is a big part of almost each app we need to build as a developer. One thing it's because is so much common you can almost translate the knowledge
-earn in other language. In our case for this tutorial we will use a simple JWT authentication with email/password combination.
+In part 1 we did set up the foundation of our REST API. In this part, we will set up the Register logic for our authentication portion of the app.
+Authentication is a big part of almost every app we need to build as a developer. One thing it's because is so common you can almost translate the knowledge
+earn in other languages. In our case for this tutorial, we will use a simple JWT authentication with an email/password combination.
 Later I maybe plan to add Google OAuth.
 
-First thing to do is to create the `User` struct. Pretty standard stuff. An id who will be auto increment by postgresql. Some timestamps so we know when the user did get created or updated.
-You can also see the json tag. If you look at the `password` I use `-`, this mean we do not want the password to get return to the json client.
+The first thing to do is to create the `User` struct. Pretty standard stuff. An id who will be auto-increment by PostgreSQL. Some timestamps so we know when the user did get created or updated.
+You can also see the JSON tag. If you look at the `password` I use `-`, this means we do not want the password to get the return to the JSON client.
 
 ```go
 // domain/users.go
@@ -40,7 +40,7 @@ type User struct {
 }
 ```
 
-After this we will create 3 instance of error. This will make our life easier in the long run of the app.
+After this, we will create 3 instances of error. This will make our life easier in the long run of the app.
 
 ```go
 // domain/errors.go
@@ -56,10 +56,10 @@ var (
 )
 ```
 
-One thing I like when I work with Go, is creating the interface need to make the app work before even starting writing the logic. The interface
-will be like a contract, and make sure my code will follow this. Time to jump on the `UserRepo` interface who will be our layer to the database
-for the user stuff. I also create a Domain struc who will keep the DB instance. So we can them make sure we have only one instance of this last one.
-This will also make life easier and no cycle dependencie issue.
+One thing I like when I work with Go is creating the interface need to make the app work before even starting writing the logic. The interface
+will be like a contract and make sure my code will follow this. Time to jump on the `UserRepo` interface who will be our layer to the database
+for the user stuff. I also create a Domain struct who will keep the DB instance. So we can make sure we have only one instance of this last one.
+This will also make life easier and no cycle dependencies issue.
 
 ```go
 // domain/domain.go
@@ -80,9 +80,9 @@ type Domain struct {
 }
 ```
 
-With that we can start creating the auth domain logic. First we create a payload struct who will capture the client data request.
-After this the Register method will do the logic for creating a user to our app. This one will also handle error if a user exist for both the
-email or username, we want those to be unique. Finally we create a a method setPassword who will ne fill in later part.
+With that, we can start creating the auth domain logic. First, we create a payload struct who will capture the client data request.
+After this, the Register method will do the logic for creating a user to our app. This one will also handle the error if a user exists for both the
+email or username, we want those to be unique. Finally, we create a method setPassword that will be filled in later part.
 
 ```go
 // domain/auth.go
@@ -130,7 +130,7 @@ func (d *Domain) setPassword(password string) (*string, error) {
 }
 ```
 
-After this we can add the domain to your server struct. This will make the domain available to this one inside the handlers.
+After this, we can add the domain to your server struct. This will make the domain available to this one inside the handlers.
 
 ```go {11,15,28,29,32,33}
 // handlers/handlers.go
@@ -177,7 +177,7 @@ func SetupRouter(domain *domain.Domain) *chi.Mux {
 }
 ```
 
-Now we can create our `users` handlers. Think of it like a controller. I like thin controller in other framework like `Laravel` so here I follow
+Now we can create our `users` handlers. Think of it as a controller. I like a thin controller in other frameworks like `Laravel` so here I follow
 the same idea.
 
 ```go
@@ -194,8 +194,8 @@ func (s *Server) registerUser() http.HandlerFunc {
 }
 ```
 
-We can jump after this to our data layer. Remember in the intro I did say we will use Postgres. So we will add a `UserRepo` to this postgres package.
-This one will follow the `UserRepo` interface from our domain. This will be standard orm stuff.
+We can jump after this to our data layer. Remember in the intro I did say we will use Postgres. So we will add a `UserRepo` to this Postgres package.
+This one will follow the `UserRepo` interface from our domain. This will be standard ORM stuff.
 
 ```go
 // postgres/user.go
