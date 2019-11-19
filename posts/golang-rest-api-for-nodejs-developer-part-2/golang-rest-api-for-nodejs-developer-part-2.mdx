@@ -1,0 +1,317 @@
+---
+title: 'Golang Rest API for NodeJS developer - Part 2'
+date: 2019-11-18
+description: 'How to create a Golang Rest API coming from a NodeJS background. How to setup Register logic.'
+tags: ['nodejs', 'tutorial', 'golang']
+---
+
+import Youtube from '../../src/components/mdx/youtube'
+
+<Youtube videoId="QAkoaVMCS0k" />
+
+- [Intro](https://equimper.com/blog/golang-rest-api-for-nodejs-developer-intro)
+- [Part 1](https://equimper.com/blog/golang-rest-api-for-nodejs-developer-part-1)
+
+## Golang Rest API for NodeJS developer - Part 2
+
+In part 1 we did setup the foundation of our REST api. In this part we will setup the Register logic for our authentication portion of the app.
+Authenticaton is a big part of almost each app we need to build as a developer. One thing it's because is so much common you can almost translate the knowledge
+earn in other language. In our case for this tutorial we will use a simple JWT authentication with email/password combination.
+Later I maybe plan to add Google OAuth.
+
+First thing to do is to create the `User` struct. Pretty standard stuff. An id who will be auto increment by postgresql. Some timestamps so we know when the user did get created or updated.
+You can also see the json tag. If you look at the `password` I use `-`, this mean we do not want the password to get return to the json client.
+
+```go
+// domain/users.go
+
+package domain
+
+import "time"
+
+type User struct {
+	ID       int64  `json:"id"`
+	Username string `json:"username"`
+	Email    string `json:"email"`
+	Password string `json:"-"`
+
+	CreatedAt time.Time `json:"createdAt"`
+	UpdatedAt time.Time `json:"updatedAt"`
+}
+```
+
+After this we will create 3 instance of error. This will make our life easier in the long run of the app.
+
+```go
+// domain/errors.go
+
+package domain
+
+import "errors"
+
+var (
+	ErrNoResult = errors.New("no result")
+	ErrUserWithEmailAlreadyExist = errors.New("user with email already exist")
+	ErrUserWithUsernameAlreadyExist = errors.New("user with username already exist")
+)
+```
+
+One thing I like when I work with Go, is creating the interface need to make the app work before even starting writing the logic. The interface
+will be like a contract, and make sure my code will follow this. Time to jump on the `UserRepo` interface who will be our layer to the database
+for the user stuff. I also create a Domain struc who will keep the DB instance. So we can them make sure we have only one instance of this last one.
+This will also make life easier and no cycle dependencie issue.
+
+```go
+// domain/domain.go
+package domain
+
+type UserRepo interface {
+	GetByEmail(email string) (*User, error)
+	GetByUsername(username string) (*User, error)
+	Create(user *User) (*User, error)
+}
+
+type DB struct {
+	UserRepo UserRepo
+}
+
+type Domain struct {
+	DB DB
+}
+```
+
+With that we can start creating the auth domain logic. First we create a payload struct who will capture the client data request.
+After this the Register method will do the logic for creating a user to our app. This one will also handle error if a user exist for both the
+email or username, we want those to be unique. Finally we create a a method setPassword who will ne fill in later part.
+
+```go
+// domain/auth.go
+package domain
+
+type RegisterPayload struct {
+	Email           string `json:"email"`
+	Password        string `json:"password"`
+	ConfirmPassword string `json:"confirmPassword"`
+	Username        string `json:"username"`
+}
+
+func (d *Domain) Register(payload RegisterPayload) (*User, error) {
+	userExist, _ := d.DB.UserRepo.GetByEmail(payload.Email)
+	if userExist != nil {
+		return nil, ErrUserWithEmailAlreadyExist
+	}
+
+	userExist, _ = d.DB.UserRepo.GetByUsername(payload.Username)
+	if userExist != nil {
+		return nil, ErrUserWithUsernameAlreadyExist
+	}
+
+	password, err := d.setPassword(payload.Password)
+	if err != nil {
+		return nil, err
+	}
+
+	data := &User{
+		Username: payload.Username,
+		Email:    payload.Email,
+		Password: *password,
+	}
+
+	user, err := d.DB.UserRepo.Create(data)
+	if err != nil {
+		return nil, err
+	}
+
+	return user, nil
+}
+
+func (d *Domain) setPassword(password string) (*string, error) {
+	return nil, nil
+}
+```
+
+After this we can add the domain to your server struct. This will make the domain available to this one inside the handlers.
+
+```go {11,15,28,29,32,33}
+// handlers/handlers.go
+
+package handlers
+
+import (
+	"time"
+
+	"github.com/go-chi/chi"
+	"github.com/go-chi/chi/middleware"
+
+	"todo/domain"
+)
+
+type Server struct {
+	domain *domain.Domain
+}
+
+func setupMiddleware(r *chi.Mux) {
+	r.Use(middleware.RequestID)
+	r.Use(middleware.RealIP)
+	r.Use(middleware.Compress(6, "application/json"))
+	r.Use(middleware.Logger)
+	r.Use(middleware.Recoverer)
+	r.Use(middleware.URLFormat)
+	r.Use(middleware.Timeout(60 * time.Second))
+}
+
+func NewServer(domain *domain.Domain) *Server {
+	return &Server{domain: domain}
+}
+
+func SetupRouter(domain *domain.Domain) *chi.Mux {
+	server := NewServer(domain)
+
+	r := chi.NewRouter()
+
+	setupMiddleware(r)
+
+	server.setupEndpoints(r)
+
+	return r
+}
+```
+
+Now we can create our `users` handlers. Think of it like a controller. I like thin controller in other framework like `Laravel` so here I follow
+the same idea.
+
+```go
+// handlers/users.go
+
+package handlers
+
+import "net/http"
+
+func (s *Server) registerUser() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		user, err := s.domain.Register()
+	}
+}
+```
+
+We can jump after this to our data layer. Remember in the intro I did say we will use Postgres. So we will add a `UserRepo` to this postgres package.
+This one will follow the `UserRepo` interface from our domain. This will be standard orm stuff.
+
+```go
+// postgres/user.go
+
+package postgres
+
+import (
+	"errors"
+
+	"github.com/go-pg/pg/v9"
+
+	"todo/domain"
+)
+
+type UserRepo struct {
+	DB *pg.DB
+}
+
+func (u *UserRepo) GetByEmail(email string) (*domain.User, error) {
+	user := new(domain.User)
+
+	err := u.DB.Model(user).Where("email = ?", email).First()
+	if err != nil {
+		if errors.Is(err, pg.ErrNoRows) {
+			return nil, domain.ErrNoResult
+		}
+
+		return nil, err
+	}
+
+	return user, nil
+}
+
+func (u *UserRepo) GetByUsername(username string) (*domain.User, error) {
+	user := new(domain.User)
+
+	err := u.DB.Model(user).Where("username = ?", username).First()
+	if err != nil {
+		if errors.Is(err, pg.ErrNoRows) {
+			return nil, domain.ErrNoResult
+		}
+
+		return nil, err
+	}
+
+	return user, nil
+}
+
+func (u *UserRepo) Create(user *domain.User) (*domain.User, error) {
+	_, err := u.DB.Model(user).Returning("*").Insert()
+	if err != nil {
+		return nil, err
+	}
+
+	return user, nil
+}
+
+func NewUserRepo(DB *pg.DB) *UserRepo {
+	return &UserRepo{DB: DB}
+}
+```
+
+Time to update our `main.go` with the latest change needed.
+
+```go {13,27-29,31,33}
+// main.go
+
+package main
+
+import (
+	"fmt"
+	"log"
+	"net/http"
+	"os"
+
+	"github.com/go-pg/pg/v9"
+
+	"todo/domain"
+	"todo/handlers"
+	"todo/postgres"
+)
+
+func main() {
+	DB := postgres.New(&pg.Options{
+		User:     "postgres",
+		Password: "postgres",
+		Database: "todo_dev",
+	})
+
+	defer DB.Close()
+
+	domainDB := domain.DB{
+		UserRepo: postgres.NewUserRepo(DB),
+	}
+
+	d := &domain.Domain{DB: domainDB}
+
+	r := handlers.SetupRouter(d)
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8081"
+	}
+
+	err := http.ListenAndServe(fmt.Sprintf(":%s", port), r)
+	if err != nil {
+		log.Fatalf("cannot start server %v", err)
+	}
+}
+```
+
+### Conclusion
+
+If you did like this tutorial don't forget to subscribe to my newsletter below. Also, the video link is at the top of the post.
+If you have any question don't hesitate to ask in the comment section below.
+
+[Code for this part](http://bit.ly/2QyhHIN)
+
+Happy Coding :)
