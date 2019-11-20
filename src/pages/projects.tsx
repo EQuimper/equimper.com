@@ -127,7 +127,7 @@ export const query = graphql`
 
     applications: allProjectsYaml(
       filter: { type: { eq: "APP" } }
-      sort: { fields: order, order: ASC }
+      sort: { fields: order, order: DESC }
     ) {
       edges {
         node {
