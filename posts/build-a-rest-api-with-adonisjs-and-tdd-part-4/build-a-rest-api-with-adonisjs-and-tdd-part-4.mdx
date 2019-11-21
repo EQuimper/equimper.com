@@ -1,0 +1,292 @@
+---
+title: 'Build a REST API with AdonisJs and TDD Part 4'
+date: 2019-11-21
+description: 'Want to learn how to use AdonisJs by building a rest api using TDD approach? This is the tutorial you want'
+tags: ['tutorial', 'adonisjs', 'tdd', 'javascript', 'testing']
+---
+
+- [Part 1](https://equimper.com/blog/build-a-rest-api-with-adonisjs-and-tdd-part-1)
+- [Part 2](https://equimper.com/blog/build-a-rest-api-with-adonisjs-and-tdd-part-2)
+- [Part 3](https://equimper.com/blog/build-a-rest-api-with-adonisjs-and-tdd-part-3)
+- [Source Code](https://github.com/EQuimper/adonis-tdd-tutorial-demo)
+
+## Intro
+
+In this part number 4, we will continue working on our API. But now we will also make a request to another service call [TheMovieDB Api](https://www.themoviedb.org).
+This is finally an API where we can get info about a certain movie. In this part, we will create a new controller where the user will able to search
+for a certain movie title. We first check if the movie already exists in our database. If not we then query the 3rd party API to get the info. When we got
+that info we will persist them in our own database.
+
+First, we will create a test call `SearchMovie` this will be another functional one.
+
+```
+adonis make:test SearchMovie
+```
+
+The first few tests will be just about the fact those movies are already inside our
+database. This will make this simpler. Later for the test, we will mock **TheMovieDB**
+so this way we will not exceed our request quotas.
+
+```js
+// test/functional/search-movie.spec.js
+
+'use strict'
+
+const Factory = use('Factory')
+const { test, trait } = use('Test/Suite')('Search Movie')
+
+trait('Test/ApiClient')
+trait('Auth/Client')
+
+test('can query for a certain movie title', async ({ assert, client }) => {
+  await Factory.model('App/Models/Movie').create({ title: 'Joker' })
+
+  const response = await client.get('/api/movies?title=Joker').end();
+
+  response.assertStatus(200)
+  response.assertJSONSubset([{
+    title: 'Joker',
+  }])
+})
+```
+
+If you run the test you will get an error like this
+
+```
+can query for a certain movie title
+  TypeError: Cannot read property 'name' of undefined
+    at Factory.model
+```
+
+This means we didn't define yet our factory for the movie.
+
+```js {34-38}
+// database/factory.js
+
+'use strict'
+
+/*
+|--------------------------------------------------------------------------
+| Factory
+|--------------------------------------------------------------------------
+|
+| Factories are used to define blueprints for database tables or Lucid
+| models. Later you can use these blueprints to seed your database
+| with dummy data.
+|
+*/
+
+/** @type {import('@adonisjs/lucid/src/Factory')} */
+const Factory = use('Factory')
+
+Factory.blueprint('App/Models/User', faker => {
+  return {
+    username: faker.username(),
+    email: faker.email(),
+    password: 'password123'
+  }
+})
+
+Factory.blueprint('App/Models/Challenge', faker => {
+  return {
+    title: faker.sentence(),
+    description: faker.sentence()
+  }
+})
+
+Factory.blueprint('App/Models/Movie', faker => {
+  return {
+    title: faker.sentence(),
+  }
+})
+```
+
+If you rerun the test with `npm t` you will get now a new error. This error is about the fact then we
+do not have yet a model `Movie` and our factory tries to create one with it. For this run the command
+
+```
+adonis make:model Movie -m
+```
+
+If you remember the `-m` means give me a migration file at the same time. We will just win some time with this.
+
+Now the test will show this
+
+```
+Error: SQLITE_ERROR: table movies has no column named title
+```
+
+Pretty self explain the error, we try to add a title to but no column yet is defined. Time to add this to the migration file we just did create.
+
+```js {11}
+'use strict'
+
+/** @type {import('@adonisjs/lucid/src/Schema')} */
+const Schema = use('Schema')
+
+class MovieSchema extends Schema {
+  up () {
+    this.create('movies', (table) => {
+      table.increments()
+
+      table.string('title').notNullable()
+
+      table.timestamps()
+    })
+  }
+
+  down () {
+    this.drop('movies')
+  }
+}
+
+module.exports = MovieSchema
+```
+
+After this we get
+
+```
+expected 404 to equal 200
+404 => 200
+```
+
+Normal the route is not created yet. Add this to your `routes.js` file
+
+```js
+// start/routes.js
+
+Route.group(() => {
+  Route.get('/', 'MovieController.index')
+}).prefix('/api/movies')
+```
+
+Now almost the same error but if you check carefully you will see now the error is about a `500` error not `404` like before. It's because the controller does not exist yet.
+
+Time to make an **HTTP** controller
+
+```
+adonis make:controller Movie
+```
+
+Ooooh, same error? Yes, we did use a method called `index` but our controller is empty.
+
+```js {6-8}
+// app/Controllers/Http/MovieController.js
+
+'use strict'
+
+class MovieController {
+  async index({}) {
+
+  }
+}
+
+module.exports = MovieController
+```
+
+It's time now to do some stuff to fix the new error about `204` for `no-content`.
+We first need to get the query title and after this fetch our database with this and return that with a `200` status code.
+
+```js {8-14}
+// app/Controllers/Http/MovieController.js
+
+'use strict'
+
+const Movie = use('App/Models/Movie')
+
+class MovieController {
+  async index({ request, response }) {
+    const movies = await Movie.query()
+      .where('title', request.input('title'))
+      .fetch()
+
+    return response.ok(movies)
+  }
+}
+
+module.exports = MovieController
+```
+
+The input method in the request object gives us a way to fetch the query argument we want. In this case that was the title where we did put `Joker` in it. If you run your test at this point this will work.
+But... I don't like that. First, in this way of doing, we need a match of 100% the title. What happens if the user just put `jok` and not the full `Joker` title. Time to create a new test for this case.
+
+```js
+test('can query with a subset of the title', async ({ assert, client }) => {
+  await Factory.model('App/Models/Movie').create({ title: 'Joker' })
+
+  const response = await client.get('/api/movies?title=jok').end();
+
+  response.assertStatus(200)
+  response.assertJSONSubset([{
+    title: 'Joker',
+  }])
+})
+```
+
+Now when you run the test we see that fail. Time to make use of a real query search
+
+```js {12}
+// app/Controllers/Http/MovieController.js
+
+'use strict'
+
+const Movie = use('App/Models/Movie')
+
+class MovieController {
+  async index({ request, response }) {
+    const title = request.input('title')
+
+    const movies = await Movie.query()
+      .where('title', 'LIKE', `%${title}%`)
+      .fetch()
+
+    return response.ok(movies)
+  }
+}
+
+module.exports = MovieController
+```
+
+Now this works with this change. This will make sure if a subset of the title is present at least we still give the movie to the user.
+
+Time to force the user to provide a title pretty simple one here too
+
+```js
+test('should throw 400 if no title is pass', async ({ assert, client }) => {
+  const response = await client.get('/api/movies').end()
+
+  response.assertStatus(400)
+})
+```
+
+```js {11-13}
+// app/Controllers/Http/MovieController.js
+
+'use strict'
+
+const Movie = use('App/Models/Movie')
+
+class MovieController {
+  async index({ request, response }) {
+    const title = request.input('title')
+
+    if (!title) {
+      return response.status(400).json({ error: 'title is required' })
+    }
+
+    const movies = await Movie.query()
+      .where('title', 'LIKE', `%${title}%`)
+      .fetch()
+
+    return response.ok(movies)
+  }
+}
+
+module.exports = MovieController
+```
+
+## Conclusion
+
+In the next part, we will jump on the `TheMovieDB` API stuff. We will learn how we can mock an external API so it's easier to test.
+
+I hope you enjoy the post. Don't hesitate to comment below.
