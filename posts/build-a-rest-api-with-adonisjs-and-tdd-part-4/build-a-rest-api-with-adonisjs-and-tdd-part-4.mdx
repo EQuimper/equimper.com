@@ -60,7 +60,7 @@ can query for a certain movie title
 
 This means we didn't define yet our factory for the movie.
 
-```js {34-38}
+```js {34-39}
 // database/factory.js
 
 'use strict'
@@ -94,12 +94,15 @@ Factory.blueprint('App/Models/Challenge', faker => {
   }
 })
 
-Factory.blueprint('App/Models/Movie', faker => {
+Factory.blueprint('App/Models/Movie', (faker, index, data) => {
   return {
     title: faker.sentence(),
+    ...data
   }
 })
 ```
+
+If you check, the factory take 3 arguments and the third one is for getting data from when you call the factory. So you can overide value just like that.
 
 If you rerun the test with `npm t` you will get now a new error. This error is about the fact then we
 do not have yet a model `Movie` and our factory tries to create one with it. For this run the command
