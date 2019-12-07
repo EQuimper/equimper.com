@@ -113,6 +113,8 @@ const SEO: React.FC<IProps> = ({
             />
 
             <title>{title}</title>
+
+            <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
           </Helmet>
         )
       }}

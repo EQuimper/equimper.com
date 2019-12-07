@@ -1,15 +1,14 @@
 import { graphql } from 'gatsby'
 import { Disqus } from 'gatsby-plugin-disqus'
-import React from 'react'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
+import React from 'react'
 
-
+import Convertkit from '../components/convertkit'
 import Layout from '../components/layout'
 import OtherPostLinks from '../components/other-post-links'
 import RowTitle from '../components/row-title'
 import SEO from '../components/seo'
 import Share from '../components/share'
-import SubscribeForm from '../components/subscribe-form'
 import TagList from '../components/tags-list'
 import { IBlogPost } from '../interfaces/BlogPost'
 import { IComment } from '../interfaces/Comment'
@@ -116,7 +115,7 @@ const BlogPost = ({ data, location, pageContext }: IProps) => {
           previous={pageContext.previous}
         />
 
-        <SubscribeForm avatar={data.avatarImg.fixed} />
+        <Convertkit />
 
         <RowTitle title="Comments" />
 

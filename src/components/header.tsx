@@ -39,6 +39,11 @@ const Link = styled(GatsbyLink)`
     ${tw('text-grey')};
   }
 `
+
+const OtherLink = styled('a')`
+  ${tw('no-underline text-grey-darkest hover:text-grey tracking-small')};
+`
+
 const BrandLink = styled(GatsbyLink)`
   ${tw(
     'no-underline tracking-wide leading-normal font-bold text-md md:text-xl text-grey-darkest hover:text-grey'
@@ -57,13 +62,25 @@ const Header: React.FC<IProps> = ({ siteTitle }) => (
           </BrandWrapper>
           <NavBurger />
           <LinkList>
-            {constants.siteNav.map(el => (
-              <LinkItem key={el.name}>
-                <Link activeClassName={activeClassName} to={el.url}>
-                  {el.name}
-                </Link>
-              </LinkItem>
-            ))}
+            {constants.siteNav.map(el => {
+              if (el.url.includes('http')) {
+                return (
+                  <LinkItem key={el.name}>
+                    <OtherLink href={el.url} target="_blank">
+                      {el.name}
+                    </OtherLink>
+                  </LinkItem>
+                )
+              }
+
+              return (
+                <LinkItem key={el.name}>
+                  <Link activeClassName={activeClassName} to={el.url}>
+                    {el.name}
+                  </Link>
+                </LinkItem>
+              )
+            })}
           </LinkList>
         </NavWrapper>
       </Nav>

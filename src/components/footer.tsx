@@ -52,6 +52,10 @@ const Link = styled(GatsbyLink)`
   }
 `
 
+const OtherLink = styled('a')`
+  ${tw('text-sm no-underline text-grey-darker hover:text-grey-darkest sm:text-base tracking-small')};
+`
+
 const LinkList = styled('ul')`
   ${tw('flex-col list-reset flex items-center sm:flex-row')};
 `
@@ -67,13 +71,25 @@ const Footer: SFC<IProps> = ({ siteTitle }) => {
           <SiteTitle to="/">{siteTitle}</SiteTitle>
         </AllContentWrapper>
         <LinkList>
-          {constants.siteNav.map(el => (
-            <LinkItem key={el.name}>
-              <Link activeClassName={activeClassName} to={el.url}>
-                {el.name}
-              </Link>
-            </LinkItem>
-          ))}
+          {constants.siteNav.map(el => {
+            if (el.url.includes('http')) {
+              return (
+                <LinkItem key={el.name}>
+                  <OtherLink href={el.url} target="_blank">
+                    {el.name}
+                  </OtherLink>
+                </LinkItem>
+              )
+            }
+
+            return (
+              <LinkItem key={el.name}>
+                <Link activeClassName={activeClassName} to={el.url}>
+                  {el.name}
+                </Link>
+              </LinkItem>
+            )
+          })}
         </LinkList>
       </FooterWrapper>
     </Root>

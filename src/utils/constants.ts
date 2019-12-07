@@ -11,6 +11,10 @@ export const constants = {
 
   siteNav: [
     {
+      name: 'My Newsletter',
+      url: 'https://newsletter.equimper.com'
+    },
+    {
       name: 'About',
       url: '/about',
     },
