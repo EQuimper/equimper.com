@@ -40,6 +40,10 @@ const LinkItem = styled('li')`
   ${tw('text-center mb-4')};
 `
 
+const OtherLink = styled('a')`
+  ${tw('no-underline text-grey-darker font-bold text-xl p-4')};
+`
+
 const activeClassName = 'nav-item-active'
 
 const Link = styled(GatsbyLink)`
@@ -85,13 +89,25 @@ const NavBurger = () => {
                 <CloseIcon />
               </CloseButton>
               <LinkList>
-                {constants.siteNav.map(item => (
-                  <LinkItem key={item.name}>
-                    <Link activeClassName={activeClassName} to={item.url}>
-                      {item.name}
-                    </Link>
-                  </LinkItem>
-                ))}
+                {constants.siteNav.map(el => {
+                  if (el.url.includes('http')) {
+                    return (
+                      <LinkItem key={el.name}>
+                        <OtherLink href={el.url} target="_blank">
+                          {el.name}
+                        </OtherLink>
+                      </LinkItem>
+                    )
+                  }
+
+                  return (
+                    <LinkItem key={el.name}>
+                      <Link activeClassName={activeClassName} to={el.url}>
+                        {el.name}
+                      </Link>
+                    </LinkItem>
+                  )
+                })}
               </LinkList>
             </Modal>
           </>
