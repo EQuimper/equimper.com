@@ -20,7 +20,7 @@ earn in other languages. In our case for this tutorial, we will use a simple JWT
 Later I maybe plan to add Google OAuth.
 
 The first thing to do is to create the `User` struct. Pretty standard stuff. An id who will be auto-increment by PostgreSQL. Some timestamps so we know when the user did get created or updated.
-You can also see the JSON tag. If you look at the `password` I use `-`, this means we do not want the password to get the return to the JSON client.
+You can also see the JSON tag. If you look at the `password` I use `-`, this means we do not want the password to get return to the JSON client.
 
 ```go
 // domain/users.go
