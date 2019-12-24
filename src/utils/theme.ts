@@ -11,6 +11,9 @@ export const theme: ITheme = {
       linkedin: '#0077b5',
       reddit: '#FF4500',
       stackoverflow: '#F48023',
+      dev: '#0a0a0a',
+      twitch: '#6441A4',
+      instagram: '#c13584'
     },
   },
 }

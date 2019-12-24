@@ -2,10 +2,13 @@ import React, { SFC } from 'react'
 
 import siteConfig from '../../data/siteConfig.js'
 import styled from '../utils/styled'
+import Dev from './icons/dev'
 import Github from './icons/github'
+import Instagram from './icons/instagram'
 import Linkedin from './icons/linkedin'
 import RSS from './icons/rss'
 import StackOverFlow from './icons/stackoverflow'
+import Twitch from './icons/twitch'
 import Twitter from './icons/twitter'
 import Youtube from './icons/youtube'
 
@@ -45,6 +48,30 @@ const YoutubeIcon = styled(Youtube)`
   }
 `
 
+const DevIcon = styled(Dev)`
+  ${tw('text-grey-dark h-8 w-8')};
+
+  &:hover {
+    color: ${props => props.theme.colors.socialBrand.dev};
+  }
+`
+
+const InstagramIcon = styled(Instagram)`
+  ${tw('text-grey-dark h-8 w-8')};
+
+  &:hover {
+    color: ${props => props.theme.colors.socialBrand.instagram};
+  }
+`
+
+const TwitchIcon = styled(Twitch)`
+  ${tw('text-grey-dark h-8 w-8')};
+
+  &:hover {
+    color: ${props => props.theme.colors.socialBrand.twitch};
+  }
+`
+
 const StackOverFlowIcon = styled(StackOverFlow)`
   ${tw('text-grey-dark h-8 w-8')};
 
@@ -78,9 +105,24 @@ const socials = [
     name: 'Youtube',
   },
   {
+    link: 'https://dev.to/equimper',
+    icon: <DevIcon />,
+    name: 'Dev',
+  },
+  {
+    link: 'https://www.twitch.tv/equimper',
+    icon: <TwitchIcon />,
+    name: 'Twitch',
+  },
+  {
     link: 'https://twitter.com/QuimperEmanuel',
     icon: <TwitterIcon />,
     name: 'Twitter',
+  },
+  {
+    link: 'https://www.instagram.com/equimper/',
+    icon: <InstagramIcon />,
+    name: 'Instagram',
   },
   {
     link: `${siteConfig.site.url}/rss.xml`,

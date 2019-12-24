@@ -9,6 +9,9 @@ export interface ITheme {
       linkedin: string
       reddit: string
       stackoverflow: string
+      dev: string
+      twitch: string
+      instagram: string
     }
   }
 }
