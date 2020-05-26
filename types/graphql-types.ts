@@ -4284,6 +4284,14 @@ export type ProjectsQueryQueryVariables = {};
 
 export type ProjectsQueryQuery = { libraries: { edges: Array<{ node: Pick<ProjectsYaml, 'id' | 'title' | 'text' | 'description' | 'url' | 'type' | 'techs' | 'repo' | 'author'> }> }, applications: { edges: Array<{ node: Pick<ProjectsYaml, 'id' | 'title' | 'description' | 'url' | 'type' | 'techs' | 'author'> }> } };
 
+export type TailwindUiApplicationQueryQueryVariables = {};
+
+
+export type TailwindUiApplicationQueryQuery = { mdx: Maybe<(
+    Pick<Mdx, 'body'>
+    & { frontmatter: Maybe<Pick<MdxFrontmatter, 'title'>> }
+  )>, avatarImg: Maybe<{ fixed: Maybe<GatsbyImageSharpFixedFragment> }> };
+
 export type Unnamed_1_QueryVariables = {
   slug: Scalars['String']
 };
