@@ -8,5 +8,7 @@ techs:
   - javascript
   - typescript
   - mobx
+  - overmindjs
+  - apollo
 author: 'AppAndFlow'
 order: 7
