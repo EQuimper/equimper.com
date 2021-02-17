@@ -8,7 +8,7 @@
     "deploy": "sls deploy"
   },
   "dependencies": {
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "dotenv": "^6.0.0",
     "mailgun-js": "^0.20.0"
   },
