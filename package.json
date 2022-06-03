@@ -24,7 +24,7 @@
     "gatsby-plugin-google-analytics": "^2.1.20",
     "gatsby-plugin-graphql-codegen": "^2.0.1",
     "gatsby-plugin-manifest": "^2.2.20",
-    "gatsby-plugin-mdx": "^1.0.47",
+    "gatsby-plugin-mdx": "^2.14.1",
     "gatsby-plugin-netlify": "^2.1.17",
     "gatsby-plugin-netlify-cache": "^1.2.0",
     "gatsby-plugin-netlify-cms": "4.1.22",
